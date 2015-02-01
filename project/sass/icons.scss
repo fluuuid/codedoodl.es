@@ -1,0 +1,17 @@
+// Icons from directory "project/svg/ss-icons"
+%ss {
+	background-image: url(../static/img/ss/ss-icons.svg);
+	background-repeat: no-repeat
+}
+.ss-frown {
+	@extend %ss;
+	background-position: 0 0;
+	width: 114px;
+	height: 90px;
+}
+.ss-smile {
+	@extend %ss;
+	background-position: 0 -90px;
+	width: 114px;
+	height: 90px;
+}

@@ -1,0 +1,24 @@
+// Icons from directory "project/svg/ss-icons"
+%ss {
+	background-repeat: no-repeat
+}
+.ss-frown,
+.ss-frown\:regular {
+	@extend %ss;
+	background-image: url('ss-icons/ss-icons.svg');
+	background-position: 0 0;
+}
+.ss-frown-dims {
+	width: 114px;
+	height: 90px;
+}
+.ss-smile,
+.ss-smile\:regular {
+	@extend %ss;
+	background-image: url('ss-icons/ss-icons.svg');
+	background-position: 0 -90px;
+}
+.ss-smile-dims {
+	width: 114px;
+	height: 90px;
+}

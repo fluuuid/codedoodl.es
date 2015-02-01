@@ -1,0 +1,46 @@
+@mixin for-retina
+{
+    @media only screen and (-webkit-min-device-pixel-ratio: 1.5), (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3/2), (min-device-pixel-ratio: 1.5), (min-resolution: 144dppx)
+    {
+        @content
+    }
+}
+
+@mixin get-retina-asset($name)
+{
+    $image: $image_retina_folder + $name + ".png";
+    $url: image-url($image);
+    background-image: $url;
+    width: image-width($image);
+    height: image-height($image);
+    background-repeat: no-repeat;
+    @include for-retina
+    {
+        $image2x: $image_retina_folder + $name + "@2x.png";
+        $url2x: image-url($image2x);
+        background-image: $url2x !important;
+        background-size: contain;
+    }
+}
+
+@mixin get-asset($file)
+{
+    $image: $image_folder + $file;
+    $url: image-url($image);
+    background-image: $url;
+    width: image-width($image);
+    height: image-height($image);
+    background-repeat: no-repeat;
+}
+
+@function get-asset-width($file)
+{
+    $image: $image_folder + $file;
+    @return image-width($image);
+}
+
+@function get-asset-height($file)
+{
+    $image: $image_folder + $file;
+    @return image-height($image);
+}

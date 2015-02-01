@@ -1,0 +1,33 @@
+{"code": "en_us", "language": "English", "strings": {
+    "SEO": {
+        "title": "SEO",
+        "strings": {
+            "seo_meta_description": "Sample page desc",
+            "seo_meta_keywords": "msg",
+            "seo_author": "msg",
+            "seo_fb_default_text": "msg",
+            "seo_gplus_default_text": "msg",
+            "seo_og_description": "msg",
+            "seo_og_site_name": "msg",
+            "seo_og_title": "msg",
+            "seo_og_url": "msg",
+            "seo_twitter_card_creator": "msg",
+            "seo_twitter_card_url": "msg",
+            "seo_twitter_card_title": "msg",
+            "seo_twitter_card_description": "msg",
+            "seo_twitter_card_image": "msg",
+            "seo_canonical_url": "msg"
+        }
+    },
+    "PAGE_TITLES": {
+        "title": "Page titles",
+        "strings": {
+            "page_title_home": "HP Bus to Applandia",
+            "page_title_end": "Clair's story | HP Bus to Applandia",
+            "page_title_runtime": "Vijay's story | HP Bus to Applandia",
+            "page_title_business": "Gina's story | HP Bus to Applandia",
+            "page_title_monitoring": "Gail's story | HP Bus to Applandia",
+            "page_title_analytical": "Stephen's story | HP Bus to Applandia"
+        }
+    }
+}}

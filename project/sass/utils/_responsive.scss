@@ -1,0 +1,127 @@
+/*
+ * ------------------
+ *  Responsive Mixin
+ * ------------------
+ *
+ *  @author : Fábio Azevedo <fabio.azevedo@unit9.com> UNIT9
+ *  @date   : September 14
+ *
+ *  Instructions:
+ *
+ *      1. Set-up a global variable called $breakpoints:
+ *
+ *          $breakpoints: (
+ *              small         'all and ( max-width: 640px )',
+ *              medium        'all and ( min-width: 640px ) and ( max-width: 1024px )',
+ *              large         'all and ( min-width: 1025px ) and ( max-width: 1440px )',
+ *              extra-large   'all and ( min-width: 1441px )'
+ *            );
+ *
+ *      2. Mixin respond-to accepts a list as parameter, which means
+ *         you can include more than one breakpoint, so some examples of usage:
+ *
+ *          @include respond-to( (small) );
+ *          Or
+ *          @include respond-to( (small medium) );
+ */
+
+/*
+ * Private functions
+ *
+ * TODO:
+ *   - As soon gulp-suss is updated and uses new sass compiler version,
+ *     this functions can be replaced by maps methods.
+ */
+
+@function mapHasKey($map, $key)
+{
+    @each $b in $map
+    {
+        @if nth($b, 1) == $key
+        {
+            @return true;
+        }        
+    }
+
+    @return false;
+}
+
+@function mapGet($map, $key, $index)
+{
+    @each $b in $map
+    {
+        @if nth($b, 1) == $key
+        {
+            @return nth($b, $index);
+        }
+    }
+}
+
+/*
+ * Public mixin
+ */
+
+@mixin respond-to($point)
+{
+    // @warn $point;
+    // If the key exists in the map
+    @each $p in $point
+    {
+        @if mapHasKey($breakpoints, $p)
+        {
+            @media #{mapGet($breakpoints, $p, 2)}
+            {
+                @content;
+            }
+        }
+        @else
+        {
+            // If the key doesn't exist in the map
+            @warn "Unfortunately, no value could be retrieved from `#{$point}`. " + "Please make sure it is defined in `$breakpoints` map.";
+        }
+    }
+}
+
+@mixin respond-for-ie-11
+{
+    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none)
+    {
+        @content;
+    }
+}
+
+@mixin update-state($point)
+{
+    // If the key exists in the map
+    @if mapHasKey($breakpoints, $point)
+    {
+        @media #{mapGet($breakpoints, $point, 2)}
+        {
+            content: '#{mapGet($breakpoints, $point, 1)}';
+        }
+    }
+    @else
+    {
+        // If the key doesn't exist in the map
+        @warn "Unfortunately, no value could be retrieved from `#{$point}`. " + "Please make sure it is defined in `$breakpoints` map.";
+    }
+}
+
+/*
+ * ---------------------
+ *  Media Query Manager
+ * ---------------------
+ * 
+ *  Intructions:
+ *
+ */
+
+body:after
+{
+    display: none;
+
+    @each $b in $breakpoints
+    {
+        @include update-state(nth($b, 1));
+    }
+}

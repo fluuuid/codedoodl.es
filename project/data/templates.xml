@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<templates>
+
+    <!--
+        BASE
+    -->
+
+    <template id="main">
+        <![CDATA[
+            <div id="main"></div>
+        ]]>
+    </template>
+
+    <template id="wrapper">
+        <![CDATA[
+            <div id="wrapper"></div>
+        ]]>
+    </template>
+
+    <!--
+        HEADER
+    -->
+
+    <template id="site-header">
+        <![CDATA[
+            <header id="site-header">
+                <i><%= desc %></i>
+                <ul>
+                    <li><a href="<%= home.url %>"><%= home.label %></a></li>
+                    <li><a href="<%= example.url %>"><%= example.label %></a></li>
+                </ul>
+                <div class="breakpoint"></div>
+            </header>
+        ]]>
+    </template>
+
+    <!--
+        FOOTER
+    -->
+
+    <template id="site-footer">
+        <![CDATA[
+            <footer id="site-footer">
+                <i><%= desc %></i>
+            </footer>
+        ]]>
+    </template>
+
+    <!--
+        PAGES
+    -->
+
+    <template id="page-home">
+        <![CDATA[
+            <section id="page-home" class="page page-home">
+                <i><%= desc %></i>
+            </section>
+        ]]>
+    </template>
+
+    <template id="page-example">
+        <![CDATA[
+            <section id="page-example" class="page page-example">
+                <i><%= desc %></i>
+            </section>
+        ]]>
+    </template>
+
+</templates>
