@@ -7,8 +7,9 @@ class Nav extends AbstractView
     @EVENT_CHANGE_SUB_VIEW : 'EVENT_CHANGE_SUB_VIEW'
 
     sections :
-        HOME    : ''
-        EXAMPLE : 'example'
+        HOME       : ''
+        ABOUT      : 'about'
+        CONTRIBUTE : 'contribute'
 
     current  : area : null, sub : null
     previous : area : null, sub : null

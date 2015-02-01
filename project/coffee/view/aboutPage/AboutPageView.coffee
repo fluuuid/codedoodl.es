@@ -1,19 +1,19 @@
 AbstractViewPage = require '../AbstractViewPage'
 
-class ExamplePageView extends AbstractViewPage
+class AboutPageView extends AbstractViewPage
 
-	template : 'page-example'
+	template : 'page-about'
 
 	constructor : ->
 
 		@templateVars = 
-			desc : @CD().locale.get "example_desc"
+			desc : @CD().locale.get "about_desc"
 
 		###
 
 		instantiate classes here
 
-		@exampleClass = new ExampleClass
+		@exampleClass = new exampleClass
 
 		###
 
@@ -30,4 +30,4 @@ class ExamplePageView extends AbstractViewPage
 
 		return null
 
-module.exports = ExamplePageView
+module.exports = AboutPageView

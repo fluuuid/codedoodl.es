@@ -11,9 +11,12 @@ class Header extends AbstractView
 			home    : 
 				label    : 'Go to homepage'
 				url      : @CD().BASE_PATH + '/' + @CD().nav.sections.HOME
-			example : 
-				label    : 'Go to example page'
-				url      : @CD().BASE_PATH + '/' + @CD().nav.sections.EXAMPLE
+			about : 
+				label    : 'Go to about page'
+				url      : @CD().BASE_PATH + '/' + @CD().nav.sections.ABOUT
+			contribute : 
+				label    : 'Go to contribute page'
+				url      : @CD().BASE_PATH + '/' + @CD().nav.sections.CONTRIBUTE
 
 		super()
 

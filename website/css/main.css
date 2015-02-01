@@ -866,6 +866,10 @@ textarea.placeholder {
   background: green;
 }
 /* line 124, ../../project/sass/main.scss */
-.page.page-example {
+.page.page-about {
   background: yellow;
+}
+/* line 128, ../../project/sass/main.scss */
+.page.page-contribute {
+  background: blue;
 }

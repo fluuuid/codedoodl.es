@@ -27,7 +27,8 @@
                 <i><%= desc %></i>
                 <ul>
                     <li><a href="<%= home.url %>"><%= home.label %></a></li>
-                    <li><a href="<%= example.url %>"><%= example.label %></a></li>
+                    <li><a href="<%= about.url %>"><%= about.label %></a></li>
+                    <li><a href="<%= contribute.url %>"><%= contribute.label %></a></li>
                 </ul>
                 <div class="breakpoint"></div>
             </header>
@@ -58,9 +59,17 @@
         ]]>
     </template>
 
-    <template id="page-example">
+    <template id="page-about">
         <![CDATA[
-            <section id="page-example" class="page page-example">
+            <section id="page-about" class="page page-about">
+                <i><%= desc %></i>
+            </section>
+        ]]>
+    </template>
+
+    <template id="page-contribute">
+        <![CDATA[
+            <section id="page-contribute" class="page page-contribute">
                 <i><%= desc %></i>
             </section>
         ]]>
