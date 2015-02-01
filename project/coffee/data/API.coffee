@@ -7,7 +7,7 @@ class API
 	@getContants : =>
 
 		### add more if we wanna use in API strings ###
-		BASE_PATH : @__NAMESPACE__().BASE_PATH
+		BASE_PATH : @CD().BASE_PATH
 
 	@get : (name, vars) =>
 
@@ -20,8 +20,8 @@ class API
 			r = vals[b] or if typeof vals[b] is 'number' then vals[b].toString() else ''
 		(if typeof r is "string" or typeof r is "number" then r else a)
 
-	@__NAMESPACE__ : =>
+	@CD : =>
 
-		return window.__NAMESPACE__
+		return window.CD
 
 module.exports = API

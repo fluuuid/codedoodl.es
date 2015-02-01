@@ -7,7 +7,7 @@ class HomeView extends AbstractViewPage
 	constructor : ->
 
 		@templateVars = 
-			desc : @__NAMESPACE__().locale.get "home_desc"
+			desc : @CD().locale.get "home_desc"
 
 		###
 

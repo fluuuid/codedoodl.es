@@ -26,7 +26,7 @@ class Router extends Backbone.Router
 
         if @FIRST_ROUTE then @FIRST_ROUTE = false
 
-        if !@area then @area = @__NAMESPACE__().nav.sections.HOME
+        if !@area then @area = @CD().nav.sections.HOME
 
         @trigger Router.EVENT_HASH_CHANGED, @area, @sub, @params
 
@@ -47,8 +47,8 @@ class Router extends Backbone.Router
 
         null
 
-    __NAMESPACE__ : =>
+    CD : =>
 
-        return window.__NAMESPACE__
+        return window.CD
 
 module.exports = Router

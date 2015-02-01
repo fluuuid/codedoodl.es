@@ -20,8 +20,8 @@ class AbstractModel extends Backbone.DeepModel
 
 		attrs
 
-	__NAMESPACE__ : =>
+	CD : =>
 
-		return window.__NAMESPACE__
+		return window.CD
 
 module.exports = AbstractModel

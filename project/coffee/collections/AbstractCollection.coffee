@@ -1,7 +1,7 @@
 class AbstractCollection extends Backbone.Collection
 
-	__NAMESPACE__ : =>
+	CD : =>
 
-		return window.__NAMESPACE__
+		return window.CD
 
 module.exports = AbstractCollection

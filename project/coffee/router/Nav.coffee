@@ -15,7 +15,7 @@ class Nav extends AbstractView
 
     constructor: ->
 
-        @__NAMESPACE__().router.on Router.EVENT_HASH_CHANGED, @changeView
+        @CD().router.on Router.EVENT_HASH_CHANGED, @changeView
 
         return false
 
@@ -43,7 +43,7 @@ class Nav extends AbstractView
             @trigger Nav.EVENT_CHANGE_VIEW, @previous, @current
             @trigger Nav.EVENT_CHANGE_SUB_VIEW, @current
 
-        if @__NAMESPACE__().appView.modalManager.isOpen() then @__NAMESPACE__().appView.modalManager.hideOpenModal()
+        if @CD().appView.modalManager.isOpen() then @CD().appView.modalManager.hideOpenModal()
 
         @setPageTitle area, sub
 

@@ -13,7 +13,7 @@ class AuthManager extends AbstractData
 
 	constructor : ->
 
-		@userData  = @__NAMESPACE__().appData.USER
+		@userData  = @CD().appData.USER
 
 		super()
 

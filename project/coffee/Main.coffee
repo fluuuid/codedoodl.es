@@ -15,5 +15,5 @@ IS_LIVE = false
 view = if IS_LIVE then {} else (window or document)
 
 # DECLARE MAIN APPLICATION
-view.__NAMESPACE__ = new App IS_LIVE
-view.__NAMESPACE__.init()
+view.CD = new App IS_LIVE
+view.CD.init()

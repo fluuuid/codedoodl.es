@@ -6,8 +6,8 @@ class AbstractData
 
 		return null
 
-	__NAMESPACE__ : =>
+	CD : =>
 
-		return window.__NAMESPACE__
+		return window.CD
 
 module.exports = AbstractData

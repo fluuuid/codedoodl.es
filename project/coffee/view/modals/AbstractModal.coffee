@@ -14,7 +14,7 @@ class AbstractModal extends AbstractView
 
 		super()
 
-		@__NAMESPACE__().appView.addChild @
+		@CD().appView.addChild @
 		@setListeners 'on'
 		@animateIn()
 
@@ -22,14 +22,14 @@ class AbstractModal extends AbstractView
 
 	hide : =>
 
-		@animateOut => @__NAMESPACE__().appView.remove @
+		@animateOut => @CD().appView.remove @
 
 		null
 
 	dispose : =>
 
 		@setListeners 'off'
-		@__NAMESPACE__().appView.modalManager.modals[@name].view = null
+		@CD().appView.modalManager.modals[@name].view = null
 
 		null
 

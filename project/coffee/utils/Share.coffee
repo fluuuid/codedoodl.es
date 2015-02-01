@@ -8,7 +8,7 @@ class Share
 
     constructor : ->
 
-        @url = @__NAMESPACE__().BASE_PATH
+        @url = @CD().BASE_PATH
 
         return null
 
@@ -62,7 +62,7 @@ class Share
 
         url   = encodeURIComponent(url or @url)
         if copy is ''
-            copy = @__NAMESPACE__().locale.get 'seo_twitter_card_description'
+            copy = @CD().locale.get 'seo_twitter_card_description'
             
         descr = encodeURIComponent(copy)
 
@@ -86,8 +86,8 @@ class Share
 
         null
 
-    __NAMESPACE__ : =>
+    CD : =>
 
-        return window.__NAMESPACE__
+        return window.CD
 
 module.exports = Share

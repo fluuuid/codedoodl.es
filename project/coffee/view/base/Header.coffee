@@ -7,13 +7,13 @@ class Header extends AbstractView
 	constructor : ->
 
 		@templateVars =
-			desc    : @__NAMESPACE__().locale.get "header_desc"
+			desc    : @CD().locale.get "header_desc"
 			home    : 
 				label    : 'Go to homepage'
-				url      : @__NAMESPACE__().BASE_PATH + '/' + @__NAMESPACE__().nav.sections.HOME
+				url      : @CD().BASE_PATH + '/' + @CD().nav.sections.HOME
 			example : 
 				label    : 'Go to example page'
-				url      : @__NAMESPACE__().BASE_PATH + '/' + @__NAMESPACE__().nav.sections.EXAMPLE
+				url      : @CD().BASE_PATH + '/' + @CD().nav.sections.EXAMPLE
 
 		super()
 
