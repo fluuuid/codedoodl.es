@@ -2,38 +2,57 @@
 
 var fs              = require('fs');
 var mkdirp          = require('mkdirp');
+var figlet          = require('figlet');
 var manifestCreator = require('./manifestCreator.js');
 
-var authorDir, doodleDir;
+var fullDoodleDir;
 
 function writeManifestFile(manifest) {
 
-  var manifestFilename = 'website/doodles/'+authorDir+'/'+doodleDir+'/manifest.json';
+  var manifestFilename = fullDoodleDir+'/manifest.json';
 
   fs.writeFile(manifestFilename, JSON.stringify(manifest, null, 4), function(err) {
     if(err) {
-      console.log(err);
+      console.dir(err);
     } else {
-      console.log("answers saved to " + manifestFilename);
+      console.log("\033[32mManifest written to " + manifestFilename + "\033[0m");
     }
   });
     
 }
 
-manifestCreator.create(function(manifest) {
+function main() {
 
-  console.log(manifest);
+  manifestCreator.create(function(manifest) {
 
-  // authorDir = manifest.author.name.replace(/\s+/g, '-').toLowerCase();
-  authorDir = manifest['author.name'].replace(/\s+/g, '-').toLowerCase();
-  doodleDir = manifest.name.replace(/\s+/g, '-').toLowerCase();
+    var authorDir = manifest.author.name.replace(/\s+/g, '-').toLowerCase();
+    var doodleDir = manifest.name.replace(/\s+/g, '-').toLowerCase();
+    fullDoodleDir = 'website/doodles/'+authorDir+'/'+doodleDir;
 
-  mkdirp('website/doodles/'+authorDir+'/'+doodleDir, function(err) {
-    if (err) {
-      console.log(err);
-    } else {
-      writeManifestFile(manifest);
-    }
+    mkdirp(fullDoodleDir, function(err) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log("\033[32mDoodle directory created at " + fullDoodleDir + "\033[0m")
+        writeManifestFile(manifest);
+      }
+    });
+
   });
 
+}
+
+figlet('codedoodl.es', { font: 'cyberlarge' }, function(err, data) {
+
+    if (err) {
+      console.dir(err);
+    } else {
+      console.log('');
+      console.log(data);
+      console.log('');
+      console.log('  Use this tool to generate directory structure and doodle manifest');
+      console.log('  Don\'t worry - you can edit it anytime after initial generation')
+      console.log('');
+      main();
+    }
 });
