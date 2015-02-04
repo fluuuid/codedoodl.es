@@ -44,15 +44,16 @@ function main() {
 
 figlet('codedoodl.es', { font: 'cyberlarge' }, function(err, data) {
 
-    if (err) {
-      console.dir(err);
-    } else {
-      console.log('');
-      console.log(data);
-      console.log('');
-      console.log('  Use this tool to generate directory structure and doodle manifest');
-      console.log('  Don\'t worry - you can edit it anytime after initial generation')
-      console.log('');
-      main();
-    }
+  if (err) {
+    console.dir(err);
+  } else {
+    console.log('');
+    console.log(data);
+    console.log('');
+    console.log('  Use this tool to generate directory structure and doodle manifest');
+    console.log('  Don\'t worry - you can edit it anytime after initial generation')
+    console.log('');
+    main();
+  }
+
 });
