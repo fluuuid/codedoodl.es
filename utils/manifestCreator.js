@@ -10,7 +10,10 @@ var questions = [
   { id: 'author.twitter', text: 'Author twitter handle, without the "@" (leave blank if don\'t have one)', answerType: 'str', required: false },
   { id: 'description', text: 'Doodle description', answerType: 'str', required: true },
   { id: 'category', text: 'Doodle category (choose a single value from ['+config.CATEGORIES+'])', answerType: 'category', required: true },
-  { id: 'tags', text: 'Doodle tags (comma separated list)', answerType: 'tags', required: true }
+  { id: 'tags', text: 'Doodle tags (comma separated list)', answerType: 'tags', required: true },
+  { id: 'interaction.mouse', text: 'Mouse interaction enabled? (y/n)', answerType: 'bool', required: true },
+  { id: 'interaction.keyboard', text: 'Keyboard interaction enabled? (y/n)', answerType: 'bool', required: true },
+  { id: 'interaction.touch', text: 'Touch interaction enabled? (y/n)', answerType: 'bool', required: true }
 ];
 
 var currentQuestion, currentQuestionIdx = 0, answers = {};
@@ -57,6 +60,8 @@ function create(callback) {
       console.log('\033[31mPlease provide a valid URL for "'+question.text+'"\033[0m');
     } else if (question.answerType === 'category' && config.CATEGORIES.indexOf(answer) === -1) {
       console.log('\033[31mPlease choose a category from : ['+config.CATEGORIES+']\033[0m');
+    } else if (question.answerType === 'bool' && (answer.toLowerCase() !== 'y' && answer.toLowerCase() !== 'n')) {
+      console.log('\033[31mPlease give answer "y" or "n" for "'+question.text+'"\033[0m');
     } else {
       ret = true;
     }
@@ -72,10 +77,15 @@ function create(callback) {
     if (question.answerType === 'tags') {
       val = val
         .toLowerCase()
+        .replace(/(^,)|(,$)/g, "")
         .split(',')
         .map(function(str){
           return str.replace(/^\s\s*/, '').replace(/\s\s*$/, '').replace(/\s+/g, '-');
         });
+    }
+
+    if (question.answerType === 'bool') {
+      val = val.toLowerCase() === 'y';
     }
 
     if (propParts.length > 1) {

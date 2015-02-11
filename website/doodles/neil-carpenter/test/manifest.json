@@ -7,5 +7,10 @@
 	},
 	"description": "",
 	"category" : "",
-	"tags" : []
+	"tags" : [],
+	"interaction" : {
+		"mouse" : null,
+		"keyboard" : null,
+		"touch" : null
+	}
 }

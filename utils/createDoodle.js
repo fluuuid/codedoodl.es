@@ -2,10 +2,21 @@
 
 var fs              = require('fs');
 var mkdirp          = require('mkdirp');
+var slug            = require('slug');
 var figlet          = require('figlet');
 var manifestCreator = require('./manifestCreator.js');
 
 var fullDoodleDir;
+
+var indexTmpl = [
+  "<!DOCTYPE html>\n",
+  "<html lang=\"en\">\n",
+  "<head>\n",
+    "\t<title>{{ name }}</title>\n",
+  "</head>\n",
+  "<body></body>\n",
+  "</html>\n",
+].join('');
 
 function writeManifestFile(manifest) {
 
@@ -21,12 +32,27 @@ function writeManifestFile(manifest) {
     
 }
 
+function writeIndexFile(manifest) {
+
+  var indexFilePath = fullDoodleDir+'/index.html';
+  var html          = indexTmpl.replace('{{ name }}', manifest.name+' | '+manifest.author.name);
+
+  fs.writeFile(indexFilePath, html, function(err) {
+    if(err) {
+      console.dir(err);
+    } else {
+      console.log("\033[32mIndex HTML written to " + indexFilePath + "\033[0m");
+    }
+}); 
+
+}
+
 function main() {
 
   manifestCreator.create(function(manifest) {
 
-    var authorDir = manifest.author.name.replace(/\s+/g, '-').toLowerCase();
-    var doodleDir = manifest.name.replace(/\s+/g, '-').toLowerCase();
+    var authorDir = slug(manifest.author.name.replace(/\s+/g, '-').toLowerCase());
+    var doodleDir = slug(manifest.name.replace(/\s+/g, '-').toLowerCase());
     fullDoodleDir = 'website/doodles/'+authorDir+'/'+doodleDir;
 
     mkdirp(fullDoodleDir, function(err) {
@@ -35,6 +61,7 @@ function main() {
       } else {
         console.log("\033[32mDoodle directory created at " + fullDoodleDir + "\033[0m")
         writeManifestFile(manifest);
+        writeIndexFile(manifest);
       }
     });
 
