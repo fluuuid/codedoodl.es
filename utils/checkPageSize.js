@@ -9,9 +9,17 @@ var config      = require('../config');
 
 var PORT = 3000;
 
-var path = resolve(process.argv[2] || '.');
+var path;
 
 var server = connect();
+
+try {
+	path = resolve(process.argv[2]);
+} catch (e) {
+	console.log('\033[31mPlease provide directory structure for doodle to test relative to root, eg \033[0m');
+	console.log('\033[31m`$ node utils/checkPageSize.js websites/doodles/doodle-author/doodle-name`\033[0m');
+	return;
+}
 
 function checkResults(requestCount, pageSize) {
 
