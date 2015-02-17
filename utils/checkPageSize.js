@@ -1,11 +1,14 @@
 #!/usr/bin/env node
 
+// config is coffee....
+require('coffee-script/register');
+
 var phantomas   = require('phantomas');
 var resolve     = require('path').resolve;
 var connect     = require('connect');
 var serveStatic = require('serve-static');
 var pretty      = require('prettysize');
-var config      = require('../config');
+var config      = require('../config/doodles');
 
 var PORT = 3000;
 

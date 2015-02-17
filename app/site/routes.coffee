@@ -1,6 +1,6 @@
 # Here's a set of routes for the full HTML pages on our site
 _       = require 'underscore'
-config  = require '../config'
+config  = require '../../config/server'
 content = require '../content/all.json'
 
 home = (req, res) ->
