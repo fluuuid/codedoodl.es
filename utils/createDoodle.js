@@ -53,7 +53,7 @@ function main() {
 
     var authorDir = slug(manifest.author.name.replace(/\s+/g, '-').toLowerCase());
     var doodleDir = slug(manifest.name.replace(/\s+/g, '-').toLowerCase());
-    fullDoodleDir = 'website/doodles/'+authorDir+'/'+doodleDir;
+    fullDoodleDir = 'doodles/'+authorDir+'/'+doodleDir;
 
     mkdirp(fullDoodleDir, function(err) {
       if (err) {

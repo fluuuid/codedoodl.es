@@ -19,14 +19,27 @@
     "node": ">= 0.10.32"
   },
   "folders": {
-    "dest": "website",
+    "dest": "app/public",
     "src": "project",
-    "vendor": "project/vendor"
+    "vendor": "project/vendor",
+    "html": "app/site"
   },
   "browserify": {
     "transform": [
       "coffeeify"
     ]
+  },
+  "dependencies": {
+    "ncp": "^1.0.1",
+    "walk": "^2.3.4",
+    "coffee-script": "~1.7.1",
+    "express": "~4.1.2",
+    "express-session": "~1.1.0",
+    "cookie-parser": "~1.0.1",
+    "body-parser": "~1.2.0",
+    "ejs": "~1.0.0",
+    "winston": "~0.7.3",
+    "underscore": "~1.7.0"
   },
   "devDependencies": {
     "browser-sync": "~1.5.7",
@@ -81,9 +94,5 @@
     "css-plugin": "CSSPlugin.js",
     "easepack": "EasePack.js",
     "script": "script.js"
-  },
-  "dependencies": {
-    "ncp": "^1.0.1",
-    "walk": "^2.3.4"
   }
 }

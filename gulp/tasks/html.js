@@ -26,6 +26,6 @@ gulp.task('html', function () {
 		}))
 		.pipe(global.isWatching ? gutil.noop() : minifyInline())
 		.pipe(global.isWatching ? gutil.noop() : minifyHTML())
-		.pipe(gulp.dest(pkg.folders.dest));
+		.pipe(gulp.dest(pkg.folders.html));
 
 });
