@@ -3,15 +3,17 @@ require('coffee-script/register');
 
 var _      = require('underscore');
 var fs     = require('fs');
+var path   = require('path');
 var config = require('../config/doodles');
  
 function getDoodles() {
 
-  var doodles = [];
+  var doodles     = [];
+  var doodlesPath = path.resolve(__dirname, '../doodles');
 
-  fs.readdirSync('doodles').forEach(function(authorPath, i) {
+  fs.readdirSync(doodlesPath).forEach(function(authorPath, i) {
 
-    authorPath = 'doodles/' + authorPath;
+    authorPath = doodlesPath + '/' + authorPath;
 
     if (fs.lstatSync(authorPath).isDirectory()) {
 
