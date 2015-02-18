@@ -1,7 +1,7 @@
 config = module.exports
 
 config.express =
-	port : process.env.EXPRESS_PORT or 3000
+	port : process.env.PORT or 3000
 	ip   : "127.0.0.1"
 
 config.PRODUCTION = process.env.NODE_ENV is "production"
