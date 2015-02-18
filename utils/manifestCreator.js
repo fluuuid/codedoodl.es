@@ -4,6 +4,7 @@
 require('coffee-script/register');
 
 var validURL = require('valid-url');
+var colors   = require('colors');
 var config   = require('../config/doodles');
 
 var questions = [
@@ -58,15 +59,25 @@ function create(callback) {
     var ret = false;
 
     if (question.required && !answer) {
-      console.log('\033[31mPlease provide a value for "'+question.text+'"\033[0m');
+
+      console.log(colors.red('Please provide a value for %s'), question.text);
+
     } else if (question.answerType === 'url' && !validURL.isWebUri(answer)) {
-      console.log('\033[31mPlease provide a valid URL for "'+question.text+'"\033[0m');
+
+      console.log(colors.red('Please provide a valid URL for %s'), question.text);
+
     } else if (question.answerType === 'category' && config.CATEGORIES.indexOf(answer) === -1) {
-      console.log('\033[31mPlease choose a category from : ['+config.CATEGORIES+']\033[0m');
+
+      console.log(colors.red('Please choose a category from [%s]'), config.CATEGORIES);
+
     } else if (question.answerType === 'bool' && (answer.toLowerCase() !== 'y' && answer.toLowerCase() !== 'n')) {
-      console.log('\033[31mPlease give answer "y" or "n" for "'+question.text+'"\033[0m');
+
+      console.log(colors.red('Please give answer "y" or "n" for %s'), question.text);
+
     } else {
+
       ret = true;
+
     }
 
     return ret;

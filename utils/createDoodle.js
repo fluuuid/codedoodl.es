@@ -4,6 +4,7 @@ var fs              = require('fs');
 var mkdirp          = require('mkdirp');
 var slug            = require('slug');
 var figlet          = require('figlet');
+var colors          = require('colors');
 var manifestCreator = require('./manifestCreator.js');
 
 var fullDoodleDir;
@@ -26,7 +27,7 @@ function writeManifestFile(manifest) {
     if(err) {
       console.dir(err);
     } else {
-      console.log("\033[32mManifest written to " + manifestFilename + "\033[0m");
+      console.log(colors.green('Manifest written to %s'), manifestFilename);
     }
   });
     
@@ -41,7 +42,7 @@ function writeIndexFile(manifest) {
     if(err) {
       console.dir(err);
     } else {
-      console.log("\033[32mIndex HTML written to " + indexFilePath + "\033[0m");
+      console.log(colors.green('Index HTML written to %s'), indexFilePath);
     }
 }); 
 
@@ -59,7 +60,7 @@ function main() {
       if (err) {
         console.log(err);
       } else {
-        console.log("\033[32mDoodle directory created at " + fullDoodleDir + "\033[0m")
+        console.log(colors.green('Doodle directory created at %s'), fullDoodleDir);
         writeManifestFile(manifest);
         writeIndexFile(manifest);
       }

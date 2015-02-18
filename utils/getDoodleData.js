@@ -4,6 +4,7 @@ require('coffee-script/register');
 var _      = require('underscore');
 var fs     = require('fs');
 var path   = require('path');
+var colors = require('colors');
 var config = require('../config/doodles');
  
 function getDoodles() {
@@ -29,7 +30,7 @@ function getDoodles() {
           if (fs.existsSync(manifestPath)) {
             doodles.push(JSON.parse(fs.readFileSync(manifestPath, {encoding: 'utf8'})));
           } else {
-            console.log('\033[31mNo manifest.json found for doodle : '+doodlePath+'\033[0m');
+            console.log(colors.red('No manifest.json found for doodle :  %s'), doodlePath);
           }
 
         }

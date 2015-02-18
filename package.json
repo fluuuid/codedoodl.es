@@ -82,7 +82,8 @@
     "path": "^0.11.14",
     "prettysize" : "^0.0.3",
     "phantomas": "^1.9.0",
-    "slug": "^0.8.0"
+    "slug": "^0.8.0",
+    "colors": "^1.0.3"
   },
   "vendor": {
     "jquery": "jquery-2.1.0.js",
