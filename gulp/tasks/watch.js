@@ -7,7 +7,7 @@
 var gulp = require('gulp');
 var pkg  = require('../../package.json');
 
-gulp.task('watch', ['setWatch', 'browserSync'], function() {
+gulp.task('watch', ['setWatch', 'build'], function() {
   gulp.watch(pkg.folders.src+'/sass/**', ['sass']);
   gulp.watch(pkg.folders.src+'/img/**', ['images']);
   gulp.watch(pkg.folders.src+'/data/**', ['dataMin']);

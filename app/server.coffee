@@ -25,4 +25,4 @@ app.listen config.express.port, config.express.ip, (error) ->
 		log.error("Unable to listen for connections", error)
 		process.exit(10)
 
-	log.info("express is listening on " + config.BASE_PATH);
+	log.info("express is listening on " + config.BASE_URL);
