@@ -45,11 +45,12 @@ function create(callback) {
     }
 
     if(currentQuestionIdx<questions.length-1) {
-      currentQuestion = questions[++currentQuestionIdx];
+      currentQuestion = questions[currentQuestionIdx++];
       ask(currentQuestion);
     } else {
-      process.stdin.pause();
+      set_manifest_timestamp();
       callback(answers);
+      process.stdin.pause();
     }
 
   }
@@ -108,6 +109,12 @@ function create(callback) {
     } else {
       answers[question.id] = val;
     }
+
+  }
+
+  function set_manifest_timestamp() {
+
+    answers.created = new Date().toString();
 
   }
  
