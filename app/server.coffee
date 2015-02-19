@@ -12,7 +12,8 @@ app.set 'view engine', 'html'
 
 [
 	"./api/routes",
-	"./site/routes"
+	"./site/routes",
+	"./hooks/routes"
 ].forEach (routePath) ->
 	require(routePath)(app)
 
