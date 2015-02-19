@@ -16,7 +16,7 @@ test = (req, res) ->
 	console.log req.body
 
 	if requestIsFromGithub req
-		res.json "success!"
+		res.json "success! from github!"
 	else
 		res.json "nope, not github"
 
