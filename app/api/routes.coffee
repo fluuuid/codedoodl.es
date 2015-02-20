@@ -1,4 +1,5 @@
-doodleData = require '../../utils/getDoodleData'
+cors       = require "cors"
+doodleData = require "../../utils/getDoodleData"
 
 getDoodles = (req, res) ->
 
@@ -10,7 +11,7 @@ getContributors = (req, res) ->
 
 setup = (app) ->
 
-	app.get '/api/doodles', getDoodles
-	app.get '/api/contributors', getContributors
+	app.get '/api/doodles', cors(), getDoodles
+	app.get '/api/contributors', cors(), getContributors
 
 module.exports = setup

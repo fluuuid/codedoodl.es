@@ -43,7 +43,8 @@
     "ejs": "~1.0.0",
     "winston": "~0.7.3",
     "underscore": "~1.7.0",
-    "colors": "^1.0.3"
+    "colors": "^1.0.3",
+    "cors": "^2.5.3"
   },
   "devDependencies": {
     "browser-sync": "~1.5.7",
