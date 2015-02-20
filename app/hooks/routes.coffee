@@ -10,20 +10,26 @@ requestIsFromGithub = (req) ->
 
 	hash is hubSig
 
-test = (req, res) ->
-
-	console.log "received test hook at #{new Date().toString()}"
-	console.log req.body
+verifyHookSource = (req, res) ->
 
 	if requestIsFromGithub req
-		res.json "success! from github!"
+		authorised = true
 	else
-		res.json "nope, not github"
+		res.status(401).send "nope, not github"	
+		authorised = false
+
+	authorised
+
+push = (req, res) ->
+
+	return unless verifyHookSource req, res
+
+	res.json "success! from github!"
 
 setup = (app) ->
 
 	app.use bodyParser()
 
-	app.post '/hooks/test', test
+	app.post '/hooks/push', push
 
 module.exports = setup
