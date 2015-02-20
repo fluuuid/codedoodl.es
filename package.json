@@ -33,8 +33,6 @@
     ]
   },
   "dependencies": {
-    "ncp": "^1.0.1",
-    "walk": "^2.3.4",
     "coffee-script": "~1.7.1",
     "express": "~4.1.2",
     "express-session": "~1.1.0",
