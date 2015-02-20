@@ -52,7 +52,7 @@ function main() {
 
   manifestCreator.create(function(manifest) {
 
-    var authorDir = slug(manifest.author.name.replace(/\s+/g, '-').toLowerCase());
+    var authorDir = slug(manifest.author.github.replace(/\s+/g, '-').toLowerCase());
     var doodleDir = slug(manifest.name.replace(/\s+/g, '-').toLowerCase());
     fullDoodleDir = 'doodles/'+authorDir+'/'+doodleDir;
 

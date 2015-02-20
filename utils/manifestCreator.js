@@ -10,6 +10,7 @@ var config   = require('../config/doodles');
 var questions = [
   { id: 'name', text: 'Doodle name', answerType: 'str', required: true },
   { id: 'author.name', text: 'Author name', answerType: 'str', required: true },
+  { id: 'author.github', text: 'Author github username', answerType: 'github', required: true },
   { id: 'author.website', text: 'Author website', answerType: 'url', required: true },
   { id: 'author.twitter', text: 'Author twitter handle, without the "@" (leave blank if don\'t have one)', answerType: 'str', required: false },
   { id: 'description', text: 'Doodle description', answerType: 'str', required: true },
@@ -45,7 +46,7 @@ function create(callback) {
     }
 
     if(currentQuestionIdx<questions.length-1) {
-      currentQuestion = questions[currentQuestionIdx++];
+      currentQuestion = questions[++currentQuestionIdx];
       ask(currentQuestion);
     } else {
       set_manifest_timestamp();
@@ -58,6 +59,7 @@ function create(callback) {
   function validate_answer(question, answer) {
 
     var ret = false;
+    var ghRe = new RegExp('^[a-z0-9-]{1,38}$', 'i');
 
     if (question.required && !answer) {
 
@@ -74,6 +76,10 @@ function create(callback) {
     } else if (question.answerType === 'bool' && (answer.toLowerCase() !== 'y' && answer.toLowerCase() !== 'n')) {
 
       console.log(colors.red('Please give answer "y" or "n" for %s'), question.text);
+
+    } else if (question.answerType === 'github' && (!ghRe.test(answer) || answer.charAt(0) === '-')) {
+
+      console.log(colors.red('Please provide a valid github username (alphanumeric or dashes, cannot start with dash, <39 chars) for %s'), question.text);
 
     } else {
 
