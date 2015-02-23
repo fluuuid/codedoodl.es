@@ -14,7 +14,6 @@ var questions = [
   { id: 'author.website', text: 'Author website', answerType: 'url', required: true },
   { id: 'author.twitter', text: 'Author twitter handle, without the "@" (leave blank if don\'t have one)', answerType: 'str', required: false },
   { id: 'description', text: 'Doodle description', answerType: 'str', required: true },
-  { id: 'category', text: 'Doodle category (choose a single value from ['+config.CATEGORIES+'])', answerType: 'category', required: true },
   { id: 'tags', text: 'Doodle tags (comma separated list)', answerType: 'tags', required: true },
   { id: 'interaction.mouse', text: 'Mouse interaction enabled? (y/n)', answerType: 'bool', required: true },
   { id: 'interaction.keyboard', text: 'Keyboard interaction enabled? (y/n)', answerType: 'bool', required: true },
@@ -68,10 +67,6 @@ function create(callback) {
     } else if (question.answerType === 'url' && !validURL.isWebUri(answer)) {
 
       console.log(colors.red('Please provide a valid URL for %s'), question.text);
-
-    } else if (question.answerType === 'category' && config.CATEGORIES.indexOf(answer) === -1) {
-
-      console.log(colors.red('Please choose a category from [%s]'), config.CATEGORIES);
 
     } else if (question.answerType === 'bool' && (answer.toLowerCase() !== 'y' && answer.toLowerCase() !== 'n')) {
 
