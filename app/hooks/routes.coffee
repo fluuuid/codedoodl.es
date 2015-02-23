@@ -3,7 +3,7 @@ bodyParser  = require "body-parser"
 
 requestIsFromGithub = (req) ->
 
-	secret = process.env.GITHUB_SECRET
+	secret = process.env.GITHUB_SECRET or ''
 
 	hash   = crypto.createHmac('sha1', secret).update(JSON.stringify(req.body)).digest('hex')
 	hubSig = (req.headers['x-hub-signature'] or '').replace('sha1=', '')

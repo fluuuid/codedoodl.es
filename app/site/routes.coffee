@@ -31,7 +31,7 @@ login = (req, res) ->
 	res.render "site/login", msg: msg
 
 loginPost = (req, res) ->
-	if req.body.pw is process.env.DEV_PASSWORD
+	if req.body.pw is (process.env.DEV_PASSWORD or '')
 		req.session.logged_in = true
 		res.redirect '/'
 	else
