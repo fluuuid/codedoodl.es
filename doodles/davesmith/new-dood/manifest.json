@@ -1,0 +1,21 @@
+{
+    "name": "New dood",
+    "author": {
+        "name": "Dave Smith",
+        "github": "davesmith",
+        "website": "http://dave.com",
+        "twitter": ""
+    },
+    "description": "Testing pull request",
+    "category": "webGL",
+    "tags": [
+        "what",
+        "up"
+    ],
+    "interaction": {
+        "mouse": true,
+        "keyboard": false,
+        "touch": false
+    },
+    "created": "Mon Feb 23 2015 14:44:45 GMT+0000 (GMT)"
+}
