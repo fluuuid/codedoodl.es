@@ -19,7 +19,7 @@
     "node": ">= 0.10.29"
   },
   "scripts": {
-    "start": "NODE_ENV=production nodemon app/server.coffee"
+    "start": "cd app && nodemon server.coffee"
   },
   "folders": {
     "dest": "app/public",
