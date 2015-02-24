@@ -44,6 +44,7 @@ getDeployType = (req) ->
 		when changed.app and changed.data then 'deployAll'
 		when changed.app then 'deployApp'
 		when changed.data then 'deployData'
+		else false
 
 	type
 
@@ -53,9 +54,11 @@ push = (req, res) ->
 
 	deployType = getDeployType(req)
 
+	if !deployType then return res.json "no app or data changes to push..."
+
 	deployer[deployType]();
 
-	res.json "success! from github!"
+	res.json "success! deployed with #{deployType}!"
 
 setup = (app) ->
 
