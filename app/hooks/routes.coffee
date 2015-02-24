@@ -59,7 +59,7 @@ getDeployType = (req) ->
 push = (req, res) ->
 
 	if !verifyHookSource(req) then return res.status(401).send "nope, you're not github"
-	if !verifyHookRef(req) then return res.status(403).send "wrong branch, was '#{req.body.ref.split('refs/heads/')[1]}' but needs to be '#{config.REPO_DEPLOY_BRANCH}'"
+	if !verifyHookRef(req) then return res.send "wrong branch, deployments only active on '#{config.REPO_DEPLOY_BRANCH}'"
 
 	deployType = getDeployType(req)
 
