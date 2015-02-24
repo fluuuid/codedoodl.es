@@ -1,5 +1,6 @@
 crypto      = require "crypto"
 bodyParser  = require "body-parser"
+deployer    = require "../../utils/gitDeployer"
 
 requestIsFromGithub = (req) ->
 
@@ -23,6 +24,8 @@ verifyHookSource = (req, res) ->
 push = (req, res) ->
 
 	return unless verifyHookSource req, res
+
+	deployer.deploy();
 
 	res.json "success! from github!"
 

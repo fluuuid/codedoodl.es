@@ -16,7 +16,7 @@
   },
   "license": "MIT",
   "engines": {
-    "node": ">= 0.12.0"
+    "node": ">= 0.10.29"
   },
   "scripts": {
     "start": "NODE_ENV=production nodemon app/server.coffee"
@@ -43,7 +43,11 @@
     "winston": "~0.7.3",
     "underscore": "~1.7.0",
     "colors": "^1.0.3",
-    "cors": "^2.5.3"
+    "cors": "^2.5.3",
+    "request": "^2.53.0",
+    "adm-zip": "^0.4.7",
+    "wrench" : "^1.5.8",
+    "rimraf" : "^2.2.8"
   },
   "devDependencies": {
     "browser-sync": "~1.5.7",
