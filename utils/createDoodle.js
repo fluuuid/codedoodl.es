@@ -6,6 +6,7 @@ var slug            = require('slug');
 var figlet          = require('figlet');
 var colors          = require('colors');
 var manifestCreator = require('./manifestCreator.js');
+var getDoodleDir    = require('./getDoodleDir.js');
 
 var fullDoodleDir;
 
@@ -52,9 +53,7 @@ function main() {
 
   manifestCreator.create(function(manifest) {
 
-    var authorDir = slug(manifest.author.github.replace(/\s+/g, '-').toLowerCase());
-    var doodleDir = slug(manifest.name.replace(/\s+/g, '-').toLowerCase());
-    fullDoodleDir = 'doodles/'+authorDir+'/'+doodleDir;
+    fullDoodleDir = getDoodleDir.getFullPath(manifest);
 
     mkdirp(fullDoodleDir, function(err) {
       if (err) {
@@ -70,7 +69,7 @@ function main() {
 
 }
 
-figlet('codedoodl.es', { font: 'cyberlarge' }, function(err, data) {
+figlet('codedoodl.es', { font: 'digital' }, function(err, data) {
 
   if (err) {
     console.dir(err);
