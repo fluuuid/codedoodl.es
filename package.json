@@ -47,7 +47,8 @@
     "request": "^2.53.0",
     "adm-zip": "^0.4.7",
     "wrench" : "^1.5.8",
-    "rimraf" : "^2.2.8"
+    "rimraf" : "^2.2.8",
+    "node-uuid" : "^1.4.2"
   },
   "devDependencies": {
     "browser-sync": "~1.5.7",
