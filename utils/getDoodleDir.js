@@ -3,14 +3,14 @@ require('coffee-script/register');
 
 var slug   = require('slug');
 var colors = require('colors');
-var config = require('../config/doodles');
+var config = require('../config/repository');
 
 var getFullPath = function(manifest) {
 
 	authorDir = getAuthorDir(manifest.author.github);
     doodleDir = getDoodleDir(manifest.name);
 
-    return config.BASE_DOODLE_DIR+'/'+authorDir+'/'+doodleDir
+    return config.REPO_DOODLE_DIR+'/'+authorDir+'/'+doodleDir
 
 }
 

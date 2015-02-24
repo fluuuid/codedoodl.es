@@ -19,7 +19,7 @@ var opts = {
   method: 'GET',
   uri: 'https://api.github.com/repos/neilcarpenter/codedoodl.es/zipball/master',
   headers: {
-    "User-Agent"    : "neilcarpenter",
+    "User-Agent"    : "codedoodl.es",
     "Authorization" : "token "+process.env.GITHUB_REPO_PULL_TOKEN
   }
 }
@@ -89,4 +89,8 @@ function deploy() {
 
 }
 
-module.exports = { deploy : deploy };
+module.exports = {
+  deployAll  : deployAll,
+  deployApp  : deployApp,
+  deployData : deployData
+};
