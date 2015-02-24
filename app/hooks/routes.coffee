@@ -18,7 +18,6 @@ verifyHookSource = (req, res) ->
 	if requestIsFromGithub req
 		authorised = true
 	else
-		res.status(401).send "nope, not github"	
 		authorised = false
 
 	authorised
@@ -50,7 +49,7 @@ getDeployType = (req) ->
 
 push = (req, res) ->
 
-	return unless verifyHookSource req, res
+	if !verifyHookSource(req, res) then return res.status(401).send "nope, not github"
 
 	deployType = getDeployType(req)
 
