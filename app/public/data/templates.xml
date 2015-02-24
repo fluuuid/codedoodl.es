@@ -3,13 +3,17 @@
         ]]></template><template id="wrapper"><![CDATA[
             <div id="wrapper"></div>
         ]]></template><template id="site-header"><![CDATA[
-            <header id="site-header"><i><%= desc %></i><ul><li><a href="<%= home.url %>"><%= home.label %></a></li><li><a href="<%= about.url %>"><%= about.label %></a></li><li><a href="<%= contribute.url %>"><%= contribute.label %></a></li></ul><div class="breakpoint"></div></header>
+            <header id="site-header"><div class="header-el header-el-left"><h1 class="logo"><a href="<%= home.url %>"><%= home.label %></a></h1></div><div class="header-el header-el-right"><nav class="header-nav header-nav-main"><a href="<%= about.url %>"><%= about.label %></a><a href="<%= contribute.url %>"><%= contribute.label %></a></nav><nav class="header-nav header-nav-doodle"><a href="#">info</a></nav><a href="/">close</a></div></header>
         ]]></template><template id="site-footer"><![CDATA[
-            <footer id="site-footer"><i><%= desc %></i></footer>
+            <footer id="site-footer"><nav class="footer-nav"><span class="arrow arrow-right">arrow-right</span><span class="arrow arrow-left">arrow-left</span></nav><span class="interaction-indicators">X X X</span></footer>
         ]]></template><template id="page-home"><![CDATA[
-            <section id="page-home" class="page page-home"><i><%= desc %></i></section>
+            <section id="page-home" class="page page-home"><div class="home-grid"><i>I am the home grid</i></div></section>
         ]]></template><template id="page-about"><![CDATA[
-            <section id="page-about" class="page page-about"><i><%= desc %></i></section>
+            <section id="page-about" class="page page-about"><div class="page-content">
+                    I am the about page content
+                </div></section>
         ]]></template><template id="page-contribute"><![CDATA[
-            <section id="page-contribute" class="page page-contribute"><i><%= desc %></i></section>
+            <section id="page-contribute" class="page page-contribute"><div class="page-content">
+                    I am the contribute page content
+                </div></section>
         ]]></template></templates>
