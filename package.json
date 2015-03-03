@@ -1,4 +1,3 @@
-
 {
   "name": "codedoodl.es",
   "description": "Creative code sketches",
@@ -19,7 +18,7 @@
     "node": ">= 0.10.29"
   },
   "scripts": {
-    "start": "cd app && nodemon server.coffee"
+    "start": "pm2 start pm2.json"
   },
   "folders": {
     "dest": "app/public",
@@ -33,23 +32,23 @@
     ]
   },
   "dependencies": {
-    "nodemon": "^1.3.7",
+    "adm-zip": "^0.4.7",
+    "body-parser": "~1.2.0",
     "coffee-script": "~1.7.1",
+    "colors": "^1.0.3",
+    "cookie-parser": "~1.0.1",
+    "cors": "^2.5.3",
+    "ejs": "~1.0.0",
     "express": "~4.1.2",
     "express-session": "~1.1.0",
-    "cookie-parser": "~1.0.1",
-    "body-parser": "~1.2.0",
-    "ejs": "~1.0.0",
-    "winston": "~0.7.3",
-    "underscore": "~1.7.0",
-    "colors": "^1.0.3",
-    "cors": "^2.5.3",
+    "mkdirp": "^0.5.0",
+    "node-uuid": "^1.4.2",
+    "pm2": "^0.12.7",
     "request": "^2.53.0",
-    "adm-zip": "^0.4.7",
-    "wrench" : "^1.5.8",
-    "rimraf" : "^2.2.8",
-    "node-uuid" : "^1.4.2",
-    "mkdirp" : "^0.5.0"
+    "rimraf": "^2.2.8",
+    "underscore": "~1.7.0",
+    "winston": "~0.7.3",
+    "wrench": "^1.5.8"
   },
   "devDependencies": {
     "browser-sync": "~1.5.7",
@@ -84,8 +83,8 @@
     "vinyl-source-stream": "~1.0.0",
     "watchify": "~2.0.0",
     "valid-url": "^1.0.9",
-    "figlet" : "^1.1.0",
-    "prettysize" : "^0.0.3",
+    "figlet": "^1.1.0",
+    "prettysize": "^0.0.3",
     "phantomas": "^1.9.0",
     "slug": "^0.8.0"
   },

@@ -1,0 +1,13 @@
+{
+    "apps": [{
+        "name": "codedoodl.es",
+        "env": {
+            "ENVIRONMENT": "PRODUCTION"
+        },
+        "script": "server.coffee",
+        "cwd": "app/",
+        "instances": 1,
+        "watch": true,
+        "exec_mode": "cluster_mode"
+    }]
+}
