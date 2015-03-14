@@ -1,0 +1,36 @@
+
+#site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    background: red;
+    z-index: 1;
+    font-size: 12px;
+
+    .breakpoint
+    {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        
+        div
+        {
+            display: inline-block;
+            &.l
+            {
+                background: white;
+                color: black;
+                padding: 10px;
+            }
+            &.b
+            {
+                background: black;
+                color: white;
+                padding: 10px;
+                font-weight: bold;
+            }
+        }
+    }
+}

@@ -537,7 +537,7 @@ html {
 
 body {
   color: #000;
-  background: #fff;
+  background: #F1F1F3;
   width: 100%; }
 
 h1, h2, h3, h4, h5, h6 {
@@ -575,17 +575,6 @@ input, button, textarea {
 
 /*
  * VIEWS
- */
-/*
- *
- *
- *
- *
- * FOR SAKE OF EXAMPLE APPLICATION, DELETE WHEN BEGIN BUILDING APP
- *
- *
- *
- *
  */
 #site-header {
   position: fixed;
@@ -635,9 +624,3 @@ input, button, textarea {
     width: 100%;
     text-align: center;
     padding-top: 400px; }
-  .page.page-home {
-    background: green; }
-  .page.page-about {
-    background: yellow; }
-  .page.page-contribute {
-    background: red; }

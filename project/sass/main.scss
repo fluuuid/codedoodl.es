@@ -42,90 +42,13 @@
  * VIEWS
  */
 
-/*
- *
- *
- *
- *
- * FOR SAKE OF EXAMPLE APPLICATION, DELETE WHEN BEGIN BUILDING APP
- *
- *
- *
- *
- */
+// components
+@import 'views/components/header';
+@import 'views/components/footer';
 
-#site-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 10px;
-    background: red;
-    z-index: 1;
-    font-size: 12px;
-
-    .breakpoint
-    {
-        position: absolute;
-        right: 0;
-        bottom: 0;
-        
-        div
-        {
-            display: inline-block;
-            &.l
-            {
-                background: white;
-                color: black;
-                padding: 10px;
-            }
-            &.b
-            {
-                background: black;
-                color: white;
-                padding: 10px;
-                font-weight: bold;
-            }
-        }
-    }
-}
-
-#site-footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 10px;
-    background: red;
-    z-index: 1;
-    font-size: 12px;
-}
-
-.page {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    visibility: hidden;
-    font-size: 12px;
-
-    i {
-        display: block;
-        width: 100%;
-        text-align: center;
-        padding-top: 400px;
-    }
-
-    &.page-home {
-        background: green;
-    }
-
-    &.page-about {
-        background: yellow;
-    }
-
-    &.page-contribute {
-        background: red;
-    }
-}
+// pages
+@import 'views/pages/base';
+@import 'views/pages/home';
+@import 'views/pages/doodle';
+@import 'views/pages/about';
+@import 'views/pages/contribute';
