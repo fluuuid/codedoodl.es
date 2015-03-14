@@ -3,9 +3,11 @@
         ]]></template><template id="wrapper"><![CDATA[
             <div id="wrapper"></div>
         ]]></template><template id="site-header"><![CDATA[
-            <header id="site-header"><i><%= desc %></i><ul><li><a href="<%= home.url %>"><%= home.label %></a></li><li><a href="<%= about.url %>"><%= about.label %></a></li><li><a href="<%= contribute.url %>"><%= contribute.label %></a></li></ul><div class="breakpoint"></div></header>
+            <header id="site-header"><h1 class="logo"><a class="logo__link" href="<%= home.url %>"><%= home.label %></a></h1><nav class="site-nav"><a class="site-nav__link" href="<%= about.url %>"><%= about.label %></a><a class="site-nav__link" href="<%= contribute.url %>"><%= contribute.label %></a></nav><span class="close-btn" data-close-doodle><%= close_label %></span></header>
         ]]></template><template id="site-footer"><![CDATA[
-            <footer id="site-footer"><i><%= desc %></i></footer>
+            <footer id="site-footer"><i>mouse</i>&nbsp;
+                <i>keyboard</i>&nbsp;
+                <i>touch</i></footer>
         ]]></template><template id="page-home"><![CDATA[
             <section id="page-home" class="page page-home"><i><%= desc %></i></section>
         ]]></template><template id="page-about"><![CDATA[

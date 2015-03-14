@@ -24,7 +24,10 @@
         "HEADER": {
             "title": "Header",
             "strings": {
-                "header_desc": "I am the header"
+                "header_logo_label": "codedoodl.es",
+                "header_about_label": "about",
+                "header_contribute_label": "contribute",
+                "header_close_label": "close"
             }
         },
         "FOOTER": {
