@@ -1,0 +1,80 @@
+
+#site-header {
+    font-family: $ff-monosten-a;
+
+    .logo,
+    .site-nav,
+    .close-btn,
+    .info-btn {
+        position: fixed;
+        z-index: 10;
+    }
+
+    .logo__link,
+    .site-nav__link,
+    .info-btn,
+    .close-btn {
+        @include font-size(1.5);
+        cursor: pointer;
+        padding-bottom: 2px;
+        display: inline-block;
+        color: #fff;
+        text-decoration: none;
+        border-bottom: 2px solid #fff;
+        letter-spacing: 0.6px;
+    }
+
+    .logo {
+        top: 50%;
+        left: 25px;
+        transform: translate(-50%, -50%) rotate(90deg);
+    }
+
+    .site-nav,
+    .info-btn {
+        top: 50%;
+        right: 25px;
+        transform: translate(50%, -50%) rotate(90deg);
+    }
+
+    .site-nav__link {
+        margin-right: 15px;
+
+        &:last-of-type {
+            margin-right: 0;
+        }
+    }
+
+    .close-btn {
+        top: 25px;
+        right: 25px;
+        transform: translate(50%, 50%) rotate(90deg);
+    }
+
+    .info-btn {
+        display: none;
+    }
+
+    &[data-section="home"],
+    &[data-section="about"],
+    &[data-section="contribute"] {
+
+        .logo__link,
+        .site-nav__link,
+        .close-btn {
+            color: $cd-red;
+            border-color: $cd-red;
+        }        
+    }
+
+    &[data-section="_"] {
+
+        .site-nav {
+            display: none;
+        }
+
+        .info-btn {
+            display: block;
+        }
+    }
+}

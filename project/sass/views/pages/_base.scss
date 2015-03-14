@@ -1,0 +1,30 @@
+// base page stylings
+
+.page {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    visibility: hidden;
+    font-size: 12px;
+
+    i {
+        display: block;
+        width: 100%;
+        text-align: center;
+        padding-top: 400px;
+    }
+
+    // &.page-home {
+    //     background: green;
+    // }
+
+    // &.page-about {
+    //     background: yellow;
+    // }
+
+    // &.page-contribute {
+    //     background: red;
+    // }
+}

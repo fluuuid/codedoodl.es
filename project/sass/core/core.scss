@@ -25,16 +25,18 @@ html
 {
     margin: 0;
     padding: 0;
-    -webkit-font-smoothing: antialiased;
+    // lose this - monsten looks better without (on chrome at least)
+    // -webkit-font-smoothing: antialiased;
     text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
     font-size: 62.5%; /* Sets up the Base 10 REM sizing stuff */
 	min-height: 100%;
 	height: 100%;
+	font-family: $ff-monosten-f;
 }
 
 body {
     color: #000;
-    background: #fff;
+    background: none;
     width: 100%;
 }
 

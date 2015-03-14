@@ -13,12 +13,20 @@ requestIsFromGithub = (req) ->
 
 	hash is hubSig
 
-verifyHookSource = (req, res) ->
+verifyHookSource = (req) ->
 
 	if requestIsFromGithub req
 		authorised = true
 	else
-		res.status(401).send "nope, not github"	
+		authorised = false
+
+	authorised
+
+verifyHookRef = (req) ->
+
+	if req.body.ref.split('refs/heads/')[1] is config.REPO_DEPLOY_BRANCH
+		authorised = true
+	else
 		authorised = false
 
 	authorised
@@ -44,18 +52,22 @@ getDeployType = (req) ->
 		when changed.app and changed.data then 'deployAll'
 		when changed.app then 'deployApp'
 		when changed.data then 'deployData'
+		else false
 
 	type
 
 push = (req, res) ->
 
-	return unless verifyHookSource req, res
+	if !verifyHookSource(req) then return res.status(401).send "nope, you're not github"
+	if !verifyHookRef(req) then return res.send "wrong branch, deployments only active on '#{config.REPO_DEPLOY_BRANCH}'"
 
 	deployType = getDeployType(req)
 
+	if !deployType then return res.json "no app or data changes to push..."
+
 	deployer[deployType]();
 
-	res.json "success! from github!"
+	res.json "success! deployed with #{deployType}!"
 
 setup = (app) ->
 
