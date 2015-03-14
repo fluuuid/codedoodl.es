@@ -7,7 +7,7 @@
         ]]></template><template id="site-footer"><![CDATA[
             <footer id="site-footer"><i><%= desc %></i></footer>
         ]]></template><template id="page-home"><![CDATA[
-            <section id="page-home" class="page page-home"><i><%= desc %><br>I am auto-deployed</i></section>
+            <section id="page-home" class="page page-home"><i><%= desc %></i></section>
         ]]></template><template id="page-about"><![CDATA[
             <section id="page-about" class="page page-about"><i><%= desc %></i></section>
         ]]></template><template id="page-contribute"><![CDATA[
