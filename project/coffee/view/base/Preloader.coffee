@@ -37,7 +37,7 @@ class Preloader extends AbstractView
 
 		@$el.addClass('show-preloader')
 
-		@animateCharsIn()
+		@animateCharsIn @hide
 
 		null
 
@@ -49,7 +49,7 @@ class Preloader extends AbstractView
 
 	hide : (@cb) =>
 
-		@onHideComplete()
+		@animateCharsOut @onHideComplete
 
 		null
 
@@ -95,25 +95,24 @@ class Preloader extends AbstractView
 
 		char
 
-	animateCharsIn : =>
+	animateCharsIn : (cb) =>
 
 		activeChar = 0
 
-		@_animateCharIn activeChar
-
+		@_animateCharIn activeChar, cb
 
 		null
 
-	_animateCharIn : (idx) =>
+	_animateCharIn : (idx, cb) =>
 
 		char = @chars[idx]
 
 		@_animateWrongCharsIn char, =>
 
 			if idx is @chars.length-1
-				@animateCharsInDone()
+				@animateCharsInDone cb
 			else
-				@_animateCharIn idx+1
+				@_animateCharIn idx+1, cb
 
 		null
 
@@ -140,15 +139,15 @@ class Preloader extends AbstractView
 
 		null
 
-	animateCharsInDone : =>
+	animateCharsInDone : (cb) =>
 
 		console.log "animateCharsInDone : =>"
 
-		@animateCharsOut()
+		cb()
 
 		null
 
-	animateCharsOut : =>
+	animateCharsOut : (cb) =>
 
 		for char in @chars
 
@@ -158,7 +157,9 @@ class Preloader extends AbstractView
 			rotation     = (displacement / 80) * 100
 			rotation     = if (Math.random() > 0.5) then rotation else -rotation
 
-			TweenLite.to char.$el, 1, { delay : 0.5+((_.random(50, 200))/1000), opacity: 0, y : displacement, rotation: "#{rotation}deg", ease: Cubic.easeIn }
+			TweenLite.to char.$el, 1, { delay : 1+((_.random(50, 200))/1000), opacity: 0, y : displacement, rotation: "#{rotation}deg", ease: Cubic.easeIn }
+
+		setTimeout cb, 2200
 
 		null
 

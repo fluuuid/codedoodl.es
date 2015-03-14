@@ -583,6 +583,7 @@ input, button, textarea {
   height: 100%;
   z-index: 50;
   background: #395CAA;
+  transition: all .3s cubic-bezier(0.455, 0.03, 0.515, 0.955);
   opacity: 0;
   visibility: hidden; }
   #preloader.show-preloader {
@@ -605,7 +606,8 @@ input, button, textarea {
     padding-bottom: 2px;
     border-bottom: 2px solid #fff;
     position: relative;
-    transition: border-color 1s cubic-bezier(0.55, 0.055, 0.675, 0.19); }
+    transition: border-color 1s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    transition-delay: 0.5s; }
     #preloader .preloader__text-char.hide-border {
       border-color: transparent; }
 

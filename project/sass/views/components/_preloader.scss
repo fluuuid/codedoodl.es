@@ -7,7 +7,7 @@
 	height: 100%;
 	z-index: 50;
 	background: $cd-blue;
-
+	transition: all .3s $easeInOutQuad;
 	opacity: 0;
 	visibility: hidden;
 
@@ -33,6 +33,7 @@
 		border-bottom: 2px solid #fff;
 		position: relative;
 		transition: border-color 1s $easeInCubic;
+		transition-delay: 0.5s;
 
 		&.hide-border {
 			border-color: transparent;
