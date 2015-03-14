@@ -57,6 +57,8 @@ class AppView extends AbstractView
         @bindEvents()
 
         @preloader    = new Preloader
+        @preloader.show()
+
         @modalManager = new ModalManager
 
         @header  = new Header
@@ -96,7 +98,7 @@ class AppView extends AbstractView
 
         @CD().router.start()
 
-        @preloader.hide()
+        # @preloader.hide()
         return
 
     onResize : =>
