@@ -4,13 +4,15 @@
 
     .logo,
     .site-nav,
-    .close-btn {
+    .close-btn,
+    .info-btn {
         position: fixed;
         z-index: 10;
     }
 
     .logo__link,
     .site-nav__link,
+    .info-btn,
     .close-btn {
         @include font-size(1.5);
         cursor: pointer;
@@ -28,7 +30,8 @@
         transform: translate(-50%, -50%) rotate(90deg);
     }
 
-    .site-nav {
+    .site-nav,
+    .info-btn {
         top: 50%;
         right: 25px;
         transform: translate(50%, -50%) rotate(90deg);
@@ -48,6 +51,10 @@
         transform: translate(50%, 50%) rotate(90deg);
     }
 
+    .info-btn {
+        display: none;
+    }
+
     &[data-section="home"],
     &[data-section="about"],
     &[data-section="contribute"] {
@@ -58,5 +65,16 @@
             color: $cd-red;
             border-color: $cd-red;
         }        
+    }
+
+    &[data-section="_"] {
+
+        .site-nav {
+            display: none;
+        }
+
+        .info-btn {
+            display: block;
+        }
     }
 }

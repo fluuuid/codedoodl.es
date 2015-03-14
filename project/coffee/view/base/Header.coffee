@@ -18,6 +18,7 @@ class Header extends AbstractView
 				label    : @CD().locale.get('header_contribute_label')
 				url      : @CD().BASE_PATH + '/' + @CD().nav.sections.CONTRIBUTE
 			close_label : @CD().locale.get('header_close_label')
+			info_label : @CD().locale.get('header_info_label')
 
 		super()
 

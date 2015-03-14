@@ -577,10 +577,10 @@ input, button, textarea {
  */
 #site-header {
   font-family: 'monostena', 'Consolas', 'monospace'; }
-  #site-header .logo, #site-header .site-nav, #site-header .close-btn {
+  #site-header .logo, #site-header .site-nav, #site-header .close-btn, #site-header .info-btn {
     position: fixed;
     z-index: 10; }
-  #site-header .logo__link, #site-header .site-nav__link, #site-header .close-btn {
+  #site-header .logo__link, #site-header .site-nav__link, #site-header .info-btn, #site-header .close-btn {
     font-size: 15px;
     font-size: 1.5rem;
     cursor: pointer;
@@ -596,7 +596,7 @@ input, button, textarea {
     -webkit-transform: translate(-50%, -50%) rotate(90deg);
         -ms-transform: translate(-50%, -50%) rotate(90deg);
             transform: translate(-50%, -50%) rotate(90deg); }
-  #site-header .site-nav {
+  #site-header .site-nav, #site-header .info-btn {
     top: 50%;
     right: 25px;
     -webkit-transform: translate(50%, -50%) rotate(90deg);
@@ -612,9 +612,15 @@ input, button, textarea {
     -webkit-transform: translate(50%, 50%) rotate(90deg);
         -ms-transform: translate(50%, 50%) rotate(90deg);
             transform: translate(50%, 50%) rotate(90deg); }
+  #site-header .info-btn {
+    display: none; }
   #site-header[data-section="home"] .logo__link, #site-header[data-section="home"] .site-nav__link, #site-header[data-section="home"] .close-btn, #site-header[data-section="about"] .logo__link, #site-header[data-section="about"] .site-nav__link, #site-header[data-section="about"] .close-btn, #site-header[data-section="contribute"] .logo__link, #site-header[data-section="contribute"] .site-nav__link, #site-header[data-section="contribute"] .close-btn {
     color: #EB423E;
     border-color: #EB423E; }
+  #site-header[data-section="_"] .site-nav {
+    display: none; }
+  #site-header[data-section="_"] .info-btn {
+    display: block; }
 
 #site-footer {
   position: fixed;

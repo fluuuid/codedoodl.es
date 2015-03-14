@@ -29,7 +29,8 @@
                     <a class="site-nav__link" href="<%= about.url %>"><%= about.label %></a>
                     <a class="site-nav__link" href="<%= contribute.url %>"><%= contribute.label %></a>
                 </nav>
-                <span class="close-btn" data-close-doodle><%= close_label %></span>
+                <span class="info-btn" data-show-info><%= info_label %></span>
+                <a href="<%= home.url %>" class="close-btn" data-close-doodle><%= close_label %></a>
             </header>
         ]]>
     </template>
@@ -41,9 +42,15 @@
     <template id="site-footer">
         <![CDATA[
             <footer id="site-footer">
-                <i>mouse</i>&nbsp;
-                <i>keyboard</i>&nbsp;
-                <i>touch</i>
+                <nav class="footer-nav">
+                    <span class="arrow arrow-right">arrow-right</span>
+                    <span class="arrow arrow-left">arrow-left</span>
+                </nav>
+                <div class="interaction-indicators">
+                    <i>mouse</i>&nbsp;
+                    <i>keyboard</i>&nbsp;
+                    <i>touch</i>
+                </div>
             </footer>
         ]]>
     </template>
@@ -55,7 +62,9 @@
     <template id="page-home">
         <![CDATA[
             <section id="page-home" class="page page-home">
-                <i><%= desc %></i>
+                <div class="home-grid">
+                    <i>I am the home grid</i>
+                </div>
             </section>
         ]]>
     </template>
@@ -63,7 +72,9 @@
     <template id="page-about">
         <![CDATA[
             <section id="page-about" class="page page-about">
-                <i><%= desc %></i>
+                <div class="page-content">
+                    I am the about page content
+                </div>
             </section>
         ]]>
     </template>
@@ -71,7 +82,9 @@
     <template id="page-contribute">
         <![CDATA[
             <section id="page-contribute" class="page page-contribute">
-                <i><%= desc %></i>
+                <div class="page-content">
+                    I am the contribute page content
+                </div>
             </section>
         ]]>
     </template>

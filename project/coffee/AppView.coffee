@@ -4,7 +4,6 @@ Header       = require './view/base/Header'
 Wrapper      = require './view/base/Wrapper'
 Footer       = require './view/base/Footer'
 ModalManager = require './view/modals/_ModalManager'
-MediaQueries = require './utils/MediaQueries'
 
 class AppView extends AbstractView
 
@@ -98,18 +97,11 @@ class AppView extends AbstractView
         @CD().router.start()
 
         @preloader.hide()
-        @updateMediaQueriesLog()
         return
 
     onResize : =>
 
         @getDims()
-        @updateMediaQueriesLog()
-        return
-
-    updateMediaQueriesLog : =>
-
-        if @header then @header.$el.find(".breakpoint").html "<div class='l'>CURRENT BREAKPOINT:</div><div class='b'>#{MediaQueries.getBreakpoint()}</div>"
         return
 
     getDims : =>

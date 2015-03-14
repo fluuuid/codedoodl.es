@@ -10,6 +10,7 @@ class Nav extends AbstractView
         HOME       : ''
         ABOUT      : 'about'
         CONTRIBUTE : 'contribute'
+        DOODLES    : '_'
 
     current  : area : null, sub : null
     previous : area : null, sub : null

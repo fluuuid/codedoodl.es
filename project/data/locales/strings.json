@@ -27,7 +27,8 @@
                 "header_logo_label": "codedoodl.es",
                 "header_about_label": "about",
                 "header_contribute_label": "contribute",
-                "header_close_label": "close"
+                "header_close_label": "close",
+                "header_info_label": "info"
             }
         },
         "FOOTER": {
