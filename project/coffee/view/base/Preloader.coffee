@@ -153,8 +153,8 @@ class Preloader extends AbstractView
 
 			char.$el.addClass('hide-border')
 
-			displacement = _.random(20, 80)
-			rotation     = (displacement / 80) * 100
+			displacement = _.random(20, 30)
+			rotation     = (displacement / 30) * 50
 			rotation     = if (Math.random() > 0.5) then rotation else -rotation
 
 			TweenLite.to char.$el, 1, { delay : 1+((_.random(50, 200))/1000), opacity: 0, y : displacement, rotation: "#{rotation}deg", ease: Cubic.easeIn }

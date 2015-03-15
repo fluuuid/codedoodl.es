@@ -582,7 +582,8 @@ input, button, textarea {
   width: 100%;
   height: 100%;
   z-index: 50;
-  background: #395CAA;
+  background: #F1F1F3;
+  background: #EB423E;
   transition: all .3s cubic-bezier(0.455, 0.03, 0.515, 0.955);
   opacity: 0;
   visibility: hidden; }
@@ -599,11 +600,11 @@ input, button, textarea {
     -webkit-transform: translate(-50%, -50%);
         -ms-transform: translate(-50%, -50%);
             transform: translate(-50%, -50%);
-    color: #fff;
     font-family: 'monostena', 'Consolas', 'monospace'; }
   #preloader .preloader__text-char {
     display: inline-block;
     padding-bottom: 2px;
+    color: #fff;
     border-bottom: 2px solid #fff;
     position: relative;
     transition: border-color 1s cubic-bezier(0.55, 0.055, 0.675, 0.19);
