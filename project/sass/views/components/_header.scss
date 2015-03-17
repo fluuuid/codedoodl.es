@@ -24,8 +24,8 @@
 
     [data-codetext-char] {
         padding-bottom: 2px;
-        color: $bg-offwhite;
-        border-bottom: 2px solid $bg-offwhite;
+        color: transparent;
+        border-bottom: 2px solid transparent;
 
         &[data-codetext-char-state="white"] {
             color: #fff;

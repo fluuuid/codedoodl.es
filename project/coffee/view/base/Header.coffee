@@ -31,13 +31,20 @@ class Header extends AbstractView
 
 	init : =>
 
-		@$codeWords = @$el.find('[data-codeword]')
+		@$logo              = @$el.find('.logo__link')
+		@$navLinkAbout      = @$el.find('.site-nav__link').eq(0)
+		@$navLinkContribute = @$el.find('.site-nav__link').eq(1)
+		@$infoBtn           = @$el.find('.info-btn')
+		@$closeBtn          = @$el.find('.close-btn')
 
 		null
 
 	bindEvents : =>
 
 		@CD().router.on Router.EVENT_HASH_CHANGED, @onHashChange
+
+		@$el.on 'mouseenter', '[data-codeword]', @onWordEnter
+		@$el.on 'mouseleave', '[data-codeword]', @onWordLeave
 
 		null
 
@@ -53,21 +60,60 @@ class Header extends AbstractView
 
 	onAreaChange : (section) =>
 
-		section = section or 'home'
+		colour  = @getSectionColour section
+
+		@$el.attr 'data-section', section
+
+		CodeWordTransitioner.in @$logo, colour
+
+		# this just for testing, tidy later
+		if section is @CD().nav.sections.HOME
+			CodeWordTransitioner.in @$navLinkAbout, colour
+			CodeWordTransitioner.in @$navLinkContribute, colour
+			CodeWordTransitioner.out @$closeBtn, colour
+			CodeWordTransitioner.out @$infoBtn, colour
+		else if section is @CD().nav.sections.DOODLES
+			CodeWordTransitioner.out @$navLinkAbout, colour
+			CodeWordTransitioner.out @$navLinkContribute, colour
+			CodeWordTransitioner.in @$closeBtn, colour
+			CodeWordTransitioner.in @$infoBtn, colour
+		else
+			CodeWordTransitioner.out @$navLinkAbout, colour
+			CodeWordTransitioner.out @$navLinkContribute, colour
+			CodeWordTransitioner.in @$closeBtn, colour
+			CodeWordTransitioner.out @$infoBtn, colour
+
+		null
+
+	getSectionColour : (section) =>
+
+		section = section or @CD().nav.current.area or 'home'
+
 		colour  = switch section
 			when 'home' then 'red'
 			else 'blue'
 
-		@$el.attr 'data-section', section
-
-		@$codeWords.each (i, el) =>
-			CodeWordTransitioner.in $(el), colour
-
-		null
+		colour
 
 	animateTextIn : =>
 
 		@onAreaChange @CD().nav.current.area
+
+		null
+
+	onWordEnter : (e) =>
+
+		$el = $(e.currentTarget)
+
+		CodeWordTransitioner.scramble $el, @getSectionColour()
+
+		null
+
+	onWordLeave : (e) =>
+
+		$el = $(e.currentTarget)
+
+		CodeWordTransitioner.in $el, @getSectionColour()
 
 		null
 

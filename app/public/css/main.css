@@ -638,8 +638,8 @@ input, button, textarea {
     color: #F1F1F3; }
   #site-header [data-codetext-char] {
     padding-bottom: 2px;
-    color: #F1F1F3;
-    border-bottom: 2px solid #F1F1F3; }
+    color: transparent;
+    border-bottom: 2px solid transparent; }
     #site-header [data-codetext-char][data-codetext-char-state="white"] {
       color: #fff;
       border-bottom: 2px solid #fff; }

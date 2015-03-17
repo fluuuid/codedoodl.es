@@ -2,13 +2,13 @@ class CodeWordTransitioner
 
 	@config :
 		MIN_WRONG_CHARS : 0
-		MAX_WRONG_CHARS : 4
+		MAX_WRONG_CHARS : 3
 
-		MIN_CHAR_IN_DELAY : 30
-		MAX_CHAR_IN_DELAY : 100
+		MIN_CHAR_IN_DELAY : 40
+		MAX_CHAR_IN_DELAY : 70
 
-		MIN_CHAR_OUT_DELAY : 30
-		MAX_CHAR_OUT_DELAY : 100
+		MIN_CHAR_OUT_DELAY : 40
+		MAX_CHAR_OUT_DELAY : 70
 
 		CHARS : 'abcdefhijklmnopqrstuvwxyz0123456789!?*()@£$%^&_-+=[]{}:;\'"\\|<>,./~`'.split('')
 
@@ -142,8 +142,6 @@ class CodeWordTransitioner
 		null
 
 	@_animateCharsDone : (cb) =>
-
-		console.log "_animateCharsDone : =>"
 
 		cb?()
 
