@@ -453,6 +453,16 @@ legend {
   display: none; }
 
 /*
+ * CUSTOM UTILS
+ */
+[data-codeword] {
+  position: relative; }
+
+[data-codetext-char] {
+  display: inline-block;
+  position: relative; }
+
+/*
  * ICONS
  */
 .ss-frown, .ss-smile {
@@ -601,15 +611,16 @@ input, button, textarea {
         -ms-transform: translate(-50%, -50%);
             transform: translate(-50%, -50%);
     font-family: 'monostena', 'Consolas', 'monospace'; }
-  #preloader .preloader__text-char {
-    display: inline-block;
+  #preloader [data-codetext-char] {
     padding-bottom: 2px;
-    color: #fff;
-    border-bottom: 2px solid #fff;
-    position: relative;
+    color: #EB423E;
+    border: 0 solid #fff;
     transition: border-color 1s cubic-bezier(0.55, 0.055, 0.675, 0.19);
     transition-delay: 0.5s; }
-    #preloader .preloader__text-char.hide-border {
+    #preloader [data-codetext-char][data-codetext-char-state="white"] {
+      color: #fff;
+      border-bottom: 2px solid #fff; }
+    #preloader [data-codetext-char].hide-border {
       border-color: transparent; }
 
 #site-header {
@@ -621,12 +632,23 @@ input, button, textarea {
     font-size: 15px;
     font-size: 1.5rem;
     cursor: pointer;
-    padding-bottom: 2px;
     display: inline-block;
-    color: #fff;
     text-decoration: none;
-    border-bottom: 2px solid #fff;
-    letter-spacing: 0.6px; }
+    letter-spacing: 0.6px;
+    color: #F1F1F3; }
+  #site-header [data-codetext-char] {
+    padding-bottom: 2px;
+    color: #F1F1F3;
+    border-bottom: 2px solid #F1F1F3; }
+    #site-header [data-codetext-char][data-codetext-char-state="white"] {
+      color: #fff;
+      border-bottom: 2px solid #fff; }
+    #site-header [data-codetext-char][data-codetext-char-state="red"] {
+      color: #EB423E;
+      border-bottom: 2px solid #EB423E; }
+    #site-header [data-codetext-char][data-codetext-char-state="blue"] {
+      color: #395CAA;
+      border-bottom: 2px solid #395CAA; }
   #site-header .logo {
     top: 50%;
     left: 25px;
@@ -651,9 +673,6 @@ input, button, textarea {
             transform: translate(50%, 50%) rotate(90deg); }
   #site-header .info-btn {
     display: none; }
-  #site-header[data-section="home"] .logo__link, #site-header[data-section="home"] .site-nav__link, #site-header[data-section="home"] .close-btn, #site-header[data-section="about"] .logo__link, #site-header[data-section="about"] .site-nav__link, #site-header[data-section="about"] .close-btn, #site-header[data-section="contribute"] .logo__link, #site-header[data-section="contribute"] .site-nav__link, #site-header[data-section="contribute"] .close-btn {
-    color: #EB423E;
-    border-color: #EB423E; }
   #site-header[data-section="_"] .site-nav {
     display: none; }
   #site-header[data-section="_"] .info-btn {

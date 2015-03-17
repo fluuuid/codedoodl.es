@@ -3,7 +3,7 @@
         ]]></template><template id="wrapper"><![CDATA[
             <div id="wrapper"></div>
         ]]></template><template id="site-header"><![CDATA[
-            <header id="site-header"><h1 class="logo"><a class="logo__link" href="<%= home.url %>"><%= home.label %></a></h1><nav class="site-nav"><a class="site-nav__link" href="<%= about.url %>"><%= about.label %></a><a class="site-nav__link" href="<%= contribute.url %>"><%= contribute.label %></a></nav><span class="info-btn" data-show-info><%= info_label %></span><a href="<%= home.url %>" class="close-btn" data-close-doodle><%= close_label %></a></header>
+            <header id="site-header"><h1 class="logo"><a class="logo__link" href="<%= home.url %>" data-codeword><%= home.label %></a></h1><nav class="site-nav"><a class="site-nav__link" href="<%= about.url %>" data-codeword><%= about.label %></a><a class="site-nav__link" href="<%= contribute.url %>" data-codeword><%= contribute.label %></a></nav><span class="info-btn" data-show-info data-codeword><%= info_label %></span><a href="<%= home.url %>" class="close-btn" data-close-doodle data-codeword><%= close_label %></a></header>
         ]]></template><template id="site-footer"><![CDATA[
             <footer id="site-footer"><nav class="footer-nav"><span class="arrow arrow-right">arrow-right</span><span class="arrow arrow-left">arrow-left</span></nav><div class="interaction-indicators"><i>mouse</i>&nbsp;
                     <i>keyboard</i>&nbsp;

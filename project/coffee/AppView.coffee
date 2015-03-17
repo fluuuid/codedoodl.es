@@ -57,7 +57,7 @@ class AppView extends AbstractView
         @bindEvents()
 
         @preloader    = new Preloader
-        @preloader.show()
+        @preloader.show => @header.animateTextIn()
 
         @modalManager = new ModalManager
 

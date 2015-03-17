@@ -16,12 +16,31 @@
     .close-btn {
         @include font-size(1.5);
         cursor: pointer;
-        padding-bottom: 2px;
         display: inline-block;
-        color: #fff;
         text-decoration: none;
-        border-bottom: 2px solid #fff;
         letter-spacing: 0.6px;
+        color: $bg-offwhite;
+    }
+
+    [data-codetext-char] {
+        padding-bottom: 2px;
+        color: $bg-offwhite;
+        border-bottom: 2px solid $bg-offwhite;
+
+        &[data-codetext-char-state="white"] {
+            color: #fff;
+            border-bottom: 2px solid #fff;
+        }
+
+        &[data-codetext-char-state="red"] {
+            color: $cd-red;
+            border-bottom: 2px solid $cd-red;
+        }
+
+        &[data-codetext-char-state="blue"] {
+            color: $cd-blue;
+            border-bottom: 2px solid $cd-blue;
+        }
     }
 
     .logo {
@@ -55,17 +74,17 @@
         display: none;
     }
 
-    &[data-section="home"],
-    &[data-section="about"],
-    &[data-section="contribute"] {
+    // &[data-section="home"],
+    // &[data-section="about"],
+    // &[data-section="contribute"] {
 
-        .logo__link,
-        .site-nav__link,
-        .close-btn {
-            color: $cd-red;
-            border-color: $cd-red;
-        }        
-    }
+    //     .logo__link,
+    //     .site-nav__link,
+    //     .close-btn {
+    //         color: $cd-red;
+    //         border-color: $cd-red;
+    //     }        
+    // }
 
     &[data-section="_"] {
 

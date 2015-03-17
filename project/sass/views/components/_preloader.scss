@@ -27,14 +27,17 @@
 		font-family: $ff-monosten-a;
 	}
 
-	.preloader__text-char {
-		display: inline-block;
+	[data-codetext-char] {
 		padding-bottom: 2px;
-		color: #fff;
-		border-bottom: 2px solid #fff;
-		position: relative;
+		color: $cd-red;
+		border: 0 solid #fff;
 		transition: border-color 1s $easeInCubic;
 		transition-delay: 0.5s;
+
+		&[data-codetext-char-state="white"] {
+			color: #fff;
+			border-bottom: 2px solid #fff;
+		}
 
 		&.hide-border {
 			border-color: transparent;
