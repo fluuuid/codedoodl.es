@@ -68,20 +68,14 @@ class Header extends AbstractView
 
 		# this just for testing, tidy later
 		if section is @CD().nav.sections.HOME
-			CodeWordTransitioner.in @$navLinkAbout, colour
-			CodeWordTransitioner.in @$navLinkContribute, colour
-			CodeWordTransitioner.out @$closeBtn, colour
-			CodeWordTransitioner.out @$infoBtn, colour
+			CodeWordTransitioner.in [@$navLinkAbout, @$navLinkContribute], colour
+			CodeWordTransitioner.out [@$closeBtn, @$infoBtn], colour
 		else if section is @CD().nav.sections.DOODLES
-			CodeWordTransitioner.out @$navLinkAbout, colour
-			CodeWordTransitioner.out @$navLinkContribute, colour
-			CodeWordTransitioner.in @$closeBtn, colour
-			CodeWordTransitioner.in @$infoBtn, colour
+			CodeWordTransitioner.in [@$closeBtn, @$infoBtn], colour
+			CodeWordTransitioner.out [@$navLinkAbout, @$navLinkContribute], colour
 		else
-			CodeWordTransitioner.out @$navLinkAbout, colour
-			CodeWordTransitioner.out @$navLinkContribute, colour
-			CodeWordTransitioner.in @$closeBtn, colour
-			CodeWordTransitioner.out @$infoBtn, colour
+			CodeWordTransitioner.in [@$closeBtn], colour
+			CodeWordTransitioner.out [@$navLinkAbout, @$navLinkContribute, @$infoBtn], colour
 
 		null
 
@@ -113,7 +107,7 @@ class Header extends AbstractView
 
 		$el = $(e.currentTarget)
 
-		CodeWordTransitioner.in $el, @getSectionColour()
+		CodeWordTransitioner.unscramble $el, @getSectionColour()
 
 		null
 

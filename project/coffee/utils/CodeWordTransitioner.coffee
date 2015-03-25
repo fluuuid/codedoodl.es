@@ -42,8 +42,10 @@ class CodeWordTransitioner
 		$el.attr 'data-codeword-id', id
 
 		@_wordCache[ id ] =
-			$el   : $el
-			chars : chars
+			word    : _.pluck(chars, 'rightChar').join('')
+			$el     : $el
+			chars   : chars
+			visible : false
 
 		@_wordCache[ id ]
 
@@ -55,6 +57,10 @@ class CodeWordTransitioner
 			html.push @_supplantString @config.CHAR_TEMPLATE, char : char
 
 		$el.html html.join('')
+
+		null
+
+	@_isWordEmpty : (word) =>
 
 		null
 
@@ -155,25 +161,58 @@ class CodeWordTransitioner
 
 	@in : ($el, charState, cb) =>
 
-		word = @_getWordFromCache $el
-		@_prepareWord word, 'right', charState
+		if _.isArray $el
+			(@in(_$el, charState, cb)) for _$el in $el
+			return
 
+		word = @_getWordFromCache $el
+		word.visible = true
+
+		@_prepareWord word, 'right', charState
 		@_animateChars word, cb
 
 		null
 
 	@out : ($el, charState, cb) =>
 
-		word = @_getWordFromCache $el
-		@_prepareWord word, 'empty', charState
+		if _.isArray $el
+			(@out(_$el, charState, cb)) for _$el in $el
+			return
 
+		word = @_getWordFromCache $el
+		return if !word.visible
+
+		word.visible = false
+
+		@_prepareWord word, 'empty', charState
 		@_animateChars word, cb
 
 	@scramble : ($el, charState, cb) =>
 
-		word = @_getWordFromCache $el
-		@_prepareWord word, 'wrong', charState
+		if _.isArray $el
+			(@scramble(_$el, charState, cb)) for _$el in $el
+			return
 
+		word = @_getWordFromCache $el
+
+		return if !word.visible
+
+		@_prepareWord word, 'wrong', charState
+		@_animateChars word, cb
+
+		null
+
+	@unscramble : ($el, charState, cb) =>
+
+		if _.isArray $el
+			(@unscramble(_$el, charState, cb)) for _$el in $el
+			return
+
+		word = @_getWordFromCache $el
+
+		return if !word.visible
+
+		@_prepareWord word, 'right', charState
 		@_animateChars word, cb
 
 		null
