@@ -50,7 +50,7 @@ class Preloader extends AbstractView
 
 	hide : =>
 
-		@animateCharsOut @onHideComplete
+		@animateOut @onHideComplete
 
 		null
 
@@ -61,7 +61,17 @@ class Preloader extends AbstractView
 
 		null
 
-	animateCharsOut : (cb) =>
+	animateOut : (cb) =>
+
+		@animateCharsOut()
+		@animatePanesOut()
+
+		# that'll do
+		setTimeout cb, 3200
+
+		null
+
+	animateCharsOut : =>
 
 		@$codeWord.find('[data-codetext-char]').each (i, el) =>
 
@@ -69,13 +79,26 @@ class Preloader extends AbstractView
 
 			$el.addClass('hide-border')
 
+			delay        = 1 + (_.random(50, 200) / 1000)
 			displacement = _.random(20, 30)
 			rotation     = (displacement / 30) * 50
 			rotation     = if (Math.random() > 0.5) then rotation else -rotation
 
-			TweenLite.to $el, 1, { delay : 1+((_.random(50, 200))/1000), opacity: 0, y : displacement, rotation: "#{rotation}deg", ease: Cubic.easeIn }
+			TweenLite.to $el, 1, { delay : delay, opacity : 0, y : displacement, rotation : "#{rotation}deg", ease : Cubic.easeIn }
 
-		setTimeout cb, 2200
+		null
+
+	animatePanesOut : =>
+
+		@$el.find('.preloader__bg-pane').each (i, el) =>
+
+			$el = $(el)
+
+			delay        = 1 + (_.random(50, 200) / 1000)
+			displacement = _.random(50, 500)
+			duration     = 1 + (_.random(50, 100) / 100)
+
+			TweenLite.to $el, duration, { delay : delay, y : displacement, backgroundColor : '#F1F1F3', ease : Cubic.easeIn }
 
 		null
 
