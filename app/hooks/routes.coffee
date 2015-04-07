@@ -1,7 +1,7 @@
 crypto     = require "crypto"
 bodyParser = require "body-parser"
-# cloneRepo  = require "../../utils/cloneRepo"
-# deployer   = require "../../utils/deployer"
+cloneRepo  = require "../../utils/cloneRepo"
+deployer   = require "../../utils/deployer"
 config     = require "../../config/repository"
 
 requestIsFromGithub = (req) ->
