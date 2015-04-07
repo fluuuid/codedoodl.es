@@ -17,6 +17,11 @@
 @import 'utils/reset';
 
 /*
+ * CUSTOM UTILS
+ */
+@import 'utils/codeWordTransitioner';
+
+/*
  * ICONS
  */
 
@@ -43,6 +48,7 @@
  */
 
 // components
+@import 'views/components/preloader';
 @import 'views/components/header';
 @import 'views/components/footer';
 

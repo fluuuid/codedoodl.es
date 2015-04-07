@@ -17,12 +17,17 @@ about = (req, res) ->
 contribute = (req, res) ->
 	res.render "site/index", _.extend content.home, config : config
 
+doodles = (req, res) ->
+	if !req.params.authorName or !req.params.doodleName
+		return res.redirect 301, "/#{config.routes.HOME}"
+	res.render "site/index", _.extend content.home, config : config
+
 ###
 basic password-protect
 ###
 checkAuth = (req, res, next) ->
 	if !req.session.logged_in
-		res.redirect '/login'
+		res.redirect "/#{config.routes.LOGIN}"
 	else
 		next()
 
@@ -42,11 +47,12 @@ setup = (app) ->
 	app.use cookieParser()
 	app.use session({ secret: 'what up' })
 
-	app.get '/login', login
-	app.post '/login', loginPost
+	app.get "/#{config.routes.LOGIN}", login
+	app.post "/#{config.routes.LOGIN}", loginPost
 	app.get '*', checkAuth
-	app.get '/', home
-	app.get '/about', about
-	app.get '/contribute', contribute
+	app.get "/#{config.routes.HOME}", home
+	app.get "/#{config.routes.ABOUT}", about
+	app.get "/#{config.routes.CONTRIBUTE}", contribute
+	app.get "/#{config.routes.DOODLES}/:authorName/:doodleName", doodles
 
 module.exports = setup

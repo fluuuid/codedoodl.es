@@ -14,6 +14,15 @@ var getFullPath = function(manifest) {
 
 }
 
+var getSlug = function(manifest) {
+
+	authorDir = getAuthorDir(manifest.author.github);
+    doodleDir = getDoodleDir(manifest.name);
+
+    return authorDir+'/'+doodleDir
+
+}
+
 var getAuthorDir = function(name) {
 
 	return slug(name.replace(/\s+/g, '-').toLowerCase());

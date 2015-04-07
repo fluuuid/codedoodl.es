@@ -14,7 +14,7 @@ MediaQueries = require './utils/MediaQueries'
 class App
 
     LIVE       : null
-    BASE_PATH  : window.config.hostname
+    BASE_URL   : window.config.hostname
     localeCode : window.config.localeCode
     objReady   : 0
 
