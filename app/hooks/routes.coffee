@@ -61,6 +61,8 @@ push = (req, res) ->
 	if !verifyHookSource(req) then return res.status(401).send "nope, you're not github"
 	if !verifyHookRef(req) then return res.send "wrong branch, deployments only active on '#{config.REPO_DEPLOY_BRANCH}'"
 
+	return res.json "deployer disabled for now... fix it later plzzzz"
+
 	deployType = getDeployType(req)
 
 	if !deployType then return res.json "no app or data changes to push..."
