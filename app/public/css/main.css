@@ -586,6 +586,7 @@ input, button, textarea {
  * VIEWS
  */
 #preloader {
+  background: #EB423E;
   position: fixed;
   top: 0;
   left: 0;
@@ -621,37 +622,6 @@ input, button, textarea {
       border-bottom: 2px solid #fff; }
     #preloader [data-codetext-char].hide-border {
       border-color: transparent; }
-  #preloader .preloader__bg-pane {
-    position: absolute;
-    top: 0;
-    width: 8.83333%;
-    height: 100%;
-    background: #EB423E;
-    z-index: 0; }
-    #preloader .preloader__bg-pane:nth-of-type(1) {
-      left: 0%; }
-    #preloader .preloader__bg-pane:nth-of-type(2) {
-      left: 8.33333%; }
-    #preloader .preloader__bg-pane:nth-of-type(3) {
-      left: 16.66667%; }
-    #preloader .preloader__bg-pane:nth-of-type(4) {
-      left: 25%; }
-    #preloader .preloader__bg-pane:nth-of-type(5) {
-      left: 33.33333%; }
-    #preloader .preloader__bg-pane:nth-of-type(6) {
-      left: 41.66667%; }
-    #preloader .preloader__bg-pane:nth-of-type(7) {
-      left: 50%; }
-    #preloader .preloader__bg-pane:nth-of-type(8) {
-      left: 58.33333%; }
-    #preloader .preloader__bg-pane:nth-of-type(9) {
-      left: 66.66667%; }
-    #preloader .preloader__bg-pane:nth-of-type(10) {
-      left: 75%; }
-    #preloader .preloader__bg-pane:nth-of-type(11) {
-      left: 83.33333%; }
-    #preloader .preloader__bg-pane:nth-of-type(12) {
-      left: 91.66667%; }
 
 #site-header {
   font-family: 'monostena', 'Consolas', 'monospace'; }
