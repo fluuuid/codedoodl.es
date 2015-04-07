@@ -674,9 +674,9 @@ input, button, textarea {
             transform: translate(50%, 50%) rotate(90deg); }
   #site-header .info-btn {
     display: none; }
-  #site-header[data-section="_"] .site-nav {
+  #site-header[data-section="~"] .site-nav {
     display: none; }
-  #site-header[data-section="_"] .info-btn {
+  #site-header[data-section="~"] .info-btn {
     display: block; }
 
 #site-footer {
