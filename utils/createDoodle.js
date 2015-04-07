@@ -55,6 +55,8 @@ function main() {
 
     fullDoodleDir = getDoodleDir.getFullPath(manifest);
 
+    manifest.slug = getDoodleDir.getSlug(manifest);
+
     mkdirp(fullDoodleDir, function(err) {
       if (err) {
         console.log(err);

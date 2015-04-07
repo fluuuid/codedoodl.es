@@ -1,6 +1,7 @@
-AbstractData = require './data/AbstractData'
-Requester    = require './utils/Requester'
-API          = require './data/API'
+AbstractData      = require './data/AbstractData'
+Requester         = require './utils/Requester'
+API               = require './data/API'
+DoodlesCollection = require './collections/doodles/DoodlesCollection'
 
 class AppData extends AbstractData
 
@@ -16,6 +17,8 @@ class AppData extends AbstractData
 
         super()
 
+        @doodles = new DoodlesCollection
+
         @getStartData()
 
         return null
@@ -25,10 +28,12 @@ class AppData extends AbstractData
     ###
     getStartData : =>
         
-        if API.get('start')
+        # if API.get('start')
+        if true
 
             r = Requester.request
-                url  : API.get('start')
+                # url  : API.get('start')
+                url  : @CD().BASE_URL + '/data/_DUMMY/doodles.json'
                 type : 'GET'
 
             r.done @onStartDataReceived
@@ -48,6 +53,10 @@ class AppData extends AbstractData
         null
 
     onStartDataReceived : (data) =>
+
+        console.log "onStartDataReceived : (data) =>", data
+
+        @doodles.add data.doodles
 
         ###
 

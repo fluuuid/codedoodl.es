@@ -6,16 +6,14 @@ class Nav extends AbstractView
     @EVENT_CHANGE_VIEW     : 'EVENT_CHANGE_VIEW'
     @EVENT_CHANGE_SUB_VIEW : 'EVENT_CHANGE_SUB_VIEW'
 
-    sections :
-        HOME       : ''
-        ABOUT      : 'about'
-        CONTRIBUTE : 'contribute'
-        DOODLES    : '_'
+    sections : null # set via window.config data, so can be consistent with backend
 
-    current  : area : null, sub : null
-    previous : area : null, sub : null
+    current  : area : null, sub : null, ter : null
+    previous : area : null, sub : null, ter : null
 
     constructor: ->
+
+        @sections = window.config.routes
 
         @CD().router.on Router.EVENT_HASH_CHANGED, @changeView
 
@@ -30,14 +28,15 @@ class Nav extends AbstractView
 
         false
 
-    changeView: (area, sub, params) =>
+    changeView: (area, sub, ter, params) =>
 
         # console.log "area",area
         # console.log "sub",sub
+        # console.log "ter",ter
         # console.log "params",params
 
         @previous = @current
-        @current  = area : area, sub : sub
+        @current  = area : area, sub : sub, ter : ter
 
         if @previous.area and @previous.area is @current.area
             @trigger Nav.EVENT_CHANGE_SUB_VIEW, @current
@@ -47,11 +46,11 @@ class Nav extends AbstractView
 
         if @CD().appView.modalManager.isOpen() then @CD().appView.modalManager.hideOpenModal()
 
-        @setPageTitle area, sub
+        @setPageTitle area, sub, ter
 
         null
 
-    setPageTitle: (area, sub) =>
+    setPageTitle: (area, sub, ter) =>
 
         title = "PAGE TITLE HERE - LOCALISE BASED ON URL"
 

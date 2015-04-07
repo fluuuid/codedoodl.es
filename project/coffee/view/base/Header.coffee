@@ -13,13 +13,13 @@ class Header extends AbstractView
 		@templateVars =
 			home    : 
 				label    : @CD().locale.get('header_logo_label')
-				url      : @CD().BASE_PATH + '/' + @CD().nav.sections.HOME
+				url      : @CD().BASE_URL + '/' + @CD().nav.sections.HOME
 			about : 
 				label    : @CD().locale.get('header_about_label')
-				url      : @CD().BASE_PATH + '/' + @CD().nav.sections.ABOUT
+				url      : @CD().BASE_URL + '/' + @CD().nav.sections.ABOUT
 			contribute : 
 				label    : @CD().locale.get('header_contribute_label')
-				url      : @CD().BASE_PATH + '/' + @CD().nav.sections.CONTRIBUTE
+				url      : @CD().BASE_URL + '/' + @CD().nav.sections.CONTRIBUTE
 			close_label : @CD().locale.get('header_close_label')
 			info_label : @CD().locale.get('header_info_label')
 

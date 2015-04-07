@@ -2,6 +2,7 @@ AbstractView       = require '../AbstractView'
 HomeView           = require '../home/HomeView'
 AboutPageView      = require '../aboutPage/AboutPageView'
 ContributePageView = require '../contributePage/ContributePageView'
+DoodlePageView     = require '../doodlePage/DoodlePageView'
 Nav                = require '../../router/Nav'
 
 class Wrapper extends AbstractView
@@ -22,6 +23,7 @@ class Wrapper extends AbstractView
 			home       : classRef : HomeView,           route : @CD().nav.sections.HOME,       view : null, type : @VIEW_TYPE_PAGE
 			about      : classRef : AboutPageView,      route : @CD().nav.sections.ABOUT,      view : null, type : @VIEW_TYPE_PAGE
 			contribute : classRef : ContributePageView, route : @CD().nav.sections.CONTRIBUTE, view : null, type : @VIEW_TYPE_PAGE
+			doodle     : classRef : DoodlePageView,     route : @CD().nav.sections.DOODLES,    view : null, type : @VIEW_TYPE_PAGE
 
 		@createClasses()
 

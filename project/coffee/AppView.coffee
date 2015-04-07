@@ -57,7 +57,6 @@ class AppView extends AbstractView
         @bindEvents()
 
         @preloader    = new Preloader
-        @preloader.show => @header.animateTextIn()
 
         @modalManager = new ModalManager
 
@@ -70,7 +69,10 @@ class AppView extends AbstractView
             .addChild @wrapper
             .addChild @footer
 
+        @preloader.show => @header.animateTextIn()
+
         @onAllRendered()
+
         return
 
     bindEvents : =>
@@ -133,8 +135,8 @@ class AppView extends AbstractView
 
     navigateToUrl : ( href, e = null ) =>
 
-        route   = if href.match(@CD().BASE_PATH) then href.split(@CD().BASE_PATH)[1] else href
-        section = if route.indexOf('/') is 0 then route.split('/')[1] else route
+        route   = if href.match(@CD().BASE_URL) then href.split(@CD().BASE_URL)[1] else href
+        section = if route.charAt(0) is '/' then route.split('/')[1].split('/')[0] else route.split('/')[0]
 
         if @CD().nav.getSection section
             e?.preventDefault()
@@ -144,7 +146,9 @@ class AppView extends AbstractView
 
         return
 
-    handleExternalLink : (data) => 
+    handleExternalLink : (data) =>
+
+        console.log "handleExternalLink : (data) => "
 
         ###
 

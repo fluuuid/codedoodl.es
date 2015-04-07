@@ -36,6 +36,9 @@ class Preloader extends AbstractView
 
 		console.log "show : (@cb) =>"
 
+		# DEBUG!
+		# return @cb()
+
 		@$el.addClass('show-preloader')
 
 		CodeWordTransitioner.in @$codeWord, 'white', @hide

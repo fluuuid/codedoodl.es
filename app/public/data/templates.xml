@@ -18,4 +18,8 @@
             <section id="page-contribute" class="page page-contribute"><div class="page-content">
                     I am the contribute page content
                 </div></section>
+        ]]></template><template id="page-doodle"><![CDATA[
+            <section id="page-doodle" class="page page-doodle"><div class="page-content">
+                    I am the doodle page content
+                </div></section>
         ]]></template></templates>

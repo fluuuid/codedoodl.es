@@ -5,11 +5,12 @@ class Router extends Backbone.Router
     FIRST_ROUTE : true
 
     routes :
-        '(/)(:area)(/:sub)(/)' : 'hashChanged'
-        '*actions'             : 'navigateTo'
+        '(/)(:area)(/:sub)(/:ter)(/)' : 'hashChanged'
+        '*actions'                    : 'navigateTo'
 
     area   : null
     sub    : null
+    ter    : null
     params : null
 
     start : =>
@@ -20,15 +21,15 @@ class Router extends Backbone.Router
 
         null
 
-    hashChanged : (@area = null, @sub = null) =>
+    hashChanged : (@area = null, @sub = null, @ter = null) =>
 
-        console.log ">> EVENT_HASH_CHANGED @area = #{@area}, @sub = #{@sub} <<"
+        console.log ">> EVENT_HASH_CHANGED @area = #{@area}, @sub = #{@sub}, @ter = #{@ter} <<"
 
         if @FIRST_ROUTE then @FIRST_ROUTE = false
 
         if !@area then @area = @CD().nav.sections.HOME
 
-        @trigger Router.EVENT_HASH_CHANGED, @area, @sub, @params
+        @trigger Router.EVENT_HASH_CHANGED, @area, @sub, @ter, @params
 
         null
 

@@ -8,7 +8,7 @@ class Share
 
     constructor : ->
 
-        @url = @CD().BASE_PATH
+        @url = @CD().BASE_URL
 
         return null
 
