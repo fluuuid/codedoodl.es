@@ -587,6 +587,7 @@ input, button, textarea {
  */
 #preloader {
   background: #EB423E;
+  color: #EB423E;
   position: fixed;
   top: 0;
   left: 0;
