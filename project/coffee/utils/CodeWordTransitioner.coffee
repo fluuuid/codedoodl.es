@@ -100,24 +100,55 @@ class CodeWordTransitioner
 
 		char
 
-	@_animateChars : (word, cb) =>
+	@_getLongestCharDuration : (chars) =>
+
+		longestTime = 0
+		longestTimeIdx = 0
+
+		for char, i in chars
+
+			time = 0
+			(time += wrongChar.inDelay + wrongChar.outDelay) for wrongChar in char.wrongChars
+			if time > longestTime
+				longestTime = time
+				longestTimeIdx = i
+
+		longestTimeIdx
+
+	@_animateChars : (word, sequential, cb) =>
 
 		activeChar = 0
 
-		@_animateChar word.chars, activeChar, cb
+		if sequential
+			@_animateChar word.chars, activeChar, true, cb
+		else
+			longestCharIdx = @_getLongestCharDuration word.chars
+			for char, i in word.chars
+				args = [ word.chars, i, false ]
+				if i is longestCharIdx then args.push cb
+				@_animateChar.apply @, args
 
 		null
 
-	@_animateChar : (chars, idx, cb) =>
+	@_animateChar : (chars, idx, recurse, cb) =>
 
 		char = chars[idx]
 
-		@_animateWrongChars char, =>
+		if recurse
 
-			if idx is chars.length-1
-				@_animateCharsDone cb
+			@_animateWrongChars char, =>
+
+				if idx is chars.length-1
+					@_animateCharsDone cb
+				else
+					@_animateChar chars, idx+1, recurse, cb
+
+		else
+
+			if typeof cb is 'function'
+				@_animateWrongChars char, => @_animateCharsDone cb
 			else
-				@_animateChar chars, idx+1, cb
+				@_animateWrongChars char
 
 		null
 
@@ -143,7 +174,7 @@ class CodeWordTransitioner
 
 			char.$el.html char.targetChar
 
-			cb()
+			cb?()
 
 		null
 
@@ -159,7 +190,7 @@ class CodeWordTransitioner
 			r = vals[b]
 			(if typeof r is "string" or typeof r is "number" then r else a)
 
-	@in : ($el, charState, cb) =>
+	@in : ($el, charState, sequential=false, cb=null) =>
 
 		if _.isArray $el
 			(@in(_$el, charState, cb)) for _$el in $el
@@ -169,11 +200,11 @@ class CodeWordTransitioner
 		word.visible = true
 
 		@_prepareWord word, 'right', charState
-		@_animateChars word, cb
+		@_animateChars word, sequential, cb
 
 		null
 
-	@out : ($el, charState, cb) =>
+	@out : ($el, charState, sequential=false, cb=null) =>
 
 		if _.isArray $el
 			(@out(_$el, charState, cb)) for _$el in $el
@@ -185,9 +216,11 @@ class CodeWordTransitioner
 		word.visible = false
 
 		@_prepareWord word, 'empty', charState
-		@_animateChars word, cb
+		@_animateChars word, sequential, cb
 
-	@scramble : ($el, charState, cb) =>
+		null
+
+	@scramble : ($el, charState, sequential=false, cb=null) =>
 
 		if _.isArray $el
 			(@scramble(_$el, charState, cb)) for _$el in $el
@@ -198,11 +231,11 @@ class CodeWordTransitioner
 		return if !word.visible
 
 		@_prepareWord word, 'wrong', charState
-		@_animateChars word, cb
+		@_animateChars word, sequential, cb
 
 		null
 
-	@unscramble : ($el, charState, cb) =>
+	@unscramble : ($el, charState, sequential=false, cb=null) =>
 
 		if _.isArray $el
 			(@unscramble(_$el, charState, cb)) for _$el in $el
@@ -213,7 +246,7 @@ class CodeWordTransitioner
 		return if !word.visible
 
 		@_prepareWord word, 'right', charState
-		@_animateChars word, cb
+		@_animateChars word, sequential, cb
 
 		null
 

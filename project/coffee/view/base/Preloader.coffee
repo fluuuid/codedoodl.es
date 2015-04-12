@@ -41,7 +41,7 @@ class Preloader extends AbstractView
 
 		@$el.addClass('show-preloader')
 
-		CodeWordTransitioner.in @$codeWord, 'white', @hide
+		CodeWordTransitioner.in @$codeWord, 'white', false, @hide
 
 		null
 
@@ -66,10 +66,14 @@ class Preloader extends AbstractView
 
 	animateOut : (cb) =>
 
-		@animateCharsOut()
+		# @animateCharsOut()
 
 		# that'll do
-		setTimeout cb, 2200
+		# setTimeout cb, 2200
+
+		setTimeout =>
+			CodeWordTransitioner.scramble @$codeWord, 'white', false, cb
+		, 2000
 
 		null
 
