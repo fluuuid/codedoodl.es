@@ -73,7 +73,8 @@ class CodeWordTransitioner
 			targetChar = switch true
 				when target is 'right' then char.rightChar
 				when target is 'wrong' then @_getRandomChar()
-				else ''
+				when target is 'empty' then ''
+				else target.charAt(i) or ''
 
 			char.wrongChars = @_getRandomWrongChars()
 			char.targetChar = targetChar
@@ -189,6 +190,20 @@ class CodeWordTransitioner
 		return str.replace /{{ ([^{}]*) }}/g, (a, b) =>
 			r = vals[b]
 			(if typeof r is "string" or typeof r is "number" then r else a)
+
+	@to : (targetText, $el, charState, sequential=false, cb=null) =>
+
+		if _.isArray $el
+			(@to(targetText, _$el, charState, cb)) for _$el in $el
+			return
+
+		word = @_getWordFromCache $el
+		word.visible = true
+
+		@_prepareWord word, targetText, charState
+		@_animateChars word, sequential, cb
+
+		null
 
 	@in : ($el, charState, sequential=false, cb=null) =>
 

@@ -60,7 +60,7 @@ class Header extends AbstractView
 
 	onAreaChange : (section) =>
 
-		colour  = @getSectionColour section
+		colour = @getSectionColour section
 
 		@$el.attr 'data-section', section
 
@@ -83,9 +83,11 @@ class Header extends AbstractView
 
 		section = section or @CD().nav.current.area or 'home'
 
-		colour  = switch section
+		colour = switch section
 			when 'home' then 'red'
-			else 'blue'
+			when @CD().nav.sections.ABOUT then 'red'
+			when @CD().nav.sections.CONTRIBUTE then 'red'
+			else 'white'
 
 		colour
 

@@ -73,7 +73,8 @@ class Preloader extends AbstractView
 		# setTimeout cb, 2200
 
 		setTimeout =>
-			CodeWordTransitioner.in @$codeWord, 'white', false, => @animateBgOut cb
+			anagram = _.shuffle('codedoodl.es'.split('')).join('')
+			CodeWordTransitioner.to anagram, @$codeWord, 'white', false, => @animateBgOut cb
 		, 2000
 
 		null
@@ -81,6 +82,7 @@ class Preloader extends AbstractView
 	animateBgOut : (cb) =>
 
 		TweenLite.to @$bg1, 0.5, { delay : 0.2, width : "100%", ease : Expo.easeOut }
+		TweenLite.to @$bg1, 0.6, { delay : 0.7, height : "100%", ease : Expo.easeOut }
 
 		TweenLite.to @$bg2, 0.4, { delay : 0.4, width : "100%", ease : Expo.easeOut }
 		TweenLite.to @$bg2, 0.5, { delay : 0.8, height : "100%", ease : Expo.easeOut, onComplete : cb }
@@ -91,7 +93,7 @@ class Preloader extends AbstractView
 
 		setTimeout =>
 			@$el.removeClass('show-preloader')
-		, 1100
+		, 1200
 
 		null
 
