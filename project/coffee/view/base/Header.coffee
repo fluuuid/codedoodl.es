@@ -32,8 +32,8 @@ class Header extends AbstractView
 	init : =>
 
 		@$logo              = @$el.find('.logo__link')
-		@$navLinkAbout      = @$el.find('.site-nav__link').eq(0)
-		@$navLinkContribute = @$el.find('.site-nav__link').eq(1)
+		@$navLinkAbout      = @$el.find('.about-btn')
+		@$navLinkContribute = @$el.find('.contribute-btn')
 		@$infoBtn           = @$el.find('.info-btn')
 		@$closeBtn          = @$el.find('.close-btn')
 

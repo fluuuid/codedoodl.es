@@ -460,7 +460,22 @@ legend {
 
 [data-codetext-char] {
   display: inline-block;
-  position: relative; }
+  position: relative;
+  padding-bottom: 2px;
+  color: transparent;
+  border-bottom: 2px solid transparent; }
+  [data-codetext-char][data-codetext-char-state="white"] {
+    color: #fff;
+    border-bottom: 2px solid #fff; }
+  [data-codetext-char][data-codetext-char-state="offwhite"] {
+    color: #F1F1F3;
+    border-bottom: 2px solid #F1F1F3; }
+  [data-codetext-char][data-codetext-char-state="red"] {
+    color: #EB423E;
+    border-bottom: 2px solid #EB423E; }
+  [data-codetext-char][data-codetext-char-state="blue"] {
+    color: #395CAA;
+    border-bottom: 2px solid #395CAA; }
 
 /*
  * ICONS
@@ -586,15 +601,21 @@ input, button, textarea {
  * VIEWS
  */
 #preloader {
-  background: #EB423E;
   color: #EB423E;
+  background: #EB423E;
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 50%;
+  left: 50%;
   width: 100%;
   height: 100%;
   z-index: 50;
+  overflow: hidden;
   transition: all .3s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  -webkit-transform: translate3d(-50%, -50%, 0);
+          transform: translate3d(-50%, -50%, 0);
   opacity: 0;
   visibility: hidden; }
   #preloader.show-preloader {
@@ -611,25 +632,33 @@ input, button, textarea {
         -ms-transform: translate(-50%, -50%);
             transform: translate(-50%, -50%);
     font-family: 'monostena', 'Consolas', 'monospace';
-    z-index: 1; }
-  #preloader [data-codetext-char] {
-    padding-bottom: 2px;
-    color: #EB423E;
-    border: 0 solid #fff;
-    transition: border-color 1s cubic-bezier(0.55, 0.055, 0.675, 0.19);
-    transition-delay: 0.5s; }
-    #preloader [data-codetext-char][data-codetext-char-state="white"] {
-      color: #fff;
-      border-bottom: 2px solid #fff; }
-    #preloader [data-codetext-char].hide-border {
-      border-color: transparent; }
+    z-index: 2; }
+  #preloader .preloader__bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 50px;
+    -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+    -webkit-transform: translate3d(-50%, -50%, 0);
+            transform: translate3d(-50%, -50%, 0); }
+    #preloader .preloader__bg.preloader__bg-1 {
+      background: #395CAA;
+      z-index: 0; }
+    #preloader .preloader__bg.preloader__bg-2 {
+      background: #F1F1F3;
+      z-index: 1; }
+  #preloader [data-codetext-char].hide-border {
+    border-color: transparent; }
 
 #site-header {
   font-family: 'monostena', 'Consolas', 'monospace'; }
-  #site-header .logo, #site-header .site-nav, #site-header .close-btn, #site-header .info-btn {
+  #site-header .logo, #site-header .site-nav, #site-header .close-btn {
     position: fixed;
     z-index: 10; }
-  #site-header .logo__link, #site-header .site-nav__link, #site-header .info-btn, #site-header .close-btn {
+  #site-header .logo__link, #site-header .site-nav__link, #site-header .close-btn {
     font-size: 15px;
     font-size: 1.5rem;
     cursor: pointer;
@@ -637,26 +666,13 @@ input, button, textarea {
     text-decoration: none;
     letter-spacing: 0.6px;
     color: #F1F1F3; }
-  #site-header [data-codetext-char] {
-    padding-bottom: 2px;
-    color: transparent;
-    border-bottom: 2px solid transparent; }
-    #site-header [data-codetext-char][data-codetext-char-state="white"] {
-      color: #fff;
-      border-bottom: 2px solid #fff; }
-    #site-header [data-codetext-char][data-codetext-char-state="red"] {
-      color: #EB423E;
-      border-bottom: 2px solid #EB423E; }
-    #site-header [data-codetext-char][data-codetext-char-state="blue"] {
-      color: #395CAA;
-      border-bottom: 2px solid #395CAA; }
   #site-header .logo {
     top: 50%;
     left: 25px;
     -webkit-transform: translate(-50%, -50%) rotate(90deg);
         -ms-transform: translate(-50%, -50%) rotate(90deg);
             transform: translate(-50%, -50%) rotate(90deg); }
-  #site-header .site-nav, #site-header .info-btn {
+  #site-header .site-nav {
     top: 50%;
     right: 25px;
     -webkit-transform: translate(50%, -50%) rotate(90deg);
@@ -672,12 +688,6 @@ input, button, textarea {
     -webkit-transform: translate(50%, 50%) rotate(90deg);
         -ms-transform: translate(50%, 50%) rotate(90deg);
             transform: translate(50%, 50%) rotate(90deg); }
-  #site-header .info-btn {
-    display: none; }
-  #site-header[data-section="~"] .site-nav {
-    display: none; }
-  #site-header[data-section="~"] .info-btn {
-    display: block; }
 
 #site-footer {
   position: fixed;

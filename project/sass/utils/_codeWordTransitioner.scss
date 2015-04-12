@@ -6,4 +6,27 @@
 [data-codetext-char] {
 	display: inline-block;
 	position: relative;
+	padding-bottom: 2px;
+	color: transparent;
+	border-bottom: 2px solid transparent;
+
+    &[data-codetext-char-state="white"] {
+        color: #fff;
+        border-bottom: 2px solid #fff;
+    }
+
+    &[data-codetext-char-state="offwhite"] {
+        color: $bg-offwhite;
+        border-bottom: 2px solid $bg-offwhite;
+    }
+
+    &[data-codetext-char-state="red"] {
+        color: $cd-red;
+        border-bottom: 2px solid $cd-red;
+    }
+
+    &[data-codetext-char-state="blue"] {
+        color: $cd-blue;
+        border-bottom: 2px solid $cd-blue;
+    }
 }

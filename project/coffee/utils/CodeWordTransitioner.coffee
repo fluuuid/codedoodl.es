@@ -1,8 +1,8 @@
 class CodeWordTransitioner
 
 	@config :
-		MIN_WRONG_CHARS : 0
-		MAX_WRONG_CHARS : 3
+		MIN_WRONG_CHARS : 1
+		MAX_WRONG_CHARS : 7
 
 		MIN_CHAR_IN_DELAY : 40
 		MAX_CHAR_IN_DELAY : 70
@@ -12,7 +12,7 @@ class CodeWordTransitioner
 
 		CHARS : 'abcdefhijklmnopqrstuvwxyz0123456789!?*()@£$%^&_-+=[]{}:;\'"\\|<>,./~`'.split('')
 
-		CHAR_TEMPLATE : "<span data-codetext-char=\"{{ char }}\">{{ char }}</span>"
+		CHAR_TEMPLATE : "<span data-codetext-char=\"{{ char }}\" data-codetext-char-state=\"{{ state }}\">{{ char }}</span>"
 
 	@_wordCache : {}
 
@@ -45,16 +45,17 @@ class CodeWordTransitioner
 			word    : _.pluck(chars, 'rightChar').join('')
 			$el     : $el
 			chars   : chars
-			visible : false
+			visible : true
 
 		@_wordCache[ id ]
 
 	@_wrapChars : ($el) =>
 
 		chars = $el.text().split('')
+		state = $el.attr('data-codeword-initial-state') or ""
 		html = []
 		for char in chars
-			html.push @_supplantString @config.CHAR_TEMPLATE, char : char
+			html.push @_supplantString @config.CHAR_TEMPLATE, char : char, state: state
 
 		$el.html html.join('')
 
@@ -154,8 +155,6 @@ class CodeWordTransitioner
 
 	@_animateWrongChars : (char, cb) =>
 
-		char.$el.attr('data-codetext-char-state', char.charState)
-
 		if char.wrongChars.length
 
 			wrongChar = char.wrongChars.shift()
@@ -164,7 +163,6 @@ class CodeWordTransitioner
 				char.$el.html wrongChar.char
 
 				setTimeout =>
-					# char.$el.html ''
 					@_animateWrongChars char, cb
 				, wrongChar.outDelay
 
@@ -172,7 +170,9 @@ class CodeWordTransitioner
 
 		else
 
-			char.$el.html char.targetChar
+			char.$el
+				.attr('data-codetext-char-state', char.charState)
+				.html(char.targetChar)
 
 			cb?()
 

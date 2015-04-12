@@ -4,15 +4,13 @@
 
     .logo,
     .site-nav,
-    .close-btn,
-    .info-btn {
+    .close-btn {
         position: fixed;
         z-index: 10;
     }
 
     .logo__link,
     .site-nav__link,
-    .info-btn,
     .close-btn {
         @include font-size(1.5);
         cursor: pointer;
@@ -22,35 +20,13 @@
         color: $bg-offwhite;
     }
 
-    [data-codetext-char] {
-        padding-bottom: 2px;
-        color: transparent;
-        border-bottom: 2px solid transparent;
-
-        &[data-codetext-char-state="white"] {
-            color: #fff;
-            border-bottom: 2px solid #fff;
-        }
-
-        &[data-codetext-char-state="red"] {
-            color: $cd-red;
-            border-bottom: 2px solid $cd-red;
-        }
-
-        &[data-codetext-char-state="blue"] {
-            color: $cd-blue;
-            border-bottom: 2px solid $cd-blue;
-        }
-    }
-
     .logo {
         top: 50%;
         left: 25px;
         transform: translate(-50%, -50%) rotate(90deg);
     }
 
-    .site-nav,
-    .info-btn {
+    .site-nav {
         top: 50%;
         right: 25px;
         transform: translate(50%, -50%) rotate(90deg);
@@ -71,7 +47,7 @@
     }
 
     .info-btn {
-        display: none;
+        // display: none;
     }
 
     // &[data-section="home"],
@@ -89,11 +65,11 @@
     &[data-section="~"] {
 
         .site-nav {
-            display: none;
+            // display: none;
         }
 
         .info-btn {
-            display: block;
+            // display: block;
         }
     }
 }
