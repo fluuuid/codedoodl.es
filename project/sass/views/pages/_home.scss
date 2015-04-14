@@ -6,19 +6,19 @@
 
 .home-grid {
 	margin: $site-padding-desktop auto;
-	max-width: $max-home-grid-width;
+	max-width: $home-grid-width-5;
 	width: 90%;
 }
 
 .home-grid-item {
-	float: left;
+	display: inline-block;
 	position: relative;
 	width: $home-grid-item-width;
 	margin-right: 20px;
 	margin-bottom: 20px;
 	opacity: 0;
 
-	&:nth-of-type(3n) {
+	&:nth-of-type(5n) {
 		margin-right: 0;
 	}
 
@@ -139,9 +139,16 @@
 		left: 0;
 		@include font-size(6);
 		line-height: 1;
-		font-family: $ff-monosten-b;
 		z-index: 3;
 		color: $cd-blue;
+
+		.index-char-nonzero {
+			font-family: $ff-monosten-a;
+		}
+
+		.index-char-zero {
+			font-family: $ff-monosten-b;
+		}
 	}
 
 	.grid-item-arrow {}

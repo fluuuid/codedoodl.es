@@ -1,3 +1,5 @@
+encode = require 'ent/encode'
+
 class CodeWordTransitioner
 
 	@config :
@@ -10,7 +12,7 @@ class CodeWordTransitioner
 		MIN_CHAR_OUT_DELAY : 40
 		MAX_CHAR_OUT_DELAY : 70
 
-		CHARS : 'abcdefhijklmnopqrstuvwxyz0123456789!?*()@£$%^&_-+=[]{}:;\'"\\|<>,./~`'.split('')
+		CHARS : 'abcdefhijklmnopqrstuvwxyz0123456789!?*()@£$%^&_-+=[]{}:;\'"\\|<>,./~`'.split('').map((char) => return encode(char))
 
 		CHAR_TEMPLATE : "<span data-codetext-char=\"{{ char }}\" data-codetext-char-state=\"{{ state }}\">{{ char }}</span>"
 

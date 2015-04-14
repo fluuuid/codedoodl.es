@@ -39,7 +39,7 @@ class HomeView extends AbstractViewPage
 	animateIn : =>
 
 		if !HomeView.visitedThisSession
-			@addDoodles 9
+			@addDoodles 15
 			HomeView.visitedThisSession = true
 		else
 			console.log 'show what been done shown already'
@@ -75,7 +75,7 @@ class HomeView extends AbstractViewPage
 
 		duration = 0.5
 		fromParams = y : (if fullPage then window.innerHeight else 50), opacity : 0
-		toParams = delay : (duration * 0.3) * index, y : 0, opacity : 1, ease : Expo.easeOut, onComplete : item.show
+		toParams = delay : (duration * 0.2) * index, y : 0, opacity : 1, ease : Expo.easeOut, onComplete : item.show
 		TweenLite.fromTo item.$el, duration, fromParams, toParams
 
 		null

@@ -22,10 +22,11 @@ class DoodleModel extends AbstractModel
 		"slug" : ""
 		"index": null
 		# site-only
-		"source" : ""
-		"url" : ""
+		"indexHTML" : ""
+		"source"    : ""
+		"url"       : ""
 		"scrambled" :
-			"name" : ""
+			"name"        : ""
 			"author_name" : ""
 
 	_filterAttrs : (attrs) =>
@@ -41,6 +42,19 @@ class DoodleModel extends AbstractModel
 				name        : CodeWordTransitioner.getScrambledWord attrs.name
 				author_name : CodeWordTransitioner.getScrambledWord attrs.author.name
 
+		if attrs.index
+			attrs.indexHTML = @getIndexHTML attrs.index
+
 		attrs
+
+	getIndexHTML : (index) =>
+
+		HTML = ""
+
+		for char in index.split('')
+			className = if char is '0' then 'index-char-zero' else 'index-char-nonzero'
+			HTML += "<span class=\"#{className}\">#{char}</span>"
+
+		HTML
 
 module.exports = DoodleModel

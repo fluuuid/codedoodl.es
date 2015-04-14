@@ -23,7 +23,6 @@ class HomeGridItem extends AbstractView
 	setListeners : (setting) =>
 
 		@$el[setting] 'mouseover', @onMouseOver
-		@$el[setting] 'mouseout', @onMouseOut
 
 	show : =>
 
@@ -38,15 +37,8 @@ class HomeGridItem extends AbstractView
 
 	onMouseOver : =>
 
-		CodeWordTransitioner.scramble @$authorName, 'blue'
-		CodeWordTransitioner.scramble @$doodleName, 'blue'
-
-		null
-
-	onMouseOut : =>
-
-		CodeWordTransitioner.to @model.get('author.name'), @$authorName, 'blue'
-		CodeWordTransitioner.to @model.get('name'), @$doodleName, 'blue'
+		CodeWordTransitioner.scramble @$authorName, 'blue', false, => CodeWordTransitioner.to @model.get('author.name'), @$authorName, 'blue'
+		CodeWordTransitioner.scramble @$doodleName, 'blue', false, => CodeWordTransitioner.to @model.get('name'), @$doodleName, 'blue'
 
 		null
 

@@ -55,6 +55,7 @@
     "browserify": "~6.0.3",
     "coffee-script": "1.8.0",
     "coffeeify": "~0.7.0",
+    "ent": "^2.2.0",
     "figlet": "^1.1.0",
     "gulp": "^3.8.8",
     "gulp-autoprefixer": "~1.0.1",

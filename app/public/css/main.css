@@ -712,17 +712,17 @@ input, button, textarea {
 
 .home-grid {
   margin: 25px auto;
-  max-width: 640px;
+  max-width: 1080px;
   width: 90%; }
 
 .home-grid-item {
-  float: left;
+  display: inline-block;
   position: relative;
   width: 200px;
   margin-right: 20px;
   margin-bottom: 20px;
   opacity: 0; }
-  .home-grid-item:nth-of-type(3n) {
+  .home-grid-item:nth-of-type(5n) {
     margin-right: 0; }
   .home-grid-item.show-item .grid-item-lines {
     opacity: 1;
@@ -819,9 +819,12 @@ input, button, textarea {
     font-size: 60px;
     font-size: 6rem;
     line-height: 1;
-    font-family: 'monostenb', 'Consolas', 'monospace';
     z-index: 3;
     color: #395CAA; }
+    .home-grid-item .grid-item-number .index-char-nonzero {
+      font-family: 'monostena', 'Consolas', 'monospace'; }
+    .home-grid-item .grid-item-number .index-char-zero {
+      font-family: 'monostenb', 'Consolas', 'monospace'; }
 
 .page-doodle {
   background: #395CAA; }
