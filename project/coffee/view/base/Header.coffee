@@ -32,8 +32,8 @@ class Header extends AbstractView
 	init : =>
 
 		@$logo              = @$el.find('.logo__link')
-		@$navLinkAbout      = @$el.find('.site-nav__link').eq(0)
-		@$navLinkContribute = @$el.find('.site-nav__link').eq(1)
+		@$navLinkAbout      = @$el.find('.about-btn')
+		@$navLinkContribute = @$el.find('.contribute-btn')
 		@$infoBtn           = @$el.find('.info-btn')
 		@$closeBtn          = @$el.find('.close-btn')
 
@@ -41,6 +41,7 @@ class Header extends AbstractView
 
 	bindEvents : =>
 
+		@CD().appView.on @CD().appView.EVENT_PRELOADER_HIDE, @animateTextIn
 		@CD().router.on Router.EVENT_HASH_CHANGED, @onHashChange
 
 		@$el.on 'mouseenter', '[data-codeword]', @onWordEnter
@@ -60,7 +61,7 @@ class Header extends AbstractView
 
 	onAreaChange : (section) =>
 
-		colour  = @getSectionColour section
+		colour = @getSectionColour section
 
 		@$el.attr 'data-section', section
 
@@ -83,9 +84,11 @@ class Header extends AbstractView
 
 		section = section or @CD().nav.current.area or 'home'
 
-		colour  = switch section
+		colour = switch section
 			when 'home' then 'red'
-			else 'blue'
+			when @CD().nav.sections.ABOUT then 'white'
+			when @CD().nav.sections.CONTRIBUTE then 'white'
+			else 'white'
 
 		colour
 

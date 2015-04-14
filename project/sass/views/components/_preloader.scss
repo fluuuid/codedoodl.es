@@ -1,14 +1,17 @@
 
 #preloader {
-	background: $cd-red;
 	color: $cd-red;
+	background: $cd-red;
 	position: fixed;
-	top: 0;
-	left: 0;
+	top: 50%;
+	left: 50%;
 	width: 100%;
 	height: 100%;
 	z-index: 50;
+	overflow: hidden;
 	transition: all .3s $easeInOutQuad;
+	transform: translate(-50%, -50%);
+	transform: translate3d(-50%, -50%, 0);
 	opacity: 0;
 	visibility: hidden;
 
@@ -25,20 +28,33 @@
 		left: 50%;
 		transform: translate(-50%, -50%);
 		font-family: $ff-monosten-a;
-		z-index: 1;
+		z-index: 2;
+	}
+
+	.preloader__bg {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 0;
+		height: 50px;
+		transform: translate(-50%, -50%);
+		transform: translate3d(-50%, -50%, 0);
+
+		&.preloader__bg-1 {
+			background: $cd-blue;
+			z-index: 0;
+		}
+
+		&.preloader__bg-2 {
+			background: $bg-offwhite;
+			z-index: 1;
+		}
 	}
 
 	[data-codetext-char] {
-		padding-bottom: 2px;
-		color: $cd-red;
-		border: 0 solid #fff;
-		transition: border-color 1s $easeInCubic;
-		transition-delay: 0.5s;
-
-		&[data-codetext-char-state="white"] {
-			color: #fff;
-			border-bottom: 2px solid #fff;
-		}
+		// border: 0 solid #fff;
+		// transition: border-color 1s $easeInCubic;
+		// transition-delay: 0.5s;
 
 		&.hide-border {
 			border-color: transparent;

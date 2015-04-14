@@ -1,4 +1,148 @@
 
 .page-home {
 	background: $bg-offwhite;
+	overflow: auto;
+}
+
+.home-grid {
+	margin: $site-padding-desktop auto;
+	max-width: $max-home-grid-width;
+	width: 90%;
+}
+
+.home-grid-item {
+	float: left;
+	position: relative;
+	width: $home-grid-item-width;
+	margin-right: 20px;
+	margin-bottom: 20px;
+	opacity: 0;
+
+	&:nth-of-type(3n) {
+		margin-right: 0;
+	}
+
+	&.show-item {
+
+		.grid-item-lines {
+			opacity: 1;
+			visibility: visible;
+			height: 16px;
+			transform: translate(0, -15px);
+		}
+	}
+
+	.no-touch & {
+
+		&:hover,
+		&.hovered {
+
+			.grid-item-thumb-holder {
+				border-radius: 6px;
+				transform: scale(0.75) rotate(45deg) translate(-50%, -50%);
+			}
+
+			.grid-item-thumb-cover {
+				opacity: 0.5;
+				visibility: visible;
+			}
+
+			.grid-item-thumb {
+				opacity: 1;
+				visibility: visible;
+			}
+		}
+	}
+
+	.grid-item-link {
+		display: block;
+		text-decoration: none;
+	}
+
+	.grid-item-thumb-holder {
+		position: absolute;
+		width: $home-grid-item-width;
+		height: $home-grid-item-width;
+		top: $home-grid-item-width/2;
+		left: $home-grid-item-width/2;
+		display: block;
+		background: $cd-red;
+		transform: rotate(45deg) translate(-50%, -50%);
+		transform-origin: 0 0;
+		transition: all .5s $easeInOutExpo;
+		border-radius: 50%;
+		overflow: hidden;
+	}
+
+	.grid-item-thumb-cover,
+	.grid-item-thumb {
+		display: block;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: $home-grid-item-width*1.5;
+		height: $home-grid-item-width*1.5;
+		transform: rotate(-45deg) translate(-50%, -50%);
+		transform-origin: 0 0;
+		transition: all .5s $easeInOutExpo;
+		opacity: 0;
+		visibility: hidden;
+	}
+
+	.grid-item-thumb-cover {
+		z-index: 1;
+		background: $cd-blue;
+	}
+
+	.grid-item-thumb {
+		filter: brightness(0.8) contrast(2.5);
+		background: url(https://placeimg.com/300/300/any) no-repeat center center;
+		background-size: cover;
+		z-index: 0;
+	}
+
+	.grid-item-lines {
+		position: absolute;
+		z-index: 2;
+		top: $home-grid-item-width*0.95;
+		height: 0;
+		border-top: 2px solid $cd-blue;
+		border-bottom: 2px solid $cd-blue;
+		opacity: 0;
+		visibility: hidden;
+		width: 100%;
+		transition: all 0.5s $easeOutExpo;
+	}
+
+	.grid-item-title {
+		color: $cd-blue;
+		@include font-size(1.3);
+		margin-top: $home-grid-item-width+10px;
+		padding-left: 20px;
+		position: relative;
+
+		&:after {
+			content: '-';
+			position: absolute;
+			top: 0;
+			left: 5px;
+		}
+
+		[data-codetext-char] {
+			border: none;
+		}
+	}
+
+	.grid-item-number {
+		position: absolute;
+		top: -4px;
+		left: 0;
+		@include font-size(6);
+		line-height: 1;
+		font-family: $ff-monosten-b;
+		z-index: 3;
+		color: $cd-blue;
+	}
+
+	.grid-item-arrow {}
 }

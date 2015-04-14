@@ -1,8 +1,8 @@
 class CodeWordTransitioner
 
 	@config :
-		MIN_WRONG_CHARS : 0
-		MAX_WRONG_CHARS : 3
+		MIN_WRONG_CHARS : 1
+		MAX_WRONG_CHARS : 7
 
 		MIN_CHAR_IN_DELAY : 40
 		MAX_CHAR_IN_DELAY : 70
@@ -12,7 +12,7 @@ class CodeWordTransitioner
 
 		CHARS : 'abcdefhijklmnopqrstuvwxyz0123456789!?*()@£$%^&_-+=[]{}:;\'"\\|<>,./~`'.split('')
 
-		CHAR_TEMPLATE : "<span data-codetext-char=\"{{ char }}\">{{ char }}</span>"
+		CHAR_TEMPLATE : "<span data-codetext-char=\"{{ char }}\" data-codetext-char-state=\"{{ state }}\">{{ char }}</span>"
 
 	@_wordCache : {}
 
@@ -45,16 +45,17 @@ class CodeWordTransitioner
 			word    : _.pluck(chars, 'rightChar').join('')
 			$el     : $el
 			chars   : chars
-			visible : false
+			visible : true
 
 		@_wordCache[ id ]
 
 	@_wrapChars : ($el) =>
 
 		chars = $el.text().split('')
+		state = $el.attr('data-codeword-initial-state') or ""
 		html = []
 		for char in chars
-			html.push @_supplantString @config.CHAR_TEMPLATE, char : char
+			html.push @_supplantString @config.CHAR_TEMPLATE, char : char, state: state
 
 		$el.html html.join('')
 
@@ -72,7 +73,10 @@ class CodeWordTransitioner
 			targetChar = switch true
 				when target is 'right' then char.rightChar
 				when target is 'wrong' then @_getRandomChar()
-				else ''
+				when target is 'empty' then ''
+				else target.charAt(i) or ''
+
+			if targetChar is ' ' then targetChar = '&nbsp;'
 
 			char.wrongChars = @_getRandomWrongChars()
 			char.targetChar = targetChar
@@ -100,30 +104,59 @@ class CodeWordTransitioner
 
 		char
 
-	@_animateChars : (word, cb) =>
+	@_getLongestCharDuration : (chars) =>
+
+		longestTime = 0
+		longestTimeIdx = 0
+
+		for char, i in chars
+
+			time = 0
+			(time += wrongChar.inDelay + wrongChar.outDelay) for wrongChar in char.wrongChars
+			if time > longestTime
+				longestTime = time
+				longestTimeIdx = i
+
+		longestTimeIdx
+
+	@_animateChars : (word, sequential, cb) =>
 
 		activeChar = 0
 
-		@_animateChar word.chars, activeChar, cb
+		if sequential
+			@_animateChar word.chars, activeChar, true, cb
+		else
+			longestCharIdx = @_getLongestCharDuration word.chars
+			for char, i in word.chars
+				args = [ word.chars, i, false ]
+				if i is longestCharIdx then args.push cb
+				@_animateChar.apply @, args
 
 		null
 
-	@_animateChar : (chars, idx, cb) =>
+	@_animateChar : (chars, idx, recurse, cb) =>
 
 		char = chars[idx]
 
-		@_animateWrongChars char, =>
+		if recurse
 
-			if idx is chars.length-1
-				@_animateCharsDone cb
+			@_animateWrongChars char, =>
+
+				if idx is chars.length-1
+					@_animateCharsDone cb
+				else
+					@_animateChar chars, idx+1, recurse, cb
+
+		else
+
+			if typeof cb is 'function'
+				@_animateWrongChars char, => @_animateCharsDone cb
 			else
-				@_animateChar chars, idx+1, cb
+				@_animateWrongChars char
 
 		null
 
 	@_animateWrongChars : (char, cb) =>
-
-		char.$el.attr('data-codetext-char-state', char.charState)
 
 		if char.wrongChars.length
 
@@ -133,7 +166,6 @@ class CodeWordTransitioner
 				char.$el.html wrongChar.char
 
 				setTimeout =>
-					# char.$el.html ''
 					@_animateWrongChars char, cb
 				, wrongChar.outDelay
 
@@ -141,9 +173,11 @@ class CodeWordTransitioner
 
 		else
 
-			char.$el.html char.targetChar
+			char.$el
+				.attr('data-codetext-char-state', char.charState)
+				.html(char.targetChar)
 
-			cb()
+			cb?()
 
 		null
 
@@ -159,7 +193,21 @@ class CodeWordTransitioner
 			r = vals[b]
 			(if typeof r is "string" or typeof r is "number" then r else a)
 
-	@in : ($el, charState, cb) =>
+	@to : (targetText, $el, charState, sequential=false, cb=null) =>
+
+		if _.isArray $el
+			(@to(targetText, _$el, charState, cb)) for _$el in $el
+			return
+
+		word = @_getWordFromCache $el
+		word.visible = true
+
+		@_prepareWord word, targetText, charState
+		@_animateChars word, sequential, cb
+
+		null
+
+	@in : ($el, charState, sequential=false, cb=null) =>
 
 		if _.isArray $el
 			(@in(_$el, charState, cb)) for _$el in $el
@@ -169,11 +217,11 @@ class CodeWordTransitioner
 		word.visible = true
 
 		@_prepareWord word, 'right', charState
-		@_animateChars word, cb
+		@_animateChars word, sequential, cb
 
 		null
 
-	@out : ($el, charState, cb) =>
+	@out : ($el, charState, sequential=false, cb=null) =>
 
 		if _.isArray $el
 			(@out(_$el, charState, cb)) for _$el in $el
@@ -185,9 +233,11 @@ class CodeWordTransitioner
 		word.visible = false
 
 		@_prepareWord word, 'empty', charState
-		@_animateChars word, cb
+		@_animateChars word, sequential, cb
 
-	@scramble : ($el, charState, cb) =>
+		null
+
+	@scramble : ($el, charState, sequential=false, cb=null) =>
 
 		if _.isArray $el
 			(@scramble(_$el, charState, cb)) for _$el in $el
@@ -198,11 +248,11 @@ class CodeWordTransitioner
 		return if !word.visible
 
 		@_prepareWord word, 'wrong', charState
-		@_animateChars word, cb
+		@_animateChars word, sequential, cb
 
 		null
 
-	@unscramble : ($el, charState, cb) =>
+	@unscramble : ($el, charState, sequential=false, cb=null) =>
 
 		if _.isArray $el
 			(@unscramble(_$el, charState, cb)) for _$el in $el
@@ -213,9 +263,16 @@ class CodeWordTransitioner
 		return if !word.visible
 
 		@_prepareWord word, 'right', charState
-		@_animateChars word, cb
+		@_animateChars word, sequential, cb
 
 		null
+
+	@getScrambledWord : (word) =>
+
+		newChars = []
+		(newChars.push @_getRandomChar()) for char in word.split('')
+
+		return newChars.join('')
 
 module.exports = CodeWordTransitioner
 

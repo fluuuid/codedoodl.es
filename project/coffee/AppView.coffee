@@ -25,6 +25,7 @@ class AppView extends AbstractView
         'click a' : 'linkManager'
 
     EVENT_UPDATE_DIMENSIONS : 'EVENT_UPDATE_DIMENSIONS'
+    EVENT_PRELOADER_HIDE    : 'EVENT_PRELOADER_HIDE'
 
     MOBILE_WIDTH : 700
     MOBILE       : 'mobile'
@@ -57,7 +58,6 @@ class AppView extends AbstractView
         @bindEvents()
 
         @preloader    = new Preloader
-
         @modalManager = new ModalManager
 
         @header  = new Header
@@ -69,9 +69,9 @@ class AppView extends AbstractView
             .addChild @wrapper
             .addChild @footer
 
-        @preloader.show => @header.animateTextIn()
-
         @onAllRendered()
+
+        @preloader.playIntroAnimation => @trigger @EVENT_PRELOADER_HIDE
 
         return
 

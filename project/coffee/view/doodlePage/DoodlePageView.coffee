@@ -3,6 +3,7 @@ AbstractViewPage = require '../AbstractViewPage'
 class DoodlePageView extends AbstractViewPage
 
 	template : 'page-doodle'
+	model    : null
 
 	constructor : ->
 
@@ -29,5 +30,19 @@ class DoodlePageView extends AbstractViewPage
 		###
 
 		return null
+
+	show : =>
+
+		@model = @getDoodle()
+
+		super
+
+		null
+
+	getDoodle : =>
+
+		doodle = @CD().appData.doodles.getDoodleBySlug @CD().nav.current.sub+'/'+@CD().nav.current.ter
+
+		doodle
 
 module.exports = DoodlePageView

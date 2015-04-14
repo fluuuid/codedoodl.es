@@ -11,6 +11,8 @@ class Nav extends AbstractView
     current  : area : null, sub : null, ter : null
     previous : area : null, sub : null, ter : null
 
+    changeViewCount : 0
+
     constructor: ->
 
         @sections = window.config.routes
@@ -35,6 +37,8 @@ class Nav extends AbstractView
         # console.log "ter",ter
         # console.log "params",params
 
+        @changeViewCount++
+
         @previous = @current
         @current  = area : area, sub : sub, ter : ter
 
@@ -52,10 +56,26 @@ class Nav extends AbstractView
 
     setPageTitle: (area, sub, ter) =>
 
-        title = "PAGE TITLE HERE - LOCALISE BASED ON URL"
+        section   = if area is '' then 'HOME' else @CD().nav.getSection area
+        titleTmpl = @CD().locale.get("page_title_#{section}") or @CD().locale.get("page_title_HOME")
+        title = @supplantString titleTmpl, @getPageTitleVars(area, sub, ter), false
 
         if window.document.title isnt title then window.document.title = title
 
         null
+
+    getPageTitleVars: (area, sub, ter) =>
+
+        vars = {}
+
+        if area is @sections.DOODLES and sub and ter
+            doodle = @CD().appData.doodles.findWhere slug: "#{sub}/#{ter}"
+
+            if !doodle
+                vars.name = "doodle"
+            else
+                vars.name = doodle.get('author.name') + ' \\ ' + doodle.get('name') + ' '
+
+        vars
 
 module.exports = Nav

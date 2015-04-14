@@ -29,10 +29,12 @@ class Preloader extends AbstractView
 	init : =>
 
 		@$codeWord = @$el.find('[data-codeword]')
+		@$bg1 = @$el.find('[data-bg="1"]')
+		@$bg2 = @$el.find('[data-bg="2"]')
 
 		null
 
-	show : (@cb) =>
+	playIntroAnimation : (@cb) =>
 
 		console.log "show : (@cb) =>"
 
@@ -41,7 +43,7 @@ class Preloader extends AbstractView
 
 		@$el.addClass('show-preloader')
 
-		CodeWordTransitioner.in @$codeWord, 'white', @hide
+		CodeWordTransitioner.in @$codeWord, 'white', false, @hide
 
 		null
 
@@ -59,34 +61,39 @@ class Preloader extends AbstractView
 
 	onHideComplete : =>
 
-		@$el.removeClass('show-preloader')
 		@cb?()
 
 		null
 
 	animateOut : (cb) =>
 
-		@animateCharsOut()
+		# @animateCharsOut()
 
 		# that'll do
-		setTimeout cb, 2200
+		# setTimeout cb, 2200
+
+		setTimeout =>
+			anagram = _.shuffle('codedoodl.es'.split('')).join('')
+			CodeWordTransitioner.to anagram, @$codeWord, 'white', false, => @animateBgOut cb
+		, 2000
 
 		null
 
-	animateCharsOut : =>
+	animateBgOut : (cb) =>
 
-		@$codeWord.find('[data-codetext-char]').each (i, el) =>
+		TweenLite.to @$bg1, 0.5, { delay : 0.2, width : "100%", ease : Expo.easeOut }
+		TweenLite.to @$bg1, 0.6, { delay : 0.7, height : "100%", ease : Expo.easeOut }
 
-			$el = $(el)
+		TweenLite.to @$bg2, 0.4, { delay : 0.4, width : "100%", ease : Expo.easeOut }
+		TweenLite.to @$bg2, 0.5, { delay : 0.8, height : "100%", ease : Expo.easeOut, onComplete : cb }
 
-			$el.addClass('hide-border')
+		setTimeout =>
+			CodeWordTransitioner.in @$codeWord, '', false
+		, 400
 
-			delay        = 1 + (_.random(50, 200) / 1000)
-			displacement = _.random(20, 30)
-			rotation     = (displacement / 30) * 50
-			rotation     = if (Math.random() > 0.5) then rotation else -rotation
-
-			TweenLite.to $el, 1, { delay : delay, opacity : 0, y : displacement, rotation : "#{rotation}deg", ease : Cubic.easeIn }
+		setTimeout =>
+			@$el.removeClass('show-preloader')
+		, 1200
 
 		null
 

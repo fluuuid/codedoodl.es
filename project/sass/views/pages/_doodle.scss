@@ -1,0 +1,47 @@
+.page-doodle {
+	background: $cd-blue;
+
+	.interaction-indicators {
+		display: inline-block;
+		position: fixed;
+		bottom: $site-padding-desktop;
+		left: 50%;
+		transform: translate(-50%, 0);
+
+		.indicator {
+			position: relative;
+			margin-right: 20px;
+
+	    	svg {
+	    		fill: #fff;
+	    	}
+
+	    	&:last-child {
+	    		margin-right: 0;
+	    	}
+	    }
+
+	    .indicator-mouse {
+	    	top: 8px;
+
+	    	svg {
+	    		width: 50px;
+	    	}
+	    }
+
+	    .indicator-keyboard {
+
+	    	svg {
+	    		width: 27px;
+	    	}
+	    }
+
+	    .indicator-touch {
+	    	top: 7px;
+
+	    	svg {
+	    		width: 50px;
+	    	}
+	    }
+	}
+}
