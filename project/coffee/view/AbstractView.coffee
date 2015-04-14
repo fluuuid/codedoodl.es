@@ -164,9 +164,11 @@ class AbstractView extends Backbone.View
 
 		null
 
-	supplantString : (str, vals) ->
+	supplantString : (str, vals, allowSpaces=true) ->
 
-		return str.replace /{{ ([^{}]*) }}/g, (a, b) ->
+		re = if allowSpaces then new RegExp('{{ ([^{}]*) }}', 'g') else new RegExp('{{([^{}]*)}}', 'g')
+
+		return str.replace re, (a, b) ->
 			r = vals[b]
 			(if typeof r is "string" or typeof r is "number" then r else a)
 

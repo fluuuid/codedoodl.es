@@ -1,26 +1,32 @@
 _            = require 'underscore'
-bodyParser   = require "body-parser"
-cookieParser = require "cookie-parser"
-session      = require "express-session"
+bodyParser   = require 'body-parser'
+cookieParser = require 'cookie-parser'
+session      = require 'express-session'
 config       = require '../../config/server'
-content      = require '../content/all.json'
+locale       = require '../public/data/locales/strings.json'
+
+getTemplateData = (route) ->
+
+	return _.extend {},
+		config     : config
+		page_title : locale.strings.PAGE_TITLES.strings["page_title_#{route}"]
 
 ###
 views
 ###
 home = (req, res) ->
-	res.render "site/index", _.extend content.home, config : config
+	res.render "site/index", getTemplateData('HOME')
 
 about = (req, res) ->
-	res.render "site/index", _.extend content.home, config : config
+	res.render "site/index", getTemplateData('ABOUT')
 
 contribute = (req, res) ->
-	res.render "site/index", _.extend content.home, config : config
+	res.render "site/index", getTemplateData('CONTRIBUTE')
 
 doodles = (req, res) ->
 	if !req.params.authorName or !req.params.doodleName
 		return res.redirect 301, "/#{config.routes.HOME}"
-	res.render "site/index", _.extend content.home, config : config
+	res.render "site/index", getTemplateData('DOODLES')
 
 ###
 basic password-protect
@@ -53,6 +59,6 @@ setup = (app) ->
 	app.get "/#{config.routes.HOME}", home
 	app.get "/#{config.routes.ABOUT}", about
 	app.get "/#{config.routes.CONTRIBUTE}", contribute
-	app.get "/#{config.routes.DOODLES}/:authorName/:doodleName", doodles
+	app.get "/#{config.routes.DOODLES}/:authorName?/:doodleName?", doodles
 
 module.exports = setup

@@ -76,6 +76,8 @@ class CodeWordTransitioner
 				when target is 'empty' then ''
 				else target.charAt(i) or ''
 
+			if targetChar is ' ' then targetChar = '&nbsp;'
+
 			char.wrongChars = @_getRandomWrongChars()
 			char.targetChar = targetChar
 			char.charState  = charState
@@ -264,6 +266,13 @@ class CodeWordTransitioner
 		@_animateChars word, sequential, cb
 
 		null
+
+	@getScrambledWord : (word) =>
+
+		newChars = []
+		(newChars.push @_getRandomChar()) for char in word.split('')
+
+		return newChars.join('')
 
 module.exports = CodeWordTransitioner
 

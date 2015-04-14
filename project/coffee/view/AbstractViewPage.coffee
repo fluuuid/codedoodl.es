@@ -20,6 +20,11 @@ class AbstractViewPage extends AbstractView
 		@$el.css 'visibility' : 'visible'
 		cb?()
 
+		if @CD().nav.changeViewCount is 1
+			@CD().appView.on @CD().appView.EVENT_PRELOADER_HIDE, @animateIn
+		else
+			@animateIn()
+
 		null
 
 	hide : (cb) =>
@@ -50,6 +55,14 @@ class AbstractViewPage extends AbstractView
 
 		return unless setting isnt @_listening
 		@_listening = setting
+
+		null
+
+	animateIn : =>
+
+		###
+		stubbed here, override in used page classes
+		###
 
 		null
 

@@ -8,7 +8,6 @@ Nav                = require '../../router/Nav'
 class Wrapper extends AbstractView
 
 	VIEW_TYPE_PAGE  : 'page'
-	VIEW_TYPE_MODAL : 'modal'
 
 	template : 'wrapper'
 
@@ -75,40 +74,15 @@ class Wrapper extends AbstractView
 
 		null
 
-	###
-
-	THIS IS A MESS, SORT IT (neil)
-
-	###
 	changeView : (previous, current) =>
 
 		@previousView = @getViewByRoute previous.area
 		@currentView  = @getViewByRoute current.area
 
 		if !@previousView
-
-			if @currentView.type is @VIEW_TYPE_PAGE
-				@transitionViews false, @currentView.view
-			else if @currentView.type is @VIEW_TYPE_MODAL
-				@backgroundView = @views.home
-				@transitionViews false, @currentView.view, true
-
+			@transitionViews false, @currentView.view
 		else
-
-			if @currentView.type is @VIEW_TYPE_PAGE and @previousView.type is @VIEW_TYPE_PAGE
-				@transitionViews @previousView.view, @currentView.view
-			else if @currentView.type is @VIEW_TYPE_MODAL and @previousView.type is @VIEW_TYPE_PAGE
-				@backgroundView = @previousView
-				@transitionViews false, @currentView.view, true
-			else if @currentView.type is @VIEW_TYPE_PAGE and @previousView.type is @VIEW_TYPE_MODAL
-				@backgroundView = @backgroundView or @views.home
-				if @backgroundView isnt @currentView
-					@transitionViews @previousView.view, @currentView.view, false, true
-				else if @backgroundView is @currentView
-					@transitionViews @previousView.view, false
-			else if @currentView.type is @VIEW_TYPE_MODAL and @previousView.type is @VIEW_TYPE_MODAL
-				@backgroundView = @backgroundView or @views.home
-				@transitionViews @previousView.view, @currentView.view, true
+			@transitionViews @previousView.view, @currentView.view
 
 		null
 
@@ -118,12 +92,9 @@ class Wrapper extends AbstractView
 
 		null
 
-	transitionViews : (from, to, toModal=false, fromModal=false) =>
+	transitionViews : (from, to) =>
 
 		return unless from isnt to
-
-		if toModal then @backgroundView.view?.show()
-		if fromModal then @backgroundView.view?.hide()
 
 		if from and to
 			from.hide to.show

@@ -22,13 +22,13 @@
 
     .logo {
         top: 50%;
-        left: 25px;
+        left: $site-padding-desktop;
         transform: translate(-50%, -50%) rotate(90deg);
     }
 
     .site-nav {
         top: 50%;
-        right: 25px;
+        right: $site-padding-desktop;
         transform: translate(50%, -50%) rotate(90deg);
     }
 
@@ -41,8 +41,8 @@
     }
 
     .close-btn {
-        top: 25px;
-        right: 25px;
+        top: $site-padding-desktop;
+        right: $site-padding-desktop;
         transform: translate(50%, 50%) rotate(90deg);
     }
 

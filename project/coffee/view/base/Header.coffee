@@ -41,6 +41,7 @@ class Header extends AbstractView
 
 	bindEvents : =>
 
+		@CD().appView.on @CD().appView.EVENT_PRELOADER_HIDE, @animateTextIn
 		@CD().router.on Router.EVENT_HASH_CHANGED, @onHashChange
 
 		@$el.on 'mouseenter', '[data-codeword]', @onWordEnter
@@ -85,8 +86,8 @@ class Header extends AbstractView
 
 		colour = switch section
 			when 'home' then 'red'
-			when @CD().nav.sections.ABOUT then 'red'
-			when @CD().nav.sections.CONTRIBUTE then 'red'
+			when @CD().nav.sections.ABOUT then 'white'
+			when @CD().nav.sections.CONTRIBUTE then 'white'
 			else 'white'
 
 		colour

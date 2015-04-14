@@ -34,7 +34,7 @@ class Preloader extends AbstractView
 
 		null
 
-	show : (@cb) =>
+	playIntroAnimation : (@cb) =>
 
 		console.log "show : (@cb) =>"
 
