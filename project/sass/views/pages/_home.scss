@@ -1,11 +1,12 @@
 
 .page-home {
 	background: $bg-offwhite;
-	overflow: auto;
+	position: relative;
 }
 
 .home-grid {
-	margin: $site-padding-desktop auto;
+	margin: 0 auto;
+	padding: $site-padding-desktop 0;
 	max-width: $home-grid-width-5;
 	width: 90%;
 }

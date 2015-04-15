@@ -561,8 +561,10 @@ html {
 
 body {
   color: #000;
-  background: none;
+  background: #F1F1F3;
   width: 100%; }
+  body .disable-hover {
+    pointer-events: none; }
 
 h1, h2, h3, h4, h5, h6 {
   font-weight: normal; }
@@ -708,10 +710,11 @@ input, button, textarea {
 
 .page-home {
   background: #F1F1F3;
-  overflow: auto; }
+  position: relative; }
 
 .home-grid {
-  margin: 25px auto;
+  margin: 0 auto;
+  padding: 25px 0;
   max-width: 1080px;
   width: 90%; }
 

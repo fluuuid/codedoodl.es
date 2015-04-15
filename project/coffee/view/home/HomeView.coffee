@@ -6,7 +6,10 @@ class HomeView extends AbstractViewPage
 	# manage state for homeView on per-session basis, allow number of
 	# grid items, and scroll position of home grid to be persisted
 	@visitedThisSession : false
-	@gridItems          : []
+	@gridItems : []
+	@dims :
+		itemHeight      : 0
+		containerHeight : 0
 
 	template      : 'page-home'
 	addToSelector : '[data-home-grid]'
@@ -27,6 +30,26 @@ class HomeView extends AbstractViewPage
 	init : =>
 
 		@$grid = @$el.find('[data-home-grid]')
+
+		@setupDims()
+
+		null
+
+	setupDims : =>
+
+		null
+
+	setListeners : (setting) =>
+
+		@CD().appView[setting] @CD().appView.EVENT_UPDATE_DIMENSIONS, @onResize
+
+		null
+
+	onResize : =>
+
+		HomeView.dims.containerHeight = @CD().appView.dims.h
+
+		@setupDims()
 
 		null
 

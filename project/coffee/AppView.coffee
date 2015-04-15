@@ -19,13 +19,15 @@ class AppView extends AbstractView
         w : null
         h : null
         o : null
-        c : null
+        updateMobile : true
+        lastHeight   : null
 
-    events :
-        'click a' : 'linkManager'
+    lastScrollY : 0
+    ticking     : false
 
     EVENT_UPDATE_DIMENSIONS : 'EVENT_UPDATE_DIMENSIONS'
     EVENT_PRELOADER_HIDE    : 'EVENT_PRELOADER_HIDE'
+    EVENT_ON_SCROLL         : 'EVENT_ON_SCROLL'
 
     MOBILE_WIDTH : 700
     MOBILE       : 'mobile'
@@ -41,17 +43,20 @@ class AppView extends AbstractView
     disableTouch: =>
 
         @$window.on 'touchmove', @onTouchMove
-        return
+
+        null
 
     enableTouch: =>
 
         @$window.off 'touchmove', @onTouchMove
-        return
+
+        null
 
     onTouchMove: ( e ) ->
 
         e.preventDefault()
-        return
+
+        null
 
     render : =>
 
@@ -71,9 +76,7 @@ class AppView extends AbstractView
 
         @onAllRendered()
 
-        @preloader.playIntroAnimation => @trigger @EVENT_PRELOADER_HIDE
-
-        return
+        null
 
     bindEvents : =>
 
@@ -83,7 +86,43 @@ class AppView extends AbstractView
 
         @onResize = _.debounce @onResize, 300
         @$window.on 'resize orientationchange', @onResize
-        return
+        @$window.on "scroll", @onScroll
+
+        @$body.on 'click', 'a', @linkManager
+
+        null
+
+    onScroll : =>
+
+        console.log "scrollUpdate"
+        @lastScrollY = window.scrollY
+        @requestTick()
+
+        null
+
+    requestTick : =>
+
+        if !@ticking
+            requestAnimationFrame @scrollUpdate
+            @ticking = true
+
+        null
+
+    scrollUpdate : =>
+
+        @ticking = false
+
+        @$body.addClass('disable-hover')
+
+        clearTimeout @timerScroll
+
+        @timerScroll = setTimeout =>
+            @$body.removeClass('disable-hover')
+        , 50
+
+        @trigger AppView.EVENT_ON_SCROLL
+
+        null
 
     onAllRendered : =>
 
@@ -91,8 +130,11 @@ class AppView extends AbstractView
 
         @$body.prepend @$el
 
+        @preloader.playIntroAnimation => @trigger @EVENT_PRELOADER_HIDE
+
         @begin()
-        return
+
+        null
 
     begin : =>
 
@@ -100,28 +142,31 @@ class AppView extends AbstractView
 
         @CD().router.start()
 
-        # @preloader.hide()
-        return
+        null
 
     onResize : =>
 
         @getDims()
-        return
+
+        null
 
     getDims : =>
 
         w = window.innerWidth or document.documentElement.clientWidth or document.body.clientWidth
         h = window.innerHeight or document.documentElement.clientHeight or document.body.clientHeight
 
+        change = h / @dims.lastHeight
+
         @dims =
             w : w
             h : h
             o : if h > w then 'portrait' else 'landscape'
-            c : if w <= @MOBILE_WIDTH then @MOBILE else @NON_MOBILE
+            updateMobile : !@CD().isMobile() or change < 0.8 or change > 1.2
+            lastHeight   : h
 
         @trigger @EVENT_UPDATE_DIMENSIONS, @dims
 
-        return
+        null
 
     linkManager : (e) =>
 
@@ -131,7 +176,7 @@ class AppView extends AbstractView
 
         @navigateToUrl href, e
 
-        return
+        null
 
     navigateToUrl : ( href, e = null ) =>
 
@@ -144,7 +189,7 @@ class AppView extends AbstractView
         else 
             @handleExternalLink href
 
-        return
+        null
 
     handleExternalLink : (data) =>
 
@@ -156,6 +201,6 @@ class AppView extends AbstractView
 
         ###
 
-        return
+        null
 
 module.exports = AppView
