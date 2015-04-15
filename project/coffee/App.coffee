@@ -36,6 +36,10 @@ class App
 
         null
 
+    isMobile : =>
+
+        return @IS_IOS or @IS_ANDROID
+
     objectComplete : =>
 
         @objReady++

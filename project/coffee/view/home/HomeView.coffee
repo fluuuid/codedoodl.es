@@ -6,7 +6,10 @@ class HomeView extends AbstractViewPage
 	# manage state for homeView on per-session basis, allow number of
 	# grid items, and scroll position of home grid to be persisted
 	@visitedThisSession : false
-	@gridItems          : []
+	@gridItems : []
+	@dims :
+		itemHeight      : 0
+		containerHeight : 0
 
 	template      : 'page-home'
 	addToSelector : '[data-home-grid]'
@@ -28,6 +31,26 @@ class HomeView extends AbstractViewPage
 
 		@$grid = @$el.find('[data-home-grid]')
 
+		@setupDims()
+
+		null
+
+	setupDims : =>
+
+		null
+
+	setListeners : (setting) =>
+
+		@CD().appView[setting] @CD().appView.EVENT_UPDATE_DIMENSIONS, @onResize
+
+		null
+
+	onResize : =>
+
+		HomeView.dims.containerHeight = @CD().appView.dims.h
+
+		@setupDims()
+
 		null
 
 	show : =>
@@ -39,7 +62,7 @@ class HomeView extends AbstractViewPage
 	animateIn : =>
 
 		if !HomeView.visitedThisSession
-			@addDoodles 9
+			@addDoodles 15
 			HomeView.visitedThisSession = true
 		else
 			console.log 'show what been done shown already'
@@ -75,7 +98,7 @@ class HomeView extends AbstractViewPage
 
 		duration = 0.5
 		fromParams = y : (if fullPage then window.innerHeight else 50), opacity : 0
-		toParams = delay : (duration * 0.3) * index, y : 0, opacity : 1, ease : Expo.easeOut, onComplete : item.show
+		toParams = delay : (duration * 0.2) * index, y : 0, opacity : 1, ease : Expo.easeOut, onComplete : item.show
 		TweenLite.fromTo item.$el, duration, fromParams, toParams
 
 		null
