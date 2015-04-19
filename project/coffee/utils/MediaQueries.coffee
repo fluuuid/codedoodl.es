@@ -52,4 +52,6 @@ class MediaQueries
 
         return false
 
+window.MediaQueries = MediaQueries
+
 module.exports = MediaQueries

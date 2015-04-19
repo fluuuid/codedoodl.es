@@ -94,7 +94,6 @@ class AppView extends AbstractView
 
     onScroll : =>
 
-        console.log "scrollUpdate"
         @lastScrollY = window.scrollY
         @requestTick()
 

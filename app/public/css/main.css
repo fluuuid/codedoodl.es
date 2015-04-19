@@ -563,7 +563,7 @@ body {
   color: #000;
   background: #F1F1F3;
   width: 100%; }
-  body .disable-hover {
+  body.disable-hover {
     pointer-events: none; }
 
 h1, h2, h3, h4, h5, h6 {
@@ -788,9 +788,23 @@ input, button, textarea {
 
 .home-grid {
   margin: 0 auto;
-  padding: 25px 0;
-  max-width: 1080px;
+  padding: 25px 0 100px;
   width: 90%; }
+  @media all and ( min-width: 1215px ) {
+    .home-grid {
+      max-width: 1080px; } }
+  @media all and ( min-width: 960px ) and ( max-width: 1214px ) {
+    .home-grid {
+      max-width: 860px; } }
+  @media all and ( min-width: 750px ) and ( max-width: 959px ) {
+    .home-grid {
+      max-width: 640px; } }
+  @media all and ( min-width: 520px ) and ( max-width: 749px ) {
+    .home-grid {
+      max-width: 420px; } }
+  @media all and ( max-width: 519px ) {
+    .home-grid {
+      max-width: 200px; } }
 
 .home-grid-item {
   display: inline-block;
@@ -799,8 +813,18 @@ input, button, textarea {
   margin-right: 20px;
   margin-bottom: 20px;
   opacity: 0; }
-  .home-grid-item:nth-of-type(5n) {
-    margin-right: 0; }
+  @media all and ( min-width: 1215px ) {
+    .home-grid-item:nth-of-type(5n) {
+      margin-right: 0; } }
+  @media all and ( min-width: 960px ) and ( max-width: 1214px ) {
+    .home-grid-item:nth-of-type(4n) {
+      margin-right: 0; } }
+  @media all and ( min-width: 750px ) and ( max-width: 959px ) {
+    .home-grid-item:nth-of-type(3n) {
+      margin-right: 0; } }
+  @media all and ( min-width: 520px ) and ( max-width: 749px ) {
+    .home-grid-item:nth-of-type(2n) {
+      margin-right: 0; } }
   .home-grid-item.show-item .grid-item-lines {
     opacity: 1;
     visibility: visible;

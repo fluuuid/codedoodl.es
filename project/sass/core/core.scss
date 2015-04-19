@@ -39,7 +39,7 @@ body {
     background: $bg-offwhite;
     width: 100%;
 
-    .disable-hover {
+    &.disable-hover {
 	    pointer-events: none;
 	}
 }
