@@ -10,6 +10,7 @@ class HomeView extends AbstractViewPage
 	@dims :
 		itemHeight      : 0
 		containerHeight : 0
+	@scrollDistance : 0
 
 	template      : 'page-home'
 	addToSelector : '[data-home-grid]'
@@ -42,6 +43,7 @@ class HomeView extends AbstractViewPage
 	setListeners : (setting) =>
 
 		@CD().appView[setting] @CD().appView.EVENT_UPDATE_DIMENSIONS, @onResize
+		@CD().appView[setting] @CD().appView.EVENT_ON_SCROLL, @onScroll
 
 		null
 
@@ -50,6 +52,12 @@ class HomeView extends AbstractViewPage
 		HomeView.dims.containerHeight = @CD().appView.dims.h
 
 		@setupDims()
+
+		null
+
+	onScroll : =>
+
+		HomeView.scrollDistance = @CD().appView.lastScrollY
 
 		null
 
@@ -62,14 +70,15 @@ class HomeView extends AbstractViewPage
 	animateIn : =>
 
 		if !HomeView.visitedThisSession
-			@addDoodles 15
+			@addDoodles 15, true
 			HomeView.visitedThisSession = true
 		else
+			@CD().appView.$window.scrollTop HomeView.scrollDistance
 			console.log 'show what been done shown already'
 
 		null
 
-	addDoodles : (count) =>
+	addDoodles : (count, fullPageTransition=false) =>
 
 		console.log "adding doodles... x#{count}"
 
@@ -87,7 +96,7 @@ class HomeView extends AbstractViewPage
 		for item, idx in newItems
 
 			@addChild item
-			@animateItemIn item, idx, true
+			@animateItemIn item, idx, fullPageTransition
 
 		null
 
