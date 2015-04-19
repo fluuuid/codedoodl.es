@@ -52,6 +52,12 @@
 				opacity: 1;
 				visibility: visible;
 			}
+
+			.grid-item-arrow {
+				opacity: 1;
+				visibility: visible;
+				width: 85%;
+			}
 		}
 	}
 
@@ -152,5 +158,37 @@
 		}
 	}
 
-	.grid-item-arrow {}
+	.grid-item-arrow {
+		position: absolute;
+		bottom: -15px;
+		left: 5px;
+		background: $cd-red;
+		transition: all 0.5s $easeOutExpo;
+		transition-delay: 0.2s;
+		height: 2px;
+		width: 10px;
+		opacity: 0;
+		visibility: hidden;
+
+		&:after,
+		&:before {
+			content: '';
+			background: $cd-red;
+			position: absolute;
+			right: 0;
+			top: 0;
+			height: 2px;
+			width: 10px;
+		}
+
+		&:after {
+			transform-origin: right bottom;
+			transform: rotate(45deg);
+		}
+
+		&:before {
+			transform-origin: right top;
+			transform: rotate(-45deg);
+		}
+	}
 }
