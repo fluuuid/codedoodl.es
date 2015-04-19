@@ -41,7 +41,11 @@ class Preloader extends AbstractView
 		# DEBUG!
 		# return @cb()
 
-		@$el.addClass('show-preloader')
+		@$el
+			.find('[data-dots]')
+				.remove()
+				.end()
+			.addClass('show-preloader')
 
 		CodeWordTransitioner.in @$codeWord, 'white', false, @hide
 
