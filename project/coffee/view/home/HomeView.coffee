@@ -80,9 +80,6 @@ class HomeView extends AbstractViewPage
 			doodle = @allDoodles.at idx
 			break if !doodle
 
-			# TODO - do this backend
-			doodle.set index : count - idx
-
 			newItems.push new HomeGridItem doodle
 
 		HomeView.gridItems = HomeView.gridItems.concat newItems
