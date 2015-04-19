@@ -16,6 +16,7 @@ class Nav extends AbstractView
     constructor: ->
 
         @sections = window.config.routes
+        @favicon = document.getElementById('favicon')
 
         @CD().router.on Router.EVENT_HASH_CHANGED, @changeView
 
@@ -51,6 +52,7 @@ class Nav extends AbstractView
         if @CD().appView.modalManager.isOpen() then @CD().appView.modalManager.hideOpenModal()
 
         @setPageTitle area, sub, ter
+        @setPageFavicon area
 
         null
 
@@ -61,6 +63,20 @@ class Nav extends AbstractView
         title = @supplantString titleTmpl, @getPageTitleVars(area, sub, ter), false
 
         if window.document.title isnt title then window.document.title = title
+
+        null
+
+    setPageFavicon: (area) =>
+
+        colour = switch area
+            when @sections.HOME then 'red'
+            when @sections.ABOUT, @sections.CONTRIBUTE then 'black'
+            when @sections.DOODLES then 'blue'
+            else 'red'
+
+        setTimeout =>
+            @favicon.href = "#{@CD().BASE_URL}/static/img/icons/favicon/favicon_#{colour}.png"
+        , 0
 
         null
 

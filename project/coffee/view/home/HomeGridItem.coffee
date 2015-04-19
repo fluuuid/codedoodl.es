@@ -5,7 +5,7 @@ class HomeGridItem extends AbstractView
 
 	template : 'home-grid-item'
 
-	constructor : (@model) ->
+	constructor : (@model, @fullPageTransition) ->
 
 		@templateVars = _.extend {}, @model.toJSON()
 
@@ -24,6 +24,8 @@ class HomeGridItem extends AbstractView
 
 		@$el[setting] 'mouseover', @onMouseOver
 
+		null
+
 	show : =>
 
 		@$el.addClass 'show-item'
@@ -37,8 +39,8 @@ class HomeGridItem extends AbstractView
 
 	onMouseOver : =>
 
-		CodeWordTransitioner.scramble @$authorName, 'blue', false, => CodeWordTransitioner.to @model.get('author.name'), @$authorName, 'blue'
-		CodeWordTransitioner.scramble @$doodleName, 'blue', false, => CodeWordTransitioner.to @model.get('name'), @$doodleName, 'blue'
+		CodeWordTransitioner.to @model.get('author.name'), @$authorName, 'blue'
+		CodeWordTransitioner.to @model.get('name'), @$doodleName, 'blue'
 
 		null
 

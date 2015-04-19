@@ -21,8 +21,20 @@ $bg-offwhite: #F1F1F3;
  * layout-related
  */
 $site-padding-desktop: 25px;
+
+// grid
 $home-grid-width-5: 1080px;
+$home-grid-width-4: 860px;
 $home-grid-width-3: 640px;
+$home-grid-width-2: 420px;
+$home-grid-width-1: 200px;
+
+$grid-five-bp: 'all and ( min-width: 1215px )';
+$grid-four-bp: 'all and ( min-width: 960px ) and ( max-width: 1214px )';
+$grid-three-bp: 'all and ( min-width: 750px ) and ( max-width: 959px )';
+$grid-two-bp: 'all and ( min-width: 520px ) and ( max-width: 749px )';
+$grid-one-bp: 'all and ( max-width: 519px )';
+
 $home-grid-item-width: 200px;
 
 /*

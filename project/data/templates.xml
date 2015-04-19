@@ -69,8 +69,10 @@
                         <span data-codeword="author_name" data-codeword-initial-state="blue"><%= scrambled.author_name %></span><br/>
                         <span data-codeword="name" data-codeword-initial-state="blue"><%= scrambled.name %></span>
                     </h1>
-                    <span class="grid-item-number"><%= indexHTML %></span>
-                    <span class="grid-item-arrow"></span>
+                    <span class="grid-item-number">
+                        <%= indexHTML %>
+                        <span class="grid-item-arrow"></span>
+                    </span>
                     <span class="grid-item-lines"></span>
                 </a>
             </article>

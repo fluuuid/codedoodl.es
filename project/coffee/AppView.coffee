@@ -94,7 +94,6 @@ class AppView extends AbstractView
 
     onScroll : =>
 
-        console.log "scrollUpdate"
         @lastScrollY = window.scrollY
         @requestTick()
 
@@ -120,7 +119,7 @@ class AppView extends AbstractView
             @$body.removeClass('disable-hover')
         , 50
 
-        @trigger AppView.EVENT_ON_SCROLL
+        @trigger @EVENT_ON_SCROLL
 
         null
 

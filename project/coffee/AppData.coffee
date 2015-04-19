@@ -56,7 +56,10 @@ class AppData extends AbstractData
 
         console.log "onStartDataReceived : (data) =>", data
 
-        @doodles.add data.doodles
+        toAdd = []
+        (toAdd = toAdd.concat data.doodles) for i in [0...5]
+
+        @doodles.add toAdd
 
         ###
 
