@@ -60,6 +60,7 @@ class HomeView extends AbstractViewPage
 	onResize : =>
 
 		@setupDims()
+		@onScroll()
 
 		null
 

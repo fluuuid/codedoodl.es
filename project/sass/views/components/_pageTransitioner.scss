@@ -1,0 +1,29 @@
+#page-transitioner {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	visibility: hidden;
+
+	&.show {
+		visibility: visible;
+	}
+
+	.pane {
+		position: absolute;
+
+		&.pane-1 {
+			z-index: 1;
+		}
+
+		&.pane-2 {
+			z-index: 2;
+		}
+
+		&.pane-3 {
+			z-index: 3;
+		}
+	}
+}

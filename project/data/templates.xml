@@ -17,6 +17,16 @@
         ]]>
     </template>
 
+    <template id="page-transitioner">
+        <![CDATA[
+            <div id="page-transitioner">
+                <span class="pane pane-1" data-pane="1"></span>
+                <span class="pane pane-1" data-pane="2"></span>
+                <span class="pane pane-1" data-pane="3"></span>
+            </div>
+        ]]>
+    </template>
+
     <!--
         HEADER
     -->

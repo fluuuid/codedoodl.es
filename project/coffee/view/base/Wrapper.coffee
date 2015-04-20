@@ -14,7 +14,8 @@ class Wrapper extends AbstractView
 	views          : null
 	previousView   : null
 	currentView    : null
-	backgroundView : null
+
+	pageSwitchDfd : null
 
 	constructor : ->
 
@@ -85,13 +86,17 @@ class Wrapper extends AbstractView
 
 	changeView : (previous, current) =>
 
+		if @pageSwitchDfd and @pageSwitchDfd.state() isnt 'resolved'
+			do (previous, current) => @pageSwitchDfd.done => @changeView previous, current
+			return
+
 		@previousView = @getViewByRoute previous.area
 		@currentView  = @getViewByRoute current.area
 
 		if !@previousView
-			@transitionViews false, @currentView.view
+			@transitionViews false, @currentView
 		else
-			@transitionViews @previousView.view, @currentView.view
+			@transitionViews @previousView, @currentView
 
 		null
 
@@ -103,14 +108,15 @@ class Wrapper extends AbstractView
 
 	transitionViews : (from, to) =>
 
-		return unless from isnt to
+		@pageSwitchDfd = $.Deferred()
 
 		if from and to
-			from.hide to.show
+			@CD().appView.transitioner.prepare from.route, to.route
+			@CD().appView.transitioner.in => from.view.hide => to.view.show => @CD().appView.transitioner.out => @pageSwitchDfd.resolve()
 		else if from
-			from.hide()
+			from.view.hide @pageSwitchDfd.resolve
 		else if to
-			to.show()
+			to.view.show @pageSwitchDfd.resolve
 
 		null
 

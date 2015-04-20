@@ -768,6 +768,25 @@ input, button, textarea {
 #site-footer {
   font-size: 12px; }
 
+#page-transitioner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  visibility: hidden; }
+  #page-transitioner.show {
+    visibility: visible; }
+  #page-transitioner .pane {
+    position: absolute; }
+    #page-transitioner .pane.pane-1 {
+      z-index: 1; }
+    #page-transitioner .pane.pane-2 {
+      z-index: 2; }
+    #page-transitioner .pane.pane-3 {
+      z-index: 3; }
+
 .page {
   position: absolute;
   top: 0;
