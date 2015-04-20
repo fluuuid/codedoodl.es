@@ -97,7 +97,18 @@
         <![CDATA[
             <section id="page-about" class="page page-about">
                 <div class="page-content">
-                    I am the about page content
+                    <div class="row row-what">
+                        <div class="col-1">01. <%= label_what %></div>
+                        <div class="col-2"><%= content_what %></div>
+                    </div>
+                    <div class="row row-contact">
+                        <div class="col-1">02. <%= label_contact %></div>
+                        <div class="col-2"><%= content_contact %></div>
+                    </div>
+                    <div class="row row-who">
+                        <div class="col-1">03. <%= label_who %></div>
+                        <div class="col-2" data-contributors></div>
+                    </div>
                 </div>
             </section>
         ]]>

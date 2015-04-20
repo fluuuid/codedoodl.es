@@ -14,6 +14,7 @@ var source       = require('vinyl-source-stream');
 var buffer       = require('vinyl-buffer');
 var gutil        = require('gulp-util');
 var stripDebug   = require('gulp-strip-debug');
+var gzip         = require('gulp-gzip');
 var bundleLogger = require('../util/bundleLogger');
 var handleErrors = require('../util/handleErrors');
 var pkg          = require('../../package.json');
@@ -50,6 +51,9 @@ gulp.task('browserify', function() {
       .pipe(buffer())
       .pipe(global.isWatching ? gutil.noop() : stripDebug())
 			.pipe(global.isWatching ? gutil.noop() : uglify())
+
+      // always gzip, make sure headers set by server
+      // .pipe(gzip({ append: false }))
 
       // Specify the output destination
       .pipe(gulp.dest('./'+pkg.folders.dest+'/js/'))

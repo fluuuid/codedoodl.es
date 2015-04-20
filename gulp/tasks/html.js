@@ -24,8 +24,10 @@ gulp.task('html', function () {
 			var r = manifest[b];
 			return r && (typeof r === 'string' || typeof r === 'number') ? r : b;
 		}))
-		.pipe(global.isWatching ? gutil.noop() : minifyInline())
-		.pipe(global.isWatching ? gutil.noop() : minifyHTML())
+		// causing issues with template variables in inline JS
+		// .pipe(global.isWatching ? gutil.noop() : minifyInline())
+		// causing malformed HTML, probably because of template variables
+		// .pipe(global.isWatching ? gutil.noop() : minifyHTML())
 		.pipe(gulp.dest(pkg.folders.html));
 
 });

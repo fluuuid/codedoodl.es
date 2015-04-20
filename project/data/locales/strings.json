@@ -27,7 +27,8 @@
                 "page_title_HOME": "codedoodl.es \\\\ creative code sketches",
                 "page_title_ABOUT": "about \\\\ codedoodl.es",
                 "page_title_CONTRIBUTE": "contribute \\\\ codedoodl.es",
-                "page_title_DOODLES": "{{ name }}  \\\\ codedoodl.es"
+                "page_title_DOODLES": "{{ name }}  \\\\ codedoodl.es",
+                "page_title_HOLDING": "codedoodl.es \\\\ coming soon"
             }
         },
         "HEADER": {
@@ -52,10 +53,14 @@
                 "home_desc": "I am the home page..."
             }
         },
-        "EXAMPLE_PAGE": {
-            "title": "Example page",
+        "ABOUT_PAGE": {
+            "title": "About page",
             "strings": {
-                "example_desc": "I am the example page..."
+                "about_label_what": "What is this",
+                "about_content_what": "This is the codedoodl.es",
+                "about_label_contact": "Find us on",
+                "about_content_contact": "<a href=\"http://twitter.com/codedoodl_es\" target=\"_blank\">Twitter</a> <a href=\"http://github.com/neilcarpenter/codedoodl.es\" target=\"_blank\">Github</a>",
+                "about_label_who": "Made by"
             }
         }
     }

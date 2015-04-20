@@ -13,9 +13,7 @@
         ]]></template><template id="home-grid-item"><![CDATA[
             <article class="home-grid-item" data-grid-item="<%= index %>"><a class="grid-item-link" href="<%= url %>"><span class="grid-item-thumb-holder"><span class="grid-item-thumb-cover"></span><span class="grid-item-thumb" style="background-image: url(https://placeimg.com/300/300/any?time=<%= Math.random()*9999 %>)"></span></span><h1 class="grid-item-title"><span data-codeword="author_name" data-codeword-initial-state="blue"><%= scrambled.author_name %></span><br/><span data-codeword="name" data-codeword-initial-state="blue"><%= scrambled.name %></span></h1><span class="grid-item-number"><%= indexHTML %><span class="grid-item-arrow"></span></span><span class="grid-item-lines"></span></a></article>
         ]]></template><template id="page-about"><![CDATA[
-            <section id="page-about" class="page page-about"><div class="page-content">
-                    I am the about page content
-                </div></section>
+            <section id="page-about" class="page page-about"><div class="page-content"><div class="row row-what"><div class="col-1">01. <%= label_what %></div><div class="col-2"><%= content_what %></div></div><div class="row row-contact"><div class="col-1">02. <%= label_contact %></div><div class="col-2"><%= content_contact %></div></div><div class="row row-who"><div class="col-1">03. <%= label_who %></div><div class="col-2" data-contributors></div></div></div></section>
         ]]></template><template id="page-contribute"><![CDATA[
             <section id="page-contribute" class="page page-contribute"><div class="page-content">
                     I am the contribute page content
