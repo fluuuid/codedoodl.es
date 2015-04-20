@@ -1,9 +1,10 @@
-AbstractView = require './view/AbstractView'
-Preloader    = require './view/base/Preloader'
-Header       = require './view/base/Header'
-Wrapper      = require './view/base/Wrapper'
-Footer       = require './view/base/Footer'
-ModalManager = require './view/modals/_ModalManager'
+AbstractView     = require './view/AbstractView'
+Preloader        = require './view/base/Preloader'
+Header           = require './view/base/Header'
+Wrapper          = require './view/base/Wrapper'
+Footer           = require './view/base/Footer'
+PageTransitioner = require './view/base/PageTransitioner'
+ModalManager     = require './view/modals/_ModalManager'
 
 class AppView extends AbstractView
 
@@ -65,14 +66,16 @@ class AppView extends AbstractView
         @preloader    = new Preloader
         @modalManager = new ModalManager
 
-        @header  = new Header
-        @wrapper = new Wrapper
-        @footer  = new Footer
+        @header       = new Header
+        @wrapper      = new Wrapper
+        @footer       = new Footer
+        @transitioner = new PageTransitioner
 
         @
             .addChild @header
             .addChild @wrapper
             .addChild @footer
+            .addChild @transitioner
 
         @onAllRendered()
 

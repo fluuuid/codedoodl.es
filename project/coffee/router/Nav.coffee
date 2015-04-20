@@ -22,9 +22,9 @@ class Nav extends AbstractView
 
         return false
 
-    getSection : (section) =>
+    getSection : (section, strict=false) =>
 
-        if section is '' then return true
+        if !strict and section is '' then return true
 
         for sectionName, uri of @sections
             if uri is section then return sectionName
@@ -43,11 +43,8 @@ class Nav extends AbstractView
         @previous = @current
         @current  = area : area, sub : sub, ter : ter
 
-        if @previous.area and @previous.area is @current.area
-            @trigger Nav.EVENT_CHANGE_SUB_VIEW, @current
-        else
-            @trigger Nav.EVENT_CHANGE_VIEW, @previous, @current
-            @trigger Nav.EVENT_CHANGE_SUB_VIEW, @current
+        @trigger Nav.EVENT_CHANGE_VIEW, @previous, @current
+        @trigger Nav.EVENT_CHANGE_SUB_VIEW, @current
 
         if @CD().appView.modalManager.isOpen() then @CD().appView.modalManager.hideOpenModal()
 

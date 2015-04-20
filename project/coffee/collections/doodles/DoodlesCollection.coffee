@@ -10,7 +10,7 @@ class DoodlesCollection extends AbstractCollection
 		doodle = @findWhere slug : slug
 
 		if !doodle
-			throw new Error "y u no doodle?"
+			console.log "y u no doodle?"
 
 		return doodle
 
