@@ -27,7 +27,8 @@
                 "page_title_HOME": "codedoodl.es \\\\ creative code sketches",
                 "page_title_ABOUT": "about \\\\ codedoodl.es",
                 "page_title_CONTRIBUTE": "contribute \\\\ codedoodl.es",
-                "page_title_DOODLES": "{{ name }}  \\\\ codedoodl.es"
+                "page_title_DOODLES": "{{ name }}  \\\\ codedoodl.es",
+                "page_title_HOLDING": "codedoodl.es \\\\ coming soon"
             }
         },
         "HEADER": {

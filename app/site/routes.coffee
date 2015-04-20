@@ -15,7 +15,10 @@ getTemplateData = (route) ->
 views
 ###
 home = (req, res) ->
-	res.render "site/index", getTemplateData('HOME')
+	if req.session.logged_in
+		res.render "site/index", getTemplateData('HOME')
+	else
+		res.render "site/holding", getTemplateData('HOLDING')
 
 about = (req, res) ->
 	res.render "site/index", getTemplateData('ABOUT')
@@ -33,7 +36,7 @@ basic password-protect
 ###
 checkAuth = (req, res, next) ->
 	if !req.session.logged_in
-		res.redirect "/#{config.routes.LOGIN}"
+		res.redirect "/#{config.routes.HOME}"
 	else
 		next()
 
@@ -55,10 +58,14 @@ setup = (app) ->
 
 	app.get "/#{config.routes.LOGIN}", login
 	app.post "/#{config.routes.LOGIN}", loginPost
-	app.get '*', checkAuth
+
 	app.get "/#{config.routes.HOME}", home
-	app.get "/#{config.routes.ABOUT}", about
-	app.get "/#{config.routes.CONTRIBUTE}", contribute
-	app.get "/#{config.routes.DOODLES}/:authorName?/:doodleName?", doodles
+	app.get "/#{config.routes.ABOUT}", checkAuth, about
+	app.get "/#{config.routes.CONTRIBUTE}", checkAuth, contribute
+	app.get "/#{config.routes.DOODLES}/:authorName?/:doodleName?", checkAuth, doodles
+
+	app.get '/holding/*', (req, res, next) => res.sendfile "public#{req.url}"
+
+	app.get '*', checkAuth
 
 module.exports = setup
