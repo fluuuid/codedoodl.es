@@ -97,17 +97,17 @@
         <![CDATA[
             <section id="page-about" class="page page-about">
                 <div class="page-content">
-                    <div class="row row-what">
-                        <div class="col-1">01. <%= label_what %></div>
-                        <div class="col-2"><%= content_what %></div>
+                    <div class="row row-what cf">
+                        <div class="col col-1">01. <%= label_what %></div>
+                        <div class="col col-2"><%= content_what %></div>
                     </div>
-                    <div class="row row-contact">
-                        <div class="col-1">02. <%= label_contact %></div>
-                        <div class="col-2"><%= content_contact %></div>
+                    <div class="row row-contact cf">
+                        <div class="col col-1">02. <%= label_contact %></div>
+                        <div class="col col-2"><%= content_contact %></div>
                     </div>
-                    <div class="row row-who">
-                        <div class="col-1">03. <%= label_who %></div>
-                        <div class="col-2" data-contributors></div>
+                    <div class="row row-who cf">
+                        <div class="col col-1">03. <%= label_who %></div>
+                        <div class="col col-2" data-contributors></div>
                     </div>
                 </div>
             </section>
@@ -122,7 +122,14 @@
         <![CDATA[
             <section id="page-contribute" class="page page-contribute">
                 <div class="page-content">
-                    I am the contribute page content
+                    <div class="row row-submit cf">
+                        <div class="col col-1">01. <%= label_submit %></div>
+                        <div class="col col-2"><%= content_submit %></div>
+                    </div>
+                    <div class="row row-contact cf">
+                        <div class="col col-1">02. <%= label_contact %></div>
+                        <div class="col col-2"><%= content_contact %></div>
+                    </div>
                 </div>
             </section>
         ]]>
@@ -136,7 +143,7 @@
         <![CDATA[
             <section id="page-doodle" class="page page-doodle">
                 <div class="page-content">
-                    I am the doodle page content
+                    <iframe frameborder="0" data-doodle-frame class="doodle-frame"></iframe>
                 </div>
                 <footer class="doodle-footer">
                     <nav class="footer-nav">

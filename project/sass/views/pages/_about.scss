@@ -1,4 +1,9 @@
 .page-about {
-	color: #fff;
-	background: $cd-black;
+
+	.page-content {
+
+		.row-who {
+			max-height: 300px;
+		}
+	}
 }

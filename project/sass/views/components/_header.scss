@@ -50,19 +50,24 @@
         // display: none;
     }
 
-    // &[data-section="home"],
-    // &[data-section="about"],
-    // &[data-section="contribute"] {
+    // &[data-section="home"] {
 
-    //     .logo__link,
-    //     .site-nav__link,
-    //     .close-btn {
-    //         color: $cd-red;
-    //         border-color: $cd-red;
-    //     }        
     // }
 
+    &[data-section="about"],
+    &[data-section="contribute"] {
+
+        .site-nav__link {
+            margin: 0;
+            cursor: default;
+        }
+    }
+
     &[data-section="~"] {
+
+        .site-nav__link {
+            margin: 0;
+        }
 
         .site-nav {
             // display: none;

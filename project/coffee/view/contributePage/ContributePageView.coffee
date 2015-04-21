@@ -7,26 +7,12 @@ class ContributePageView extends AbstractViewPage
 	constructor : ->
 
 		@templateVars = 
-			desc : @CD().locale.get "contribute_desc"
+			label_submit    : @CD().locale.get "contribute_label_submit"
+			content_submit  : @CD().locale.get "contribute_content_submit"
+			label_contact   : @CD().locale.get "contribute_label_contact"
+			content_contact : @CD().locale.get "contribute_content_contact"
 
-		###
-
-		instantiate classes here
-
-		@exampleClass = new exampleClass
-
-		###
-
-		super()
-
-		###
-
-		add classes to app structure here
-
-		@
-			.addChild(@exampleClass)
-
-		###
+		super
 
 		return null
 
