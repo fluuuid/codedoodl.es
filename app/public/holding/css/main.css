@@ -598,8 +598,9 @@ input, button, textarea {
     border: none;
   }
   #preloader .twitter-link span {
-    border: 2px solid transparent;
+    border-bottom: 2px solid transparent;
     padding-bottom: 3px;
+    margin: 0 2px;
   }
   #preloader .twitter-link:hover span {
     border-bottom: 2px solid #fff;
