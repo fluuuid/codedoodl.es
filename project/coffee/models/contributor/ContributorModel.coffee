@@ -28,8 +28,8 @@ class ContributorModel extends AbstractModel
         else
             html += "#{attrs.name} "
 
-        if attrs.twitter then links.push "<a href=\"http://twitter.com/#{attrs.twitter}\">tw</a>"
-        if attrs.github then links.push "<a href=\"http://github.com/#{attrs.github}\">gh</a>"
+        if attrs.twitter then links.push "<a href=\"http://twitter.com/#{attrs.twitter}\" target=\"_blank\">tw</a>"
+        if attrs.github then links.push "<a href=\"http://github.com/#{attrs.github}\" target=\"_blank\">gh</a>"
 
         html += "(#{links.join(', ')})"
 

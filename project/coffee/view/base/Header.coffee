@@ -74,6 +74,12 @@ class Header extends AbstractView
 		else if section is @CD().nav.sections.DOODLES
 			CodeWordTransitioner.in [@$closeBtn, @$infoBtn], colour
 			CodeWordTransitioner.out [@$navLinkAbout, @$navLinkContribute], colour
+		else if section is @CD().nav.sections.ABOUT
+			CodeWordTransitioner.in [@$navLinkAbout, @$closeBtn], colour
+			CodeWordTransitioner.out [@$navLinkContribute, @$infoBtn], colour
+		else if section is @CD().nav.sections.CONTRIBUTE
+			CodeWordTransitioner.in [@$navLinkContribute, @$closeBtn], colour
+			CodeWordTransitioner.out [@$navLinkAbout, @$infoBtn], colour
 		else
 			CodeWordTransitioner.in [@$closeBtn], colour
 			CodeWordTransitioner.out [@$navLinkAbout, @$navLinkContribute, @$infoBtn], colour
