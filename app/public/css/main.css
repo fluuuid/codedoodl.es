@@ -476,6 +476,10 @@ legend {
   [data-codetext-char][data-codetext-char-state="blue"] {
     color: #395CAA;
     border-bottom: 2px solid #395CAA; }
+  [data-codetext-char][data-codetext-char-state="black"] {
+    color: #111111;
+    background: #fff;
+    border-bottom: 2px solid #fff; }
 
 /*
  * ICONS
@@ -654,38 +658,39 @@ input, button, textarea {
       z-index: 1; }
   #preloader [data-codetext-char].hide-border {
     border-color: transparent; }
-  #preloader .dots {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -webkit-transform: translate(-50%, -50%);
-        -ms-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
-    z-index: 10; }
-    #preloader .dots .dot {
-      display: inline-block;
-      width: 3px;
-      height: 3px;
-      background: #fff;
-      margin-right: 3px;
-      opacity: 0; }
-      #preloader .dots .dot:last-child {
-        margin-right: 0; }
-    #preloader .dots .dot-1 {
-      -webkit-animation: dot-1-anim 1s infinite;
-              animation: dot-1-anim 1s infinite;
-      -webkit-animation-timing-function: steps(1, end);
-              animation-timing-function: steps(1, end); }
-    #preloader .dots .dot-2 {
-      -webkit-animation: dot-2-anim 1s infinite;
-              animation: dot-2-anim 1s infinite;
-      -webkit-animation-timing-function: steps(1, end);
-              animation-timing-function: steps(1, end); }
-    #preloader .dots .dot-3 {
-      -webkit-animation: dot-3-anim 1s infinite;
-              animation: dot-3-anim 1s infinite;
-      -webkit-animation-timing-function: steps(1, end);
-              animation-timing-function: steps(1, end); }
+
+.preloader-dots {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  z-index: 10; }
+  .preloader-dots .dot {
+    display: inline-block;
+    width: 3px;
+    height: 3px;
+    background: #fff;
+    margin-right: 3px;
+    opacity: 0; }
+    .preloader-dots .dot:last-child {
+      margin-right: 0; }
+  .preloader-dots .dot-1 {
+    -webkit-animation: dot-1-anim 1s infinite;
+            animation: dot-1-anim 1s infinite;
+    -webkit-animation-timing-function: steps(1, end);
+            animation-timing-function: steps(1, end); }
+  .preloader-dots .dot-2 {
+    -webkit-animation: dot-2-anim 1s infinite;
+            animation: dot-2-anim 1s infinite;
+    -webkit-animation-timing-function: steps(1, end);
+            animation-timing-function: steps(1, end); }
+  .preloader-dots .dot-3 {
+    -webkit-animation: dot-3-anim 1s infinite;
+            animation: dot-3-anim 1s infinite;
+    -webkit-animation-timing-function: steps(1, end);
+            animation-timing-function: steps(1, end); }
 
 @-webkit-keyframes dot-1-anim {
   0% {
@@ -764,8 +769,11 @@ input, button, textarea {
     -webkit-transform: translate(50%, 50%) rotate(90deg);
         -ms-transform: translate(50%, 50%) rotate(90deg);
             transform: translate(50%, 50%) rotate(90deg); }
-  #site-header[data-section="about"] .site-nav__link, #site-header[data-section="contribute"] .site-nav__link {
-    margin: 0;
+  #site-header[data-section="home"] .info-btn, #site-header[data-section="about"] .info-btn, #site-header[data-section="contribute"] .info-btn {
+    margin: 0; }
+  #site-header[data-section="about"] .about-btn {
+    cursor: default; }
+  #site-header[data-section="contribute"] .contribute-btn {
     cursor: default; }
   #site-header[data-section="~"] .site-nav__link {
     margin: 0; }
@@ -783,6 +791,8 @@ input, button, textarea {
   visibility: hidden; }
   #page-transitioner.show {
     visibility: visible; }
+  #page-transitioner.show-dots .preloader-dots {
+    display: block; }
   #page-transitioner .pane {
     position: absolute;
     top: 0;
@@ -814,6 +824,9 @@ input, button, textarea {
     font-size: 12px;
     font-size: 1.2rem;
     font-family: 'monostena', 'Consolas', 'monospace'; }
+  #page-transitioner .preloader-dots {
+    display: none;
+    top: 53%; }
 
 .page {
   position: absolute;

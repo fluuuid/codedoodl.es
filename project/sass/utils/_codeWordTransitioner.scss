@@ -29,4 +29,10 @@
         color: $cd-blue;
         border-bottom: 2px solid $cd-blue;
     }
+
+    &[data-codetext-char-state="black"] {
+        color: $cd-black;
+        background: #fff;
+        border-bottom: 2px solid #fff;
+    }
 }

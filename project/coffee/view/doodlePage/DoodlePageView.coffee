@@ -35,13 +35,14 @@ class DoodlePageView extends AbstractViewPage
 
 		@$frame = @$el.find('[data-doodle-frame]')
 
-	show : =>
+	show : (cb) =>
 
 		@model = @getDoodle()
 
 		@$frame.attr 'src', "http://source.codedoodl.es/sample_doodles/shape-stream/index.html"
+		@$frame.one 'load', cb
 
-		super
+		super()
 
 		null
 

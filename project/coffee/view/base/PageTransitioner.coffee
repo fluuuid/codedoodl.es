@@ -73,7 +73,7 @@ class PageTransitioner extends AbstractView
 
         @activeConfig = @getConfig(fromArea, toArea)
 
-        @applyConfig @activeConfig.start
+        @applyConfig @activeConfig.start, toArea
         @applyLabelConfig @activeConfig.finalTransform
 
         @applyLabel @getAreaLabel toArea
@@ -164,9 +164,12 @@ class PageTransitioner extends AbstractView
 
         _config
 
-    applyConfig : (config) =>
+    applyConfig : (config, toArea=null) =>
 
         @$panes.css config
+
+        classChange = if toArea is @CD().nav.sections.DOODLES then 'addClass' else 'removeClass'
+        @$el[classChange] 'show-dots'
 
         null
 

@@ -11,6 +11,13 @@
 		visibility: visible;
 	}
 
+	&.show-dots {
+
+		.preloader-dots {
+			display: block;
+		}
+	}
+
 	.pane {
 		position: absolute;
 		top : 0;
@@ -49,5 +56,10 @@
 		color: #fff;
 		@include font-size(1.2);
 		font-family: $ff-monosten-a;
+	}
+
+	.preloader-dots {
+		display: none;
+		top: 53%;
 	}
 }
