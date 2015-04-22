@@ -78,11 +78,11 @@ class Header extends AbstractView
 			CodeWordTransitioner.out [@$navLinkAbout, @$navLinkContribute], colour
 		else if section is @CD().nav.sections.ABOUT
 			CodeWordTransitioner.in [@$navLinkContribute, @$closeBtn], colour
-			CodeWordTransitioner.in [@$navLinkAbout], 'black'
+			CodeWordTransitioner.in [@$navLinkAbout], 'black-white-bg'
 			CodeWordTransitioner.out [@$infoBtn], colour
 		else if section is @CD().nav.sections.CONTRIBUTE
 			CodeWordTransitioner.in [@$navLinkAbout, @$closeBtn], colour
-			CodeWordTransitioner.in [@$navLinkContribute], 'black'
+			CodeWordTransitioner.in [@$navLinkContribute], 'black-white-bg'
 			CodeWordTransitioner.out [@$infoBtn], colour
 		else
 			CodeWordTransitioner.in [@$closeBtn], colour
@@ -94,7 +94,7 @@ class Header extends AbstractView
 
 		section = section or @CD().nav.current.area or 'home'
 
-		if wordSection and section is wordSection then return 'black'
+		if wordSection and section is wordSection then return 'black-white-bg'
 
 		colour = switch section
 			when 'home' then 'red'

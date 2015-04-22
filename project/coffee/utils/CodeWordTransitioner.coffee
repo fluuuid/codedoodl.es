@@ -18,14 +18,14 @@ class CodeWordTransitioner
 
 	@_wordCache : {}
 
-	@_getWordFromCache : ($el) =>
+	@_getWordFromCache : ($el, initialState=null) =>
 
 		id = $el.attr('data-codeword-id')
 
 		if id and @_wordCache[ id ]
 			word = @_wordCache[ id ]
 		else
-			@_wrapChars $el
+			@_wrapChars $el, initialState
 			word = @_addWordToCache $el
 
 		word
@@ -51,19 +51,15 @@ class CodeWordTransitioner
 
 		@_wordCache[ id ]
 
-	@_wrapChars : ($el) =>
+	@_wrapChars : ($el, initialState=null) =>
 
 		chars = $el.text().split('')
-		state = $el.attr('data-codeword-initial-state') or ""
+		state = initialState or $el.attr('data-codeword-initial-state') or ""
 		html = []
 		for char in chars
 			html.push @_supplantString @config.CHAR_TEMPLATE, char : char, state: state
 
 		$el.html html.join('')
-
-		null
-
-	@_isWordEmpty : (word) =>
 
 		null
 
@@ -269,6 +265,16 @@ class CodeWordTransitioner
 
 		null
 
+	@prepare : ($el, initialState) =>
+
+		if _.isArray $el
+			(@prepare(_$el, initialState)) for _$el in $el
+			return
+
+		@_getWordFromCache $el, initialState
+
+		null
+
 	@getScrambledWord : (word) =>
 
 		newChars = []
@@ -277,5 +283,3 @@ class CodeWordTransitioner
 		return newChars.join('')
 
 module.exports = CodeWordTransitioner
-
-window.CodeWordTransitioner= CodeWordTransitioner

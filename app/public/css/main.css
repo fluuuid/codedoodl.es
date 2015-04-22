@@ -478,6 +478,9 @@ legend {
     border-bottom: 2px solid #395CAA; }
   [data-codetext-char][data-codetext-char-state="black"] {
     color: #111111;
+    border-bottom: 2px solid #111111; }
+  [data-codetext-char][data-codetext-char-state="black-white-bg"] {
+    color: #111111;
     background: #fff;
     border-bottom: 2px solid #fff; }
 
@@ -1079,8 +1082,16 @@ input, button, textarea {
       padding-bottom: 1px;
       border-bottom: 2px solid rgba(255, 255, 255, 0.26); }
       .no-touch .page-about .page-content a:hover, .no-touch .page-contribute .page-content a:hover {
-        background: #fff;
-        color: #111111; }
+        border-width: 0;
+        -webkit-animation: link-blink 0.1s 1;
+                animation: link-blink 0.1s 1;
+        -webkit-animation-timing-function: steps(1, end);
+                animation-timing-function: steps(1, end);
+        -webkit-animation-fill-mode: forwards;
+                animation-fill-mode: forwards; }
+      .page-about .page-content a [data-codetext-char], .page-contribute .page-content a [data-codetext-char] {
+        border: none !important;
+        padding-bottom: 0 !important; }
     .page-about .page-content .row, .page-contribute .page-content .row {
       margin-bottom: 20px; }
     .page-about .page-content .col, .page-contribute .page-content .col {
@@ -1095,6 +1106,24 @@ input, button, textarea {
         position: absolute;
         top: -1px;
         left: -15px; }
+
+@-webkit-keyframes link-blink {
+  0%, 100% {
+    background: #fff;
+    color: #111111; }
+
+  50% {
+    background: #111111;
+    color: #fff; } }
+
+@keyframes link-blink {
+  0%, 100% {
+    background: #fff;
+    color: #111111; }
+
+  50% {
+    background: #111111;
+    color: #fff; } }
 
 .page-about .page-content .row-who {
   max-height: 300px; }

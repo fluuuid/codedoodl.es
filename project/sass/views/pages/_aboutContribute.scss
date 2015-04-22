@@ -22,9 +22,16 @@
 			.no-touch & {
 
 				&:hover {
-					background: #fff;
-					color: $cd-black;
+					border-width: 0;
+					animation: link-blink 0.1s 1;
+					animation-timing-function: steps(1, end);
+					animation-fill-mode: forwards;
 				}
+			}
+
+			[data-codetext-char] {
+				border: none !important;
+				padding-bottom: 0 !important;
 			}
 		}
 
@@ -51,5 +58,16 @@
 				left: -15px;
 			}
 		}
+	}
+}
+
+@keyframes link-blink {
+	0%, 100% {
+		background: #fff;
+		color: $cd-black;
+	}
+	50% {
+		background: $cd-black;
+		color: #fff;
 	}
 }
