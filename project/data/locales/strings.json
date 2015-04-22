@@ -31,6 +31,15 @@
                 "page_title_HOLDING": "codedoodl.es \\\\ coming soon"
             }
         },
+        "PAGE_TRANSITIONER": {
+            "title": "Page transitioner",
+            "strings": {
+                "page_transitioner_label_HOME": "home",
+                "page_transitioner_label_ABOUT": "about",
+                "page_transitioner_label_CONTRIBUTE": "contribute",
+                "page_transitioner_label_prefix": "entering"
+            }
+        },
         "HEADER": {
             "title": "Header",
             "strings": {

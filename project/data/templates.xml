@@ -21,8 +21,10 @@
         <![CDATA[
             <div id="page-transitioner">
                 <span class="pane pane-1" data-pane="1"></span>
-                <span class="pane pane-1" data-pane="2"></span>
-                <span class="pane pane-1" data-pane="3"></span>
+                <span class="pane pane-2" data-pane="2"></span>
+                <span class="pane pane-3" data-pane="3">
+                    <span class="label" data-label></span>
+                </span>
             </div>
         ]]>
     </template>

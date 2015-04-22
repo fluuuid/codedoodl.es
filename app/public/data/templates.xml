@@ -3,7 +3,7 @@
         ]]></template><template id="wrapper"><![CDATA[
             <div id="wrapper"></div>
         ]]></template><template id="page-transitioner"><![CDATA[
-            <div id="page-transitioner"><span class="pane pane-1" data-pane="1"></span><span class="pane pane-1" data-pane="2"></span><span class="pane pane-1" data-pane="3"></span></div>
+            <div id="page-transitioner"><span class="pane pane-1" data-pane="1"></span><span class="pane pane-2" data-pane="2"></span><span class="pane pane-3" data-pane="3"><span class="label" data-label></span></span></div>
         ]]></template><template id="site-header"><![CDATA[
             <header id="site-header"><h1 class="logo"><a class="logo__link" href="<%= home.url %>" data-codeword data-codeword-initial-state="red"><%= home.label %></a></h1><nav class="site-nav"><a class="site-nav__link about-btn" href="<%= about.url %>" data-codeword data-codeword-initial-state="red"><%= about.label %></a><a class="site-nav__link contribute-btn" href="<%= contribute.url %>" data-codeword data-codeword-initial-state="red"><%= contribute.label %></a><a class="site-nav__link info-btn" href="#" data-show-info data-codeword data-codeword-initial-state="offwhite"><%= info_label %></a></nav><a href="<%= home.url %>" class="close-btn" data-close-doodle data-codeword data-codeword-initial-state="offwhite"><%= close_label %></a></header>
         ]]></template><template id="site-footer"><![CDATA[

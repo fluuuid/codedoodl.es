@@ -6,6 +6,8 @@ class PageTransitioner extends AbstractView
 
     template : 'page-transitioner'
 
+    pageLabels : null
+
     palettes :
         HOME       : [ Colors.CD_BLUE, Colors.OFF_WHITE, Colors.CD_RED ]
         ABOUT      : [ Colors.CD_RED, Colors.OFF_WHITE, Colors.CD_BLUE ]
@@ -23,31 +25,36 @@ class PageTransitioner extends AbstractView
         bottomToTop :
             prop : 'scaleY(0)'
             start :
-                transformOrigin : '50% 100%', transform : 'scaleY(0)'
+                visibility: 'visible', transformOrigin : '50% 100%', transform : 'scaleY(0)'
             end :
-                transformOrigin : '50% 0%', transform : 'none'
+                visibility: 'visible', transformOrigin : '50% 0%', transform : 'none'
         topToBottom :
             prop : 'scaleY(0)'
             start :
-                transformOrigin : '50% 0%', transform : 'scaleY(0)'
+                visibility: 'visible', transformOrigin : '50% 0%', transform : 'scaleY(0)'
             end :
-                transformOrigin : '50% 100%', transform : 'none'
+                visibility: 'visible', transformOrigin : '50% 100%', transform : 'none'
         leftToRight :
             prop : 'scaleX(0)'
             start :
-                transformOrigin : '0% 50%', transform : 'scaleX(0)'
+                visibility: 'visible', transformOrigin : '0% 50%', transform : 'scaleX(0)'
             end :
-                transformOrigin : '100% 50%', transform : 'none'
+                visibility: 'visible', transformOrigin : '100% 50%', transform : 'none'
         rightToLeft :
             prop : 'scaleX(0)'
             start :
-                transformOrigin : '100% 50%', transform : 'scaleX(0)'
+                visibility: 'visible', transformOrigin : '100% 50%', transform : 'scaleX(0)'
             end :
-                transformOrigin : '0% 50%', transform : 'none'
+                visibility: 'visible', transformOrigin : '0% 50%', transform : 'none'
 
     constructor: ->
 
-        @templateVars = {}
+        @templateVars = 
+            pageLabels :
+                HOME       : @CD().locale.get "page_transitioner_label_HOME"
+                ABOUT      : @CD().locale.get "page_transitioner_label_ABOUT"
+                CONTRIBUTE : @CD().locale.get "page_transitioner_label_CONTRIBUTE"
+            pageLabelPrefix : @CD().locale.get "page_transitioner_label_prefix"
 
         super()
 
@@ -56,6 +63,7 @@ class PageTransitioner extends AbstractView
     init : =>
 
         @$panes = @$el.find('[data-pane]')
+        @$label = @$el.find('[data-label]')
 
         null
 
@@ -69,11 +77,42 @@ class PageTransitioner extends AbstractView
 
         @applyConfig @activeConfig.start
 
+        @applyLabel @getAreaLabel toArea
+
         null
 
     resetPanes : =>
 
         @$panes.attr 'style': ''
+
+        null
+
+    getAreaLabel : (area, direction='to') =>
+
+        section = @CD().nav.getSection area, true
+
+        if section is 'DOODLES'
+            view = if direction is 'from' then @CD().nav.previous else @CD().nav.current
+            label = @getDoodleLabel view.sub, view.ter
+        else
+            label = @templateVars.pageLabels[section]
+
+        label
+
+    getDoodleLabel : (sub, ter) =>
+
+        doodle = @CD().appData.doodles.findWhere slug : "#{sub}/#{ter}"
+
+        if doodle
+            label = doodle.get('author.name') + ' \\ ' + doodle.get('name')
+        else
+            label = 'doodle'
+
+        label
+
+    applyLabel : (toLabel) =>
+
+        @$label.html @templateVars.pageLabelPrefix + ' ' + toLabel + '...'
 
         null
 
