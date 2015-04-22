@@ -14,4 +14,12 @@ class DoodlesCollection extends AbstractCollection
 
 		return doodle
 
+	getDoodleByNavSection : (whichSection) =>
+
+		section = @CD().nav[whichSection]
+
+		doodle = @findWhere slug : "#{section.sub}/#{section.ter}"
+
+		doodle
+
 module.exports = DoodlesCollection

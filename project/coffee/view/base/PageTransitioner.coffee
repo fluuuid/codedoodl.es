@@ -92,16 +92,16 @@ class PageTransitioner extends AbstractView
         section = @CD().nav.getSection area, true
 
         if section is 'DOODLES'
-            view = if direction is 'from' then @CD().nav.previous else @CD().nav.current
-            label = @getDoodleLabel view.sub, view.ter
+            label = @getDoodleLabel direction
         else
             label = @templateVars.pageLabels[section]
 
         label
 
-    getDoodleLabel : (sub, ter) =>
+    getDoodleLabel : (direction) =>
 
-        doodle = @CD().appData.doodles.findWhere slug : "#{sub}/#{ter}"
+        section = if direction is 'to' then 'current' else 'previous'
+        doodle = @CD().appData.doodles.getDoodleByNavSection section
 
         if doodle
             label = doodle.get('author.name') + ' \\ ' + doodle.get('name')
@@ -134,7 +134,7 @@ class PageTransitioner extends AbstractView
             config = @configPresets.bottomToTop
 
         else if fromArea is @CD().nav.sections.DOODLES and toArea is @CD().nav.sections.DOODLES
-            config = @_getDoodleToDoodleConfig "#{@CD().nav.previous.sub}/#{@CD().nav.previous.ter}", "#{@CD().nav.current.sub}/#{@CD().nav.current.ter}"
+            config = @_getDoodleToDoodleConfig()
 
         else if toArea is @CD().nav.sections.ABOUT or toArea is @CD().nav.sections.CONTRIBUTE
             # config = @configPresets.topToBottom
@@ -149,10 +149,10 @@ class PageTransitioner extends AbstractView
 
     _getDoodleToDoodleConfig : (prevSlug, nextSlug) =>
 
-        previousDoodle = @CD().appData.doodles.findWhere slug : prevSlug
+        previousDoodle = @CD().appData.doodles.getDoodleByNavSection 'previous'
         previousDoodleIdx = @CD().appData.doodles.indexOf previousDoodle
 
-        currentDoodle = @CD().appData.doodles.findWhere slug : nextSlug
+        currentDoodle = @CD().appData.doodles.getDoodleByNavSection 'current'
         currentDoodleIdx = @CD().appData.doodles.indexOf currentDoodle
 
         _config = if previousDoodleIdx > currentDoodleIdx then @configPresets.leftToRight else @configPresets.rightToLeft
