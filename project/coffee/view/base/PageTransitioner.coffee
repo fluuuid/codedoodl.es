@@ -21,29 +21,29 @@ class PageTransitioner extends AbstractView
 
     configPresets :
         bottomToTop :
-            prop : 'height'
+            prop : 'scaleY(0)'
             start :
-                top : 'auto', bottom : 0, left : 0, right : 0, width : '100%', height : 0
+                transformOrigin : '50% 100%', transform : 'scaleY(0)'
             end :
-                top : 0, bottom : 'auto', left : 0, right : 0, width : '100%', height : '100%'
+                transformOrigin : '50% 0%', transform : 'none'
         topToBottom :
-            prop : 'height'
+            prop : 'scaleY(0)'
             start :
-                top : 0, bottom : 'auto', left : 0, right : 0, width : '100%', height : 0
+                transformOrigin : '50% 0%', transform : 'scaleY(0)'
             end :
-                top : 'auto', bottom : 0, left : 0, right : 0, width : '100%', height : '100%'
+                transformOrigin : '50% 100%', transform : 'none'
         leftToRight :
-            prop : 'width'
+            prop : 'scaleX(0)'
             start :
-                top : 0, bottom : 0, left : 0, right : 'auto', width : 0, height : '100%'
+                transformOrigin : '0% 50%', transform : 'scaleX(0)'
             end :
-                top : 0, bottom : 0, left : 'auto', right : 0, width : '100%', height : '100%'
+                transformOrigin : '100% 50%', transform : 'none'
         rightToLeft :
-            prop : 'width'
+            prop : 'scaleX(0)'
             start :
-                top : 0, bottom : 0, left : 'auto', right : 0, width : 0, height : '100%'
+                transformOrigin : '100% 50%', transform : 'scaleX(0)'
             end :
-                top : 0, bottom : 0, left : 0, right : 'auto', width : '100%', height : '100%'
+                transformOrigin : '0% 50%', transform : 'none'
 
     constructor: ->
 
@@ -149,9 +149,9 @@ class PageTransitioner extends AbstractView
         @show()
 
         @$panes.each (i, el) =>
-            params = ease : Expo.easeOut
-            params.delay = i * 0.1
-            params[@activeConfig.prop] = '100%'
+            params = ease : Expo.easeOut, force3D: true
+            params.delay = i * 0.05
+            params.transform = 'none'
             if i is 2 then params.onComplete = =>
                 @applyConfig @activeConfig.end
                 cb?()
@@ -163,9 +163,9 @@ class PageTransitioner extends AbstractView
     out : (cb) =>
 
         @$panes.each (i, el) =>
-            params = ease : Expo.easeOut
-            params.delay = 0.2 - (0.1 * i)
-            params[@activeConfig.prop] = '0'
+            params = ease : Expo.easeOut, force3D: true, clearProps: 'all'
+            params.delay = 0.1 - (0.05 * i)
+            params.transform = @activeConfig.prop
             if i is 0 then params.onComplete = =>
                 @hide()
                 cb?()
