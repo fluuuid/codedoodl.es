@@ -789,13 +789,20 @@ input, button, textarea {
     left: 0;
     width: 100%;
     height: 100%;
-    visibility: hidden; }
+    visibility: hidden;
+    overflow: hidden; }
     #page-transitioner .pane.pane-1 {
       z-index: 1; }
     #page-transitioner .pane.pane-2 {
       z-index: 2; }
     #page-transitioner .pane.pane-3 {
       z-index: 3; }
+  #page-transitioner .label-pane {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; }
   #page-transitioner .label {
     position: absolute;
     top: 50%;

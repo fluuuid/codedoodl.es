@@ -14,38 +14,35 @@ class PageTransitioner extends AbstractView
         CONTRIBUTE : [ Colors.CD_BLUE, Colors.OFF_WHITE, Colors.CD_RED ]
         DOODLES    : [ Colors.CD_RED, Colors.OFF_WHITE, Colors.CD_BLUE ]
 
-    activeConfig :
-        prop : null
-        start :
-            top : null, bottom : null, left : null, right : null, width : null, height : null
-        end :
-            top : null, bottom : null, left : null, right : null, width : null, height : null
+    activeConfig : null
 
     configPresets :
         bottomToTop :
-            prop : 'scaleY(0)'
+            finalTransform : 'translate3d(0, -100%, 0)'
             start :
-                visibility: 'visible', transformOrigin : '50% 100%', transform : 'scaleY(0)'
+                visibility: 'visible', transform : 'translate3d(0, 100%, 0)'
             end :
-                visibility: 'visible', transformOrigin : '50% 0%', transform : 'none'
+                visibility: 'visible', transform : 'none'
         topToBottom :
-            prop : 'scaleY(0)'
+            finalTransform : 'translate3d(0, 100%, 0)'
             start :
-                visibility: 'visible', transformOrigin : '50% 0%', transform : 'scaleY(0)'
+                visibility: 'visible', transform : 'translate3d(0, -100%, 0)'
             end :
-                visibility: 'visible', transformOrigin : '50% 100%', transform : 'none'
+                visibility: 'visible', transform : 'none'
         leftToRight :
-            prop : 'scaleX(0)'
+            finalTransform : 'translate3d(100%, 0, 0)'
             start :
-                visibility: 'visible', transformOrigin : '0% 50%', transform : 'scaleX(0)'
+                visibility: 'visible', transform : 'translate3d(-100%, 0, 0)'
             end :
-                visibility: 'visible', transformOrigin : '100% 50%', transform : 'none'
+                visibility: 'visible', transform : 'none'
         rightToLeft :
-            prop : 'scaleX(0)'
+            finalTransform : 'translate3d(-100%, 0, 0)'
             start :
-                visibility: 'visible', transformOrigin : '100% 50%', transform : 'scaleX(0)'
+                visibility: 'visible', transform : 'translate3d(100%, 0, 0)'
             end :
-                visibility: 'visible', transformOrigin : '0% 50%', transform : 'none'
+                visibility: 'visible', transform : 'none'
+
+    TRANSITION_TIME : 0.5
 
     constructor: ->
 
@@ -62,8 +59,9 @@ class PageTransitioner extends AbstractView
 
     init : =>
 
-        @$panes = @$el.find('[data-pane]')
-        @$label = @$el.find('[data-label]')
+        @$panes     = @$el.find('[data-pane]')
+        @$labelPane = @$el.find('[data-label-pane]')
+        @$label     = @$el.find('[data-label]')
 
         null
 
@@ -76,6 +74,7 @@ class PageTransitioner extends AbstractView
         @activeConfig = @getConfig(fromArea, toArea)
 
         @applyConfig @activeConfig.start
+        @applyLabelConfig @activeConfig.finalTransform
 
         @applyLabel @getAreaLabel toArea
 
@@ -171,6 +170,12 @@ class PageTransitioner extends AbstractView
 
         null
 
+    applyLabelConfig : (transformValue) =>
+
+        @$labelPane.css 'transform' : transformValue
+
+        null
+
     show : =>
 
         @$el.addClass 'show'
@@ -187,29 +192,38 @@ class PageTransitioner extends AbstractView
 
         @show()
 
+        commonParams = transform : 'none', ease : Expo.easeOut, force3D: true
+
         @$panes.each (i, el) =>
-            params = ease : Expo.easeOut, force3D: true
-            params.delay = i * 0.05
-            params.transform = 'none'
+            params = _.extend {}, commonParams,
+                delay : i * 0.05
             if i is 2 then params.onComplete = =>
                 @applyConfig @activeConfig.end
                 cb?()
 
-            TweenLite.to $(el), 0.5, params
+            TweenLite.to $(el), @TRANSITION_TIME, params
+
+        labelParams = _.extend {}, commonParams, delay : 0.1
+        TweenLite.to @$labelPane, @TRANSITION_TIME, labelParams
 
         null
 
     out : (cb) =>
 
+        commonParams = ease : Expo.easeOut, force3D: true, clearProps: 'all'
+
         @$panes.each (i, el) =>
-            params = ease : Expo.easeOut, force3D: true, clearProps: 'all'
-            params.delay = 0.1 - (0.05 * i)
-            params.transform = @activeConfig.prop
+            params = _.extend {}, commonParams,            
+                delay     : 0.1 - (0.05 * i)
+                transform : @activeConfig.finalTransform
             if i is 0 then params.onComplete = =>
                 @hide()
                 cb?()
 
-            TweenLite.to $(el), 0.5, params
+            TweenLite.to $(el), @TRANSITION_TIME, params
+
+        labelParams = _.extend {}, commonParams, transform : @activeConfig.start.transform
+        TweenLite.to @$labelPane, @TRANSITION_TIME, labelParams
 
         null
 
