@@ -17,9 +17,11 @@ class Header extends AbstractView
 			about : 
 				label    : @CD().locale.get('header_about_label')
 				url      : @CD().BASE_URL + '/' + @CD().nav.sections.ABOUT
+				section  : @CD().nav.sections.ABOUT
 			contribute : 
 				label    : @CD().locale.get('header_contribute_label')
 				url      : @CD().BASE_URL + '/' + @CD().nav.sections.CONTRIBUTE
+				section  : @CD().nav.sections.CONTRIBUTE
 			close_label : @CD().locale.get('header_close_label')
 			info_label : @CD().locale.get('header_info_label')
 
@@ -75,26 +77,38 @@ class Header extends AbstractView
 			CodeWordTransitioner.in [@$closeBtn, @$infoBtn], colour
 			CodeWordTransitioner.out [@$navLinkAbout, @$navLinkContribute], colour
 		else if section is @CD().nav.sections.ABOUT
-			CodeWordTransitioner.in [@$navLinkAbout, @$closeBtn], colour
-			CodeWordTransitioner.out [@$navLinkContribute, @$infoBtn], colour
-		else if section is @CD().nav.sections.CONTRIBUTE
 			CodeWordTransitioner.in [@$navLinkContribute, @$closeBtn], colour
-			CodeWordTransitioner.out [@$navLinkAbout, @$infoBtn], colour
+			CodeWordTransitioner.in [@$navLinkAbout], 'black-white-bg'
+			CodeWordTransitioner.out [@$infoBtn], colour
+		else if section is @CD().nav.sections.CONTRIBUTE
+			CodeWordTransitioner.in [@$navLinkAbout, @$closeBtn], colour
+			CodeWordTransitioner.in [@$navLinkContribute], 'black-white-bg'
+			CodeWordTransitioner.out [@$infoBtn], colour
 		else
 			CodeWordTransitioner.in [@$closeBtn], colour
 			CodeWordTransitioner.out [@$navLinkAbout, @$navLinkContribute, @$infoBtn], colour
 
 		null
 
-	getSectionColour : (section) =>
+	getSectionColour : (section, wordSection=null) =>
 
 		section = section or @CD().nav.current.area or 'home'
+
+		if wordSection and section is wordSection then return 'black-white-bg'
 
 		colour = switch section
 			when 'home' then 'red'
 			when @CD().nav.sections.ABOUT then 'white'
 			when @CD().nav.sections.CONTRIBUTE then 'white'
+			when @CD().nav.sections.DOODLES then @_getDoodleColourScheme()
 			else 'white'
+
+		colour
+
+	_getDoodleColourScheme : =>
+
+		doodle = @CD().appData.doodles.getDoodleByNavSection 'current'
+		colour = if doodle and doodle.get('colour_scheme') is 'light' then 'black' else 'white'
 
 		colour
 
@@ -107,16 +121,18 @@ class Header extends AbstractView
 	onWordEnter : (e) =>
 
 		$el = $(e.currentTarget)
+		wordSection = $el.attr('data-word-section')
 
-		CodeWordTransitioner.scramble $el, @getSectionColour()
+		CodeWordTransitioner.scramble $el, @getSectionColour(null, wordSection)
 
 		null
 
 	onWordLeave : (e) =>
 
 		$el = $(e.currentTarget)
+		wordSection = $el.attr('data-word-section')
 
-		CodeWordTransitioner.unscramble $el, @getSectionColour()
+		CodeWordTransitioner.unscramble $el, @getSectionColour(null, wordSection)
 
 		null
 

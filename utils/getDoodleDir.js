@@ -37,6 +37,7 @@ var getDoodleDir = function(name) {
 
 module.exports = {
 	getFullPath  : getFullPath,
+	getSlug      : getSlug,
 	getAuthorDir : getAuthorDir,
 	getDoodleDir : getDoodleDir
 };

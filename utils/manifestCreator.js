@@ -17,7 +17,8 @@ var questions = [
   { id: 'tags', text: 'Doodle tags (comma separated list)', answerType: 'tags', required: true },
   { id: 'interaction.mouse', text: 'Mouse interaction enabled? (y/n)', answerType: 'bool', required: true },
   { id: 'interaction.keyboard', text: 'Keyboard interaction enabled? (y/n)', answerType: 'bool', required: true },
-  { id: 'interaction.touch', text: 'Touch interaction enabled? (y/n)', answerType: 'bool', required: true }
+  { id: 'interaction.touch', text: 'Touch interaction enabled? (y/n)', answerType: 'bool', required: true },
+  { id: 'colour_scheme', text: 'Doodle colour scheme? (light/dark)', answerType: 'colour_scheme', required: true },
 ];
 
 var currentQuestion, currentQuestionIdx = 0, answers = {};
@@ -75,6 +76,10 @@ function create(callback) {
     } else if (question.answerType === 'github' && (!ghRe.test(answer) || answer.charAt(0) === '-')) {
 
       console.log(colors.red('Please provide a valid github username (alphanumeric or dashes, cannot start with dash, <39 chars) for %s'), question.text);
+
+    } else if (question.answerType === 'colour_scheme' && (answer !== 'light' && answer !== 'dark')) {
+
+      console.log(colors.red('Please a general colour scheme for your doodle - is it generally dark or light?  %s'), question.text);
 
     } else {
 

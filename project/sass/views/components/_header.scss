@@ -54,12 +54,34 @@
 
     // }
 
+    &[data-section="home"],
     &[data-section="about"],
     &[data-section="contribute"] {
 
-        .site-nav__link {
+        .info-btn {
             margin: 0;
+        }
+    }
+
+    &[data-section="about"] {
+
+        .about-btn {
             cursor: default;
+
+            [data-codetext-char] {
+                // border-color: transparent;
+            }
+        }
+    }
+
+    &[data-section="contribute"] {
+
+        .contribute-btn {
+            cursor: default;
+
+            [data-codetext-char] {
+                // border-color: transparent;
+            }
         }
     }
 

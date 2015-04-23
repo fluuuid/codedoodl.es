@@ -6,48 +6,52 @@ class PageTransitioner extends AbstractView
 
     template : 'page-transitioner'
 
+    pageLabels : null
+
     palettes :
         HOME       : [ Colors.CD_BLUE, Colors.OFF_WHITE, Colors.CD_RED ]
         ABOUT      : [ Colors.CD_RED, Colors.OFF_WHITE, Colors.CD_BLUE ]
         CONTRIBUTE : [ Colors.CD_BLUE, Colors.OFF_WHITE, Colors.CD_RED ]
         DOODLES    : [ Colors.CD_RED, Colors.OFF_WHITE, Colors.CD_BLUE ]
 
-    activeConfig :
-        prop : null
-        start :
-            top : null, bottom : null, left : null, right : null, width : null, height : null
-        end :
-            top : null, bottom : null, left : null, right : null, width : null, height : null
+    activeConfig : null
 
     configPresets :
         bottomToTop :
-            prop : 'height'
+            finalTransform : 'translate3d(0, -100%, 0)'
             start :
-                top : 'auto', bottom : 0, left : 0, right : 0, width : '100%', height : 0
+                visibility: 'visible', transform : 'translate3d(0, 100%, 0)'
             end :
-                top : 0, bottom : 'auto', left : 0, right : 0, width : '100%', height : '100%'
+                visibility: 'visible', transform : 'none'
         topToBottom :
-            prop : 'height'
+            finalTransform : 'translate3d(0, 100%, 0)'
             start :
-                top : 0, bottom : 'auto', left : 0, right : 0, width : '100%', height : 0
+                visibility: 'visible', transform : 'translate3d(0, -100%, 0)'
             end :
-                top : 'auto', bottom : 0, left : 0, right : 0, width : '100%', height : '100%'
+                visibility: 'visible', transform : 'none'
         leftToRight :
-            prop : 'width'
+            finalTransform : 'translate3d(100%, 0, 0)'
             start :
-                top : 0, bottom : 0, left : 0, right : 'auto', width : 0, height : '100%'
+                visibility: 'visible', transform : 'translate3d(-100%, 0, 0)'
             end :
-                top : 0, bottom : 0, left : 'auto', right : 0, width : '100%', height : '100%'
+                visibility: 'visible', transform : 'none'
         rightToLeft :
-            prop : 'width'
+            finalTransform : 'translate3d(-100%, 0, 0)'
             start :
-                top : 0, bottom : 0, left : 'auto', right : 0, width : 0, height : '100%'
+                visibility: 'visible', transform : 'translate3d(100%, 0, 0)'
             end :
-                top : 0, bottom : 0, left : 0, right : 'auto', width : '100%', height : '100%'
+                visibility: 'visible', transform : 'none'
+
+    TRANSITION_TIME : 0.5
 
     constructor: ->
 
-        @templateVars = {}
+        @templateVars = 
+            pageLabels :
+                HOME       : @CD().locale.get "page_transitioner_label_HOME"
+                ABOUT      : @CD().locale.get "page_transitioner_label_ABOUT"
+                CONTRIBUTE : @CD().locale.get "page_transitioner_label_CONTRIBUTE"
+            pageLabelPrefix : @CD().locale.get "page_transitioner_label_prefix"
 
         super()
 
@@ -55,7 +59,9 @@ class PageTransitioner extends AbstractView
 
     init : =>
 
-        @$panes = @$el.find('[data-pane]')
+        @$panes     = @$el.find('[data-pane]')
+        @$labelPane = @$el.find('[data-label-pane]')
+        @$label     = @$el.find('[data-label]')
 
         null
 
@@ -67,13 +73,45 @@ class PageTransitioner extends AbstractView
 
         @activeConfig = @getConfig(fromArea, toArea)
 
-        @applyConfig @activeConfig.start
+        @applyConfig @activeConfig.start, toArea
+        @applyLabelConfig @activeConfig.finalTransform
+
+        @applyLabel @getAreaLabel toArea
 
         null
 
     resetPanes : =>
 
         @$panes.attr 'style': ''
+
+        null
+
+    getAreaLabel : (area, direction='to') =>
+
+        section = @CD().nav.getSection area, true
+
+        if section is 'DOODLES'
+            label = @getDoodleLabel direction
+        else
+            label = @templateVars.pageLabels[section]
+
+        label
+
+    getDoodleLabel : (direction) =>
+
+        section = if direction is 'to' then 'current' else 'previous'
+        doodle = @CD().appData.doodles.getDoodleByNavSection section
+
+        if doodle
+            label = doodle.get('author.name') + ' \\ ' + doodle.get('name')
+        else
+            label = 'doodle'
+
+        label
+
+    applyLabel : (toLabel) =>
+
+        @$label.html @templateVars.pageLabelPrefix + ' ' + toLabel + '...'
 
         null
 
@@ -95,7 +133,7 @@ class PageTransitioner extends AbstractView
             config = @configPresets.bottomToTop
 
         else if fromArea is @CD().nav.sections.DOODLES and toArea is @CD().nav.sections.DOODLES
-            config = @_getDoodleToDoodleConfig "#{@CD().nav.previous.sub}/#{@CD().nav.previous.ter}", "#{@CD().nav.current.sub}/#{@CD().nav.current.ter}"
+            config = @_getDoodleToDoodleConfig()
 
         else if toArea is @CD().nav.sections.ABOUT or toArea is @CD().nav.sections.CONTRIBUTE
             # config = @configPresets.topToBottom
@@ -110,10 +148,10 @@ class PageTransitioner extends AbstractView
 
     _getDoodleToDoodleConfig : (prevSlug, nextSlug) =>
 
-        previousDoodle = @CD().appData.doodles.findWhere slug : prevSlug
+        previousDoodle = @CD().appData.doodles.getDoodleByNavSection 'previous'
         previousDoodleIdx = @CD().appData.doodles.indexOf previousDoodle
 
-        currentDoodle = @CD().appData.doodles.findWhere slug : nextSlug
+        currentDoodle = @CD().appData.doodles.getDoodleByNavSection 'current'
         currentDoodleIdx = @CD().appData.doodles.indexOf currentDoodle
 
         _config = if previousDoodleIdx > currentDoodleIdx then @configPresets.leftToRight else @configPresets.rightToLeft
@@ -126,9 +164,18 @@ class PageTransitioner extends AbstractView
 
         _config
 
-    applyConfig : (config) =>
+    applyConfig : (config, toArea=null) =>
 
         @$panes.css config
+
+        classChange = if toArea is @CD().nav.sections.DOODLES then 'addClass' else 'removeClass'
+        @$el[classChange] 'show-dots'
+
+        null
+
+    applyLabelConfig : (transformValue) =>
+
+        @$labelPane.css 'transform' : transformValue
 
         null
 
@@ -148,29 +195,38 @@ class PageTransitioner extends AbstractView
 
         @show()
 
+        commonParams = transform : 'none', ease : Expo.easeOut, force3D: true
+
         @$panes.each (i, el) =>
-            params = ease : Expo.easeOut
-            params.delay = i * 0.1
-            params[@activeConfig.prop] = '100%'
+            params = _.extend {}, commonParams,
+                delay : i * 0.05
             if i is 2 then params.onComplete = =>
                 @applyConfig @activeConfig.end
                 cb?()
 
-            TweenLite.to $(el), 0.5, params
+            TweenLite.to $(el), @TRANSITION_TIME, params
+
+        labelParams = _.extend {}, commonParams, delay : 0.1
+        TweenLite.to @$labelPane, @TRANSITION_TIME, labelParams
 
         null
 
     out : (cb) =>
 
+        commonParams = ease : Expo.easeOut, force3D: true, clearProps: 'all'
+
         @$panes.each (i, el) =>
-            params = ease : Expo.easeOut
-            params.delay = 0.2 - (0.1 * i)
-            params[@activeConfig.prop] = '0'
+            params = _.extend {}, commonParams,            
+                delay     : 0.1 - (0.05 * i)
+                transform : @activeConfig.finalTransform
             if i is 0 then params.onComplete = =>
                 @hide()
                 cb?()
 
-            TweenLite.to $(el), 0.5, params
+            TweenLite.to $(el), @TRANSITION_TIME, params
+
+        labelParams = _.extend {}, commonParams, transform : @activeConfig.start.transform
+        TweenLite.to @$labelPane, @TRANSITION_TIME, labelParams
 
         null
 

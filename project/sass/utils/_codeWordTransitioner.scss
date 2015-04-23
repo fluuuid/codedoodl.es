@@ -29,4 +29,15 @@
         color: $cd-blue;
         border-bottom: 2px solid $cd-blue;
     }
+
+    &[data-codetext-char-state="black"] {
+        color: $cd-black;
+        border-bottom: 2px solid $cd-black;
+    }
+
+    &[data-codetext-char-state="black-white-bg"] {
+        color: $cd-black;
+        background: #fff;
+        border-bottom: 2px solid #fff;
+    }
 }

@@ -11,8 +11,21 @@
 		visibility: visible;
 	}
 
+	&.show-dots {
+
+		.preloader-dots {
+			display: block;
+		}
+	}
+
 	.pane {
 		position: absolute;
+		top : 0;
+		left : 0;
+		width : 100%;
+		height : 100%;
+		visibility: hidden;
+		overflow: hidden;
 
 		&.pane-1 {
 			z-index: 1;
@@ -25,5 +38,28 @@
 		&.pane-3 {
 			z-index: 3;
 		}
+	}
+
+	.label-pane {
+		position: absolute;
+		top : 0;
+		left : 0;
+		width : 100%;
+		height : 100%;
+	}
+
+	.label {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		color: #fff;
+		@include font-size(1.2);
+		font-family: $ff-monosten-a;
+	}
+
+	.preloader-dots {
+		display: none;
+		top: 53%;
 	}
 }
