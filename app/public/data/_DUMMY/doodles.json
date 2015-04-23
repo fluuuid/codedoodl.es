@@ -21,6 +21,7 @@
             },
             "created": "Mon Mar 30 2015 20:25:57 GMT+0100 (BST)",
             "slug": "test/test-name",
+            "colour_scheme": "dark",
             "index": 30
         },
         {
@@ -44,6 +45,7 @@
             },
             "created": "Mon Mar 30 2015 20:25:57 GMT+0100 (BST)",
             "slug": "test/test-name2",
+            "colour_scheme": "light",
             "index": 29
         },
         {
@@ -67,6 +69,7 @@
             },
             "created": "Mon Mar 30 2015 20:25:57 GMT+0100 (BST)",
             "slug": "test/test-name3",
+            "colour_scheme": "dark",
             "index": 28
         },
         {
@@ -90,6 +93,7 @@
             },
             "created": "Mon Mar 30 2015 20:25:57 GMT+0100 (BST)",
             "slug": "neilcarpenter/doodle-name",
+            "colour_scheme": "light",
             "index": 27
         },
         {
@@ -113,6 +117,7 @@
             },
             "created": "Mon Mar 30 2015 20:25:57 GMT+0100 (BST)",
             "slug": "neilcarpenter/doodle-name",
+            "colour_scheme": "dark",
             "index": 26
         },
         {
@@ -136,6 +141,7 @@
             },
             "created": "Mon Mar 30 2015 20:25:57 GMT+0100 (BST)",
             "slug": "neilcarpenter/doodle-name",
+            "colour_scheme": "light",
             "index": 25
         },
         {
@@ -159,6 +165,7 @@
             },
             "created": "Mon Mar 30 2015 20:25:57 GMT+0100 (BST)",
             "slug": "neilcarpenter/doodle-name",
+            "colour_scheme": "dark",
             "index": 24
         },
         {
@@ -182,6 +189,7 @@
             },
             "created": "Mon Mar 30 2015 20:25:57 GMT+0100 (BST)",
             "slug": "neilcarpenter/doodle-name",
+            "colour_scheme": "light",
             "index": 23
         },
         {
@@ -205,6 +213,7 @@
             },
             "created": "Mon Mar 30 2015 20:25:57 GMT+0100 (BST)",
             "slug": "neilcarpenter/doodle-name",
+            "colour_scheme": "dark",
             "index": 22
         },
         {
@@ -228,6 +237,7 @@
             },
             "created": "Mon Mar 30 2015 20:25:57 GMT+0100 (BST)",
             "slug": "neilcarpenter/doodle-name",
+            "colour_scheme": "light",
             "index": 21
         },
         {
@@ -251,6 +261,7 @@
             },
             "created": "Mon Mar 30 2015 20:25:57 GMT+0100 (BST)",
             "slug": "neilcarpenter/doodle-name",
+            "colour_scheme": "dark",
             "index": 20
         },
         {
@@ -274,6 +285,7 @@
             },
             "created": "Mon Mar 30 2015 20:25:57 GMT+0100 (BST)",
             "slug": "neilcarpenter/doodle-name",
+            "colour_scheme": "light",
             "index": 19
         },
         {
@@ -297,6 +309,7 @@
             },
             "created": "Mon Mar 30 2015 20:25:57 GMT+0100 (BST)",
             "slug": "neilcarpenter/doodle-name",
+            "colour_scheme": "dark",
             "index": 18
         },
         {
@@ -320,6 +333,7 @@
             },
             "created": "Mon Mar 30 2015 20:25:57 GMT+0100 (BST)",
             "slug": "neilcarpenter/doodle-name",
+            "colour_scheme": "light",
             "index": 17
         },
         {
@@ -343,6 +357,7 @@
             },
             "created": "Mon Mar 30 2015 20:25:57 GMT+0100 (BST)",
             "slug": "neilcarpenter/doodle-name",
+            "colour_scheme": "dark",
             "index": 16
         },
         {
@@ -366,6 +381,7 @@
             },
             "created": "Mon Mar 30 2015 20:25:57 GMT+0100 (BST)",
             "slug": "neilcarpenter/doodle-name",
+            "colour_scheme": "light",
             "index": 15
         },
         {
@@ -389,6 +405,7 @@
             },
             "created": "Mon Mar 30 2015 20:25:57 GMT+0100 (BST)",
             "slug": "neilcarpenter/doodle-name",
+            "colour_scheme": "dark",
             "index": 14
         },
         {
@@ -412,6 +429,7 @@
             },
             "created": "Mon Mar 30 2015 20:25:57 GMT+0100 (BST)",
             "slug": "neilcarpenter/doodle-name",
+            "colour_scheme": "light",
             "index": 13
         },
         {
@@ -435,6 +453,7 @@
             },
             "created": "Mon Mar 30 2015 20:25:57 GMT+0100 (BST)",
             "slug": "neilcarpenter/doodle-name",
+            "colour_scheme": "dark",
             "index": 12
         },
         {
@@ -458,6 +477,7 @@
             },
             "created": "Mon Mar 30 2015 20:25:57 GMT+0100 (BST)",
             "slug": "neilcarpenter/doodle-name",
+            "colour_scheme": "light",
             "index": 11
         },
         {
@@ -481,6 +501,7 @@
             },
             "created": "Mon Mar 30 2015 20:25:57 GMT+0100 (BST)",
             "slug": "neilcarpenter/doodle-name",
+            "colour_scheme": "dark",
             "index": 10
         },
         {
@@ -504,6 +525,7 @@
             },
             "created": "Mon Mar 30 2015 20:25:57 GMT+0100 (BST)",
             "slug": "neilcarpenter/doodle-name",
+            "colour_scheme": "light",
             "index": 9
         },
         {
@@ -527,6 +549,7 @@
             },
             "created": "Mon Mar 30 2015 20:25:57 GMT+0100 (BST)",
             "slug": "neilcarpenter/doodle-name",
+            "colour_scheme": "dark",
             "index": 8
         },
         {
@@ -550,6 +573,7 @@
             },
             "created": "Mon Mar 30 2015 20:25:57 GMT+0100 (BST)",
             "slug": "neilcarpenter/doodle-name",
+            "colour_scheme": "light",
             "index": 7
         },
         {
@@ -573,6 +597,7 @@
             },
             "created": "Mon Mar 30 2015 20:25:57 GMT+0100 (BST)",
             "slug": "neilcarpenter/doodle-name",
+            "colour_scheme": "dark",
             "index": 6
         },
         {
@@ -596,6 +621,7 @@
             },
             "created": "Mon Mar 30 2015 20:25:57 GMT+0100 (BST)",
             "slug": "neilcarpenter/doodle-name",
+            "colour_scheme": "light",
             "index": 5
         },
         {
@@ -619,6 +645,7 @@
             },
             "created": "Mon Mar 30 2015 20:25:57 GMT+0100 (BST)",
             "slug": "neilcarpenter/doodle-name",
+            "colour_scheme": "dark",
             "index": 4
         },
         {
@@ -642,6 +669,7 @@
             },
             "created": "Mon Mar 30 2015 20:25:57 GMT+0100 (BST)",
             "slug": "neilcarpenter/doodle-name",
+            "colour_scheme": "light",
             "index": 3
         },
         {
@@ -665,6 +693,7 @@
             },
             "created": "Mon Mar 30 2015 20:25:57 GMT+0100 (BST)",
             "slug": "neilcarpenter/doodle-name",
+            "colour_scheme": "dark",
             "index": 2
         },
         {
@@ -688,6 +717,7 @@
             },
             "created": "Mon Mar 30 2015 20:25:57 GMT+0100 (BST)",
             "slug": "neilcarpenter/doodle-name",
+            "colour_scheme": "light",
             "index": 1
         }
     ]

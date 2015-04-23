@@ -20,6 +20,7 @@ class DoodleModel extends AbstractModel
 			"touch"    : null
 		"created" : ""
 		"slug" : ""
+		"colour_scheme" : ""
 		"index": null
 		# site-only
 		"indexHTML" : ""

@@ -100,7 +100,15 @@ class Header extends AbstractView
 			when 'home' then 'red'
 			when @CD().nav.sections.ABOUT then 'white'
 			when @CD().nav.sections.CONTRIBUTE then 'white'
+			when @CD().nav.sections.DOODLES then @_getDoodleColourScheme()
 			else 'white'
+
+		colour
+
+	_getDoodleColourScheme : =>
+
+		doodle = @CD().appData.doodles.getDoodleByNavSection 'current'
+		colour = if doodle and doodle.get('colour_scheme') is 'light' then 'black' else 'white'
 
 		colour
 
