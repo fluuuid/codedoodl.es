@@ -10,42 +10,47 @@ class DoodlePageView extends AbstractViewPage
 		@templateVars = 
 			desc : @CD().locale.get "doodle_desc"
 
-		###
-
-		instantiate classes here
-
-		@exampleClass = new exampleClass
-
-		###
-
 		super()
-
-		###
-
-		add classes to app structure here
-
-		@
-			.addChild(@exampleClass)
-
-		###
 
 		return null
 
 	init : =>
 
-		@$frame = @$el.find('[data-doodle-frame]')
+		@$frame    = @$el.find('[data-doodle-frame]')
+		@$mouse    = @$el.find('[data-indicator="mouse"]')
+		@$keyboard = @$el.find('[data-indicator="keyboard"]')
+		@$touch    = @$el.find('[data-indicator="touch"]')
+
+		null
 
 	show : (cb) =>
 
 		@model = @getDoodle()
 
+		@$el.attr 'data-color-scheme', @model.get('colour_scheme')
+		@$frame.attr('src', '').removeClass('show')
+		@$mouse.attr 'disabled', !@model.get('interaction.mouse')
+		@$keyboard.attr 'disabled', !@model.get('interaction.keyboard')
+		@$touch.attr 'disabled', !@model.get('interaction.touch')
+
+		super
+
+		if @CD().nav.changeViewCount is 1
+			@showFrame false
+		else
+			@CD().appView.transitioner.on @CD().appView.transitioner.EVENT_TRANSITIONER_OUT_DONE, @showFrame
+
+		null
+
+	showFrame : (removeEvent=true) =>
+
+		if removeEvent then @CD().appView.transitioner.off @CD().appView.transitioner.EVENT_TRANSITIONER_OUT_DONE, @showFrame
+
 		# TEMP, OBVZ
 		srcDir = if @model.get('colour_scheme') is 'light' then 'shape-stream-light' else 'shape-stream'
 
 		@$frame.attr 'src', "http://source.codedoodl.es/sample_doodles/#{srcDir}/index.html"
-		@$frame.one 'load', cb
-
-		super()
+		@$frame.one 'load', => @$frame.addClass('show')
 
 		null
 

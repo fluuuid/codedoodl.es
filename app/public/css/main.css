@@ -790,7 +790,7 @@ input, button, textarea {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 1;
+  z-index: 3;
   visibility: hidden; }
   #page-transitioner.show {
     visibility: visible; }
@@ -839,11 +839,6 @@ input, button, textarea {
   height: 100%;
   visibility: hidden;
   font-size: 12px; }
-  .page i {
-    display: block;
-    width: 100%;
-    text-align: center;
-    padding-top: 400px; }
 
 .page-home {
   background: #F1F1F3;
@@ -1027,39 +1022,87 @@ input, button, textarea {
           -ms-transform: rotate(-45deg);
               transform: rotate(-45deg); }
 
-.page-doodle {
-  background: #395CAA; }
-  .page-doodle .doodle-frame {
-    position: absolute;
+.page-doodle[data-color-scheme="light"] {
+  background: #F1F1F3; }
+  .page-doodle[data-color-scheme="light"] .doodle-frame {
+    background: #F1F1F3; }
+  .page-doodle[data-color-scheme="light"] .preloader-dots .dot {
+    background: #111111; }
+  .page-doodle[data-color-scheme="light"] .interaction-indicators .indicator:after {
+    background: #EB423E; }
+  .page-doodle[data-color-scheme="light"] .interaction-indicators .indicator svg {
+    fill: #111111; }
+.page-doodle[data-color-scheme="dark"] {
+  background: #111111; }
+  .page-doodle[data-color-scheme="dark"] .doodle-frame {
+    background: #111111; }
+  .page-doodle[data-color-scheme="dark"] .preloader-dots .dot {
+    background: #fff; }
+  .page-doodle[data-color-scheme="dark"] .interaction-indicators .indicator:after {
+    background: #395CAA; }
+  .page-doodle[data-color-scheme="dark"] .interaction-indicators .indicator svg {
+    fill: #fff; }
+.page-doodle .doodle-frame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  visibility: hidden;
+  opacity: 0;
+  transition: all .3s cubic-bezier(1, 0, 0, 1); }
+  .page-doodle .doodle-frame.show {
+    visibility: visible;
+    opacity: 1; }
+.page-doodle .preloader-dots {
+  z-index: 0; }
+.page-doodle .interaction-indicators {
+  display: inline-block;
+  position: fixed;
+  bottom: 25px;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0);
+      -ms-transform: translate(-50%, 0);
+          transform: translate(-50%, 0);
+  z-index: 2; }
+  .page-doodle .interaction-indicators .indicator {
+    position: relative;
+    margin-right: 20px; }
+    .page-doodle .interaction-indicators .indicator:after {
+      content: '';
+      display: none;
+      position: absolute;
+      width: 40px;
+      height: 2px;
+      -webkit-transform: rotate(45deg);
+          -ms-transform: rotate(45deg);
+              transform: rotate(45deg); }
+    .page-doodle .interaction-indicators .indicator[disabled]:after {
+      display: block; }
+    .page-doodle .interaction-indicators .indicator svg {
+      fill: #fff; }
+    .page-doodle .interaction-indicators .indicator:last-child {
+      margin-right: 0; }
+  .page-doodle .interaction-indicators .indicator-mouse {
+    top: 8px; }
+    .page-doodle .interaction-indicators .indicator-mouse:after {
+      top: -7px;
+      left: 6px; }
+    .page-doodle .interaction-indicators .indicator-mouse svg {
+      width: 50px; }
+  .page-doodle .interaction-indicators .indicator-keyboard:after {
     top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%; }
-  .page-doodle .interaction-indicators {
-    display: inline-block;
-    position: fixed;
-    bottom: 25px;
-    left: 50%;
-    -webkit-transform: translate(-50%, 0);
-        -ms-transform: translate(-50%, 0);
-            transform: translate(-50%, 0); }
-    .page-doodle .interaction-indicators .indicator {
-      position: relative;
-      margin-right: 20px; }
-      .page-doodle .interaction-indicators .indicator svg {
-        fill: #fff; }
-      .page-doodle .interaction-indicators .indicator:last-child {
-        margin-right: 0; }
-    .page-doodle .interaction-indicators .indicator-mouse {
-      top: 8px; }
-      .page-doodle .interaction-indicators .indicator-mouse svg {
-        width: 50px; }
-    .page-doodle .interaction-indicators .indicator-keyboard svg {
-      width: 27px; }
-    .page-doodle .interaction-indicators .indicator-touch {
-      top: 7px; }
-      .page-doodle .interaction-indicators .indicator-touch svg {
-        width: 50px; }
+    left: -7px; }
+  .page-doodle .interaction-indicators .indicator-keyboard svg {
+    width: 27px; }
+  .page-doodle .interaction-indicators .indicator-touch {
+    top: 7px; }
+    .page-doodle .interaction-indicators .indicator-touch:after {
+      top: -7px;
+      left: 7px; }
+    .page-doodle .interaction-indicators .indicator-touch svg {
+      width: 50px; }
 
 .page-about, .page-contribute {
   color: #fff;

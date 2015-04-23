@@ -41,7 +41,7 @@
             "interaction": {
                 "mouse": true,
                 "keyboard": false,
-                "touch": false
+                "touch": true
             },
             "created": "Mon Mar 30 2015 20:25:57 GMT+0100 (BST)",
             "slug": "test/test-name2",

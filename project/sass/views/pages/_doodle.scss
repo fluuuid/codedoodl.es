@@ -1,55 +1,157 @@
 .page-doodle {
-	background: $cd-blue;
 
-	.doodle-frame {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-	}
+    &[data-color-scheme="light"] {
+        background: $bg-offwhite;
 
-	.interaction-indicators {
-		display: inline-block;
-		position: fixed;
-		bottom: $site-padding-desktop;
-		left: 50%;
-		transform: translate(-50%, 0);
+        .doodle-frame {
+            background: $bg-offwhite;
+        }
 
-		.indicator {
-			position: relative;
-			margin-right: 20px;
+        .preloader-dots {
 
-	    	svg {
-	    		fill: #fff;
-	    	}
+            .dot {
+                background: $cd-black;
+            }
+        }
 
-	    	&:last-child {
-	    		margin-right: 0;
-	    	}
-	    }
+        .interaction-indicators {
 
-	    .indicator-mouse {
-	    	top: 8px;
+            .indicator {
 
-	    	svg {
-	    		width: 50px;
-	    	}
-	    }
+                &:after {
+                    background: $cd-red;
+                }
 
-	    .indicator-keyboard {
+                svg {
+                    fill: $cd-black;
+                }
+            }
+        }
+    }
 
-	    	svg {
-	    		width: 27px;
-	    	}
-	    }
+    &[data-color-scheme="dark"] {
+        background: $cd-black;
 
-	    .indicator-touch {
-	    	top: 7px;
+        .doodle-frame {
+            background: $cd-black;
+        }
 
-	    	svg {
-	    		width: 50px;
-	    	}
-	    }
-	}
+        .preloader-dots {
+
+            .dot {
+                background: #fff;
+            }
+        }
+
+        .interaction-indicators {
+
+            .indicator {
+
+                &:after {
+                    background: $cd-blue;
+                }
+
+                svg {
+                    fill: #fff;
+                }
+            }
+        }
+    }
+
+    .doodle-frame {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        visibility: hidden;
+        opacity: 0;
+        transition: all .3s $easeInOutExpo;
+
+        &.show {
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+
+    .preloader-dots {
+        z-index: 0;
+    }
+
+    .interaction-indicators {
+        display: inline-block;
+        position: fixed;
+        bottom: $site-padding-desktop;
+        left: 50%;
+        transform: translate(-50%, 0);
+        z-index: 2;
+
+        .indicator {
+            position: relative;
+            margin-right: 20px;
+
+            &:after {
+                content: '';
+                display: none;
+                position: absolute;
+                width: 40px;
+                height: 2px;
+                transform: rotate(45deg);
+            }
+
+            &[disabled] {
+
+                &:after {
+                    display: block;
+                }
+            }
+
+            svg {
+                fill: #fff;
+            }
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+
+        .indicator-mouse {
+            top: 8px;
+
+            &:after {
+                top: -7px;
+                left: 6px;
+            }
+
+            svg {
+                width: 50px;
+            }
+        }
+
+        .indicator-keyboard {
+
+            &:after {
+                top: 0;
+                left: -7px;
+            }
+
+            svg {
+                width: 27px;
+            }
+        }
+
+        .indicator-touch {
+            top: 7px;
+
+            &:after {
+                top: -7px;
+                left: 7px;
+            }
+
+            svg {
+                width: 50px;
+            }
+        }
+    }
 }
