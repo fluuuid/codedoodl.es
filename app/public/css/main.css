@@ -1057,6 +1057,21 @@ input, button, textarea {
     opacity: 1; }
 .page-doodle .preloader-dots {
   z-index: 0; }
+.page-doodle .footer-nav .arrow {
+  position: fixed;
+  z-index: 2;
+  bottom: 25px;
+  display: none;
+  width: 30px;
+  height: 30px;
+  background: green;
+  cursor: pointer; }
+  .page-doodle .footer-nav .arrow.show {
+    display: block; }
+  .page-doodle .footer-nav .arrow.arrow-left {
+    left: 25px; }
+  .page-doodle .footer-nav .arrow.arrow-right {
+    right: 25px; }
 .page-doodle .interaction-indicators {
   display: inline-block;
   position: fixed;

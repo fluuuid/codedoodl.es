@@ -21,17 +21,16 @@ class DoodlePageView extends AbstractViewPage
 		@$keyboard = @$el.find('[data-indicator="keyboard"]')
 		@$touch    = @$el.find('[data-indicator="touch"]')
 
+		@$prevDoodleNav = @$el.find('[data-doodle-nav="prev"]')
+		@$nextDoodleNav = @$el.find('[data-doodle-nav="next"]')
+
 		null
 
 	show : (cb) =>
 
 		@model = @getDoodle()
 
-		@$el.attr 'data-color-scheme', @model.get('colour_scheme')
-		@$frame.attr('src', '').removeClass('show')
-		@$mouse.attr 'disabled', !@model.get('interaction.mouse')
-		@$keyboard.attr 'disabled', !@model.get('interaction.keyboard')
-		@$touch.attr 'disabled', !@model.get('interaction.touch')
+		@setupUI()
 
 		super
 
@@ -39,6 +38,35 @@ class DoodlePageView extends AbstractViewPage
 			@showFrame false
 		else
 			@CD().appView.transitioner.on @CD().appView.transitioner.EVENT_TRANSITIONER_OUT_DONE, @showFrame
+
+		null
+
+	setupUI : =>
+
+		@$el.attr 'data-color-scheme', @model.get('colour_scheme')
+		@$frame.attr('src', '').removeClass('show')
+		@$mouse.attr 'disabled', !@model.get('interaction.mouse')
+		@$keyboard.attr 'disabled', !@model.get('interaction.keyboard')
+		@$touch.attr 'disabled', !@model.get('interaction.touch')
+
+		@setupNavLinks()
+
+		null
+
+	setupNavLinks : =>
+
+		prevDoodle = @CD().appData.doodles.getPrevDoodle @model
+		nextDoodle = @CD().appData.doodles.getNextDoodle @model
+
+		if prevDoodle
+			@$prevDoodleNav.attr('href', prevDoodle.get('url')).addClass('show')
+		else
+			@$prevDoodleNav.removeClass('show')
+
+		if nextDoodle
+			@$nextDoodleNav.attr('href', nextDoodle.get('url')).addClass('show')
+		else
+			@$nextDoodleNav.removeClass('show')
 
 		null
 

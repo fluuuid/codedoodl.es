@@ -79,6 +79,33 @@
         z-index: 0;
     }
 
+    .footer-nav {
+
+        .arrow {
+            position: fixed;
+            z-index: 2;
+            bottom: $site-padding-desktop;
+            display: none;
+
+            width: 30px;
+            height: 30px;
+            background: green;
+            cursor: pointer;
+
+            &.show {
+                display: block;
+            }
+
+            &.arrow-left {
+                left: $site-padding-desktop;
+            }
+
+            &.arrow-right {
+                right: $site-padding-desktop;
+            }
+        }
+    }
+
     .interaction-indicators {
         display: inline-block;
         position: fixed;
