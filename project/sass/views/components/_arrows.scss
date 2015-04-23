@@ -1,0 +1,34 @@
+.nav-arrow {
+	width: 24px;
+	height: 18px;
+	position: relative;
+
+	&:after,
+	&:before {
+		content: '';
+		position: absolute;
+		top: 8px;
+		right: 0;
+		height: 2px;
+		width: 10px;
+		transform-origin: right center;
+		background: #fff;
+	}
+
+	&:after {
+		transform: rotate(-45deg);
+	}
+
+	&:before {
+		transform: rotate(45deg);
+	}
+
+	.nav-arrow__inner {
+		position: absolute;
+		top: 8px;
+		left: 0;
+		width: 100%;
+		height: 2px;
+		background: #fff;
+	}
+}

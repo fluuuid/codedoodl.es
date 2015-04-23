@@ -152,8 +152,8 @@
                 </div>
                 <footer class="doodle-footer">
                     <nav class="footer-nav">
-                        <a class="arrow arrow-left" data-doodle-nav="prev"></a>
-                        <a class="arrow arrow-right" data-doodle-nav="next"></a>
+                        <a class="arrow arrow-left nav-arrow" data-doodle-nav="prev"><span class="nav-arrow__inner"></span></a>
+                        <a class="arrow arrow-right nav-arrow" data-doodle-nav="next"><span class="nav-arrow__inner"></span></a>
                     </nav>
                     <div class="interaction-indicators">
                         <span class="indicator indicator-mouse" data-indicator="mouse">

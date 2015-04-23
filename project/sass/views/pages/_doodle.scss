@@ -27,6 +27,12 @@
                 }
             }
         }
+
+        .nav-arrow .nav-arrow__inner,
+        .nav-arrow:after,
+        .nav-arrow:before {
+            background: $cd-black;
+        }
     }
 
     &[data-color-scheme="dark"] {
@@ -55,6 +61,12 @@
                     fill: #fff;
                 }
             }
+        }
+
+        .nav-arrow .nav-arrow__inner,
+        .nav-arrow:after,
+        .nav-arrow:before {
+            background: #fff;
         }
     }
 
@@ -86,11 +98,15 @@
             z-index: 2;
             bottom: $site-padding-desktop;
             display: none;
-
-            width: 30px;
-            height: 30px;
-            background: green;
             cursor: pointer;
+            transition: all .3s $easeInOutExpo;
+
+            .no-touch & {
+
+                &:hover {
+                    width: 40px;
+                }
+            }
 
             &.show {
                 display: block;
@@ -98,6 +114,7 @@
 
             &.arrow-left {
                 left: $site-padding-desktop;
+                transform: rotate(180deg);
             }
 
             &.arrow-right {
@@ -113,6 +130,7 @@
         left: 50%;
         transform: translate(-50%, 0);
         z-index: 2;
+        pointer-events: none;
 
         .indicator {
             position: relative;

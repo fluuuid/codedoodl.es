@@ -66,7 +66,7 @@
             "title": "About page",
             "strings": {
                 "about_label_what": "What is this",
-                "about_content_what": "codedoodl.es is a collection of curated creative coding sketches. The aim of these doodles is to showcase interactive, engaging web experiments which only require a short attention span. No loading bars, no GUI, no 5MB 3D models or audio files, just plain and simple doodles with code. The site at <a href=\"http://codedoodl.es\">codedoodl.es</a> will always feature the latest doodles, but we also have a <a href=\"http://chromestore.com\" target=\"_blank\">chrome extension</a> which features a new doodle in every browser tab you open. Are you interested in <a href=\"{{ contribute_url }}\">contributing?</a>",
+                "about_content_what": "codedoodl.es is a showcase of curated creative coding sketches. The aim of these doodles is to exhibit interactive, engaging web experiments which only require a short attention span. No loading bars, no GUI, no 5MB 3D models or audio files, just plain and simple doodles with code. The site at <a href=\"http://codedoodl.es\">codedoodl.es</a> will always feature the latest doodles, but we also have a <a href=\"http://chromestore.com\" target=\"_blank\">chrome extension</a> which features a new doodle in every browser tab you open. Interested in <a href=\"{{ contribute_url }}\">contributing?</a>",
                 "about_label_contact": "Find us on",
                 "about_content_contact": "<a href=\"http://twitter.com/codedoodl_es\" target=\"_blank\">Twitter</a>, <a href=\"http://github.com/neilcarpenter/codedoodl.es\" target=\"_blank\">Github</a>",
                 "about_label_who": "Made by"
