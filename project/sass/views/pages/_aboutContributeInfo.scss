@@ -1,9 +1,11 @@
 .page-about,
-.page-contribute {
+.page-contribute,
+.subpage-info {
 	color: #fff;
 	background: $cd-black;
 
-	.page-content {
+	.page-content,
+	.subpage-content {
 		@include font-size(1.3);
 		line-height: 1.5;
 		font-family: $ff-monosten-a;
@@ -37,6 +39,10 @@
 
 		.row {
 			margin-bottom: 20px;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
 		}
 
 		.col {

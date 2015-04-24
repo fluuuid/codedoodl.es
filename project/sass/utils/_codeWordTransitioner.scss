@@ -40,4 +40,10 @@
         background: #fff;
         border-bottom: 2px solid #fff;
     }
+
+    &[data-codetext-char-state="offwhite-red-bg"] {
+        color: $bg-offwhite;
+        background: $cd-red;
+        border-bottom: 2px solid $cd-red;
+    }
 }

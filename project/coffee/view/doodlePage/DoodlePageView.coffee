@@ -7,8 +7,7 @@ class DoodlePageView extends AbstractViewPage
 
 	constructor : ->
 
-		@templateVars = 
-			desc : @CD().locale.get "doodle_desc"
+		@templateVars = {}
 
 		super()
 
@@ -16,13 +15,22 @@ class DoodlePageView extends AbstractViewPage
 
 	init : =>
 
-		@$frame    = @$el.find('[data-doodle-frame]')
+		@$frame       = @$el.find('[data-doodle-frame]')
+		@$infoContent = @$el.find('[data-doodle-info]')
+
 		@$mouse    = @$el.find('[data-indicator="mouse"]')
 		@$keyboard = @$el.find('[data-indicator="keyboard"]')
 		@$touch    = @$el.find('[data-indicator="touch"]')
 
 		@$prevDoodleNav = @$el.find('[data-doodle-nav="prev"]')
 		@$nextDoodleNav = @$el.find('[data-doodle-nav="next"]')
+
+		null
+
+	setListeners : (setting) =>
+
+		@CD().appView.header[setting] @CD().appView.header.EVENT_DOODLE_INFO_OPEN, @onInfoOpen
+		@CD().appView.header[setting] @CD().appView.header.EVENT_DOODLE_INFO_CLOSE, @onInfoClose
 
 		null
 
@@ -41,7 +49,17 @@ class DoodlePageView extends AbstractViewPage
 
 		null
 
+	hide : (cb) =>
+
+		@CD().appView.header.hideDoodleInfo()
+
+		super
+
+		null
+
 	setupUI : =>
+
+		@$infoContent.html @getDoodleInfoContent()
 
 		@$el.attr 'data-color-scheme', @model.get('colour_scheme')
 		@$frame.attr('src', '').removeClass('show')
@@ -87,5 +105,46 @@ class DoodlePageView extends AbstractViewPage
 		doodle = @CD().appData.doodles.getDoodleBySlug @CD().nav.current.sub+'/'+@CD().nav.current.ter
 
 		doodle
+
+	getDoodleInfoContent : =>
+
+		doodleInfoVars =
+			label_author               : @CD().locale.get "doodle_label_author"
+			content_author             : @model.getAuthorHtml()
+			label_doodle_name          : @CD().locale.get "doodle_label_doodle_name"
+			content_doodle_name        : @model.get('name')
+			label_description          : @CD().locale.get "doodle_label_description"
+			content_description        : @model.get('description')
+			label_tags                 : @CD().locale.get "doodle_label_tags"
+			content_tags               : @model.get('tags').join(', ')
+			label_interaction          : @CD().locale.get "doodle_label_interaction"
+			content_interaction        : @_getInteractionContent()
+			label_share                : @CD().locale.get "doodle_label_share"
+
+		doodleInfoContent = _.template(@CD().templates.get('doodle-info'))(doodleInfoVars)
+
+		doodleInfoContent
+
+	_getInteractionContent : =>
+
+		interactions = []
+
+		if @model.get('interaction.mouse') then interactions.push @CD().locale.get "doodle_label_interaction_mouse"
+		if @model.get('interaction.keyboard') then interactions.push @CD().locale.get "doodle_label_interaction_keyboard"
+		if @model.get('interaction.touch') then interactions.push @CD().locale.get "doodle_label_interaction_touch"
+
+		interactions.join(', ') or @CD().locale.get "doodle_label_interaction_none"
+
+	onInfoOpen : =>
+
+		@$el.addClass('show-info')
+
+		null
+
+	onInfoClose : =>
+
+		@$el.removeClass('show-info')
+
+		null
 
 module.exports = DoodlePageView

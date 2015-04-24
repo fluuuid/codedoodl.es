@@ -85,7 +85,8 @@
         }
     }
 
-    &[data-section="~"] {
+    &[data-section="~"],
+    &[data-section="doodle-info"] {
 
         .site-nav__link {
             margin: 0;
