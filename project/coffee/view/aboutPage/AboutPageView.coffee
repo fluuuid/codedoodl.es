@@ -13,7 +13,7 @@ class AboutPageView extends AbstractViewPage
 
 		@templateVars = 
 			label_what      : @CD().locale.get "about_label_what"
-			content_what    : @CD().locale.get "about_content_what"
+			content_what    : @getWhatContent()
 			label_contact   : @CD().locale.get "about_label_contact"
 			content_contact : @CD().locale.get "about_content_contact"
 			label_who       : @CD().locale.get "about_label_who"
@@ -23,6 +23,12 @@ class AboutPageView extends AbstractViewPage
 		@getContributorsContent()
 
 		return null
+
+	getWhatContent : =>
+
+		contribute_url = @CD().BASE_URL + '/' + @CD().nav.sections.CONTRIBUTE
+
+		return @supplantString @CD().locale.get("about_content_what"), { contribute_url : contribute_url }, false
 
 	getContributorsContent : =>
 

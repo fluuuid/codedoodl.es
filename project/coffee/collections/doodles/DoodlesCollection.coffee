@@ -22,4 +22,24 @@ class DoodlesCollection extends AbstractCollection
 
 		doodle
 
+	getPrevDoodle : (doodle) =>
+
+		index = @indexOf doodle
+		index--
+
+		if index < 0
+			return false
+		else
+			return @at index
+
+	getNextDoodle : (doodle) =>
+
+		index = @indexOf doodle
+		index++
+
+		if index > (@length.length-1)
+			return false
+		else
+			return @at index
+
 module.exports = DoodlesCollection

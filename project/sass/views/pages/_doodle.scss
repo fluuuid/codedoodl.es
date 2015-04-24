@@ -1,55 +1,300 @@
 .page-doodle {
-	background: $cd-blue;
+    overflow: hidden;
 
-	.doodle-frame {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-	}
+    &[data-color-scheme="light"] {
+        background: $bg-offwhite;
 
-	.interaction-indicators {
-		display: inline-block;
-		position: fixed;
-		bottom: $site-padding-desktop;
-		left: 50%;
-		transform: translate(-50%, 0);
+        .doodle-frame {
+            background: $bg-offwhite;
+        }
 
-		.indicator {
-			position: relative;
-			margin-right: 20px;
+        .preloader-dots {
 
-	    	svg {
-	    		fill: #fff;
-	    	}
+            .dot {
+                background: $cd-black;
+            }
+        }
 
-	    	&:last-child {
-	    		margin-right: 0;
-	    	}
-	    }
+        .interaction-indicators {
 
-	    .indicator-mouse {
-	    	top: 8px;
+            .indicator {
 
-	    	svg {
-	    		width: 50px;
-	    	}
-	    }
+                &:after {
+                    background: $cd-red;
+                }
 
-	    .indicator-keyboard {
+                svg {
+                    fill: $cd-black;
+                }
+            }
+        }
 
-	    	svg {
-	    		width: 27px;
-	    	}
-	    }
+        .nav-arrow .nav-arrow__inner,
+        .nav-arrow:after,
+        .nav-arrow:before {
+            background: $cd-black;
+        }
+    }
 
-	    .indicator-touch {
-	    	top: 7px;
+    &[data-color-scheme="dark"] {
+        background: $cd-black;
 
-	    	svg {
-	    		width: 50px;
-	    	}
-	    }
-	}
+        .doodle-frame {
+            background: $cd-black;
+        }
+
+        .preloader-dots {
+
+            .dot {
+                background: #fff;
+            }
+        }
+
+        .interaction-indicators {
+
+            .indicator {
+
+                &:after {
+                    background: $cd-blue;
+                }
+
+                svg {
+                    fill: #fff;
+                }
+            }
+        }
+
+        .nav-arrow .nav-arrow__inner,
+        .nav-arrow:after,
+        .nav-arrow:before {
+            background: #fff;
+        }
+    }
+
+    .doodle-frame {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        visibility: hidden;
+        opacity: 0;
+        transition: all .3s $easeInOutExpo;
+
+        &.show {
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+
+    .preloader-dots {
+        z-index: 0;
+    }
+
+    .footer-nav {
+
+        .arrow {
+            position: fixed;
+            z-index: 2;
+            bottom: $site-padding-desktop;
+            display: none;
+            cursor: pointer;
+            transition: all .3s $easeInOutExpo;
+
+            .no-touch & {
+
+                &:hover {
+                    width: 40px;
+                }
+            }
+
+            &.show {
+                display: block;
+            }
+
+            &.arrow-left {
+                left: $site-padding-desktop;
+                transform: rotate(180deg);
+            }
+
+            &.arrow-right {
+                right: $site-padding-desktop;
+            }
+        }
+    }
+
+    .interaction-indicators {
+        display: inline-block;
+        position: fixed;
+        bottom: $site-padding-desktop;
+        left: 50%;
+        transform: translate(-50%, 0);
+        z-index: 3;
+        pointer-events: none;
+
+        .indicator {
+            position: relative;
+            margin-right: 20px;
+
+            &:after {
+                content: '';
+                display: none;
+                position: absolute;
+                width: 40px;
+                height: 2px;
+                transform: rotate(45deg);
+            }
+
+            &[disabled] {
+
+                &:after {
+                    display: block;
+                }
+            }
+
+            svg {
+                fill: #fff;
+            }
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+
+        .indicator-mouse {
+            top: 8px;
+
+            &:after {
+                top: -7px;
+                left: 6px;
+            }
+
+            svg {
+                width: 50px;
+            }
+        }
+
+        .indicator-keyboard {
+
+            &:after {
+                top: 0;
+                left: -7px;
+            }
+
+            svg {
+                width: 27px;
+            }
+        }
+
+        .indicator-touch {
+            top: 7px;
+
+            &:after {
+                top: -7px;
+                left: 7px;
+            }
+
+            svg {
+                width: 50px;
+            }
+        }
+    }
+
+    &.show-info {
+
+        .footer-nav {
+
+            .arrow {
+                display: none;
+            }
+        }
+
+        .interaction-indicators {
+
+            .indicator {
+
+                &:after {
+                    background: $cd-blue;
+                }
+
+                svg {
+                    fill: $cd-red;
+                }
+            }
+        }
+
+        .subpage-info,
+        .subpage-info-pane {
+            transform: none;
+        }
+
+        .subpage-info {
+            transition-delay: 0.03s;
+        }
+
+        .subpage-info-pane {
+            transition-delay: 0s;
+        }
+    }
+
+    .subpage-info,
+    .subpage-info-pane {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transform: translate(100%, 0);
+        transform: translate3d(100%, 0, 0);
+        transition: all .5s $easeInOutExpo;
+    }
+
+    .subpage-info {
+        background: $bg-offwhite;
+        color: $cd-blue;
+        z-index: 2;
+
+        a {
+            color: $cd-blue;
+            border-color: rgba(57, 92, 170, 0.23);
+
+            .no-touch & {
+
+                &:hover {
+                    border-width: 0;
+                    animation: info-link-blink 0.1s 1;
+                    animation-timing-function: steps(1, end);
+                    animation-fill-mode: forwards;
+                }
+            }
+        }
+
+        .col-2 {
+            font-family: $ff-monosten-f;
+        }
+
+        .subpage-content {
+            padding: $site-padding-desktop 0;
+            border-top: 2px solid $cd-blue;
+            border-bottom: 2px solid $cd-blue;
+        }
+    }
+
+    .subpage-info-pane {
+        background: $cd-red;
+        z-index: 1;
+        transition-delay: 0.03s;
+    }
+}
+
+@keyframes info-link-blink {
+    0%, 100% {
+        background: $cd-blue;
+        color: $bg-offwhite;
+    }
+    50% {
+        background: $bg-offwhite;
+        color: $cd-blue;
+    }
 }

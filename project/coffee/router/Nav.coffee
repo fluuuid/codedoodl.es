@@ -49,7 +49,7 @@ class Nav extends AbstractView
         if @CD().appView.modalManager.isOpen() then @CD().appView.modalManager.hideOpenModal()
 
         @setPageTitle area, sub, ter
-        @setPageFavicon area
+        @setPageFavicon()
 
         null
 
@@ -63,13 +63,9 @@ class Nav extends AbstractView
 
         null
 
-    setPageFavicon: (area) =>
+    setPageFavicon: =>
 
-        colour = switch area
-            when @sections.HOME then 'red'
-            when @sections.ABOUT, @sections.CONTRIBUTE then 'black'
-            when @sections.DOODLES then 'blue'
-            else 'red'
+        colour = _.shuffle(['red', 'blue', 'black'])[0]
 
         setTimeout =>
             @favicon.href = "#{@CD().BASE_URL}/static/img/icons/favicon/favicon_#{colour}.png"

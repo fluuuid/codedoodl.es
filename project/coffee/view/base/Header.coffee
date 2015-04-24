@@ -7,6 +7,10 @@ class Header extends AbstractView
 	template : 'site-header'
 
 	FIRST_HASHCHANGE : true
+	DOODLE_INFO_OPEN : false
+
+	EVENT_DOODLE_INFO_OPEN  : 'EVENT_DOODLE_INFO_OPEN'
+	EVENT_DOODLE_INFO_CLOSE : 'EVENT_DOODLE_INFO_CLOSE'
 
 	constructor : ->
 
@@ -49,6 +53,9 @@ class Header extends AbstractView
 		@$el.on 'mouseenter', '[data-codeword]', @onWordEnter
 		@$el.on 'mouseleave', '[data-codeword]', @onWordLeave
 
+		@$infoBtn.on 'click', @onInfoBtnClick
+		@$closeBtn.on 'click', @onCloseBtnClick
+
 		null
 
 	onHashChange : (where) =>
@@ -63,6 +70,8 @@ class Header extends AbstractView
 
 	onAreaChange : (section) =>
 
+		@activeSection = section
+		
 		colour = @getSectionColour section
 
 		@$el.attr 'data-section', section
@@ -84,6 +93,10 @@ class Header extends AbstractView
 			CodeWordTransitioner.in [@$navLinkAbout, @$closeBtn], colour
 			CodeWordTransitioner.in [@$navLinkContribute], 'black-white-bg'
 			CodeWordTransitioner.out [@$infoBtn], colour
+		else if section is 'doodle-info'
+			CodeWordTransitioner.in [@$closeBtn], colour
+			CodeWordTransitioner.out [@$navLinkAbout, @$navLinkContribute], colour
+			CodeWordTransitioner.in [@$infoBtn], 'offwhite-red-bg'
 		else
 			CodeWordTransitioner.in [@$closeBtn], colour
 			CodeWordTransitioner.out [@$navLinkAbout, @$navLinkContribute, @$infoBtn], colour
@@ -94,10 +107,14 @@ class Header extends AbstractView
 
 		section = section or @CD().nav.current.area or 'home'
 
-		if wordSection and section is wordSection then return 'black-white-bg'
+		if wordSection and section is wordSection
+			if wordSection is 'doodle-info'
+				return 'offwhite-red-bg'
+			else
+				return 'black-white-bg'
 
 		colour = switch section
-			when 'home' then 'red'
+			when 'home', 'doodle-info' then 'red'
 			when @CD().nav.sections.ABOUT then 'white'
 			when @CD().nav.sections.CONTRIBUTE then 'white'
 			when @CD().nav.sections.DOODLES then @_getDoodleColourScheme()
@@ -123,7 +140,7 @@ class Header extends AbstractView
 		$el = $(e.currentTarget)
 		wordSection = $el.attr('data-word-section')
 
-		CodeWordTransitioner.scramble $el, @getSectionColour(null, wordSection)
+		CodeWordTransitioner.scramble $el, @getSectionColour(@activeSection, wordSection)
 
 		null
 
@@ -132,7 +149,46 @@ class Header extends AbstractView
 		$el = $(e.currentTarget)
 		wordSection = $el.attr('data-word-section')
 
-		CodeWordTransitioner.unscramble $el, @getSectionColour(null, wordSection)
+		CodeWordTransitioner.unscramble $el, @getSectionColour(@activeSection, wordSection)
+
+		null
+
+	onInfoBtnClick : (e) =>
+
+		e.preventDefault()
+
+		return unless @CD().nav.current.area is @CD().nav.sections.DOODLES
+
+		if !@DOODLE_INFO_OPEN then @showDoodleInfo()
+
+		null
+
+	onCloseBtnClick : (e) =>
+
+		if @DOODLE_INFO_OPEN
+			e.preventDefault()
+			e.stopPropagation()
+			@hideDoodleInfo()
+
+		null
+
+	showDoodleInfo : =>
+
+		return unless !@DOODLE_INFO_OPEN
+
+		@onAreaChange 'doodle-info'
+		@trigger @EVENT_DOODLE_INFO_OPEN
+		@DOODLE_INFO_OPEN = true
+
+		null
+
+	hideDoodleInfo : =>
+
+		return unless @DOODLE_INFO_OPEN
+
+		@onAreaChange @CD().nav.current.area
+		@trigger @EVENT_DOODLE_INFO_CLOSE
+		@DOODLE_INFO_OPEN = false
 
 		null
 

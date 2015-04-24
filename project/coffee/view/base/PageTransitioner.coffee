@@ -43,6 +43,7 @@ class PageTransitioner extends AbstractView
                 visibility: 'visible', transform : 'none'
 
     TRANSITION_TIME : 0.5
+    EVENT_TRANSITIONER_OUT_DONE : 'EVENT_TRANSITIONER_OUT_DONE'
 
     constructor: ->
 
@@ -222,6 +223,8 @@ class PageTransitioner extends AbstractView
             if i is 0 then params.onComplete = =>
                 @hide()
                 cb?()
+                @trigger @EVENT_TRANSITIONER_OUT_DONE
+                console.log "@trigger @EVENT_TRANSITIONER_OUT_DONE"
 
             TweenLite.to $(el), @TRANSITION_TIME, params
 
