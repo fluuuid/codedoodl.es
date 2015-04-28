@@ -79,6 +79,12 @@
 		&:hover,
 		&.hovered {
 
+			.grid-item-thumb-holder,
+			.grid-item-thumb-cover,
+			.grid-item-thumb {
+				transition-timing-function: $easeInOutExpo;
+			}
+
 			.grid-item-thumb-holder {
 				border-radius: 6px;
 				transform: scale(0.75) rotate(45deg) translate(-50%, -50%);
@@ -117,7 +123,7 @@
 		background: $cd-red;
 		transform: rotate(45deg) translate(-50%, -50%);
 		transform-origin: 0 0;
-		transition: all .5s $easeInOutExpo;
+		transition: all .5s $easeInOutQuad;
 		border-radius: 50%;
 		overflow: hidden;
 	}
@@ -132,7 +138,7 @@
 		height: $home-grid-item-width*1.5;
 		transform: rotate(-45deg) translate(-50%, -50%);
 		transform-origin: 0 0;
-		transition: all .5s $easeInOutExpo;
+		transition: all .5s $easeInOutQuad;
 		opacity: 0;
 		visibility: hidden;
 	}

@@ -784,6 +784,8 @@ input, button, textarea {
     cursor: default; }
   #site-header[data-section="~"] .site-nav__link, #site-header[data-section="doodle-info"] .site-nav__link {
     margin: 0; }
+  #site-header[data-section="doodle-info"] .info-btn {
+    cursor: default; }
 
 #site-footer {
   font-size: 12px; }
@@ -991,6 +993,8 @@ input, button, textarea {
     -webkit-transform: translate(0, -15px);
         -ms-transform: translate(0, -15px);
             transform: translate(0, -15px); }
+  .no-touch .home-grid-item:hover .grid-item-thumb-holder, .no-touch .home-grid-item:hover .grid-item-thumb-cover, .no-touch .home-grid-item:hover .grid-item-thumb, .no-touch .home-grid-item.hovered .grid-item-thumb-holder, .no-touch .home-grid-item.hovered .grid-item-thumb-cover, .no-touch .home-grid-item.hovered .grid-item-thumb {
+    transition-timing-function: cubic-bezier(1, 0, 0, 1); }
   .no-touch .home-grid-item:hover .grid-item-thumb-holder, .no-touch .home-grid-item.hovered .grid-item-thumb-holder {
     border-radius: 6px;
     -webkit-transform: scale(0.75) rotate(45deg) translate(-50%, -50%);
@@ -1023,7 +1027,7 @@ input, button, textarea {
     -webkit-transform-origin: 0 0;
         -ms-transform-origin: 0 0;
             transform-origin: 0 0;
-    transition: all .5s cubic-bezier(1, 0, 0, 1);
+    transition: all .5s cubic-bezier(0.455, 0.03, 0.515, 0.955);
     border-radius: 50%;
     overflow: hidden; }
   .home-grid-item .grid-item-thumb-cover, .home-grid-item .grid-item-thumb {
@@ -1039,7 +1043,7 @@ input, button, textarea {
     -webkit-transform-origin: 0 0;
         -ms-transform-origin: 0 0;
             transform-origin: 0 0;
-    transition: all .5s cubic-bezier(1, 0, 0, 1);
+    transition: all .5s cubic-bezier(0.455, 0.03, 0.515, 0.955);
     opacity: 0;
     visibility: hidden; }
   .home-grid-item .grid-item-thumb-cover {
