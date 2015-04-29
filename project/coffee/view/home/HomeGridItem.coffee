@@ -5,7 +5,7 @@ class HomeGridItem extends AbstractView
 
 	template : 'home-grid-item'
 
-	constructor : (@model, @fullPageTransition) ->
+	constructor : (@model) ->
 
 		@templateVars = _.extend {}, @model.toJSON()
 
