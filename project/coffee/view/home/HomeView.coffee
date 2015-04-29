@@ -112,7 +112,7 @@ class HomeView extends AbstractViewPage
 			doodle = @allDoodles.at idx
 			break if !doodle
 
-			newItems.push new HomeGridItem doodle, fullPageTransition
+			newItems.push new HomeGridItem doodle
 
 		HomeView.gridItems = HomeView.gridItems.concat newItems
 
