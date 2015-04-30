@@ -9,7 +9,7 @@ class HomeView extends AbstractViewPage
 	@gridItems : []
 	@dims :
 		item      : h: 268, w: 200, margin: 20, a: 0
-		container : h: 0, w: 0, a: 0
+		container : h: 0, w: 0, a: 0, pt: 25
 	@colCount : 0
 	@scrollDistance : 0
 
@@ -29,7 +29,35 @@ class HomeView extends AbstractViewPage
 
 		super()
 
+		@setupDims()
+		@addGridItems()
+
 		return null
+
+	addGridItems : =>
+
+		for doodle in @allDoodles.models
+
+			item = new HomeGridItem doodle
+			HomeView.gridItems.push item
+			@addChild item
+
+		null
+
+	# positionGridItems : =>
+
+	# 	for item, idx in HomeView.gridItems
+
+	# 		top = (Math.floor(idx / HomeView.colCount) * HomeView.dims.item.h) + HomeView.dims.container.pt
+	# 		left = ((idx % HomeView.colCount) * HomeView.dims.item.w) + (idx % HomeView.colCount) * HomeView.dims.item.margin
+
+	# 		item.$el.css
+	# 			'top': top
+	# 			'left': left
+
+	# 	@$grid.css 'height': Math.ceil(HomeView.gridItems.length / HomeView.colCount) * HomeView.dims.item.h
+
+	# 	null
 
 	init : =>
 
@@ -44,7 +72,7 @@ class HomeView extends AbstractViewPage
 		HomeView.colCount = Math.round gridWidth / HomeView.dims.item.w
 		
 		HomeView.dims.container =
-			h: @CD().appView.dims.h, w: gridWidth, a: (@CD().appView.dims.h * gridWidth)
+			h: @CD().appView.dims.h, w: gridWidth, a: (@CD().appView.dims.h * gridWidth), pt: 25
 
 		HomeView.dims.item.a = HomeView.dims.item.h * (HomeView.dims.item.w + ((HomeView.dims.item.margin * (HomeView.colCount - 1)) / HomeView.colCount))
 
@@ -68,8 +96,10 @@ class HomeView extends AbstractViewPage
 
 		HomeView.scrollDistance = @CD().appView.lastScrollY
 
-		itemsToShow = @getRequiredDoodleCountByArea()
-		if itemsToShow > 0 then @addDoodles itemsToShow
+		# itemsToShow = @getRequiredDoodleCountByArea()
+		# if itemsToShow > 0 then @addDoodles itemsToShow
+
+		@checkItemsForVisibility()
 
 		null
 
@@ -82,14 +112,48 @@ class HomeView extends AbstractViewPage
 	animateIn : =>
 
 		@setupDims()
+		# @positionGridItems()
 
 		if !HomeView.visitedThisSession
-			@addDoodles @getRequiredDoodleCountByArea(), true
+			# @addDoodles @getRequiredDoodleCountByArea(), true
+			@onScroll()
 			HomeView.visitedThisSession = true
 		else
 			@CD().appView.$window.scrollTop HomeView.scrollDistance
 
 		null
+
+	checkItemsForVisibility : =>
+
+		for item, i in HomeView.gridItems
+
+			position = @_getItemPositionDataByIndex i
+			offset = item.maxOffset - (position.visibility * item.maxOffset)
+
+			item.$el.css
+				'visibility' : if position.visibility > 0 then 'visible' else 'hidden'
+				'opacity' : if position.visibility > 0 then position.visibility + 0.3 else 0
+				'transform' : "translate3d(0, #{position.transform}#{offset}px, 0)"
+
+		null
+
+	_getItemPositionDataByIndex : (idx) =>
+
+		verticalOffset = (Math.floor(idx / HomeView.colCount) * HomeView.dims.item.h) + HomeView.dims.container.pt
+		position = visibility: 1, transform: '+'
+
+		if verticalOffset + HomeView.dims.item.h < HomeView.scrollDistance or verticalOffset > HomeView.scrollDistance + HomeView.dims.container.h
+			position = visibility: 0, transform: '+'
+		else if verticalOffset > HomeView.scrollDistance and verticalOffset + HomeView.dims.item.h < HomeView.scrollDistance + HomeView.dims.container.h
+			position = visibility: 1, transform: '+'
+		else if verticalOffset < HomeView.scrollDistance and verticalOffset + HomeView.dims.item.h > HomeView.scrollDistance
+			perc = 1 - ((HomeView.scrollDistance - verticalOffset) / HomeView.dims.item.h)
+			position = visibility: perc, transform: '-'
+		else if verticalOffset < HomeView.scrollDistance + HomeView.dims.container.h and verticalOffset + HomeView.dims.item.h > HomeView.scrollDistance + HomeView.dims.container.h
+			perc = ((HomeView.scrollDistance + HomeView.dims.container.h) - verticalOffset) / HomeView.dims.item.h
+			position = visibility: perc, transform: '+'
+
+		position
 
 	getRequiredDoodleCountByArea : =>
 
@@ -132,5 +196,7 @@ class HomeView extends AbstractViewPage
 		TweenLite.fromTo item.$el, duration, fromParams, toParams
 
 		null
+
+window.HomeView = HomeView
 
 module.exports = HomeView

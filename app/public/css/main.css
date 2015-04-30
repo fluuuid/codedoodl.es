@@ -968,12 +968,12 @@ input, button, textarea {
       max-width: 200px; } }
 
 .home-grid-item {
-  display: inline-block;
+  display: block;
+  float: left;
   position: relative;
   width: 200px;
-  margin-right: 20px;
-  margin-bottom: 20px;
-  opacity: 0; }
+  height: 268px;
+  margin-right: 20px; }
   @media all and ( min-width: 1215px ) {
     .home-grid-item:nth-of-type(5n) {
       margin-right: 0; } }

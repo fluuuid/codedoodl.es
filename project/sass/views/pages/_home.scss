@@ -31,12 +31,15 @@
 }
 
 .home-grid-item {
-	display: inline-block;
+	display: block;
+	float: left;
 	position: relative;
 	width: $home-grid-item-width;
+	height: $home-grid-item-height;
 	margin-right: 20px;
-	margin-bottom: 20px;
-	opacity: 0;
+	// margin-bottom: 20px;
+	// opacity: 0;
+	// transition: transform 0.5s $easeOutCubic;
 
 	@media #{$grid-five-bp} {
 		&:nth-of-type(5n) {

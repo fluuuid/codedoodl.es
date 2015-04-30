@@ -5,9 +5,16 @@ class HomeGridItem extends AbstractView
 
 	template : 'home-grid-item'
 
+	maxOffset : null
+
+	ITEM_MIN_OFFSET : 50
+	ITEM_MAX_OFFSET : 700
+
 	constructor : (@model) ->
 
 		@templateVars = _.extend {}, @model.toJSON()
+
+		@maxOffset = (_.random @ITEM_MIN_OFFSET, @ITEM_MAX_OFFSET) / 10
 
 		super
 
