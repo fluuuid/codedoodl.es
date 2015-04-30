@@ -204,4 +204,18 @@
         ]]>
     </template>
 
+    <!--
+        PAGE 404
+    -->
+
+    <template id="page-four-oh-four">
+        <![CDATA[
+            <section id="page-four-oh-four" class="page page-four-oh-four">
+                <div class="page-content">
+                    <p class="not-found-message"><%= text %></p>
+                </div>
+            </section>
+        ]]>
+    </template>
+
 </templates>
