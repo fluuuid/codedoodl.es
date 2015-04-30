@@ -36,7 +36,7 @@ checkShortLink = (req, res, next) ->
 		doodle     = _.findWhere allDoodles, index : index
 
 		if doodle
-			return res.status(301).redirect "/#{config.routes.DOODLES}/#{doodle.slug}"
+			return res.redirect 301, "/#{config.routes.DOODLES}/#{doodle.slug}"
 
 	next()
 
