@@ -945,7 +945,7 @@ input, button, textarea {
 
 .page-home {
   background: #F1F1F3;
-  position: relative; }
+  overflow: hidden; }
 
 .home-grid {
   margin: 0 auto;
@@ -993,20 +993,20 @@ input, button, textarea {
     -webkit-transform: translate(0, -15px);
         -ms-transform: translate(0, -15px);
             transform: translate(0, -15px); }
-  .no-touch .home-grid-item:hover .grid-item-thumb-holder, .no-touch .home-grid-item:hover .grid-item-thumb-cover, .no-touch .home-grid-item:hover .grid-item-thumb, .no-touch .home-grid-item.hovered .grid-item-thumb-holder, .no-touch .home-grid-item.hovered .grid-item-thumb-cover, .no-touch .home-grid-item.hovered .grid-item-thumb {
+  .no-touch .enable-grid-item-hover .home-grid-item:hover .grid-item-thumb-holder, .no-touch .enable-grid-item-hover .home-grid-item:hover .grid-item-thumb-cover, .no-touch .enable-grid-item-hover .home-grid-item:hover .grid-item-thumb, .no-touch .enable-grid-item-hover .home-grid-item.hovered .grid-item-thumb-holder, .no-touch .enable-grid-item-hover .home-grid-item.hovered .grid-item-thumb-cover, .no-touch .enable-grid-item-hover .home-grid-item.hovered .grid-item-thumb {
     transition-timing-function: cubic-bezier(1, 0, 0, 1); }
-  .no-touch .home-grid-item:hover .grid-item-thumb-holder, .no-touch .home-grid-item.hovered .grid-item-thumb-holder {
+  .no-touch .enable-grid-item-hover .home-grid-item:hover .grid-item-thumb-holder, .no-touch .enable-grid-item-hover .home-grid-item.hovered .grid-item-thumb-holder {
     border-radius: 6px;
     -webkit-transform: scale(0.75) rotate(45deg) translate(-50%, -50%);
         -ms-transform: scale(0.75) rotate(45deg) translate(-50%, -50%);
             transform: scale(0.75) rotate(45deg) translate(-50%, -50%); }
-  .no-touch .home-grid-item:hover .grid-item-thumb-cover, .no-touch .home-grid-item.hovered .grid-item-thumb-cover {
+  .no-touch .enable-grid-item-hover .home-grid-item:hover .grid-item-thumb-cover, .no-touch .enable-grid-item-hover .home-grid-item.hovered .grid-item-thumb-cover {
     opacity: 0.5;
     visibility: visible; }
-  .no-touch .home-grid-item:hover .grid-item-thumb, .no-touch .home-grid-item.hovered .grid-item-thumb {
+  .no-touch .enable-grid-item-hover .home-grid-item:hover .grid-item-thumb, .no-touch .enable-grid-item-hover .home-grid-item.hovered .grid-item-thumb {
     opacity: 1;
     visibility: visible; }
-  .no-touch .home-grid-item:hover .grid-item-arrow, .no-touch .home-grid-item.hovered .grid-item-arrow {
+  .no-touch .enable-grid-item-hover .home-grid-item:hover .grid-item-arrow, .no-touch .enable-grid-item-hover .home-grid-item.hovered .grid-item-arrow {
     opacity: 1;
     visibility: visible;
     width: 85%; }

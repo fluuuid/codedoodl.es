@@ -11,6 +11,8 @@ class HomeView extends AbstractViewPage
 		item      : h: 268, w: 200, margin: 20, a: 0
 		container : h: 0, w: 0, a: 0, pt: 25
 	@colCount : 0
+
+	@scrollDelta    : 0
 	@scrollDistance : 0
 
 	@SHOW_ROW_THRESHOLD : 0.3 # how much of a grid row (scale 0 -> 1) must be visible before it is "shown"
@@ -29,8 +31,9 @@ class HomeView extends AbstractViewPage
 
 		super()
 
-		@setupDims()
+		# @setupDims()
 		@addGridItems()
+		# @setupIScroll()
 
 		return null
 
@@ -41,6 +44,22 @@ class HomeView extends AbstractViewPage
 			item = new HomeGridItem doodle
 			HomeView.gridItems.push item
 			@addChild item
+
+		null
+
+	setupIScroll : =>
+
+		@scroller = new IScroll @$el[0], probeType: 3, mouseWheel: true
+
+		@scroller.on 'scroll', @onScroll
+		@scroller.on 'scrollStart', @onScrollStart
+		@scroller.on 'scrollEnd', @onScrollEnd
+
+		null
+
+	onIScrollScroll : =>
+
+		console.log "onIScrollScroll : =>", @scroller.y
 
 		null
 
@@ -81,7 +100,13 @@ class HomeView extends AbstractViewPage
 	setListeners : (setting) =>
 
 		@CD().appView[setting] @CD().appView.EVENT_UPDATE_DIMENSIONS, @onResize
-		@CD().appView[setting] @CD().appView.EVENT_ON_SCROLL, @onScroll
+		# @CD().appView[setting] @CD().appView.EVENT_ON_SCROLL, @onScroll
+
+		if setting is 'off'
+			@scroller.off 'scroll', @onScroll
+			@scroller.off 'scrollStart', @onScrollStart
+			@scroller.off 'scrollEnd', @onScrollEnd
+			@scroller.destroy()
 
 		null
 
@@ -92,9 +117,28 @@ class HomeView extends AbstractViewPage
 
 		null
 
+	onScrollStart : =>
+
+		@$grid.removeClass 'enable-grid-item-hover'
+
+		null
+
+	onScrollEnd : =>
+
+		@$grid.addClass 'enable-grid-item-hover'
+		HomeView.scrollDelta = 0
+
+		null
+
 	onScroll : =>
 
-		HomeView.scrollDistance = @CD().appView.lastScrollY
+		# return false
+
+		# HomeView.scrollDistance = @CD().appView.lastScrollY
+		HomeView.scrollDelta = -@scroller.y - HomeView.scrollDistance
+		HomeView.scrollDistance = -@scroller.y
+
+		# console.log 'deltrong', HomeView.scrollDelta
 
 		# itemsToShow = @getRequiredDoodleCountByArea()
 		# if itemsToShow > 0 then @addDoodles itemsToShow
@@ -107,6 +151,11 @@ class HomeView extends AbstractViewPage
 
 		super
 
+		@setupDims()
+		@setupIScroll()
+		@scroller.scrollTo 0, -HomeView.scrollDistance
+		@onScroll()
+
 		null
 
 	animateIn : =>
@@ -116,10 +165,7 @@ class HomeView extends AbstractViewPage
 
 		if !HomeView.visitedThisSession
 			# @addDoodles @getRequiredDoodleCountByArea(), true
-			@onScroll()
 			HomeView.visitedThisSession = true
-		else
-			@CD().appView.$window.scrollTop HomeView.scrollDistance
 
 		null
 
@@ -132,8 +178,8 @@ class HomeView extends AbstractViewPage
 
 			item.$el.css
 				'visibility' : if position.visibility > 0 then 'visible' else 'hidden'
-				'opacity' : if position.visibility > 0 then position.visibility + 0.3 else 0
-				'transform' : "translate3d(0, #{position.transform}#{offset}px, 0)"
+				# 'opacity' : if position.visibility > 0 then position.visibility + 0.3 else 0
+				# 'transform' : "translate3d(0, #{position.transform}#{offset}px, 0)"
 
 		null
 

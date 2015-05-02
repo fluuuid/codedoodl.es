@@ -99,6 +99,7 @@
     "tweenlite": "TweenLite.js",
     "css-plugin": "CSSPlugin.js",
     "easepack": "EasePack.js",
-    "script": "script.js"
+    "script": "script.js",
+    "iscroll": "iscroll-probe.js"
   }
 }
