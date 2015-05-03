@@ -147,13 +147,13 @@
 		transform: rotate(-45deg) translate(-50%, -50%);
 		transform-origin: 0 0;
 		transition: all .5s $easeInOutQuad;
-		opacity: 0;
-		visibility: hidden;
 	}
 
 	.grid-item-thumb-cover {
 		z-index: 1;
 		background: $cd-blue;
+		opacity: 0;
+		visibility: hidden;
 	}
 
 	.grid-item-thumb {
@@ -161,6 +161,8 @@
 		background: url(https://placeimg.com/300/300/any) no-repeat center center;
 		background-size: cover;
 		z-index: 0;
+		opacity: 0.15;
+		visibility: visible;
 	}
 
 	.grid-item-lines {

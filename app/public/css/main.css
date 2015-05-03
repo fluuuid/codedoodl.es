@@ -1046,18 +1046,20 @@ input, button, textarea {
     -webkit-transform-origin: 0 0;
         -ms-transform-origin: 0 0;
             transform-origin: 0 0;
-    transition: all .5s cubic-bezier(0.455, 0.03, 0.515, 0.955);
-    opacity: 0;
-    visibility: hidden; }
+    transition: all .5s cubic-bezier(0.455, 0.03, 0.515, 0.955); }
   .home-grid-item .grid-item-thumb-cover {
     z-index: 1;
-    background: #395CAA; }
+    background: #395CAA;
+    opacity: 0;
+    visibility: hidden; }
   .home-grid-item .grid-item-thumb {
     -webkit-filter: brightness(0.8) contrast(2.5);
             filter: brightness(0.8) contrast(2.5);
     background: url(https://placeimg.com/300/300/any) no-repeat center center;
     background-size: cover;
-    z-index: 0; }
+    z-index: 0;
+    opacity: 0.15;
+    visibility: visible; }
   .home-grid-item .grid-item-lines {
     position: absolute;
     z-index: 2;
