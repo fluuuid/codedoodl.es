@@ -176,6 +176,16 @@
     <template id="doodle-info">
         <![CDATA[
             <div class="subpage-content">
+                <span class="doodle-preview">
+                    <span class="doodle-preview-thumb-holder">
+                        <span class="doodle-preview-thumb-cover"></span>
+                        <span class="doodle-preview-thumb" style="background-image: url(https://placeimg.com/300/300/any?time=<%= Math.random()*9999 %>)"></span>
+                    </span>
+                    <span class="doodle-preview-number">
+                        <%= indexHTML %>
+                    </span>
+                    <span class="doodle-preview-line"></span>
+                </span>
                 <div class="row row-author cf">
                     <div class="col col-1">01. <%= label_author %></div>
                     <div class="col col-2"><%= content_author %></div>
