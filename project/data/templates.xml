@@ -198,7 +198,7 @@
                 </div>
                 <div class="row row-share cf">
                     <div class="col col-1">06. <%= label_share %></div>
-                    <div class="col col-2"><a href="#" data-share="tw">Twitter</a>, <a href="#" data-share="fb">Facebook</a>, <a href="#"data-share="gp">Google+</a></div>
+                    <div class="col col-2"><a href="#" data-share-btn="twitter">Twitter</a>, <a href="#" data-share-btn="facebook">Facebook</a>, or copy <a href="<%= share_url %>"><%= share_url_text %></a></div>
                 </div>
             </div>
         ]]>

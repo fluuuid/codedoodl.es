@@ -94,7 +94,8 @@
                 "doodle_label_interaction_keyboard": "Keyboard",
                 "doodle_label_interaction_touch": "Touch",
                 "doodle_label_interaction_none": "None",
-                "doodle_label_share": "Share"
+                "doodle_label_share": "Share",
+                "doodle_share_text_tmpl": "{{ doodle_name }}&nbsp;by&nbsp;{{ doodle_author }}&nbsp;\\&nbsp;{{ share_url }}&nbsp;\\&nbsp;{{ doodle_tags}}&nbsp;via\\&nbsp;@codedoodl_es"
             }
         },
         "FOUR_OH_FOUR_PAGE": {

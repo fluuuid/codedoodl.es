@@ -31,6 +31,7 @@ class DoodlePageView extends AbstractViewPage
 
 		@CD().appView.header[setting] @CD().appView.header.EVENT_DOODLE_INFO_OPEN, @onInfoOpen
 		@CD().appView.header[setting] @CD().appView.header.EVENT_DOODLE_INFO_CLOSE, @onInfoClose
+		@$el[setting] 'click', '[data-share-btn]', @onShareBtnClick
 
 		null
 
@@ -120,6 +121,8 @@ class DoodlePageView extends AbstractViewPage
 			label_interaction          : @CD().locale.get "doodle_label_interaction"
 			content_interaction        : @_getInteractionContent()
 			label_share                : @CD().locale.get "doodle_label_share"
+			share_url                  : @CD().BASE_URL + '/' + @model.get('shortlink')
+			share_url_text             : @CD().BASE_URL.replace('http://', '') + '/' + @model.get('shortlink')
 
 		doodleInfoContent = _.template(@CD().templates.get('doodle-info'))(doodleInfoVars)
 
@@ -146,5 +149,29 @@ class DoodlePageView extends AbstractViewPage
 		@$el.removeClass('show-info')
 
 		null
+
+	onShareBtnClick : (e) =>
+
+		e.preventDefault()
+
+		url         = ' '
+		desc        = @getShareDesc()
+		shareMethod = $(e.currentTarget).attr('data-share-btn')
+
+		@CD().share[shareMethod] url, desc
+
+		null
+
+	getShareDesc : =>
+
+		vars =
+			doodle_name   : @model.get 'name'
+			doodle_author : if @model.get('author.twitter') then "@#{@model.get('author.twitter')}" else @model.get('author.name')
+			share_url     : @CD().BASE_URL + '/' + @model.get('shortlink')
+			doodle_tags   : _.map(@model.get('tags'), (tag) -> '#' + tag).join(' ')
+
+		desc = @supplantString @CD().locale.get('doodle_share_text_tmpl'), vars, false
+
+		desc.replace(/&nbsp;/g, ' ')
 
 module.exports = DoodlePageView
