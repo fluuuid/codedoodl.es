@@ -65,6 +65,7 @@
     "gulp-filter": "^1.0.2",
     "gulp-gzip": "^1.1.0",
     "gulp-imagemin": "^1.1.0",
+    "gulp-livereload": "^3.8.0",
     "gulp-minify-css": "~0.3.10",
     "gulp-minify-html": "~0.1.6",
     "gulp-minify-inline": "~0.1.0",
