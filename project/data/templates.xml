@@ -73,15 +73,15 @@
 
     <template id="home-grid-item">
         <![CDATA[
-            <article class="home-grid-item" data-grid-item="<%= index %>">
+            <article class="home-grid-item show-item" data-grid-item="<%= index %>">
                 <a class="grid-item-link" href="<%= url %>">
                     <span class="grid-item-thumb-holder">
                         <span class="grid-item-thumb-cover"></span>
                         <span class="grid-item-thumb" style="background-image: url(https://placeimg.com/300/300/any?time=<%= Math.random()*9999 %>)"></span>
                     </span>
                     <h1 class="grid-item-title">
-                        <span data-codeword="author_name" data-codeword-initial-state="blue"><%= scrambled.author_name %></span><br/>
-                        <span data-codeword="name" data-codeword-initial-state="blue"><%= scrambled.name %></span>
+                        <span data-codeword="author_name" data-codeword-initial-state="blue"><%= author.name %></span><br/>
+                        <span data-codeword="name" data-codeword-initial-state="blue"><%= name %></span>
                     </h1>
                     <span class="grid-item-number">
                         <%= indexHTML %>

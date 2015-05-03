@@ -39,7 +39,7 @@
 	height: $home-grid-item-height;
 	margin-right: 20px;
 	// margin-bottom: 20px;
-	// opacity: 0;
+	opacity: 0;
 	// transition: transform 0.5s $easeOutCubic;
 
 	@media #{$grid-five-bp} {
@@ -74,7 +74,7 @@
 			opacity: 1;
 			visibility: visible;
 			height: 16px;
-			transform: translate(0, -15px);
+			transform: translate3d(0, -15px, 0);
 		}
 	}
 
@@ -129,9 +129,10 @@
 		left: $home-grid-item-width/2;
 		display: block;
 		background: $cd-red;
-		transform: rotate(45deg) translate(-50%, -50%);
+		transform: rotate(45deg) translate3d(-50%, -50%, 0);
 		transform-origin: 0 0;
 		transition: all .5s $easeInOutQuad;
+		backface-visibility: hidden;
 		border-radius: 50%;
 		overflow: hidden;
 	}
@@ -205,6 +206,7 @@
 		line-height: 1;
 		z-index: 3;
 		color: $cd-blue;
+		transform: translateZ(0);
 
 		.index-char-nonzero {
 			font-family: $ff-monosten-a;
