@@ -39,8 +39,8 @@ class Preloader extends AbstractView
 		console.log "show : (@cb) =>"
 
 		# DEBUG!
-		@$el.removeClass('show-preloader')
-		return @onHideComplete()
+		# @$el.removeClass('show-preloader')
+		# return @onHideComplete()
 
 		@$el
 			.find('[data-dots]')

@@ -78,6 +78,10 @@
 		}
 	}
 
+	.enable-grid-item-hover & {
+		transition: transform 0.1s $easeOutCubic;
+	}
+
 	.no-touch .enable-grid-item-hover & {
 
 		&:hover,

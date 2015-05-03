@@ -993,6 +993,9 @@ input, button, textarea {
     -webkit-transform: translate(0, -15px);
         -ms-transform: translate(0, -15px);
             transform: translate(0, -15px); }
+  .enable-grid-item-hover .home-grid-item {
+    transition: -webkit-transform 0.1s cubic-bezier(0.215, 0.61, 0.355, 1);
+    transition: transform 0.1s cubic-bezier(0.215, 0.61, 0.355, 1); }
   .no-touch .enable-grid-item-hover .home-grid-item:hover .grid-item-thumb-holder, .no-touch .enable-grid-item-hover .home-grid-item:hover .grid-item-thumb-cover, .no-touch .enable-grid-item-hover .home-grid-item:hover .grid-item-thumb, .no-touch .enable-grid-item-hover .home-grid-item.hovered .grid-item-thumb-holder, .no-touch .enable-grid-item-hover .home-grid-item.hovered .grid-item-thumb-cover, .no-touch .enable-grid-item-hover .home-grid-item.hovered .grid-item-thumb {
     transition-timing-function: cubic-bezier(1, 0, 0, 1); }
   .no-touch .enable-grid-item-hover .home-grid-item:hover .grid-item-thumb-holder, .no-touch .enable-grid-item-hover .home-grid-item.hovered .grid-item-thumb-holder {

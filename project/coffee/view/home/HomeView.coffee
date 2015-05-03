@@ -15,7 +15,12 @@ class HomeView extends AbstractViewPage
 	@scrollDelta    : 0
 	@scrollDistance : 0
 
+	# rAF
+	@ticking : false
+
 	@SHOW_ROW_THRESHOLD : 0.3 # how much of a grid row (scale 0 -> 1) must be visible before it is "shown"
+
+	EVENT_TICK : 'EVENT_TICK'
 
 	template      : 'page-home'
 	addToSelector : '[data-home-grid]'
@@ -41,7 +46,7 @@ class HomeView extends AbstractViewPage
 
 		for doodle in @allDoodles.models
 
-			item = new HomeGridItem doodle
+			item = new HomeGridItem doodle, @
 			HomeView.gridItems.push item
 			@addChild item
 
@@ -49,7 +54,16 @@ class HomeView extends AbstractViewPage
 
 	setupIScroll : =>
 
-		@scroller = new IScroll @$el[0], probeType: 3, mouseWheel: true
+		iScrollOpts = 
+			probeType             : 3
+			mouseWheel            : true
+			scrollbars            : true
+			interactiveScrollbars : true
+			fadeScrollbars        : true
+			momentum              : false
+			bounce                : false
+
+		@scroller = new IScroll @$el[0], iScrollOpts
 
 		@scroller.on 'scroll', @onScroll
 		@scroller.on 'scrollStart', @onScrollStart
@@ -121,6 +135,10 @@ class HomeView extends AbstractViewPage
 
 		@$grid.removeClass 'enable-grid-item-hover'
 
+		if !@ticking
+			@ticking = true
+			requestAnimationFrame @onTick
+
 		null
 
 	onScrollEnd : =>
@@ -144,6 +162,25 @@ class HomeView extends AbstractViewPage
 		# if itemsToShow > 0 then @addDoodles itemsToShow
 
 		@checkItemsForVisibility()
+
+		null
+
+	onTick : =>
+
+		# console.log "tick..."
+		@trigger @EVENT_TICK, HomeView.scrollDelta
+
+		shouldTick = false
+		for item, i in HomeView.gridItems
+			if item.offset isnt 0
+				shouldTick = true 
+				break
+
+		if shouldTick
+			requestAnimationFrame @onTick
+		else
+			console.log "NO MO TICKING"
+			@ticking = false
 
 		null
 
@@ -180,6 +217,11 @@ class HomeView extends AbstractViewPage
 				'visibility' : if position.visibility > 0 then 'visible' else 'hidden'
 				# 'opacity' : if position.visibility > 0 then position.visibility + 0.3 else 0
 				# 'transform' : "translate3d(0, #{position.transform}#{offset}px, 0)"
+
+			if position.visibility > 0
+				item.visible = true
+			else
+				item.visible = false
 
 		null
 
