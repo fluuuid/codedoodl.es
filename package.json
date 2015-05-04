@@ -32,23 +32,24 @@
     ]
   },
   "dependencies": {
-    "nodemon": "^1.3.7",
+    "adm-zip": "^0.4.7",
+    "body-parser": "~1.2.0",
     "coffee-script": "~1.7.1",
+    "colors": "^1.0.3",
+    "cookie-parser": "~1.0.1",
+    "cors": "^2.5.3",
+    "ejs": "~1.0.0",
     "express": "~4.1.2",
     "express-session": "~1.1.0",
-    "cookie-parser": "~1.0.1",
-    "body-parser": "~1.2.0",
-    "ejs": "~1.0.0",
-    "winston": "~0.7.3",
-    "underscore": "~1.7.0",
-    "colors": "^1.0.3",
-    "cors": "^2.5.3",
-    "request": "^2.53.0",
-    "adm-zip": "^0.4.7",
-    "wrench": "^1.5.8",
-    "rimraf": "^2.2.8",
+    "hashids": "^1.0.1",
+    "mkdirp": "^0.5.0",
     "node-uuid": "^1.4.2",
-    "mkdirp": "^0.5.0"
+    "nodemon": "^1.3.7",
+    "request": "^2.53.0",
+    "rimraf": "^2.2.8",
+    "underscore": "~1.7.0",
+    "winston": "~0.7.3",
+    "wrench": "^1.5.8"
   },
   "devDependencies": {
     "browser-sync": "~1.5.7",
@@ -65,6 +66,7 @@
     "gulp-filter": "^1.0.2",
     "gulp-gzip": "^1.1.0",
     "gulp-imagemin": "^1.1.0",
+    "gulp-livereload": "^3.8.0",
     "gulp-minify-css": "~0.3.10",
     "gulp-minify-html": "~0.1.6",
     "gulp-minify-inline": "~0.1.0",
@@ -99,6 +101,7 @@
     "tweenlite": "TweenLite.js",
     "css-plugin": "CSSPlugin.js",
     "easepack": "EasePack.js",
-    "script": "script.js"
+    "script": "script.js",
+    "iscroll": "iscroll-probe.js"
   }
 }

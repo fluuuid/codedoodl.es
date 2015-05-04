@@ -1,6 +1,7 @@
 AbstractModel        = require '../AbstractModel'
 NumberUtils          = require '../../utils/NumberUtils'
 CodeWordTransitioner = require '../../utils/CodeWordTransitioner'
+Hashids              = require 'hashids'
 
 class DoodleModel extends AbstractModel
 
@@ -20,8 +21,10 @@ class DoodleModel extends AbstractModel
             "touch"    : null
         "created" : ""
         "slug" : ""
+        "shortlink" : ""
         "colour_scheme" : ""
         "index": null
+        "index_padded" : ""
         # site-only
         "indexHTML" : ""
         "source"    : ""
@@ -36,15 +39,13 @@ class DoodleModel extends AbstractModel
             attrs.url = window.config.hostname + '/' + window.config.routes.DOODLES + '/' + attrs.slug
 
         if attrs.index
-            attrs.index = NumberUtils.zeroFill attrs.index, 3
+            attrs.index_padded = NumberUtils.zeroFill attrs.index, 3
+            attrs.indexHTML    = @getIndexHTML attrs.index_padded
 
         if attrs.name and attrs.author.name
             attrs.scrambled =
                 name        : CodeWordTransitioner.getScrambledWord attrs.name
                 author_name : CodeWordTransitioner.getScrambledWord attrs.author.name
-
-        if attrs.index
-            attrs.indexHTML = @getIndexHTML attrs.index
 
         attrs
 
@@ -66,14 +67,23 @@ class DoodleModel extends AbstractModel
         html  = ""
         links = []
 
-        html += "#{attrs.name} / "
+        html += "#{attrs.name} \\ "
 
         if attrs.website then links.push "<a href=\"#{attrs.website}\" target=\"_blank\">#{portfolio_label}</a> "
         if attrs.twitter then links.push "<a href=\"http://twitter.com/#{attrs.twitter}\" target=\"_blank\">tw</a>"
         if attrs.github then links.push "<a href=\"http://github.com/#{attrs.github}\" target=\"_blank\">gh</a>"
 
-        html += "#{links.join(' / ')}"
+        html += "#{links.join(' \\ ')}"
 
         html
+
+    # no need to do this for every doodle - only do it if we view the info pane for a particular doodle
+    setShortlink : =>
+
+        h = new Hashids window.config.shortlinks.SALT, 0, window.config.shortlinks.ALPHABET
+        shortlink = h.encode @get 'index'
+        @set 'shortlink', shortlink
+
+        null
 
 module.exports = DoodleModel

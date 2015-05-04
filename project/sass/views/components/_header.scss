@@ -100,4 +100,11 @@
             // display: block;
         }
     }
+
+    &[data-section="doodle-info"] {
+
+        .info-btn {
+            cursor: default;
+        }
+    }
 }

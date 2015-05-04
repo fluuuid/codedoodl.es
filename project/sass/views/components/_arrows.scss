@@ -17,10 +17,12 @@
 
 	&:after {
 		transform: rotate(-45deg);
+		transform-origin: top right;
 	}
 
 	&:before {
 		transform: rotate(45deg);
+		transform-origin: bottom right;
 	}
 
 	.nav-arrow__inner {

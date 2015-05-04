@@ -38,7 +38,7 @@
     <template id="site-header">
         <![CDATA[
             <header id="site-header">
-                <h1 class="logo"><a class="logo__link" href="<%= home.url %>" data-codeword data-codeword-initial-state="red"><%= home.label %></a></h1>
+                <h1 class="logo" data-logo><a class="logo__link" href="<%= home.url %>" data-codeword data-codeword-initial-state="red"><%= home.label %></a></h1>
                 <nav class="site-nav">
                     <a class="site-nav__link about-btn" href="<%= about.url %>" data-word-section="<%= about.section %>" data-codeword data-codeword-initial-state="red"><%= about.label %></a>
                     <a class="site-nav__link contribute-btn" href="<%= contribute.url %>" data-word-section="<%= contribute.section %>" data-codeword data-codeword-initial-state="red"><%= contribute.label %></a>
@@ -66,22 +66,22 @@
     <template id="page-home">
         <![CDATA[
             <section id="page-home" class="page page-home">
-                <div class="home-grid cf" data-home-grid></div>
+                <div class="home-grid before-intro-animation enable-grid-item-hover cf" data-home-grid></div>
             </section>
         ]]>
     </template>
 
     <template id="home-grid-item">
         <![CDATA[
-            <article class="home-grid-item" data-grid-item="<%= index %>">
+            <article class="home-grid-item" data-grid-item="<%= index_padded %>">
                 <a class="grid-item-link" href="<%= url %>">
                     <span class="grid-item-thumb-holder">
                         <span class="grid-item-thumb-cover"></span>
                         <span class="grid-item-thumb" style="background-image: url(https://placeimg.com/300/300/any?time=<%= Math.random()*9999 %>)"></span>
                     </span>
                     <h1 class="grid-item-title">
-                        <span data-codeword="author_name" data-codeword-initial-state="blue"><%= scrambled.author_name %></span><br/>
-                        <span data-codeword="name" data-codeword-initial-state="blue"><%= scrambled.name %></span>
+                        <span data-codeword="author_name" data-codeword-initial-state="blue"><%= author.name %></span><br/>
+                        <span data-codeword="name" data-codeword-initial-state="blue"><%= name %></span>
                     </h1>
                     <span class="grid-item-number">
                         <%= indexHTML %>
@@ -176,6 +176,16 @@
     <template id="doodle-info">
         <![CDATA[
             <div class="subpage-content">
+                <span class="doodle-preview">
+                    <span class="doodle-preview-thumb-holder">
+                        <span class="doodle-preview-thumb-cover"></span>
+                        <span class="doodle-preview-thumb" style="background-image: url(https://placeimg.com/300/300/any?time=<%= Math.random()*9999 %>)"></span>
+                    </span>
+                    <span class="doodle-preview-number">
+                        <%= indexHTML %>
+                    </span>
+                    <span class="doodle-preview-line"></span>
+                </span>
                 <div class="row row-author cf">
                     <div class="col col-1">01. <%= label_author %></div>
                     <div class="col col-2"><%= content_author %></div>
@@ -198,9 +208,23 @@
                 </div>
                 <div class="row row-share cf">
                     <div class="col col-1">06. <%= label_share %></div>
-                    <div class="col col-2"><a href="#" data-share="tw">Twitter</a>, <a href="#" data-share="fb">Facebook</a>, <a href="#"data-share="gp">Google+</a></div>
+                    <div class="col col-2"><a href="#" data-share-btn="twitter">Twitter</a>, <a href="#" data-share-btn="facebook">Facebook</a>, or copy <a href="<%= share_url %>"><%= share_url_text %></a></div>
                 </div>
             </div>
+        ]]>
+    </template>
+
+    <!--
+        PAGE 404
+    -->
+
+    <template id="page-four-oh-four">
+        <![CDATA[
+            <section id="page-four-oh-four" class="page page-four-oh-four">
+                <div class="page-content">
+                    <p class="not-found-message"><%= text %></p>
+                </div>
+            </section>
         ]]>
     </template>
 

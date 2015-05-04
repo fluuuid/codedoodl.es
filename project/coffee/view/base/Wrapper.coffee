@@ -3,6 +3,7 @@ HomeView           = require '../home/HomeView'
 AboutPageView      = require '../aboutPage/AboutPageView'
 ContributePageView = require '../contributePage/ContributePageView'
 DoodlePageView     = require '../doodlePage/DoodlePageView'
+FourOhFourPageView = require '../fourOhFourPage/FourOhFourPageView'
 Nav                = require '../../router/Nav'
 
 class Wrapper extends AbstractView
@@ -24,6 +25,7 @@ class Wrapper extends AbstractView
 			about      : classRef : AboutPageView,      route : @CD().nav.sections.ABOUT,      view : null, type : @VIEW_TYPE_PAGE
 			contribute : classRef : ContributePageView, route : @CD().nav.sections.CONTRIBUTE, view : null, type : @VIEW_TYPE_PAGE
 			doodle     : classRef : DoodlePageView,     route : @CD().nav.sections.DOODLES,    view : null, type : @VIEW_TYPE_PAGE
+			fourOhFour : classRef : FourOhFourPageView, route : false, view : null, type : @VIEW_TYPE_PAGE
 
 		@createClasses()
 
@@ -47,10 +49,21 @@ class Wrapper extends AbstractView
 
 		null
 
+	# getViewByRoute : (route) =>
+
+	# 	for name, data of @views
+	# 		view = @views[name] if route is @views[name].route
+
+	# 	if !view then return @views.fourOhFour
+
+	# 	view
+
 	getViewByRoute : (route) =>
 
 		for name, data of @views
 			return @views[name] if route is @views[name].route
+
+		if route then return @views.fourOhFour
 
 		null
 

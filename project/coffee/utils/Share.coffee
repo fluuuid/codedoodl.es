@@ -60,6 +60,8 @@ class Share
 
     twitter : ( url , copy = '') =>
 
+        console.log "twitter : ( url , copy = '') =>", url, copy
+
         url   = encodeURIComponent(url or @url)
         if copy is ''
             copy = @CD().locale.get 'seo_twitter_card_description'

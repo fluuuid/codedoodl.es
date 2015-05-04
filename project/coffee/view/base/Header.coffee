@@ -9,8 +9,9 @@ class Header extends AbstractView
 	FIRST_HASHCHANGE : true
 	DOODLE_INFO_OPEN : false
 
-	EVENT_DOODLE_INFO_OPEN  : 'EVENT_DOODLE_INFO_OPEN'
-	EVENT_DOODLE_INFO_CLOSE : 'EVENT_DOODLE_INFO_CLOSE'
+	EVENT_DOODLE_INFO_OPEN   : 'EVENT_DOODLE_INFO_OPEN'
+	EVENT_DOODLE_INFO_CLOSE  : 'EVENT_DOODLE_INFO_CLOSE'
+	EVENT_HOME_SCROLL_TO_TOP : 'EVENT_HOME_SCROLL_TO_TOP'
 
 	constructor : ->
 
@@ -55,6 +56,10 @@ class Header extends AbstractView
 
 		@$infoBtn.on 'click', @onInfoBtnClick
 		@$closeBtn.on 'click', @onCloseBtnClick
+
+		@$el.on 'click', '[data-logo]', @onLogoClick
+
+		@CD().appView.$window.on 'keyup', @onKeyup
 
 		null
 
@@ -153,6 +158,13 @@ class Header extends AbstractView
 
 		null
 
+	onLogoClick : =>
+
+		if @CD().nav.current.area is @CD().nav.sections.HOME
+			@trigger @EVENT_HOME_SCROLL_TO_TOP
+
+		null
+
 	onInfoBtnClick : (e) =>
 
 		e.preventDefault()
@@ -169,6 +181,12 @@ class Header extends AbstractView
 			e.preventDefault()
 			e.stopPropagation()
 			@hideDoodleInfo()
+
+		null
+
+	onKeyup : (e) =>
+
+		if e.keyCode is 27 and @CD().nav.current.area is @CD().nav.sections.DOODLES then @hideDoodleInfo()
 
 		null
 
