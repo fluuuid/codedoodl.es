@@ -1326,7 +1326,8 @@ input, button, textarea {
       font-family: 'monostenf', 'Consolas', 'monospace'; }
     .page-doodle .subpage-info .subpage-content {
       padding: 25px 0;
-      position: relative; }
+      position: relative;
+      top: 55%; }
       .page-doodle .subpage-info .subpage-content:after, .page-doodle .subpage-info .subpage-content:before {
         content: '';
         position: absolute;
