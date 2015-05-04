@@ -73,7 +73,7 @@
 
     <template id="home-grid-item">
         <![CDATA[
-            <article class="home-grid-item" data-grid-item="<%= index %>">
+            <article class="home-grid-item" data-grid-item="<%= index_padded %>">
                 <a class="grid-item-link" href="<%= url %>">
                     <span class="grid-item-thumb-holder">
                         <span class="grid-item-thumb-cover"></span>
@@ -208,9 +208,23 @@
                 </div>
                 <div class="row row-share cf">
                     <div class="col col-1">06. <%= label_share %></div>
-                    <div class="col col-2"><a href="#" data-share="tw">Twitter</a>, <a href="#" data-share="fb">Facebook</a>, <a href="#"data-share="gp">Google+</a></div>
+                    <div class="col col-2"><a href="#" data-share-btn="twitter">Twitter</a>, <a href="#" data-share-btn="facebook">Facebook</a>, or copy <a href="<%= share_url %>"><%= share_url_text %></a></div>
                 </div>
             </div>
+        ]]>
+    </template>
+
+    <!--
+        PAGE 404
+    -->
+
+    <template id="page-four-oh-four">
+        <![CDATA[
+            <section id="page-four-oh-four" class="page page-four-oh-four">
+                <div class="page-content">
+                    <p class="not-found-message"><%= text %></p>
+                </div>
+            </section>
         ]]>
     </template>
 

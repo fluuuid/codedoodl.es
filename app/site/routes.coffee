@@ -1,15 +1,10 @@
-_            = require 'underscore'
-bodyParser   = require 'body-parser'
-cookieParser = require 'cookie-parser'
-session      = require 'express-session'
-config       = require '../../config/server'
-locale       = require '../public/data/locales/strings.json'
-
-getTemplateData = (route) ->
-
-	return _.extend {},
-		config     : config
-		page_title : locale.strings.PAGE_TITLES.strings["page_title_#{route}"]
+_               = require 'underscore'
+bodyParser      = require 'body-parser'
+cookieParser    = require 'cookie-parser'
+session         = require 'express-session'
+config          = require '../../config/server'
+getTemplateData = require '../utils/getTemplateData'
+Hashids         = require 'hashids'
 
 ###
 views
@@ -30,6 +25,20 @@ doodles = (req, res) ->
 	if !req.params.authorName or !req.params.doodleName
 		return res.redirect 301, "/#{config.routes.HOME}"
 	res.render "site/index", getTemplateData('DOODLES')
+
+checkShortLink = (req, res, next) ->
+	segments = req.params.path.split('/')
+
+	if segments.length is 1
+		allDoodles = require('../../utils/getDoodleData').getDoodles().doodles
+		hashids    = new Hashids config.shortlinks.SALT, 0, config.shortlinks.ALPHABET
+		index      = hashids.decode(segments[0])[0]
+		doodle     = _.findWhere allDoodles, index : index
+
+		if doodle
+			return res.redirect 301, "/#{config.routes.DOODLES}/#{doodle.slug}"
+
+	next()
 
 ###
 basic password-protect
@@ -66,6 +75,7 @@ setup = (app) ->
 
 	app.get '/holding/*', (req, res, next) => res.sendfile "public#{req.url}"
 
+	app.get '/:path(*)', checkShortLink
 	app.get '*', checkAuth
 
 module.exports = setup

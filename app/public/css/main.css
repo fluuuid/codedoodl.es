@@ -1463,3 +1463,15 @@ input, button, textarea {
 .page-about .page-content .row-who {
   max-height: 300px; }
 
+.page-four-oh-four {
+  background: #395CAA; }
+  .page-four-oh-four .not-found-message {
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+    border-bottom: 2px solid #EB423E;
+    padding-bottom: 5px; }

@@ -28,7 +28,8 @@
                 "page_title_ABOUT": "about \\\\ codedoodl.es",
                 "page_title_CONTRIBUTE": "contribute \\\\ codedoodl.es",
                 "page_title_DOODLES": "{{ name }}  \\\\ codedoodl.es",
-                "page_title_HOLDING": "codedoodl.es \\\\ coming soon"
+                "page_title_HOLDING": "codedoodl.es \\\\ coming soon",
+                "page_title_FOUR_OH_FOUR": "codedoodl.es \\\\ 404 \\ pageNotFound"
             }
         },
         "PAGE_TRANSITIONER": {
@@ -93,10 +94,16 @@
                 "doodle_label_interaction_keyboard": "Keyboard",
                 "doodle_label_interaction_touch": "Touch",
                 "doodle_label_interaction_none": "None",
-                "doodle_label_share": "Share"
+                "doodle_label_share": "Share",
+                "doodle_share_text_tmpl": "{{ doodle_name }}&nbsp;by&nbsp;{{ doodle_author }}&nbsp;\\&nbsp;{{ share_url }}&nbsp;\\&nbsp;{{ doodle_tags}}&nbsp;via\\&nbsp;@codedoodl_es"
             }
-        }
-        ,
+        },
+        "FOUR_OH_FOUR_PAGE": {
+            "title": "404 page",
+            "strings": {
+                "four_oh_four_page_text": "Sorry... page not found"
+            }
+        },
         "MISC": {
             "title": "Miscelleanous",
             "strings": {

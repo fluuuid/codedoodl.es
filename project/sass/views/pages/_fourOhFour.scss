@@ -1,0 +1,13 @@
+.page-four-oh-four {
+	background: $cd-blue;
+
+	.not-found-message {
+		color: #fff;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		border-bottom: 2px solid $cd-red;
+		padding-bottom: 5px;
+	}
+}

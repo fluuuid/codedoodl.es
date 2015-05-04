@@ -19,3 +19,7 @@ config.routes =
 	CONTRIBUTE : 'contribute'
 	DOODLES    : '~'
 	LOGIN      : 'login'
+
+config.shortlinks =
+	SALT     : 'no need for this to be private I guess'
+	ALPHABET : 'abcdefghijklmnopqrstuvwxyz'

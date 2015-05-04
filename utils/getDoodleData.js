@@ -41,7 +41,10 @@ function getDoodles() {
 
   });
 
-  return doodles;
+  // return doodles;
+
+  // ACTUALLY JUST KIDDING, SERVE THE DUMMY SHIT PLZ!!!
+  return require('../app/public/data/_DUMMY/doodles.json');
 
 }
 
