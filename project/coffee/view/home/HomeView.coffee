@@ -70,6 +70,19 @@ class HomeView extends AbstractViewPage
 
 		null
 
+	setListeners : (setting) =>
+
+		@CD().appView[setting] @CD().appView.EVENT_UPDATE_DIMENSIONS, @onResize
+		# @CD().appView[setting] @CD().appView.EVENT_ON_SCROLL, @onScroll
+
+		if setting is 'off'
+			@scroller.off 'scroll', @onScroll
+			@scroller.off 'scrollStart', @onScrollStart
+			@scroller.off 'scrollEnd', @onScrollEnd
+			@scroller.destroy()
+
+		null
+
 	setupDims : =>
 
 		gridWidth = @$grid.outerWidth()
@@ -102,22 +115,16 @@ class HomeView extends AbstractViewPage
 
 		null
 
-	setListeners : (setting) =>
+	setItemsOffsetAndEase : =>
 
-		@CD().appView[setting] @CD().appView.EVENT_UPDATE_DIMENSIONS, @onResize
-		# @CD().appView[setting] @CD().appView.EVENT_ON_SCROLL, @onScroll
-
-		if setting is 'off'
-			@scroller.off 'scroll', @onScroll
-			@scroller.off 'scrollStart', @onScrollStart
-			@scroller.off 'scrollEnd', @onScrollEnd
-			@scroller.destroy()
+		(item.setOffsetAndEase i, HomeView.colCount) for item, i in HomeView.gridItems
 
 		null
 
 	onResize : =>
 
 		@setupDims()
+		@setItemsOffsetAndEase()
 		@onScroll()
 
 		null
@@ -175,7 +182,6 @@ class HomeView extends AbstractViewPage
 		if shouldTick
 			requestAnimationFrame @onTick
 		else
-			console.log "NO MO TICKING"
 			@ticking = false
 
 		null
@@ -189,8 +195,11 @@ class HomeView extends AbstractViewPage
 	startScroller : =>
 
 		@setupDims()
+
 		@setupIScroll()
 		@scroller.scrollTo 0, -HomeView.scrollDistance
+		@setItemsOffsetAndEase()
+
 		@onScroll()
 
 		null
@@ -313,16 +322,10 @@ class HomeView extends AbstractViewPage
 
 	animateItemIn : (item, index, fullPageTransition=false, cb=null) =>
 
-		if cb
-			onComplete = =>
-				item.show()
-				cb()
-		else
-			onComplete = item.show
-
 		duration   = 0.5
 		fromParams = y : (if fullPageTransition then window.innerHeight else 0), opacity : 0, scale : 0.6
-		toParams   = delay : (duration * 0.2) * index, y : 0, opacity : 1, scale : 1 , ease : Expo.easeOut, onComplete : onComplete
+		toParams   = delay : (duration * 0.2) * index, y : 0, opacity : 1, scale : 1 , ease : Expo.easeOut
+		if cb then toParams.onComplete = cb
 
 		TweenLite.fromTo item.$el, duration, fromParams, toParams
 

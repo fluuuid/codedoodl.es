@@ -23,10 +23,6 @@ class HomeGridItem extends AbstractView
 
 	constructor : (@model, @parentGrid) ->
 
-		idx = @CD().appData.doodles.indexOf @model
-		@maxOffset = (((idx % 5) + 1) * @ITEM_MIN_OFFSET) / 10
-		@ease = (((idx % 5) + 1) * @ITEM_MIN_EASE) / 100
-
 		@templateVars = _.extend {}, @model.toJSON()
 
 		# @maxOffset    = (_.random @ITEM_MIN_OFFSET, @ITEM_MAX_OFFSET) / 10
@@ -36,6 +32,14 @@ class HomeGridItem extends AbstractView
 		super
 
 		return null
+
+	setOffsetAndEase : (idx, colCount) =>
+
+		# idx = @CD().appData.doodles.indexOf @model
+		@maxOffset = (((idx % colCount) + 1) * @ITEM_MIN_OFFSET) / 10
+		@ease = (((idx % colCount) + 1) * @ITEM_MIN_EASE) / 100
+
+		null
 
 	init : =>
 
