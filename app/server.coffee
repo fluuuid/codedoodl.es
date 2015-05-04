@@ -2,7 +2,14 @@
 
 config  = require "../config/server"
 express = require "express"
+path = require "path"
 app     = express()
+
+gzipExtRegex = /\.(css|js|svg|gz)(?:$|\?)/
+gzipStaticAssets = (req, res, next) ->
+    if gzipExtRegex.test req.url
+        res.set 'Content-Encoding', 'gzip'
+    next()
 
 log = require("winston").loggers.get("app:server")
 
@@ -17,6 +24,7 @@ app.set 'view engine', 'html'
 ].forEach (routePath) ->
 	require(routePath)(app)
 
+app.use gzipStaticAssets
 app.use(express.static(__dirname + '/public'))
 
 app.use require("./middleware").notFound

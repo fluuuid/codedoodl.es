@@ -93,6 +93,7 @@
     "watchify": "~2.0.0"
   },
   "vendor": {
+    "modernizr": "modernizr-dev.js",
     "jquery": "jquery-2.1.0.js",
     "underscore": "underscore.js",
     "backbone": "backbone.js",

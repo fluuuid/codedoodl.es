@@ -53,7 +53,7 @@ gulp.task('browserify', function() {
 			.pipe(global.isWatching ? gutil.noop() : uglify())
 
       // always gzip, make sure headers set by server
-      // .pipe(gzip({ append: false }))
+      .pipe(gzip({ append: false }))
 
       // Specify the output destination
       .pipe(gulp.dest('./'+pkg.folders.dest+'/js/'))

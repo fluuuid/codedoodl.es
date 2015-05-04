@@ -22,7 +22,7 @@ gulp.task('sass', ['images'], function () {
         .pipe(global.isWatching ? gutil.noop() : cmq())
         .pipe(global.isWatching ? gutil.noop() : minifyCSS())
         // always gzip, make sure headers set by server
-        // .pipe(gzip({ append: false }))
+        .pipe(gzip({ append: false }))
         .pipe(gulp.dest(pkg.folders.dest+'/css'))
         .pipe(!global.isWatching ? gutil.noop() : livereload({
             host: '127.0.0.1',
