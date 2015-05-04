@@ -80,6 +80,8 @@ class DoodleModel extends AbstractModel
     # no need to do this for every doodle - only do it if we view the info pane for a particular doodle
     setShortlink : =>
 
+        return if @get 'shortlink'
+
         h = new Hashids window.config.shortlinks.SALT, 0, window.config.shortlinks.ALPHABET
         shortlink = h.encode @get 'index'
         @set 'shortlink', shortlink
