@@ -86,6 +86,12 @@
 		transition: transform 0.1s $easeOutCubic;
 	}
 
+	.before-intro-animation & {
+		transition: none !important;
+		display: inline-block;
+		float: none;
+	}
+
 	.no-touch .enable-grid-item-hover & {
 
 		&:hover,

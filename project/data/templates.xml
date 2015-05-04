@@ -38,7 +38,7 @@
     <template id="site-header">
         <![CDATA[
             <header id="site-header">
-                <h1 class="logo"><a class="logo__link" href="<%= home.url %>" data-codeword data-codeword-initial-state="red"><%= home.label %></a></h1>
+                <h1 class="logo" data-logo><a class="logo__link" href="<%= home.url %>" data-codeword data-codeword-initial-state="red"><%= home.label %></a></h1>
                 <nav class="site-nav">
                     <a class="site-nav__link about-btn" href="<%= about.url %>" data-word-section="<%= about.section %>" data-codeword data-codeword-initial-state="red"><%= about.label %></a>
                     <a class="site-nav__link contribute-btn" href="<%= contribute.url %>" data-word-section="<%= contribute.section %>" data-codeword data-codeword-initial-state="red"><%= contribute.label %></a>
@@ -66,7 +66,7 @@
     <template id="page-home">
         <![CDATA[
             <section id="page-home" class="page page-home">
-                <div class="home-grid enable-grid-item-hover cf" data-home-grid></div>
+                <div class="home-grid before-intro-animation enable-grid-item-hover cf" data-home-grid></div>
             </section>
         ]]>
     </template>

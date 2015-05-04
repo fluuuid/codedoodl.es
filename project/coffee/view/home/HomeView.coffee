@@ -75,6 +75,8 @@ class HomeView extends AbstractViewPage
 		@CD().appView[setting] @CD().appView.EVENT_UPDATE_DIMENSIONS, @onResize
 		# @CD().appView[setting] @CD().appView.EVENT_ON_SCROLL, @onScroll
 
+		@CD().appView.header[setting] @CD().appView.header.EVENT_HOME_SCROLL_TO_TOP, @scrollToTop
+
 		if setting is 'off'
 			@scroller.off 'scroll', @onScroll
 			@scroller.off 'scrollStart', @onScrollStart
@@ -126,6 +128,7 @@ class HomeView extends AbstractViewPage
 		@setupDims()
 		@setItemsOffsetAndEase()
 		@onScroll()
+		@onScrollEnd()
 
 		null
 
@@ -183,6 +186,13 @@ class HomeView extends AbstractViewPage
 			requestAnimationFrame @onTick
 		else
 			@ticking = false
+
+		null
+
+	scrollToTop : =>
+
+		return unless @scroller
+		@scroller.scrollTo 0, 0, 700, IScroll.utils.ease.quadratic
 
 		null
 
@@ -326,7 +336,10 @@ class HomeView extends AbstractViewPage
 		duration   = 0.4
 		fromParams = y : (if fullPageTransition then window.innerHeight else 0), opacity : 0, scale : 0.6
 		toParams   = delay : (duration * 0.2) * index, y : 0, opacity : 1, scale : 1 , ease : Expo.easeOut
-		if cb then toParams.onComplete = cb
+
+		if cb then toParams.onComplete = =>
+			@$grid.removeClass 'before-intro-animation'
+			cb()
 
 		TweenLite.fromTo item.$el, duration, fromParams, toParams
 
