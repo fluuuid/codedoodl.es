@@ -82,6 +82,7 @@ class HomeView extends AbstractViewPage
 			@scroller.off 'scrollStart', @onScrollStart
 			@scroller.off 'scrollEnd', @onScrollEnd
 			@scroller.destroy()
+			@scroller = null
 
 		null
 
@@ -127,8 +128,10 @@ class HomeView extends AbstractViewPage
 
 		@setupDims()
 		@setItemsOffsetAndEase()
-		@onScroll()
-		@onScrollEnd()
+
+		if @scroller
+			@onScroll()
+			@onScrollEnd()
 
 		null
 
