@@ -73,7 +73,7 @@
 
     <template id="home-grid-item">
         <![CDATA[
-            <article class="home-grid-item" data-grid-item="<%= index %>">
+            <article class="home-grid-item" data-grid-item="<%= index_padded %>">
                 <a class="grid-item-link" href="<%= url %>">
                     <span class="grid-item-thumb-holder">
                         <span class="grid-item-thumb-cover"></span>

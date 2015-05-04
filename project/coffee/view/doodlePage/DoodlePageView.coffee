@@ -109,6 +109,9 @@ class DoodlePageView extends AbstractViewPage
 
 	getDoodleInfoContent : =>
 
+		# no need to do this for every doodle - only do it if we view the info pane for a particular doodle
+		@model.setShortlink()
+
 		doodleInfoVars =
 			label_author               : @CD().locale.get "doodle_label_author"
 			content_author             : @model.getAuthorHtml()
