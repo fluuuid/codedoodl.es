@@ -109,6 +109,7 @@ class DoodlePageView extends AbstractViewPage
 	getDoodleInfoContent : =>
 
 		doodleInfoVars =
+			indexHTML                  : @model.get('indexHTML')
 			label_author               : @CD().locale.get "doodle_label_author"
 			content_author             : @model.getAuthorHtml()
 			label_doodle_name          : @CD().locale.get "doodle_label_doodle_name"

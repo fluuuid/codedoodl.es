@@ -201,6 +201,7 @@ class HomeView extends AbstractViewPage
 		@setItemsOffsetAndEase()
 
 		@onScroll()
+		@onScrollEnd()
 
 		null
 
@@ -322,7 +323,7 @@ class HomeView extends AbstractViewPage
 
 	animateItemIn : (item, index, fullPageTransition=false, cb=null) =>
 
-		duration   = 0.5
+		duration   = 0.4
 		fromParams = y : (if fullPageTransition then window.innerHeight else 0), opacity : 0, scale : 0.6
 		toParams   = delay : (duration * 0.2) * index, y : 0, opacity : 1, scale : 1 , ease : Expo.easeOut
 		if cb then toParams.onComplete = cb

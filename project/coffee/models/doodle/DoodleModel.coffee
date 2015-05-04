@@ -66,13 +66,13 @@ class DoodleModel extends AbstractModel
         html  = ""
         links = []
 
-        html += "#{attrs.name} / "
+        html += "#{attrs.name} \\ "
 
         if attrs.website then links.push "<a href=\"#{attrs.website}\" target=\"_blank\">#{portfolio_label}</a> "
         if attrs.twitter then links.push "<a href=\"http://twitter.com/#{attrs.twitter}\" target=\"_blank\">tw</a>"
         if attrs.github then links.push "<a href=\"http://github.com/#{attrs.github}\" target=\"_blank\">gh</a>"
 
-        html += "#{links.join(' / ')}"
+        html += "#{links.join(' \\ ')}"
 
         html
 
