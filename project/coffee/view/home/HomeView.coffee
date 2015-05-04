@@ -137,6 +137,8 @@ class HomeView extends AbstractViewPage
 		@$grid.addClass 'enable-grid-item-hover'
 		HomeView.scrollDelta = 0
 
+		@setVisibleItemsAsShown()
+
 		null
 
 	onScroll : =>
@@ -207,6 +209,25 @@ class HomeView extends AbstractViewPage
 
 		null
 
+	setVisibleItemsAsShown : =>
+
+		itemsToShow = []
+		for item, i in HomeView.gridItems
+
+			position = @_getItemPositionDataByIndex i
+
+			if position.visibility > 0
+				itemsToShow.push item
+			else
+				item.hide()
+
+		for item, i in itemsToShow
+
+			do (item, i) =>
+				setTimeout item.show, (500 * 0.1) * i
+
+		null
+
 	checkItemsForVisibility : =>
 
 		for item, i in HomeView.gridItems
@@ -223,11 +244,6 @@ class HomeView extends AbstractViewPage
 			# item.$el.find('.grid-item-thumb-holder').css
 			# 	'opacity' : if position.visibility > 0 then position.visibility else 0
 			# 	'transform' : "scale(#{position.visibility}) translate(-50%, -50%)"
-
-			if position.visibility > 0
-				item.show()
-			else
-				item.hide()
 
 		null
 

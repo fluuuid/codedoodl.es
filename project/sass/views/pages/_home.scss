@@ -70,12 +70,16 @@
 
 	&.show-item {
 
-		.grid-item-lines {
-			opacity: 1;
-			visibility: visible;
-			height: 16px;
-			transform: translate3d(0, -15px, 0);
+		.grid-item-thumb {
+			opacity: 0.15;
 		}
+
+		// .grid-item-lines {
+		// 	opacity: 1;
+		// 	visibility: visible;
+		// 	height: 16px;
+		// 	transform: translate3d(0, -15px, 0);
+		// }
 	}
 
 	.enable-grid-item-hover & {
@@ -113,12 +117,21 @@
 				visibility: visible;
 				width: 85%;
 			}
+
+			// .grid-item-lines {
+
+			// 	&:after {
+			// 		animation: lines-hover 0.3s 1 forwards $easeInOutExpo;
+			// 		animation-delay: 0.2s;
+			// 	}
+			// }
 		}
 	}
 
 	.grid-item-link {
 		display: block;
 		text-decoration: none;
+		padding-top: $home-grid-item-width+10px;
 	}
 
 	.grid-item-thumb-holder {
@@ -148,13 +161,13 @@
 		transform: rotate(-45deg) translate(-50%, -50%);
 		transform-origin: 0 0;
 		transition: all .5s $easeInOutQuad;
+		opacity: 0;
+		visibility: hidden;
 	}
 
 	.grid-item-thumb-cover {
 		z-index: 1;
 		background: $cd-blue;
-		opacity: 0;
-		visibility: hidden;
 	}
 
 	.grid-item-thumb {
@@ -162,7 +175,6 @@
 		background: url(https://placeimg.com/300/300/any) no-repeat center center;
 		background-size: cover;
 		z-index: 0;
-		opacity: 0.15;
 		visibility: visible;
 	}
 
@@ -170,19 +182,34 @@
 		position: absolute;
 		z-index: 2;
 		top: $home-grid-item-width*0.95;
-		height: 0;
+		// height: 0;
 		border-top: 2px solid $cd-blue;
 		border-bottom: 2px solid $cd-blue;
-		opacity: 0;
-		visibility: hidden;
+		// opacity: 0;
+		// visibility: hidden;
 		width: 100%;
 		transition: all 0.5s $easeOutExpo;
+		overflow: hidden;
+
+		opacity: 1;
+		visibility: visible;
+		height: 16px;
+		transform: translate3d(0, -15px, 0);
+
+		&:after {
+			content: '';
+			background: $cd-blue;
+			position: absolute;
+			top: 5px;
+			left: 0;
+			height: 2px;
+			width: 0;
+		}
 	}
 
 	.grid-item-title {
 		color: $cd-blue;
 		@include font-size(1.3);
-		margin-top: $home-grid-item-width+10px;
 		padding-left: 20px;
 		position: relative;
 
@@ -249,5 +276,19 @@
 			transform-origin: right top;
 			transform: rotate(-45deg);
 		}
+	}
+}
+
+@keyframes lines-hover {
+	0% {
+		width: 0;
+	}
+	50% {
+		width: 100%;
+		transform: none;
+	}
+	100% {
+		width: 100%;
+		transform: translate(100%, 0);
 	}
 }

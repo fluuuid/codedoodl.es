@@ -54,7 +54,7 @@ class HomeGridItem extends AbstractView
 	show : (animateText=false) =>
 
 		@visible = true
-		# @$el.addClass 'show-item'
+		@$el.addClass 'show-item'
 
 		if animateText
 			CodeWordTransitioner.to @model.get('author.name'), @$authorName, 'blue'
@@ -67,7 +67,7 @@ class HomeGridItem extends AbstractView
 	hide : =>
 
 		@visible = false
-		# @$el.removeClass 'show-item'
+		@$el.removeClass 'show-item'
 
 		null
 
