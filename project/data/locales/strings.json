@@ -4,21 +4,14 @@
         "SEO": {
             "title": "SEO",
             "strings": {
-                "seo_meta_description": "Sample page desc",
-                "seo_meta_keywords": "msg",
-                "seo_author": "msg",
-                "seo_fb_default_text": "msg",
-                "seo_gplus_default_text": "msg",
-                "seo_og_description": "msg",
-                "seo_og_site_name": "msg",
-                "seo_og_title": "msg",
-                "seo_og_url": "msg",
-                "seo_twitter_card_creator": "msg",
-                "seo_twitter_card_url": "msg",
-                "seo_twitter_card_title": "msg",
-                "seo_twitter_card_description": "msg",
-                "seo_twitter_card_image": "msg",
-                "seo_canonical_url": "msg"
+                "seo_meta_description": "A showcase of curated creative coding sketches",
+                "seo_meta_keywords": "code, doodles, html, css, javascript, js, canvas, webGL",
+                "seo_og_description": "A showcase of curated creative coding sketches",
+                "seo_og_site_name": "codedoodl.es",
+                "seo_twitter_card_card": "photo",
+                "seo_twitter_card_site": "@codedoodl_es",
+                "seo_twitter_card_description": "A showcase of curated creative coding sketches",
+                "seo_og_twitter_doodle_description": "{{ doodle_name }} by {{ doodle_author }} on codedoodl.es"
             }
         },
         "PAGE_TITLES": {

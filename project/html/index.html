@@ -8,9 +8,8 @@
 	<META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
 	<title><%= page_title %></title>
 
-	<meta name="description" content="">
-	<meta name="keywords" content="">
-	<meta name="author" content="">
+	<meta name="description" content="<%= meta_data.meta_description %>">
+	<meta name="keywords" content="<%= meta_data.meta_keywords %>">
 	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" />
 
 	<link id="favicon" rel="shortcut icon" href="/static/img/icons/favicon/favicon_red.png" type="image/x-icon"/>
@@ -20,20 +19,20 @@
 	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png">
 	<link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-57x57-precomposed.png">
 
-	<meta property="og:title"        content="">
-	<meta property="og:url"          content="">
-	<meta property="og:type"         content="">
-	<meta property="og:image"        content="">
-	<meta property="og:description"  content="">
-	<meta property="og:site_name"    content="">
-	<meta property="fb:app_id" 		 content="">
+	<meta property="og:title"         content="<%= meta_data.og_title %>">
+	<meta property="og:url"           content="<%= meta_data.og_url %>">
+	<meta property="og:image"         content="<%= meta_data.og_image %>">
+	<meta property="og:description"   content="<%= meta_data.og_description %>">
+	<meta property="og:site_name"     content="<%= meta_data.og_site_name %>">
 
-	<meta name="twitter:card"        content="">
-	<meta name="twitter:creator"     content="">
-	<meta name="twitter:url"         content="">
-	<meta name="twitter:title"       content="">
-	<meta name="twitter:description" content="">
-	<meta name="twitter:image"       content="">
+	<meta name="twitter:card"         content="<%= meta_data.twitter_card_card %>">
+	<meta name="twitter:creator"      content="<%= meta_data.twitter_card_site %>">
+	<meta name="twitter:url"          content="<%= meta_data.twitter_card_url %>">
+	<meta name="twitter:title"        content="<%= meta_data.twitter_card_title %>">
+	<meta name="twitter:description"  content="<%= meta_data.twitter_card_description %>">
+	<meta name="twitter:image"        content="<%= meta_data.twitter_card_image %>">
+	<meta name="twitter:image:width"  content="300">
+	<meta name="twitter:image:height" content="300">
 
 	<link rel="stylesheet" href="/{{ css/main.css }}">
 

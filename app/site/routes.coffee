@@ -24,7 +24,7 @@ contribute = (req, res) ->
 doodles = (req, res) ->
 	if !req.params.authorName or !req.params.doodleName
 		return res.redirect 301, "/#{config.routes.HOME}"
-	res.render "site/index", getTemplateData('DOODLES')
+	res.render "site/index", getTemplateData('DOODLES', req)
 
 checkShortLink = (req, res, next) ->
 	segments = req.params.path.split('/')

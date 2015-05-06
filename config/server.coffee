@@ -10,8 +10,9 @@ config.express_preview =
 
 config.PRODUCTION = process.env.NODE_ENV is "production"
 
-config.BASE_URL   = if config.PRODUCTION then "http://codedoodl.es" else "http://#{config.express.ip}:#{config.express.port}"
-config.BUCKET_URL = 'http://source.codedoodl.es'
+config.BASE_URL           = if config.PRODUCTION then "http://codedoodl.es" else "http://#{config.express.ip}:#{config.express.port}"
+config.ASSETS_BUCKET_URL  = if config.PRODUCTION then 'http://assets.codedoodl.es' else "http://#{config.express.ip}:#{config.express.port}"
+config.DOODLES_BUCKET_URL = 'http://source.codedoodl.es'
 
 config.routes =
 	HOME       : ''
