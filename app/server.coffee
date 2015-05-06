@@ -1,6 +1,4 @@
-#!/usr/bin/env node
-
-config  = require "../config/server"
+# config  = require "../config/server"
 express = require "express"
 path = require "path"
 app     = express()
@@ -10,8 +8,6 @@ gzipStaticAssets = (req, res, next) ->
     if gzipExtRegex.test req.url
         res.set 'Content-Encoding', 'gzip'
     next()
-
-log = require("winston").loggers.get("app:server")
 
 app.set "views", __dirname
 app.engine 'html', require('ejs').renderFile
@@ -29,9 +25,4 @@ app.use(express.static(__dirname + '/public'))
 
 app.use require("./middleware").notFound
 
-app.listen config.express.port, config.express.ip, (error) ->
-	if error
-		log.error("Unable to listen for connections", error)
-		process.exit(10)
-
-	log.info("express is listening on " + config.BASE_URL);
+module.exports = app
