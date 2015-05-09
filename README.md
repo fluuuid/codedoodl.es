@@ -1,17 +1,22 @@
 #<code>[codedoodl.es](http://codedoodl.es)</code>
 
-<code>A showcase of curated creative coding sketches</code>
+<code>\\\\ A curated showcase of creative coding sketches \\\\</code>
 
-* [codedoodl.es](http://codedoodl.es)
-* [codedoodl.es chrome extension](http://codedoodl.es)
+[site](http://codedoodl.es) \\ [chrome extension](http://codedoodl.es)
 
-### What is this
+### What is this?
 
-What does do
+codedoodl.es is community-based collection of code experiments created with web technologies. The aim of these doodles is to exhibit interactive, engaging visual web experiments which only require a short attention span.
+
+This means no loading bars, no GUI, no 5MB 3D models or media files, no page of instructional text, just plain and simple doodles with code.
+
+The site at [codedoodl.es](http://codedoodl.es) houses all of the doodles in one place, and installing the [chrome extension](http://codedoodl.es) will show a new doodle every time you open a new tab.
 
 ### How to contribute
 
-PR
+The sketches on codedoodl.es are 100% community-sourced. The submission / review / approval process is handled entirely in the open on GitHub - fork this repo, create a doodle, submit pull request, [the reviewers]() will then approve and merge in to the repo.
+
+**[See this guide for comprehensive details on the contribution process.]()**
 
 ### Doodle criteria
 
@@ -33,7 +38,7 @@ These are the minimum number of files required for each doodle, these will be us
 
 * <code>manifest.json</code>
 
-	Most importantly - each doodle requires a manifest file which contains all the metadata for the doodle, including doodle information / instructions, author details and tech used. You can manually create this file based on the schema outlined [here](here), or if you use the doodle-creation utility script, the manifest will be automatically generated based on answers you have given.
+	Most importantly - each doodle requires a manifest file which contains all the metadata for the doodle, including doodle information / instructions, author details and tech used. You can manually create this file based on the [schema outlined here](here), or if you use the doodle-creation utility script, the manifest will be automatically generated based on answers you have given.
 
 ##### Creative
 
@@ -69,7 +74,7 @@ To create a consistent visual style and user experience, we're restricting the u
 
 	Blah
 
-* <code>no branding / logos / explanatory text</code>
+* <code>no branding / logos / additional UI / explanatory text</code>
 
 	Blah
 
@@ -89,7 +94,7 @@ This is very much a first iteration, we wanted to get something basic released a
 
 	Assuming (hoping) that we have enough doodles submitted [... rank]
 
-* <code>Filtering</code>
+* <code>Filtering / sorting</code>
 
 	Blah
 
@@ -108,3 +113,9 @@ This is very much a first iteration, we wanted to get something basic released a
 * <code>User-defined options within browser extenions</code>
 
 	Blah
+
+### Thanks
+
+This project is a [FLUUUID](http://FLUUU.ID) production - we created the site / extension / infrastructure to allow this to happen, but the real thanks goes to the digital artists who have contributed doodles:
+
+[Neil Carpenter](http://neilcarpenter.com) \\ [Silvio Paganini]() \\ [Fabio Azevedo]() \\ [Neil Carpenter](http://neilcarpenter.com) \\ [Silvio Paganini]() \\ [Fabio Azevedo]() \\ [Neil Carpenter](http://neilcarpenter.com) \\ [Silvio Paganini]() \\ [Fabio Azevedo]() \\ [Neil Carpenter](http://neilcarpenter.com) \\ [Silvio Paganini]() \\ [Fabio Azevedo]() \\ [Neil Carpenter](http://neilcarpenter.com) \\ [Silvio Paganini]() \\ [Fabio Azevedo]() \\ [Neil Carpenter](http://neilcarpenter.com) \\ [Silvio Paganini]() \\ [Fabio Azevedo]() \\ [Neil Carpenter](http://neilcarpenter.com) \\ [Silvio Paganini]() \\ [Fabio Azevedo]() \\ [Neil Carpenter](http://neilcarpenter.com) \\ [Silvio Paganini]() \\ [Fabio Azevedo]() \\ [Neil Carpenter](http://neilcarpenter.com) \\ [Silvio Paganini]() \\ [Fabio Azevedo]()
