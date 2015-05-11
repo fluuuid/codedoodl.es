@@ -115,13 +115,10 @@ This is very much a first iteration, we wanted to get something basic released a
 
 	Options to personlise the experience, for example by selecting only tags that you are interested in, and then only being served doodles meeting this criteria.
 
-You have an idea for future improvement? Tell us - [	make an issue!](https://github.com/neilcarpenter/codedoodl.es/issues)
+_Have an idea for future improvement? [Tell us - make an issue!](https://github.com/neilcarpenter/codedoodl.es/issues)_
 
 ### Thanks
 
 This project is a [FLUUUID](http://FLUUU.ID) production - we created the site / extension / infrastructure to allow this to happen, but the real thanks goes to the digital artists who have contributed doodles:
 
-
-<< auto-inserted contributors list >>
-
-[Neil Carpenter](http://neilcarpenter.com) \\ [Silvio Paganini]() \\ [Fabio Azevedo]() \\ [Neil Carpenter](http://neilcarpenter.com) \\ [Silvio Paganini]() \\ [Fabio Azevedo]() \\ [Neil Carpenter](http://neilcarpenter.com) \\ [Silvio Paganini]() \\ [Fabio Azevedo]() \\ [Neil Carpenter](http://neilcarpenter.com) \\ [Silvio Paganini]() \\ [Fabio Azevedo]() \\ [Neil Carpenter](http://neilcarpenter.com) \\ [Silvio Paganini]() \\ [Fabio Azevedo]() \\ [Neil Carpenter](http://neilcarpenter.com) \\ [Silvio Paganini]() \\ [Fabio Azevedo]() \\ [Neil Carpenter](http://neilcarpenter.com) \\ [Silvio Paganini]() \\ [Fabio Azevedo]() \\ [Neil Carpenter](http://neilcarpenter.com) \\ [Silvio Paganini]() \\ [Fabio Azevedo]() \\ [Neil Carpenter](http://neilcarpenter.com) \\ [Silvio Paganini]() \\ [Fabio Azevedo]()
+<< auto-inserted contributors list **(TODO)** >>
