@@ -1,4 +1,4 @@
-#![codedoodle.es logo](http://assets.codedoodl.es/readme_logo.png)
+#![codedoodle.es logo](http://assets.codedoodl.es/readme_logo.png?1)
 
 <code>**\\\\ A curated showcase of creative coding sketches \\\\**</code>
 
