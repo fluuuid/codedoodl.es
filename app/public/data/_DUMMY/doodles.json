@@ -19,6 +19,7 @@
                 "keyboard": false,
                 "touch": false
             },
+            "instructions": "Click and drag",
             "created": "Mon Mar 30 2015 20:25:57 GMT+0100 (BST)",
             "slug": "test/test-name30",
             "colour_scheme": "dark",
@@ -43,6 +44,7 @@
                 "keyboard": false,
                 "touch": true
             },
+            "instructions": "move your mouse",
             "created": "Mon Mar 30 2015 20:25:57 GMT+0100 (BST)",
             "slug": "test/test-name29",
             "colour_scheme": "light",
@@ -67,6 +69,7 @@
                 "keyboard": false,
                 "touch": false
             },
+            "instructions": "",
             "created": "Mon Mar 30 2015 20:25:57 GMT+0100 (BST)",
             "slug": "test/test-name28",
             "colour_scheme": "dark",
@@ -91,6 +94,7 @@
                 "keyboard": false,
                 "touch": false
             },
+            "instructions": "keep clicking",
             "created": "Mon Mar 30 2015 20:25:57 GMT+0100 (BST)",
             "slug": "test/test-name27",
             "colour_scheme": "light",
@@ -115,6 +119,7 @@
                 "keyboard": false,
                 "touch": false
             },
+            "instructions": "Click and drag",
             "created": "Mon Mar 30 2015 20:25:57 GMT+0100 (BST)",
             "slug": "test/test-name26",
             "colour_scheme": "dark",
@@ -139,6 +144,7 @@
                 "keyboard": false,
                 "touch": false
             },
+            "instructions": "Click and drag",
             "created": "Mon Mar 30 2015 20:25:57 GMT+0100 (BST)",
             "slug": "test/test-name25",
             "colour_scheme": "light",
@@ -163,6 +169,7 @@
                 "keyboard": false,
                 "touch": false
             },
+            "instructions": "Click and drag",
             "created": "Mon Mar 30 2015 20:25:57 GMT+0100 (BST)",
             "slug": "test/test-name24",
             "colour_scheme": "dark",
@@ -187,6 +194,7 @@
                 "keyboard": false,
                 "touch": false
             },
+            "instructions": "Click and drag",
             "created": "Mon Mar 30 2015 20:25:57 GMT+0100 (BST)",
             "slug": "test/test-name23",
             "colour_scheme": "light",
@@ -211,6 +219,7 @@
                 "keyboard": false,
                 "touch": false
             },
+            "instructions": "Click and drag",
             "created": "Mon Mar 30 2015 20:25:57 GMT+0100 (BST)",
             "slug": "test/test-name22",
             "colour_scheme": "dark",
@@ -235,6 +244,7 @@
                 "keyboard": false,
                 "touch": false
             },
+            "instructions": "Click and drag",
             "created": "Mon Mar 30 2015 20:25:57 GMT+0100 (BST)",
             "slug": "test/test-name21",
             "colour_scheme": "light",
@@ -259,6 +269,7 @@
                 "keyboard": false,
                 "touch": false
             },
+            "instructions": "Click and drag",
             "created": "Mon Mar 30 2015 20:25:57 GMT+0100 (BST)",
             "slug": "test/test-name20",
             "colour_scheme": "dark",
@@ -283,6 +294,7 @@
                 "keyboard": false,
                 "touch": false
             },
+            "instructions": "Click and drag",
             "created": "Mon Mar 30 2015 20:25:57 GMT+0100 (BST)",
             "slug": "test/test-name19",
             "colour_scheme": "light",
@@ -307,6 +319,7 @@
                 "keyboard": false,
                 "touch": false
             },
+            "instructions": "Click and drag",
             "created": "Mon Mar 30 2015 20:25:57 GMT+0100 (BST)",
             "slug": "test/test-name18",
             "colour_scheme": "dark",
@@ -331,6 +344,7 @@
                 "keyboard": false,
                 "touch": false
             },
+            "instructions": "Click and drag",
             "created": "Mon Mar 30 2015 20:25:57 GMT+0100 (BST)",
             "slug": "test/test-name17",
             "colour_scheme": "light",
@@ -355,6 +369,7 @@
                 "keyboard": false,
                 "touch": false
             },
+            "instructions": "Click and drag",
             "created": "Mon Mar 30 2015 20:25:57 GMT+0100 (BST)",
             "slug": "test/test-name16",
             "colour_scheme": "dark",
@@ -379,6 +394,7 @@
                 "keyboard": false,
                 "touch": false
             },
+            "instructions": "Click and drag",
             "created": "Mon Mar 30 2015 20:25:57 GMT+0100 (BST)",
             "slug": "test/test-name15",
             "colour_scheme": "light",
@@ -403,6 +419,7 @@
                 "keyboard": false,
                 "touch": false
             },
+            "instructions": "Click and drag",
             "created": "Mon Mar 30 2015 20:25:57 GMT+0100 (BST)",
             "slug": "test/test-name14",
             "colour_scheme": "dark",
@@ -427,6 +444,7 @@
                 "keyboard": false,
                 "touch": false
             },
+            "instructions": "Click and drag",
             "created": "Mon Mar 30 2015 20:25:57 GMT+0100 (BST)",
             "slug": "test/test-name13",
             "colour_scheme": "light",
@@ -451,6 +469,7 @@
                 "keyboard": false,
                 "touch": false
             },
+            "instructions": "Click and drag",
             "created": "Mon Mar 30 2015 20:25:57 GMT+0100 (BST)",
             "slug": "test/test-name12",
             "colour_scheme": "dark",
@@ -475,6 +494,7 @@
                 "keyboard": false,
                 "touch": false
             },
+            "instructions": "Click and drag",
             "created": "Mon Mar 30 2015 20:25:57 GMT+0100 (BST)",
             "slug": "test/test-name11",
             "colour_scheme": "light",
@@ -499,6 +519,7 @@
                 "keyboard": false,
                 "touch": false
             },
+            "instructions": "Click and drag",
             "created": "Mon Mar 30 2015 20:25:57 GMT+0100 (BST)",
             "slug": "test/test-name10",
             "colour_scheme": "dark",
@@ -523,6 +544,7 @@
                 "keyboard": false,
                 "touch": false
             },
+            "instructions": "Click and drag",
             "created": "Mon Mar 30 2015 20:25:57 GMT+0100 (BST)",
             "slug": "test/test-name9",
             "colour_scheme": "light",
@@ -547,6 +569,7 @@
                 "keyboard": false,
                 "touch": false
             },
+            "instructions": "Click and drag",
             "created": "Mon Mar 30 2015 20:25:57 GMT+0100 (BST)",
             "slug": "test/test-name8",
             "colour_scheme": "dark",
@@ -571,6 +594,7 @@
                 "keyboard": false,
                 "touch": false
             },
+            "instructions": "Click and drag",
             "created": "Mon Mar 30 2015 20:25:57 GMT+0100 (BST)",
             "slug": "test/test-name7",
             "colour_scheme": "light",
@@ -595,6 +619,7 @@
                 "keyboard": false,
                 "touch": false
             },
+            "instructions": "Click and drag",
             "created": "Mon Mar 30 2015 20:25:57 GMT+0100 (BST)",
             "slug": "test/test-name6",
             "colour_scheme": "dark",
@@ -619,6 +644,7 @@
                 "keyboard": false,
                 "touch": false
             },
+            "instructions": "Click and drag",
             "created": "Mon Mar 30 2015 20:25:57 GMT+0100 (BST)",
             "slug": "test/test-name5",
             "colour_scheme": "light",
@@ -643,6 +669,7 @@
                 "keyboard": false,
                 "touch": false
             },
+            "instructions": "Click and drag",
             "created": "Mon Mar 30 2015 20:25:57 GMT+0100 (BST)",
             "slug": "test/test-name4",
             "colour_scheme": "dark",
@@ -667,6 +694,7 @@
                 "keyboard": false,
                 "touch": false
             },
+            "instructions": "Click and drag",
             "created": "Mon Mar 30 2015 20:25:57 GMT+0100 (BST)",
             "slug": "test/test-name3",
             "colour_scheme": "light",
@@ -691,6 +719,7 @@
                 "keyboard": false,
                 "touch": false
             },
+            "instructions": "Click and drag",
             "created": "Mon Mar 30 2015 20:25:57 GMT+0100 (BST)",
             "slug": "test/test-name2",
             "colour_scheme": "dark",
@@ -715,6 +744,7 @@
                 "keyboard": false,
                 "touch": false
             },
+            "instructions": "Click and drag",
             "created": "Mon Mar 30 2015 20:25:57 GMT+0100 (BST)",
             "slug": "test/test-name1",
             "colour_scheme": "light",

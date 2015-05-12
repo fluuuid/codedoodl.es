@@ -149,6 +149,7 @@
                 <div class="page-content">
                     <iframe frameborder="0" data-doodle-frame class="doodle-frame"></iframe>
                     <span class="preloader-dots" data-dots><i class="dot dot-1"></i><i class="dot dot-2"></i><i class="dot dot-3"></i></span>
+                    <span class="doodle-instructions" data-codeword data-doodle-instructions>What up</span>
                     <div class="subpage-info" data-doodle-info></div>
                     <span class="subpage-info-pane"></span>
                 </div>
