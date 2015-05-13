@@ -28,9 +28,9 @@
             "name": "Doodle name",
             "author": {
                 "name": "Doodle author",
-                "github": "neilcarpenter",
-                "website": "http://neilcarpenter.com",
-                "twitter": "neilcarpenter"
+                "github": "doodleusername",
+                "website": "http://doodleusername.com",
+                "twitter": "doodleusername"
             },
             "description": "I am the doodle description, this is explanatory text about the doodle, text used etc",
             "tags": [

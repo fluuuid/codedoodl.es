@@ -52,8 +52,8 @@ function getContributors() {
 
   var authorsUniq = [];
 
-  var authors = _.pluck(getDoodles(), 'author');
-  authors = _.groupBy(authors, function(author) { return author.name; });
+  var authors = _.pluck(getDoodles().doodles, 'author');
+  authors = _.groupBy(authors, function(author) { return author.github; });
 
   _.each(authors, function(author) { authorsUniq.push(author[0]); })
 
