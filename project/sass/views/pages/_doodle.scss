@@ -15,6 +15,10 @@
             }
         }
 
+        .doodle-instructions {
+            color: $cd-black;
+        }
+
         .interaction-indicators {
 
             .indicator {
@@ -48,6 +52,10 @@
             .dot {
                 background: #fff;
             }
+        }
+
+        .doodle-instructions {
+            color: #fff;
         }
 
         .interaction-indicators {
@@ -90,6 +98,23 @@
 
     .preloader-dots {
         z-index: 0;
+    }
+
+    .doodle-instructions {
+        z-index: 2;
+    }
+
+    .doodle-instructions {
+        position: absolute;
+        top: 47%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        @include font-size(1.2);
+        font-family: $ff-monosten-a;
+
+        [data-codetext-char] {
+            border-bottom: none !important;
+        }
     }
 
     .footer-nav {
