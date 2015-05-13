@@ -92,16 +92,16 @@ class Header extends AbstractView
 			CodeWordTransitioner.out [@$navLinkAbout, @$navLinkContribute], colour
 		else if section is @CD().nav.sections.ABOUT
 			CodeWordTransitioner.in [@$navLinkContribute, @$closeBtn], colour
-			CodeWordTransitioner.in [@$navLinkAbout], 'black-white-bg'
+			CodeWordTransitioner.in [@$navLinkAbout], 'white-active'
 			CodeWordTransitioner.out [@$infoBtn], colour
 		else if section is @CD().nav.sections.CONTRIBUTE
 			CodeWordTransitioner.in [@$navLinkAbout, @$closeBtn], colour
-			CodeWordTransitioner.in [@$navLinkContribute], 'black-white-bg'
+			CodeWordTransitioner.in [@$navLinkContribute], 'white-active'
 			CodeWordTransitioner.out [@$infoBtn], colour
 		else if section is 'doodle-info'
 			CodeWordTransitioner.in [@$closeBtn], colour
 			CodeWordTransitioner.out [@$navLinkAbout, @$navLinkContribute], colour
-			CodeWordTransitioner.in [@$infoBtn], 'offwhite-red-bg'
+			CodeWordTransitioner.in [@$infoBtn], 'red-active'
 		else
 			CodeWordTransitioner.in [@$closeBtn], colour
 			CodeWordTransitioner.out [@$navLinkAbout, @$navLinkContribute, @$infoBtn], colour
@@ -114,9 +114,9 @@ class Header extends AbstractView
 
 		if wordSection and section is wordSection
 			if wordSection is 'doodle-info'
-				return 'offwhite-red-bg'
+				return 'red-active'
 			else
-				return 'black-white-bg'
+				return 'white-active'
 
 		colour = switch section
 			when 'home', 'doodle-info' then 'red'

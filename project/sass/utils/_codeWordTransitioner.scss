@@ -46,4 +46,64 @@
         background: $cd-red;
         border-bottom: 2px solid $cd-red;
     }
+
+    &[data-codetext-char-state="white-active"] {
+        color: #fff;
+        border-color: transparent;
+
+        &:after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 100%;
+            height: 40%;
+            transform: scaleY(0.6);
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: contain;
+            background-image: url("data:image/svg+xml;utf8,<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" x=\"0px\" y=\"0px\" viewBox=\"0.6 0 6.9 6.2\" xml:space=\"preserve\"><polygon fill=\"#fff\" points=\"4,0.1 4,0.1 0.6,3.5 0.6,6.1 4,2.8 2.6,1.5 4,0.1 4,0.1 2.6,1.5 4,2.8 7.5,6.1 7.5,6.1 7.5,3.5 \"/></svg>");
+        }
+
+        // &:after,
+        // &:before {
+        //     content: '';
+        //     width: 75%;
+        //     height: 2px;
+        //     background: #fff;
+        //     bottom: -5px;
+        //     position: absolute;
+        // }
+
+        // &:after {
+        //     right: 50%;
+        //     transform-origin: bottom right;
+        //     transform: rotate(35deg);
+        // }
+
+        // &:before {
+        //     left: 50%;
+        //     transform-origin: bottom left;
+        //     transform: rotate(-35deg);
+        // }
+    }
+
+    &[data-codetext-char-state="red-active"] {
+        color: $cd-red;
+        border-color: transparent;
+
+        &:after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 100%;
+            height: 40%;
+            transform: scaleY(0.6);
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: contain;
+            background-image: url("data:image/svg+xml;utf8,<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" x=\"0px\" y=\"0px\" viewBox=\"0.6 0 6.9 6.2\" xml:space=\"preserve\"><polygon fill=\"#{$cd-red}\" points=\"4,0.1 4,0.1 0.6,3.5 0.6,6.1 4,2.8 2.6,1.5 4,0.1 4,0.1 2.6,1.5 4,2.8 7.5,6.1 7.5,6.1 7.5,3.5 \"/></svg>");
+        }
+    }
 }
