@@ -78,8 +78,7 @@ class Preloader extends AbstractView
 		# setTimeout cb, 2200
 
 		setTimeout =>
-			anagram = _.shuffle('codedoodl.es'.split('')).join('')
-			CodeWordTransitioner.to anagram, @$codeWord, 'white', false, => @animateBgOut cb
+			CodeWordTransitioner.scramble @$codeWord, 'white', false, => @animateBgOut cb
 		, 2000
 
 		null
