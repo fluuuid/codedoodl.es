@@ -13,6 +13,7 @@ class DoodleModel extends AbstractModel
             "github"  : ""
             "website" : ""
             "twitter" : ""
+        "instructions": ""
         "description": ""
         "tags" : []
         "interaction" :

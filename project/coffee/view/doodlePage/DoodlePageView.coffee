@@ -72,7 +72,7 @@ class DoodlePageView extends AbstractViewPage
 			when 'box-physics' then 'Click and drag'
 			when 'tubes' then 'Click and hold'
 			else ''
-		@model.set 'instructions', text
+		@model.set 'instructions': text
 		###
 		END TEMP!!!
 		###
