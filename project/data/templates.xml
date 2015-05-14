@@ -195,20 +195,24 @@
                     <div class="col col-1">02. <%= label_doodle_name %></div>
                     <div class="col col-2"><%= content_doodle_name %></div>
                 </div>
+                <div class="row row-doodle-instructions cf">
+                    <div class="col col-1">03. <%= label_doodle_instructions %></div>
+                    <div class="col col-2"><%= content_doodle_instructions %></div>
+                </div>
                 <div class="row row-description cf">
-                    <div class="col col-1">03. <%= label_description %></div>
+                    <div class="col col-1">04. <%= label_description %></div>
                     <div class="col col-2"><%= content_description %></div>
                 </div>
                 <div class="row row-tags cf">
-                    <div class="col col-1">04. <%= label_tags %></div>
+                    <div class="col col-1">05. <%= label_tags %></div>
                     <div class="col col-2"><%= content_tags %></div>
                 </div>
                 <div class="row row-interaction cf">
-                    <div class="col col-1">05. <%= label_interaction %></div>
+                    <div class="col col-1">06. <%= label_interaction %></div>
                     <div class="col col-2"><%= content_interaction %></div>
                 </div>
                 <div class="row row-share cf">
-                    <div class="col col-1">06. <%= label_share %></div>
+                    <div class="col col-1">07. <%= label_share %></div>
                     <div class="col col-2"><a href="#" data-share-btn="twitter">Twitter</a>, <a href="#" data-share-btn="facebook">Facebook</a>, or copy <a href="<%= share_url %>"><%= share_url_text %></a></div>
                 </div>
             </div>
