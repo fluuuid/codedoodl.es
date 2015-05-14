@@ -24,3 +24,5 @@ config.routes =
 config.shortlinks =
 	SALT     : 'no need for this to be private I guess'
 	ALPHABET : 'abcdefghijklmnopqrstuvwxyz'
+
+config.GA_CODE = process.env.GOOGLE_ANALYTICS_CODE or ''

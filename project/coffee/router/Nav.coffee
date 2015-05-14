@@ -51,6 +51,8 @@ class Nav extends AbstractView
         @setPageTitle area, sub, ter
         @setPageFavicon()
 
+        @trackPageView()
+
         null
 
     setPageTitle: (area, sub, ter) =>
@@ -86,5 +88,13 @@ class Nav extends AbstractView
                 vars.name = doodle.get('author.name') + ' \\ ' + doodle.get('name') + ' '
 
         vars
+
+    trackPageView : =>
+
+        return unless window.ga and @changeViewCount > 1
+
+        ga 'send', 'pageview', 'page' : window.location.href.split(@CD().BASE_URL)[1] or '/'
+
+        null
 
 module.exports = Nav
