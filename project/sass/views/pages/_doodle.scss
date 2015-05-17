@@ -19,20 +19,6 @@
             color: $cd-black;
         }
 
-        .interaction-indicators {
-
-            .indicator {
-
-                &:after {
-                    background: $cd-red;
-                }
-
-                svg {
-                    fill: $cd-black;
-                }
-            }
-        }
-
         .nav-arrow .nav-arrow__inner,
         .nav-arrow:after,
         .nav-arrow:before {
@@ -56,20 +42,6 @@
 
         .doodle-instructions {
             color: #fff;
-        }
-
-        .interaction-indicators {
-
-            .indicator {
-
-                &:after {
-                    background: $cd-blue;
-                }
-
-                svg {
-                    fill: #fff;
-                }
-            }
         }
 
         .nav-arrow .nav-arrow__inner,
@@ -170,6 +142,7 @@
                 width: 40px;
                 height: 2px;
                 transform: rotate(45deg);
+                background: $cd-blue;
             }
 
             &[disabled] {
@@ -180,7 +153,7 @@
             }
 
             svg {
-                fill: #fff;
+                fill: $cd-red;
             }
 
             &:last-child {
@@ -232,20 +205,15 @@
         .footer-nav {
 
             .arrow {
-                display: none;
-            }
-        }
+                opacity: 0;
+                visibility: hidden;
 
-        .interaction-indicators {
-
-            .indicator {
-
-                &:after {
-                    background: $cd-blue;
+                &.arrow-left {
+                    transform: translate(-5px, 0) rotate(180deg);
                 }
 
-                svg {
-                    fill: $cd-red;
+                &.arrow-right {
+                    transform: translate(-5px, 0);
                 }
             }
         }

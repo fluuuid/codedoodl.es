@@ -23,10 +23,6 @@ class DoodlePageView extends AbstractViewPage
 		@$infoContent  = @$el.find('[data-doodle-info]')
 		@$instructions = @$el.find('[data-doodle-instructions]')
 
-		@$mouse    = @$el.find('[data-indicator="mouse"]')
-		@$keyboard = @$el.find('[data-indicator="keyboard"]')
-		@$touch    = @$el.find('[data-indicator="touch"]')
-
 		@$prevDoodleNav = @$el.find('[data-doodle-nav="prev"]')
 		@$nextDoodleNav = @$el.find('[data-doodle-nav="next"]')
 
@@ -37,6 +33,7 @@ class DoodlePageView extends AbstractViewPage
 		@CD().appView.header[setting] @CD().appView.header.EVENT_DOODLE_INFO_OPEN, @onInfoOpen
 		@CD().appView.header[setting] @CD().appView.header.EVENT_DOODLE_INFO_CLOSE, @onInfoClose
 		@$el[setting] 'click', '[data-share-btn]', @onShareBtnClick
+		@$infoContent[setting] 'click', @onInfoContentClick
 
 		null
 
@@ -82,9 +79,6 @@ class DoodlePageView extends AbstractViewPage
 
 		@$el.attr 'data-color-scheme', @model.get('colour_scheme')
 		@$frame.attr('src', '').removeClass('show')
-		@$mouse.attr 'disabled', !@model.get('interaction.mouse')
-		@$keyboard.attr 'disabled', !@model.get('interaction.keyboard')
-		@$touch.attr 'disabled', !@model.get('interaction.touch')
 
 		@colourScheme = if @model.get('colour_scheme') is 'light' then 'black' else 'white'
 
@@ -181,6 +175,9 @@ class DoodlePageView extends AbstractViewPage
 			label_share                 : @CD().locale.get "doodle_label_share"
 			share_url                   : @CD().BASE_URL + '/' + @model.get('shortlink')
 			share_url_text              : @CD().BASE_URL.replace('http://', '') + '/' + @model.get('shortlink')
+			mouse_enabled               : @model.get('interaction.mouse')
+			keyboard_enabled            : @model.get('interaction.keyboard')
+			touch_enabled               : @model.get('interaction.touch')
 
 		doodleInfoContent = _.template(@CD().templates.get('doodle-info'))(doodleInfoVars)
 
@@ -231,5 +228,11 @@ class DoodlePageView extends AbstractViewPage
 		desc = @supplantString @CD().locale.get('doodle_share_text_tmpl'), vars, false
 
 		desc.replace(/&nbsp;/g, ' ')
+
+	onInfoContentClick : (e) =>
+
+		if e.target is @$infoContent[0] then @CD().appView.header.hideDoodleInfo()
+
+		null
 
 module.exports = DoodlePageView
