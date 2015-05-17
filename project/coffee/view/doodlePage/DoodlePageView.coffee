@@ -6,6 +6,7 @@ class DoodlePageView extends AbstractViewPage
 	template : 'page-doodle'
 	model    : null
 
+	routeArgs : null
 	colourScheme : null
 
 	constructor : ->
@@ -154,7 +155,7 @@ class DoodlePageView extends AbstractViewPage
 
 	getDoodle : =>
 
-		doodle = @CD().appData.doodles.getDoodleBySlug @CD().nav.current.sub+'/'+@CD().nav.current.ter
+		doodle = @CD().appData.doodles.getDoodleBySlug @routeArgs.sub+'/'+@routeArgs.ter
 
 		doodle
 
