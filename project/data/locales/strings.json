@@ -8,7 +8,7 @@
                 "seo_meta_keywords": "code, doodles, html, css, javascript, js, canvas, webGL",
                 "seo_og_description": "A showcase of curated creative coding sketches",
                 "seo_og_site_name": "codedoodl.es",
-                "seo_twitter_card_card": "photo",
+                "seo_twitter_card_card": "summary_large_image",
                 "seo_twitter_card_site": "@codedoodl_es",
                 "seo_twitter_card_description": "A showcase of curated creative coding sketches",
                 "seo_og_twitter_doodle_description": "{{ doodle_name }} by {{ doodle_author }} on codedoodl.es"
@@ -104,7 +104,7 @@
         "MISC": {
             "title": "Miscelleanous",
             "strings": {
-                "misc_portfolio_label": "portfolio"
+                "misc_portfolio_label": "website"
             }
         }
     }
