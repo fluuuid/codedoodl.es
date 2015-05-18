@@ -158,6 +158,8 @@
                         <a class="arrow arrow-left nav-arrow" data-doodle-nav="prev"><span class="nav-arrow__inner"></span></a>
                         <a class="arrow arrow-right nav-arrow" data-doodle-nav="next"><span class="nav-arrow__inner"></span></a>
                     </nav>
+                    <span class="doodle-control doodle-control-refresh" data-doodle-refresh title="<%= refresh_btn_title %>">refr</span>
+                    <span class="doodle-control doodle-control-random" data-doodle-random title="<%= random_btn_title %>">rand</span>
                 </footer>
             </section>
         ]]>

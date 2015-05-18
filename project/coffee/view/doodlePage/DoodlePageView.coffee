@@ -11,7 +11,9 @@ class DoodlePageView extends AbstractViewPage
 
 	constructor : ->
 
-		@templateVars = {}
+		@templateVars =
+			refresh_btn_title : @CD().locale.get "doodle_refresh_btn_title"
+			random_btn_title  : @CD().locale.get "doodle_random_btn_title"
 
 		super()
 
@@ -26,27 +28,35 @@ class DoodlePageView extends AbstractViewPage
 		@$prevDoodleNav = @$el.find('[data-doodle-nav="prev"]')
 		@$nextDoodleNav = @$el.find('[data-doodle-nav="next"]')
 
+		@$refreshBtn = @$el.find('[data-doodle-refresh]')
+		@$randomBtn  = @$el.find('[data-doodle-random]')
+
 		null
 
 	setListeners : (setting) =>
 
 		@CD().appView.header[setting] @CD().appView.header.EVENT_DOODLE_INFO_OPEN, @onInfoOpen
 		@CD().appView.header[setting] @CD().appView.header.EVENT_DOODLE_INFO_CLOSE, @onInfoClose
+
 		@$el[setting] 'click', '[data-share-btn]', @onShareBtnClick
 		@$infoContent[setting] 'click', @onInfoContentClick
+
+		@$refreshBtn[setting] 'click', @onRefreshBtnClick
+		@$randomBtn[setting] 'click', @onRandomBtnClick
 
 		null
 
 	show : (cb) =>
 
 		@model = @getDoodle()
+		@model.set "viewed", true
 
 		@setupUI()
 
 		super
 
 		if @CD().nav.changeViewCount is 1
-			@showFrame false, true
+			@showFrame false, 5000
 		else
 			@CD().appView.transitioner.on @CD().appView.transitioner.EVENT_TRANSITIONER_OUT_DONE, @showFrame
 
@@ -104,7 +114,7 @@ class DoodlePageView extends AbstractViewPage
 
 		null
 
-	showFrame : (removeEvent=true, delay=false) =>
+	showFrame : (removeEvent=true, delay=null) =>
 
 		if removeEvent then @CD().appView.transitioner.off @CD().appView.transitioner.EVENT_TRANSITIONER_OUT_DONE, @showFrame
 
@@ -122,7 +132,13 @@ class DoodlePageView extends AbstractViewPage
 		setTimeout =>
 			blankInstructions = @model.get('instructions').split('').map(-> return ' ').join('')
 			CodeWordTransitioner.to blankInstructions, @$instructions, @colourScheme
-		, if delay then 5000 else 0
+		, delay or 0
+
+		null
+
+	hideDoodle : =>
+
+		@$frame.removeClass('show')
 
 		null
 
@@ -232,6 +248,23 @@ class DoodlePageView extends AbstractViewPage
 	onInfoContentClick : (e) =>
 
 		if e.target is @$infoContent[0] then @CD().appView.header.hideDoodleInfo()
+
+		null
+
+	onRefreshBtnClick : =>
+
+		CodeWordTransitioner.in @$instructions, @colourScheme
+		@hideDoodle()
+		setTimeout =>
+			@showFrame false, 2000
+		, 1000
+
+		null
+
+	onRandomBtnClick : =>
+
+		randomDoodle = @CD().appData.doodles.getRandomUnseen()
+		@CD().router.navigateTo @CD().nav.sections.DOODLES + '/' + randomDoodle.get('slug')
 
 		null
 

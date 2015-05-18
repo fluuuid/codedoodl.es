@@ -21,7 +21,8 @@
 
         .nav-arrow .nav-arrow__inner,
         .nav-arrow:after,
-        .nav-arrow:before {
+        .nav-arrow:before,
+        .doodle-control {
             background: $cd-black;
         }
     }
@@ -46,7 +47,8 @@
 
         .nav-arrow .nav-arrow__inner,
         .nav-arrow:after,
-        .nav-arrow:before {
+        .nav-arrow:before,
+        .doodle-control {
             background: #fff;
         }
     }
@@ -119,6 +121,26 @@
             &.arrow-right {
                 right: $site-padding-desktop;
             }
+        }
+    }
+
+    .doodle-control {
+        position: fixed;
+        bottom: $site-padding-desktop;
+        width: 30px;
+        height: 30px;
+        z-index: 2;
+        cursor: pointer;
+        transition: all .3s $easeInOutExpo;
+
+        &.doodle-control-refresh {
+            right: 50%;
+            margin-right: 10px;
+        }
+
+        &.doodle-control-random {
+            left: 50%;
+            margin-left: 10px;
         }
     }
 
@@ -216,6 +238,12 @@
                     transform: translate(-5px, 0);
                 }
             }
+        }
+
+        .doodle-control {
+            opacity: 0;
+            visibility: hidden;
+            transform: translate(-5px, 0);
         }
 
         .subpage-info,

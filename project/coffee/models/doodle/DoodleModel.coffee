@@ -33,6 +33,7 @@ class DoodleModel extends AbstractModel
         "scrambled" :
             "name"        : ""
             "author_name" : ""
+        "viewed" : false
 
         "SAMPLE_DIR" : ""
 
