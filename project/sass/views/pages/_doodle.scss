@@ -21,9 +21,20 @@
 
         .nav-arrow .nav-arrow__inner,
         .nav-arrow:after,
-        .nav-arrow:before,
-        .doodle-control {
+        .nav-arrow:before {
             background: $cd-black;
+        }
+
+        .doodle-control {
+
+            &:after,
+            &:before {
+                background: $cd-black;
+            }
+
+            svg {
+                fill: $cd-black
+            }
         }
     }
 
@@ -47,9 +58,20 @@
 
         .nav-arrow .nav-arrow__inner,
         .nav-arrow:after,
-        .nav-arrow:before,
-        .doodle-control {
+        .nav-arrow:before {
             background: #fff;
+        }
+
+        .doodle-control {
+
+            &:after,
+            &:before {
+                background: #fff;
+            }
+
+            svg {
+                fill: #fff;
+            }
         }
     }
 
@@ -94,18 +116,28 @@
 
     .footer-nav {
 
+        .arrow,
+        .arrow:after,
+        .arrow:before {
+            transition: all .3s $easeInOutExpo;
+        }
+
         .arrow {
             position: fixed;
             z-index: 2;
             bottom: $site-padding-desktop;
             display: none;
             cursor: pointer;
-            transition: all .3s $easeInOutExpo;
 
             .no-touch & {
 
                 &:hover {
                     width: 40px;
+
+                    &:after,
+                    &:before {
+                        width: 10px;
+                    }
                 }
             }
 
@@ -126,12 +158,31 @@
 
     .doodle-control {
         position: fixed;
-        bottom: $site-padding-desktop;
+        bottom: 19px;
         width: 30px;
-        height: 30px;
+        height: 34px;
         z-index: 2;
         cursor: pointer;
         transition: all .3s $easeInOutExpo;
+
+        &:after,
+        &:before {
+            content: '';
+            position: absolute;
+            transition: all .3s $easeInOutExpo;
+            height: 2px;
+            width: 0;
+        }
+
+        &:after {
+            bottom: 0;
+            left: 0;
+        }
+
+        &:before {
+            top: 0;
+            right: 0;
+        }
 
         &.doodle-control-refresh {
             right: 50%;
@@ -141,6 +192,27 @@
         &.doodle-control-random {
             left: 50%;
             margin-left: 10px;
+
+            svg {
+                transform: scale(2);
+            }
+        }
+
+        .no-touch & {
+
+            &:hover {
+
+                &:after,
+                &:before {
+                    width: 100%;
+                }
+            }
+        }
+
+        svg {
+            position: relative;
+            width: 100%;
+            height: 100%;
         }
     }
 
