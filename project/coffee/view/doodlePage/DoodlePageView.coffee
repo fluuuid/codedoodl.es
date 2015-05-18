@@ -6,8 +6,9 @@ class DoodlePageView extends AbstractViewPage
 	template : 'page-doodle'
 	model    : null
 
-	routeArgs : null
+	routeArgs    : null
 	colourScheme : null
+	refreshTimer : null
 
 	constructor : ->
 
@@ -255,7 +256,9 @@ class DoodlePageView extends AbstractViewPage
 
 		CodeWordTransitioner.in @$instructions, @colourScheme
 		@hideDoodle()
-		setTimeout =>
+
+		clearTimeout @refreshTimer
+		@refreshTimer = setTimeout =>
 			@showFrame false, 2000
 		, 1000
 
