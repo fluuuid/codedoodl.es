@@ -10,3 +10,5 @@ node_modules/
 .elasticbeanstalk/
 
 credentials.coffee
+
+temp/
