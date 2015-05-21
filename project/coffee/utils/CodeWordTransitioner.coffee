@@ -195,7 +195,7 @@ class CodeWordTransitioner
 	@to : (targetText, $el, charState, sequential=false, cb=null) =>
 
 		if _.isArray $el
-			(@to(targetText, _$el, charState, cb)) for _$el in $el
+			(@to(targetText, _$el, charState, sequential, cb)) for _$el in $el
 			return
 
 		word = @_getWordFromCache $el
@@ -209,7 +209,7 @@ class CodeWordTransitioner
 	@in : ($el, charState, sequential=false, cb=null) =>
 
 		if _.isArray $el
-			(@in(_$el, charState, cb)) for _$el in $el
+			(@in(_$el, charState, sequential, cb)) for _$el in $el
 			return
 
 		word = @_getWordFromCache $el
@@ -223,7 +223,7 @@ class CodeWordTransitioner
 	@out : ($el, charState, sequential=false, cb=null) =>
 
 		if _.isArray $el
-			(@out(_$el, charState, cb)) for _$el in $el
+			(@out(_$el, charState, sequential, cb)) for _$el in $el
 			return
 
 		word = @_getWordFromCache $el
@@ -239,7 +239,7 @@ class CodeWordTransitioner
 	@scramble : ($el, charState, sequential=false, cb=null) =>
 
 		if _.isArray $el
-			(@scramble(_$el, charState, cb)) for _$el in $el
+			(@scramble(_$el, charState, sequential, cb)) for _$el in $el
 			return
 
 		word = @_getWordFromCache $el
@@ -254,7 +254,7 @@ class CodeWordTransitioner
 	@unscramble : ($el, charState, sequential=false, cb=null) =>
 
 		if _.isArray $el
-			(@unscramble(_$el, charState, cb)) for _$el in $el
+			(@unscramble(_$el, charState, sequential, cb)) for _$el in $el
 			return
 
 		word = @_getWordFromCache $el
