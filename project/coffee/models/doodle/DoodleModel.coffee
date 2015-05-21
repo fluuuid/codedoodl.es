@@ -38,7 +38,7 @@ class DoodleModel extends AbstractModel
         "SAMPLE_DIR" : ""
 
     SAMPLE_DOODLES : [
-        'shape-stream',
+        'square-stream',
         'shape-stream-light',
         'box-physics',
         'stars',

@@ -77,7 +77,8 @@ class DoodlePageView extends AbstractViewPage
 		TEMP!!!
 		###
 		text = switch @model.get('SAMPLE_DIR')
-			when 'shape-stream', 'shape-stream-light' then 'Move your mouse'
+			when 'square-stream' then 'Click, hold, release'
+			when 'shape-stream-light' then 'Move your mouse'
 			when 'box-physics' then 'Click and drag'
 			when 'tubes' then 'Click and hold'
 			else 'drag around'
