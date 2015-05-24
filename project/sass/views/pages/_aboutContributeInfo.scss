@@ -68,6 +68,44 @@
 	}
 }
 
+.page-about {
+
+	.page-content {
+
+		a {
+			border-bottom: 2px solid $cd-blue;
+
+			.no-touch & {
+
+				&:hover {
+					animation: link-blink-blue 0.1s 1;
+					animation-timing-function: steps(1, end);
+					animation-fill-mode: forwards;
+				}
+			}
+		}
+	}
+}
+
+.page-contribute {
+
+	.page-content {
+
+		a {
+			border-bottom: 2px solid $cd-red;
+
+			.no-touch & {
+
+				&:hover {
+					animation: link-blink-red 0.1s 1;
+					animation-timing-function: steps(1, end);
+					animation-fill-mode: forwards;
+				}
+			}
+		}
+	}
+}
+
 @keyframes link-blink {
 	0%, 100% {
 		background: #fff;
@@ -76,5 +114,27 @@
 	50% {
 		background: $cd-black;
 		color: #fff;
+	}
+}
+
+@keyframes link-blink-blue {
+	0%, 100% {
+		background: $cd-blue;
+		color: $cd-black;
+	}
+	50% {
+		background: $cd-black;
+		color: $cd-blue;
+	}
+}
+
+@keyframes link-blink-red {
+	0%, 100% {
+		background: $cd-red;
+		color: $cd-black;
+	}
+	50% {
+		background: $cd-black;
+		color: $cd-red;
 	}
 }

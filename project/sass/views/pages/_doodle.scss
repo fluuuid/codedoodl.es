@@ -351,7 +351,7 @@
 
         a {
             color: $cd-blue;
-            border-color: rgba(57, 92, 170, 0.23);
+            border-color: $cd-red;
 
             .no-touch & {
 
@@ -517,11 +517,11 @@
 
 @keyframes info-link-blink {
     0%, 100% {
-        background: $cd-blue;
+        background: $cd-red;
         color: $bg-offwhite;
     }
     50% {
         background: $bg-offwhite;
-        color: $cd-blue;
+        color: $cd-red;
     }
 }
