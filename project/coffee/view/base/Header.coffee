@@ -46,6 +46,21 @@ class Header extends AbstractView
 
 		null
 
+	setCodeWordInitialStates : =>
+
+		state = @getSectionColour()
+
+		console.log "state", state
+
+		@$logo
+			.add(@$navLinkAbout)
+			.add(@$navLinkContribute)
+			.add(@$infoBtn)
+			.add(@$closeBtn)
+			.attr('data-codeword-initial-state', state)
+
+		null
+
 	bindEvents : =>
 
 		@CD().appView.on @CD().appView.EVENT_PRELOADER_HIDE, @animateTextIn
@@ -136,6 +151,7 @@ class Header extends AbstractView
 
 	animateTextIn : =>
 
+		@setCodeWordInitialStates()
 		@onAreaChange @CD().nav.current.area
 
 		null
