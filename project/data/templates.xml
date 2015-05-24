@@ -31,6 +31,16 @@
         ]]>
     </template>
 
+    <template id="preloader-intro">
+        <![CDATA[
+            <span class="preloader-intro-caption" data-intro-caption data-codeword data-codeword-initial-state="white-no-border"><%= label_caption %></span>
+            <span class="preloader-intro-btns" data-intro-btns>
+                <a class="intro-btn btn-extension" href="<%= url_chrome_extension %>" target="_blank" data-intro-btn="extension" data-codeword data-codeword-initial-state="white-no-border"><%= label_extension %></a>
+                <span class="intro-btn btn-enter" data-intro-btn="enter" data-codeword data-codeword-initial-state="white-no-border"><%= label_enter %></span>
+            </span>
+        ]]>
+    </template>
+
     <!--
         HEADER
     -->

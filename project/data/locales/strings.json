@@ -34,6 +34,14 @@
                 "page_transitioner_label_prefix": "entering"
             }
         },
+        "PRELOADER": {
+            "title": "Preloader",
+            "strings": {
+                "preloader_intro_caption": "\\\\ creative coding sketches \\\\",
+                "preloader_intro_cta_extension": "get chrome extension",
+                "preloader_intro_cta_enter": "enter site"
+            }
+        },
         "HEADER": {
             "title": "Header",
             "strings": {
@@ -104,7 +112,8 @@
         "MISC": {
             "title": "Miscelleanous",
             "strings": {
-                "misc_portfolio_label": "website"
+                "misc_portfolio_label": "website",
+                "chrome_extension_url": "http://gizoogle.com"
             }
         }
     }

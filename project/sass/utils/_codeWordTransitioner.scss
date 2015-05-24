@@ -15,6 +15,11 @@
         border-bottom: 2px solid #fff;
     }
 
+    &[data-codetext-char-state="white-no-border"] {
+        color: #fff;
+        border-color: transparent;
+    }
+
     &[data-codetext-char-state="offwhite"] {
         color: $bg-offwhite;
         border-bottom: 2px solid $bg-offwhite;
