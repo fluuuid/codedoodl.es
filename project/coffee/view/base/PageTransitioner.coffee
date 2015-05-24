@@ -137,8 +137,8 @@ class PageTransitioner extends AbstractView
             config = @_getDoodleToDoodleConfig()
 
         else if toArea is @CD().nav.sections.ABOUT or toArea is @CD().nav.sections.CONTRIBUTE
-            # config = @configPresets.topToBottom
-            config = @_getRandomConfig()
+            config = @configPresets.rightToLeft
+            # config = @_getRandomConfig()
 
         # else if fromArea is @CD().nav.sections.HOME or toArea is @CD().nav.sections.HOME
         else
