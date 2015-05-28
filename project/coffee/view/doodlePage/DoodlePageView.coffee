@@ -81,7 +81,7 @@ class DoodlePageView extends AbstractViewPage
 			when 'shape-stream-light' then 'Move your mouse'
 			when 'box-physics' then 'Click and drag'
 			when 'tubes' then 'Click and hold'
-			else 'drag around'
+			else 'Drag around'
 		@model.set 'instructions': text
 		###
 		END TEMP!!!

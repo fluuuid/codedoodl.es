@@ -18,7 +18,7 @@ config.routes =
 	HOME       : ''
 	ABOUT      : 'about'
 	CONTRIBUTE : 'contribute'
-	DOODLES    : '~'
+	DOODLES    : '_'
 	LOGIN      : 'login'
 
 config.shortlinks =
