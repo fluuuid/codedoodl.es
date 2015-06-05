@@ -86,11 +86,13 @@
     "prettysize": "^0.0.3",
     "require-dir": "^0.1.0",
     "run-sequence": "^1.0.1",
+    "s3": "^4.4.0",
     "slug": "^0.8.0",
     "valid-url": "^1.0.9",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "~1.0.0",
-    "watchify": "~2.0.0"
+    "watchify": "~2.0.0",
+    "yargs": "^3.10.0"
   },
   "vendor": {
     "modernizr": "modernizr-dev.js",

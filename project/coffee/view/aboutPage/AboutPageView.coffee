@@ -20,9 +20,15 @@ class AboutPageView extends AbstractViewPage
 
 		super
 
+		return null
+
+	show : =>
+
 		@getContributorsContent()
 
-		return null
+		super
+
+		null
 
 	getWhatContent : =>
 
@@ -34,7 +40,7 @@ class AboutPageView extends AbstractViewPage
 
 		r = Requester.request
             # url  : API.get('start')
-            url  : @CD().BASE_URL + '/data/_DUMMY/contributors.json'
+            url  : "#{@CD().ASSETS_URL}/data/_DUMMY/contributors.json"
             type : 'GET'
 
         r.done (res) =>
