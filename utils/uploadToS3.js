@@ -56,9 +56,7 @@ function getS3ParamsAssets(file, stat, cb) {
     cb(null, s3Params);
 }
 
-function getUploadParams(deployingAssets, localDir, bucket) {
-    console.log('getUploadParams\n');
-    console.log(localDir+'\n');
+function getUploadParams(uploadingAssets, localDir, bucket) {
     var params = {
         localDir: localDir,
         deleteRemoved: false, // default false, whether to remove s3 objects 
@@ -70,7 +68,7 @@ function getUploadParams(deployingAssets, localDir, bucket) {
         }
     };
 
-    if (deployingAssets) {
+    if (uploadingAssets) {
         params.getS3Params = getS3ParamsAssets;
     } else {
         params.s3Params.Prefix = localDir.split('doodles/')[1];
@@ -115,7 +113,7 @@ function startUploader(client, params, cb) {
     });
 }
 
-function deployAssets() {
+function uploadAssets() {
     var creds, client, uploadParams;
 
     creds        = getCredentials();
@@ -125,7 +123,7 @@ function deployAssets() {
     startUploader(client, uploadParams);
 };
 
-function deployDoodle(toLive, path) {
+function uploadDoodle(toLive, path) {
     var doodlePath, creds, client, uploadParams;
     var bucket = toLive ? config.buckets.SOURCE : config.buckets.PENDING;
 
@@ -138,7 +136,7 @@ function deployDoodle(toLive, path) {
 }
 
 module.exports = {
-    deployAssets        : deployAssets,
-    deployDoodlePending : deployDoodle.bind(null, false),
-    deployDoodleLive    : deployDoodle.bind(null, true)
+    uploadAssets        : uploadAssets,
+    uploadDoodlePending : uploadDoodle.bind(null, false),
+    uploadDoodleLive    : uploadDoodle.bind(null, true)
 };
