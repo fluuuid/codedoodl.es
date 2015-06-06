@@ -6,13 +6,43 @@ require('coffee-script/register');
 var fs     = require('fs');
 var s3     = require('s3');
 var path   = require('path');
-var argv   = require('yargs').argv;
 var config = require('../config/server');
 
 var gzippableRe = /\.(css|js|svg|gz)(?:$|\?)/;
 var versionedRe = /\.(css|js)(?:$|\?)/;
 
-function getS3Params(file, stat, cb) {
+function getCredentials() {
+    var creds = {};
+
+    try {
+        creds = require('../credentials.coffee');
+    } catch (e) {
+        throw new Error('Wat... No credentials.coffee file... No access')
+    }
+
+    return creds;
+}
+
+function getDoodlePath(arg) {
+    var path;
+
+    if (!arg) {
+        throw new Error('Need to provide a path as argument in format `username/doodleName`');
+    }
+
+    try {
+        if (fs.lstatSync('doodles/'+arg).isDirectory()) {
+            path = 'doodles/'+arg;
+        }
+    }
+    catch (e) {
+        throw new Error('Path provided for doodle is wrong / empty, remember just pass `username/doodleName`');
+    }
+
+    return path;
+}
+
+function getS3ParamsAssets(file, stat, cb) {
     var s3Params = {};
 
     if (gzippableRe.test(path.extname(file))) {
@@ -26,19 +56,25 @@ function getS3Params(file, stat, cb) {
     cb(null, s3Params);
 }
 
-function getUploadParams(isProduction) {
+function getUploadParams(deployingAssets, localDir, bucket) {
+    console.log('getUploadParams\n');
+    console.log(localDir+'\n');
     var params = {
-        localDir: "app/public/",
+        localDir: localDir,
         deleteRemoved: false, // default false, whether to remove s3 objects 
                               // that have no corresponding local file.
         s3Params: {
-            Bucket: config.buckets.ASSETS
+            Bucket: bucket
             // other options supported by putObject, except Body and ContentLength. 
             // See: http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#putObject-property 
-        },
-
-        getS3Params: getS3Params
+        }
     };
+
+    if (deployingAssets) {
+        params.getS3Params = getS3ParamsAssets;
+    } else {
+        params.s3Params.Prefix = localDir.split('doodles/')[1];
+    }
 
     return params;
 }
@@ -63,6 +99,10 @@ function getClient(creds) {
 }
 
 function startUploader(client, params, cb) {
+    console.log('\n\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n');
+    console.log('UPLOADING TO BUCKET '+params.s3Params.Bucket);
+    console.log('\n\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n');
+
     var uploader = client.uploadDir(params);
     uploader.on('error', function(err) {
         console.error("unable to sync:", err.stack);
@@ -75,18 +115,30 @@ function startUploader(client, params, cb) {
     });
 }
 
-module.exports = function deploy() {
-    var isProduction = !!argv.production;
-    var creds = {}, client, uploadParams;
+function deployAssets() {
+    var creds, client, uploadParams;
 
-    try {
-        creds = require('../credentials.coffee');
-    } catch (e) {
-        throw new Error('Wat... No credentials.coffee file... No access')
-    }
-
-    client = getClient(creds);
-    uploadParams = getUploadParams(isProduction);
+    creds        = getCredentials();
+    client       = getClient(creds);
+    uploadParams = getUploadParams(true, "app/public/", config.buckets.ASSETS);
 
     startUploader(client, uploadParams);
+};
+
+function deployDoodle(toLive, path) {
+    var doodlePath, creds, client, uploadParams;
+    var bucket = toLive ? config.buckets.SOURCE : config.buckets.PENDING;
+
+    doodlePath   = getDoodlePath(path)
+    creds        = getCredentials();
+    client       = getClient(creds);
+    uploadParams = getUploadParams(false, doodlePath, bucket);
+
+    startUploader(client, uploadParams);
+}
+
+module.exports = {
+    deployAssets        : deployAssets,
+    deployDoodlePending : deployDoodle.bind(null, false),
+    deployDoodleLive    : deployDoodle.bind(null, true)
 };
