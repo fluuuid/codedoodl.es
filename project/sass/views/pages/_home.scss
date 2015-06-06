@@ -3,6 +3,15 @@
 	background: $bg-offwhite;
 	overflow: hidden;
 	// position: relative;
+
+	&.scroller-disabled {
+		overflow-y: auto;
+		-webkit-overflow-scrolling: touch;
+
+		.home-grid-item {
+			opacity: 1;
+		}
+	}
 }
 
 .home-grid {
