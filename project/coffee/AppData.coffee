@@ -33,7 +33,7 @@ class AppData extends AbstractData
 
             r = Requester.request
                 # url  : API.get('start')
-                url  : @CD().BASE_URL + '/data/_DUMMY/doodles.json'
+                url  : "#{@CD().ASSETS_URL}/data/_DUMMY/doodles.json"
                 type : 'GET'
 
             r.done @onStartDataReceived
