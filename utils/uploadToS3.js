@@ -71,7 +71,7 @@ function getUploadParams(uploadingAssets, localDir, bucket) {
     if (uploadingAssets) {
         params.getS3Params = getS3ParamsAssets;
     } else {
-        params.s3Params.Prefix = localDir.split('doodles/')[1];
+        params.s3Params.Prefix = localDir.replace('doodles/', '');
     }
 
     return params;
