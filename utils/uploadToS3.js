@@ -3,10 +3,11 @@
 // config is coffee....
 require('coffee-script/register');
 
-var fs     = require('fs');
-var s3     = require('s3');
-var path   = require('path');
-var config = require('../config/server');
+var fs           = require('fs');
+var s3           = require('s3');
+var path         = require('path');
+var validatePath = require('./validateDoodleDirPath');
+var config       = require('../config/server');
 
 var gzippableRe = /\.(css|js|svg|gz|html|xml|json)(?:$|\?)/;
 var versionedRe = /\.(css|js)(?:$|\?)/;
@@ -21,25 +22,6 @@ function getCredentials() {
     }
 
     return creds;
-}
-
-function getDoodlePath(arg) {
-    var path;
-
-    if (!arg) {
-        throw new Error('Need to provide a path as argument in format `--path username/doodleName`');
-    }
-
-    try {
-        if (fs.lstatSync('doodles/'+arg).isDirectory()) {
-            path = 'doodles/'+arg;
-        }
-    }
-    catch (e) {
-        throw new Error('Path provided for doodle is wrong / empty, remember just pass `--path username/doodleName`');
-    }
-
-    return path;
 }
 
 function getS3ParamsAssets(file, stat, cb) {
@@ -132,7 +114,7 @@ function uploadDoodle(toLive, path, cb) {
     var doodlePath, creds, client, uploadParams;
     var bucket = toLive ? config.buckets.SOURCE : config.buckets.PENDING;
 
-    doodlePath   = getDoodlePath(path)
+    doodlePath   = validatePath('doodles/', path)
     creds        = getCredentials();
     client       = getClient(creds);
     uploadParams = getUploadParams(false, toLive, doodlePath, bucket);

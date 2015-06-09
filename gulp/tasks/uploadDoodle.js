@@ -1,12 +1,13 @@
-var gulp       = require('gulp');
-var gzip       = require('gulp-gzip');
-var uglify     = require('gulp-uglify');
-var shell      = require('gulp-shell');
-var gulpFilter = require('gulp-filter');
-var fs         = require('fs');
-var argv       = require('yargs').argv;
-var uploadToS3 = require('../../utils/uploadToS3');
-var config     = require('../../config/server');
+var gulp         = require('gulp');
+var gzip         = require('gulp-gzip');
+var uglify       = require('gulp-uglify');
+var shell        = require('gulp-shell');
+var gulpFilter   = require('gulp-filter');
+var fs           = require('fs');
+var argv         = require('yargs').argv;
+var uploadToS3   = require('../../utils/uploadToS3');
+var validatePath = require('../../utils/validateDoodleDirPath');
+var config       = require('../../config/server');
 
 gulp.task('uploadDoodle', ['_gzipDoodle'], function() {
 	var doodleDir = argv.path;
@@ -32,21 +33,7 @@ gulp.task('uploadDoodle', ['_gzipDoodle'], function() {
 gulp.task('_gzipDoodle', function() {
 	var doodleDir = argv.path;
 	var jsFilter = gulpFilter('**/*.js');
-
-	var path;
-
-	if (!doodleDir) {
-        throw new Error('Need to provide a path as argument in format `--path username/doodleName`');
-    }
-
-    try {
-        if (fs.lstatSync('doodles/'+doodleDir).isDirectory()) {
-            path = './doodles/'+doodleDir;
-        }
-    }
-    catch (e) {
-        throw new Error('Path provided for doodle is wrong / empty, remember just pass `--path username/doodleName`');
-    }
+	var path = validatePath('./doodles/', doodleDir);
 
 	return gulp.src(path + '/**/*.{css,js,svg,gz,html,xml,json}')
 		.pipe(jsFilter)
