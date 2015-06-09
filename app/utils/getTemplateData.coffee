@@ -1,6 +1,6 @@
 _      = require 'underscore'
 config = require '../../config/server'
-locale = require '../public/data/locales/strings.json'
+locale = require '../../project/data/locales/strings.json'
 
 _getRoutePageTitle = (route) ->
 
