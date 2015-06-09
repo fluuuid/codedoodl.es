@@ -5,7 +5,7 @@ var shell      = require('gulp-shell');
 var gulpFilter = require('gulp-filter');
 var fs         = require('fs');
 var argv       = require('yargs').argv;
-var uploadToS3 = require('../../utils/uploadToS3.js');
+var uploadToS3 = require('../../utils/uploadToS3');
 var config     = require('../../config/server');
 
 gulp.task('uploadDoodle', ['_gzipDoodle'], function() {
