@@ -13,5 +13,6 @@
 		"keyboard" : null,
 		"touch" : null
 	},
-	"created" : "" 
+	"colour_scheme" : "",
+	"mobile_friendly" : ""
 }

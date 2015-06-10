@@ -1,6 +1,7 @@
 .idea
 .vagrant
 
+temp/
 node_modules/
 .sass-cache/
 .sublime/

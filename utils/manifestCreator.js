@@ -18,7 +18,9 @@ var questions = [
   { id: 'interaction.mouse', text: 'Mouse interaction enabled? (y/n)', answerType: 'bool', required: true },
   { id: 'interaction.keyboard', text: 'Keyboard interaction enabled? (y/n)', answerType: 'bool', required: true },
   { id: 'interaction.touch', text: 'Touch interaction enabled? (y/n)', answerType: 'bool', required: true },
+  { id: 'instructions', text: 'Instructions', answerType: 'strInstructions', required: true },
   { id: 'colour_scheme', text: 'Doodle colour scheme? (light/dark)', answerType: 'colour_scheme', required: true },
+  { id: 'mobile_friendly', text: 'Doodle mobile friendly? (y/n)', answerType: 'bool', required: true }
 ];
 
 var currentQuestion, currentQuestionIdx = 0, answers = {};
@@ -49,7 +51,7 @@ function create(callback) {
       currentQuestion = questions[++currentQuestionIdx];
       ask(currentQuestion);
     } else {
-      set_manifest_timestamp();
+      // set_manifest_timestamp();
       callback(answers);
       process.stdin.pause();
     }
@@ -76,6 +78,10 @@ function create(callback) {
     } else if (question.answerType === 'github' && (!ghRe.test(answer) || answer.charAt(0) === '-')) {
 
       console.log(colors.red('Please provide a valid github username (alphanumeric or dashes, cannot start with dash, <39 chars) for %s'), question.text);
+
+    } else if (question.answerType === 'strInstructions' && answer.length > 35) {
+
+      console.log(colors.red('Please ensure text is not longer than 35 character  %s'), question.text);
 
     } else if (question.answerType === 'colour_scheme' && (answer !== 'light' && answer !== 'dark')) {
 

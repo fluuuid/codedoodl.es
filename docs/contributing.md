@@ -19,10 +19,6 @@ _ProTip - use the `createDoodle.js` utility script included in the repo, it will
 
 	Every doodle must have a single `index.html` file as an entry point. This file must be situated in the root of the doodle directory, which should be located in `/doodles/<author_github_username>/<doodle_name>`.
 
-* <code>**thumbnail JPEG 300x300 px**</code>
-
-	A single 300px by 300px JPEG thumbnail for the doodle must be in the root of the doodle directory.
-
 * <code>**manifest.json**</code>
 
 	Most importantly - each doodle requires a manifest file which contains all the metadata for the doodle, including doodle information / instructions, author details and tech used. You can manually create this file based on the [schema outlined here](manifest.md), or if you use the doodle-creation utility script (<code>utils/createDoodle.js</code>), the manifest will be automatically generated based on answers you have given.
