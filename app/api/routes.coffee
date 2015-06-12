@@ -1,7 +1,7 @@
 cors       = require "cors"
 doodleData = require "../../utils/getDoodleData"
 
-DUMMY_DOODLES = require "../public/data/_DUMMY/doodles.json"
+DUMMY_DOODLES = require "../../project/data/_DUMMY/doodles.json"
 
 getDoodles = (req, res) ->
 
