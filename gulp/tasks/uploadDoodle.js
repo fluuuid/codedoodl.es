@@ -1,16 +1,20 @@
-var gulp         = require('gulp');
-var gzip         = require('gulp-gzip');
-var uglify       = require('gulp-uglify');
-var shell        = require('gulp-shell');
-var gulpFilter   = require('gulp-filter');
-var fs           = require('fs');
-var argv         = require('yargs').argv;
-var uploadToS3   = require('../../utils/uploadToS3');
-var validatePath = require('../../utils/validateDoodleDirPath');
-var config       = require('../../config/server');
+// config is coffee....
+require('coffee-script/register');
 
-gulp.task('uploadDoodle', ['_gzipDoodle'], function() {
-	var doodleDir = argv.path;
+var gulp                 = require('gulp');
+var gzip                 = require('gulp-gzip');
+var uglify               = require('gulp-uglify');
+var shell                = require('gulp-shell');
+var gulpFilter           = require('gulp-filter');
+var fs                   = require('fs');
+var argv                 = require('yargs').argv;
+var uploadToS3           = require('../../utils/uploadToS3');
+var validatePath         = require('../../utils/validateDoodleDirPath');
+var validateDoodleUpload = require('../../utils/validateDoodleUpload');
+var invalidateCloudfront = require('../../utils/invalidateCloudfront');
+var config               = require('../../config/server');
+
+function uploadDoodle(doodleDir) {
 	var templateData = {
 		url : 'http://' + config.buckets.SOURCE + '/' + doodleDir + '/index.html'
 	};
@@ -26,6 +30,27 @@ gulp.task('uploadDoodle', ['_gzipDoodle'], function() {
 				'open <%= url %>'
 			], { templateData : templateData }));
 
+	});
+
+}
+
+gulp.task('uploadDoodle', ['_gzipDoodle'], function() {
+	var doodleDir = argv.path;
+
+	validateDoodleUpload(doodleDir, function(err) {
+
+		uploadDoodle(doodleDir);
+
+		if (err) {
+			uploadDoodle(doodleDir);
+		} else {
+			invalidateCloudfront.doodle(doodleDir, function(err) {
+				if (err) {
+					throw new Error('Problem invalidating cloudfront cache for ' + doodleDir, err);
+				}
+				uploadDoodle(doodleDir);
+			});
+		}
 	});
 
 });

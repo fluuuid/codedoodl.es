@@ -52,6 +52,7 @@
     "wrench": "^1.5.8"
   },
   "devDependencies": {
+    "aws-sdk": "^2.1.34",
     "browser-sync": "~1.5.7",
     "browserify": "~6.0.3",
     "coffee-script": "1.8.0",

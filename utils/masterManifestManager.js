@@ -3,10 +3,11 @@
 // config is coffee....
 require('coffee-script/register');
 
-var fs         = require('fs');
-var Hashids    = require('hashids');
-var uploadToS3 = require('./uploadToS3');
-var config     = require('../config/server');
+var fs                   = require('fs');
+var Hashids              = require('hashids');
+var uploadToS3           = require('./uploadToS3');
+var invalidateCloudfront = require('./invalidateCloudfront');
+var config               = require('../config/server');
 
 var manifestPath = "doodles/master_manifest.json";
 
@@ -46,7 +47,13 @@ function getNewEntry(doodleDir, index) {
 function updateAndUpload(doodleDir, cb) {
 
 	update(doodleDir);
-	uploadToS3.uploadSingleFile(manifestPath, cb);
+
+	invalidateCloudfront.file(manifestPath, function(err) {
+		if (err) {
+			throw new Error('Problem invalidating cloudfront cache for ' + manifestPath, err);
+		}
+		uploadToS3.uploadSingleFile(manifestPath, cb);
+	});
 
 }
 

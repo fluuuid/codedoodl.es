@@ -1,28 +1,10 @@
 var gulp                  = require('gulp');
 var fs                    = require('fs');
-var request               = require('request');
 var argv                  = require('yargs').argv;
 var shell                 = require('gulp-shell');
 var masterManifestManager = require('../../utils/masterManifestManager');
 var validatePath          = require('../../utils/validateDoodleDirPath');
-var config                = require('../../config/server');
-
-function validateDoodleUpload(doodleDir, cb) {
-	var doodleUrl = 'http://' + config.buckets.SOURCE + '/' + doodleDir + '/index.html';
-
-	request(doodleUrl, function(err, res, body) {
-		if (!err && res.statusCode == 200) {
-			console.log('Doodle exists, proceeding to update master manifest...');
-			cb();
-		} else {
-			console.log('\n');
-			console.log('Doodle cannot be deployed if it hasn\'t been uploaded to S3 first! Check `gulp uploadDoodle` before running this task.');
-			console.log('\n');
-			throw new Error('Error confirming existance of doodle at ' + doodleUrl, err);
-		}
-	});
-
-}
+var validateDoodleUpload  = require('../../utils/validateDoodleUpload');
 
 gulp.task('deployDoodle', function() {
 	var doodleDir = argv.path;
@@ -30,7 +12,14 @@ gulp.task('deployDoodle', function() {
 
 	validatePath('./doodles/', doodleDir);
 
-	validateDoodleUpload(doodleDir, function() {
+	validateDoodleUpload(doodleDir, function(err) {
+
+		if (err) {
+			console.log('\n');
+			console.log('Doodle cannot be deployed if it hasn\'t been uploaded to S3 first! Check `gulp uploadDoodle` before running this task.');
+			console.log('\n');
+			throw new Error('Failed to confirm SOURCE existance of doodle at ' + doodleDir, err);
+		}
 
 		masterManifestManager.updateAndUpload(doodleDir, function() {
 

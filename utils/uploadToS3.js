@@ -3,26 +3,15 @@
 // config is coffee....
 require('coffee-script/register');
 
-var fs           = require('fs');
-var s3           = require('s3');
-var path         = require('path');
-var validatePath = require('./validateDoodleDirPath');
-var config       = require('../config/server');
+var fs             = require('fs');
+var s3             = require('s3');
+var path           = require('path');
+var validatePath   = require('./validateDoodleDirPath');
+var getCredentials = require('./getCredentials');
+var config         = require('../config/server');
 
 var gzippableRe = /\.(css|js|svg|gz|html|xml|json)(?:$|\?)/;
 var versionedRe = /\.(css|js)(?:$|\?)/;
-
-function getCredentials() {
-    var creds = {};
-
-    try {
-        creds = require('../credentials.coffee');
-    } catch (e) {
-        throw new Error('Wat... No credentials.coffee file... No access')
-    }
-
-    return creds;
-}
 
 function getS3ParamsAssets(file, stat, cb) {
     var s3Params = {};
