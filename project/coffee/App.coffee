@@ -57,9 +57,9 @@ class App
 
     initObjects : =>
 
-        @templates = new Templates "#{@ASSETS_URL}/data/templates.xml", @objectComplete
-        @locale    = new Locale "#{@ASSETS_URL}/data/locales/strings.json", @objectComplete
-        @analytics = new Analytics "#{@ASSETS_URL}/data/tracking.json", @objectComplete
+        @templates = new Templates "#{@ASSETS_URL + window.config.assets.templates}", @objectComplete
+        @locale    = new Locale "#{@ASSETS_URL + window.config.assets.locales}", @objectComplete
+        @analytics = new Analytics "#{@ASSETS_URL + window.config.assets.tracking}", @objectComplete
         @appData   = new AppData @objectComplete
 
         # if new objects are added don't forget to change the `@objectComplete` function

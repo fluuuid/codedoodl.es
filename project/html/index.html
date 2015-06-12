@@ -60,7 +60,12 @@
 			fb_app_id   : "",
 			gp_app_id   : "",
 			routes      : <%- JSON.stringify(config.routes) %>,
-			shortlinks  : <%- JSON.stringify(config.shortlinks) %>
+			shortlinks  : <%- JSON.stringify(config.shortlinks) %>,
+			assets      : {
+				templates : "/{{ data/templates.xml }}",
+				locales   : "/{{ data/locales/strings.json }}",
+				tracking  : "/{{ data/tracking.json }}"
+			}
 		};
 
 	</script>

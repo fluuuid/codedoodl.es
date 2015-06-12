@@ -52,6 +52,7 @@
     "wrench": "^1.5.8"
   },
   "devDependencies": {
+    "aws-sdk": "^2.1.34",
     "browser-sync": "~1.5.7",
     "browserify": "~6.0.3",
     "coffee-script": "1.8.0",
@@ -85,6 +86,7 @@
     "phantomas": "^1.9.0",
     "pretty-hrtime": "^0.2.2",
     "prettysize": "^0.0.3",
+    "request": "^2.57.0",
     "require-dir": "^0.1.0",
     "run-sequence": "^1.0.1",
     "s3": "^4.4.0",
