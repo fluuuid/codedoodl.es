@@ -1,6 +1,7 @@
 AbstractView         = require '../AbstractView'
 HomeView             = require './HomeView'
 CodeWordTransitioner = require '../../utils/CodeWordTransitioner'
+MediaQueries         = require '../../utils/MediaQueries'
 
 class HomeGridItem extends AbstractView
 
@@ -24,8 +25,8 @@ class HomeGridItem extends AbstractView
 	constructor : (@model, @parentGrid) ->
 
 		@templateVars = _.extend {
-			thumb : @CD().DOODLES_URL + '/sample_doodles/' + @model.get('SAMPLE_DIR') + '/thumb.jpg'
-			# thumb : @CD().DOODLES_URL + '/' + @model.get('slug') + '/video-cover.jpg'
+			thumbSrc : @getThumbSrc()
+			videoSrc : @getVideoSrc()
 		}, @model.toJSON()
 
 		# @maxOffset    = (_.random @ITEM_MIN_OFFSET, @ITEM_MAX_OFFSET) / 10
@@ -35,6 +36,33 @@ class HomeGridItem extends AbstractView
 		super
 
 		return null
+
+	getThumbSrc : =>
+
+		# return @CD().DOODLES_URL + '/' + @model.get('slug') + '/thumb.jpg'
+
+		return @CD().DOODLES_URL + '/sample_doodles/' + @model.get('SAMPLE_DIR') + '/thumb.jpg'
+
+	getVideoSrc : =>
+
+		if MediaQueries.getBreakpoint() is "Small" then return false
+
+		type = @getVideoType()
+
+		# return @CD().DOODLES_URL + '/' + @model.get('slug') + '/thumb.' + type
+
+		return @CD().DOODLES_URL + '/sample_doodles/' + @model.get('SAMPLE_DIR') + '/thumb.' + type
+
+	getVideoType : =>
+
+		type = false
+
+		if Modernizr.video.webm is 'probably'
+			type = 'webm'
+		else if Modernizr.video.h264 is 'probably'
+			type = 'mp4'
+
+		type
 
 	setOffsetAndEase : (idx, colCount) =>
 
@@ -48,12 +76,14 @@ class HomeGridItem extends AbstractView
 
 		@$authorName = @$el.find('[data-codeword="author_name"]')
 		@$doodleName = @$el.find('[data-codeword="name"]')
+		@$video      = @$el.find('[data-video]')
 
 		null
 
 	setListeners : (setting) =>
 
 		@$el[setting] 'mouseover', @onMouseOver
+		@$el[setting] 'mouseout', @onMouseOut
 		@parentGrid[setting] @parentGrid.EVENT_TICK, @onTick
 
 		null
@@ -82,6 +112,14 @@ class HomeGridItem extends AbstractView
 
 		CodeWordTransitioner.to @model.get('author.name'), @$authorName, 'blue'
 		CodeWordTransitioner.to @model.get('name'), @$doodleName, 'blue'
+
+		@$video[0].play()
+
+		null
+
+	onMouseOut : =>
+
+		@$video[0].pause()
 
 		null
 

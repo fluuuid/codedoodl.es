@@ -87,7 +87,8 @@
                 <a class="grid-item-link" href="<%= url %>">
                     <span class="grid-item-thumb-holder">
                         <span class="grid-item-thumb-cover"></span>
-                        <span class="grid-item-thumb" style="background-image: url(<%= thumb %>)"></span>
+                        <span class="grid-item-thumb" style="background-image: url(<%= thumbSrc %>)"></span>
+                        <%= (videoSrc) ? "<video class=\"grid-item-thumb-video\" src=\""+videoSrc+"\" loop data-video></video>" : "" %>
                     </span>
                     <h1 class="grid-item-title">
                         <span data-codeword="author_name" data-codeword-initial-state="blue"><%= author.name %></span><br/>

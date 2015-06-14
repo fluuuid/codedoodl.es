@@ -114,6 +114,11 @@
 			}
 
 			.grid-item-thumb {
+				opacity: 0;
+				visibility: hidden;
+			}
+
+			.grid-item-thumb-video {
 				opacity: 1;
 				visibility: visible;
 			}
@@ -157,7 +162,8 @@
 	}
 
 	.grid-item-thumb-cover,
-	.grid-item-thumb {
+	.grid-item-thumb,
+	.grid-item-thumb-video {
 		display: block;
 		position: absolute;
 		top: 50%;
@@ -172,16 +178,23 @@
 	}
 
 	.grid-item-thumb-cover {
-		z-index: 1;
+		z-index: 2;
 		background: $cd-blue;
 	}
 
-	.grid-item-thumb {
+	.grid-item-thumb,
+	.grid-item-thumb-video {
 		filter: brightness(0.8) contrast(2.5);
-		background: url(https://placeimg.com/300/300/any) no-repeat center center;
+		visibility: visible;
+	}
+
+	.grid-item-thumb {
 		background-size: cover;
 		z-index: 0;
-		visibility: visible;
+	}
+
+	.grid-item-thumb-video {
+		z-index: 1;
 	}
 
 	.grid-item-lines {
