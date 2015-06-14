@@ -35,7 +35,7 @@
 	<meta name="twitter:image:width"  content="300">
 	<meta name="twitter:image:height" content="300">
 
-	<link rel="stylesheet" href="<%= config.ASSETS_BUCKET_URL %>/css/main-e36a84dc.css">
+	<link rel="stylesheet" href="<%= config.ASSETS_BUCKET_URL %>/css/main.css">
 
 </head>
 
@@ -62,16 +62,16 @@
 			routes      : <%- JSON.stringify(config.routes) %>,
 			shortlinks  : <%- JSON.stringify(config.shortlinks) %>,
 			assets      : {
-				templates : "/data/templates-a1e7d360.xml",
-				locales   : "/data/locales/strings-c9c21ce2.json",
-				tracking  : "/data/tracking-c58972dc.json"
+				templates : "/data/templates.xml",
+				locales   : "/data/locales/strings.json",
+				tracking  : "/data/tracking.json"
 			}
 		};
 
 	</script>
 
-	<script src="<%= config.ASSETS_BUCKET_URL %>/js/vendor/v-6e621e26.js"></script>
-	<script src="<%= config.ASSETS_BUCKET_URL %>/js/main-8f98f495.js"></script>
+	<script src="<%= config.ASSETS_BUCKET_URL %>/js/vendor/v.js"></script>
+	<script src="<%= config.ASSETS_BUCKET_URL %>/js/main.js"></script>
 
 	<script>
 		if (window.config.GA_code) {

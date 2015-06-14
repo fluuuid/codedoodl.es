@@ -123,7 +123,7 @@ class DoodlePageView extends AbstractViewPage
 		# TEMP, OBVZ
 		SAMPLE_DIR = @model.get('SAMPLE_DIR')
 
-		@$frame.attr 'src', "http://source.codedoodl.es/sample_doodles/#{SAMPLE_DIR}/index.html"
+		@$frame.attr 'src', "#{@CD().DOODLES_URL}/sample_doodles/#{SAMPLE_DIR}/index.html"
 		@$frame.one 'load', => @showDoodle delay
 
 		null
@@ -178,6 +178,8 @@ class DoodlePageView extends AbstractViewPage
 
 		doodleInfoVars =
 			indexHTML                   : @model.get('indexHTML')
+			# thumb                     : @CD().DOODLES_URL + '/' + @model.get('slug') + '/thumb.jpg'
+			thumb                       : @CD().DOODLES_URL + '/sample_doodles/' + @model.get('SAMPLE_DIR') + '/thumb.jpg'
 			label_author                : @CD().locale.get "doodle_label_author"
 			content_author              : @model.getAuthorHtml()
 			label_doodle_name           : @CD().locale.get "doodle_label_doodle_name"

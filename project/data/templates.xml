@@ -87,7 +87,7 @@
                 <a class="grid-item-link" href="<%= url %>">
                     <span class="grid-item-thumb-holder">
                         <span class="grid-item-thumb-cover"></span>
-                        <span class="grid-item-thumb" style="background-image: url(https://placeimg.com/300/300/any?time=<%= Math.random()*9999 %>)"></span>
+                        <span class="grid-item-thumb" style="background-image: url(<%= thumb %>)"></span>
                     </span>
                     <h1 class="grid-item-title">
                         <span data-codeword="author_name" data-codeword-initial-state="blue"><%= author.name %></span><br/>
@@ -194,7 +194,7 @@
                 <span class="doodle-preview">
                     <span class="doodle-preview-thumb-holder">
                         <span class="doodle-preview-thumb-cover"></span>
-                        <span class="doodle-preview-thumb" style="background-image: url(https://placeimg.com/300/300/any?time=<%= Math.random()*9999 %>)"></span>
+                        <span class="doodle-preview-thumb" style="background-image: url(<%= thumb %>)"></span>
                     </span>
                     <span class="doodle-preview-number">
                         <%= indexHTML %>

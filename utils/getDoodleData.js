@@ -44,7 +44,7 @@ function getDoodles() {
   // return doodles;
 
   // ACTUALLY JUST KIDDING, SERVE THE DUMMY SHIT PLZ!!!
-  return require('../app/public/data/_DUMMY/doodles.json');
+  return require('../project/data/_DUMMY/doodles.json');
 
 }
 

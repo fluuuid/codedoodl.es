@@ -23,7 +23,10 @@ class HomeGridItem extends AbstractView
 
 	constructor : (@model, @parentGrid) ->
 
-		@templateVars = _.extend {}, @model.toJSON()
+		@templateVars = _.extend {
+			thumb : @CD().DOODLES_URL + '/sample_doodles/' + @model.get('SAMPLE_DIR') + '/thumb.jpg'
+			# thumb : @CD().DOODLES_URL + '/' + @model.get('slug') + '/video-cover.jpg'
+		}, @model.toJSON()
 
 		# @maxOffset    = (_.random @ITEM_MIN_OFFSET, @ITEM_MAX_OFFSET) / 10
 		# @acceleration = (_.random @ITEM_MIN_ACCEL, @ITEM_MAX_ACCEL) / 10
