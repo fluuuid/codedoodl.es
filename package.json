@@ -36,6 +36,7 @@
     "body-parser": "~1.2.0",
     "coffee-script": "~1.7.1",
     "colors": "^1.0.3",
+    "compression": "^1.5.0",
     "cookie-parser": "~1.0.1",
     "cors": "^2.5.3",
     "ejs": "~1.0.0",
