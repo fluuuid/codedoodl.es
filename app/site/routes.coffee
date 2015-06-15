@@ -2,9 +2,9 @@ _               = require 'underscore'
 bodyParser      = require 'body-parser'
 cookieParser    = require 'cookie-parser'
 session         = require 'express-session'
-config          = require '../../config/server'
-getTemplateData = require '../utils/getTemplateData'
 Hashids         = require 'hashids'
+getTemplateData = require '../utils/getTemplateData'
+config          = require '../../config/server'
 
 ###
 views
@@ -30,7 +30,7 @@ checkShortLink = (req, res, next) ->
 	segments = req.params.path.split('/')
 
 	if segments.length is 1
-		allDoodles = require('../../utils/getDoodleData').getDoodles().doodles
+		allDoodles = require('../utils/getDoodleData').getDoodles()
 		hashids    = new Hashids config.shortlinks.SALT, 0, config.shortlinks.ALPHABET
 		index      = hashids.decode(segments[0])[0]
 		doodle     = _.findWhere allDoodles, index : index
@@ -54,7 +54,7 @@ login = (req, res) ->
 	res.render "site/login", msg: msg
 
 loginPost = (req, res) ->
-	if req.body.pw is (process.env.DEV_PASSWORD or '')
+	if req.body.pw is config.PASSWORD
 		req.session.logged_in = true
 		res.redirect '/'
 	else

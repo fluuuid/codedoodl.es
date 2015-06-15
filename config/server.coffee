@@ -23,6 +23,8 @@ config.BASE_URL           = if config.PRODUCTION then "http://codedoodl.es" else
 config.ASSETS_BUCKET_URL  = if config.PRODUCTION then "http://#{config.buckets.ASSETS}" else "http://#{config.express.ip}:#{config.express.port}"
 config.DOODLES_BUCKET_URL = "http://#{config.buckets.SOURCE}"
 
+config.DOODLE_CACHE_TIMEOUT = (1000 * 60) * 5
+
 config.routes =
 	HOME       : ''
 	ABOUT      : 'about'
@@ -35,3 +37,4 @@ config.shortlinks =
 	ALPHABET : 'abcdefghijklmnopqrstuvwxyz'
 
 config.GA_CODE = process.env.GOOGLE_ANALYTICS_CODE or ''
+config.PASSWORD = process.env.DEV_PASSWORD or ''

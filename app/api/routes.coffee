@@ -1,16 +1,13 @@
 cors       = require "cors"
-doodleData = require "../../utils/getDoodleData"
-
-DUMMY_DOODLES = require "../../project/data/_DUMMY/doodles.json"
+doodleData = require "../utils/getDoodleData"
 
 getDoodles = (req, res) ->
 
-	# res.json doodleData.getDoodles()
-	res.json DUMMY_DOODLES
+	res.json doodles : doodleData.getDoodles()
 
 getContributors = (req, res) ->
 
-	res.json doodleData.getContributors()
+	res.json contributors : doodleData.getContributors()
 
 setup = (app) ->
 

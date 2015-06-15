@@ -62,7 +62,7 @@ _getDoodleMetaData = (doodle) ->
 getTemplateData = (route, req) ->
 
     if route is 'DOODLES'
-        allDoodles = require('../../utils/getDoodleData').getDoodles().doodles
+        allDoodles = require('./getDoodleData').getDoodles()
         doodle     = _.findWhere allDoodles, { slug : "#{req.params.authorName}/#{req.params.doodleName}" }
         page_title = _getDoodlePageTitle doodle
         meta_data  = _getDoodleMetaData doodle
