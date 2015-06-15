@@ -73,20 +73,6 @@ class DoodlePageView extends AbstractViewPage
 
 	setupUI : =>
 
-		###
-		TEMP!!!
-		###
-		text = switch @model.get('SAMPLE_DIR')
-			when 'square-stream' then 'Click, hold, release'
-			when 'shape-stream-light' then 'Move your mouse'
-			when 'box-physics' then 'Click and drag'
-			when 'tubes' then 'Click and hold'
-			else 'Drag around'
-		@model.set 'instructions': text
-		###
-		END TEMP!!!
-		###
-
 		@$infoContent.html @getDoodleInfoContent()
 
 		@$el.attr 'data-color-scheme', @model.get('colour_scheme')
@@ -120,10 +106,7 @@ class DoodlePageView extends AbstractViewPage
 
 		if removeEvent then @CD().appView.transitioner.off @CD().appView.transitioner.EVENT_TRANSITIONER_OUT_DONE, @showFrame
 
-		# TEMP, OBVZ
-		SAMPLE_DIR = @model.get('SAMPLE_DIR')
-
-		@$frame.attr 'src', "#{@CD().DOODLES_URL}/sample_doodles/#{SAMPLE_DIR}/index.html"
+		@$frame.attr 'src', "#{@CD().DOODLES_URL}/#{@model.get('slug')}/index.html"
 		@$frame.one 'load', => @showDoodle delay
 
 		null
@@ -178,8 +161,7 @@ class DoodlePageView extends AbstractViewPage
 
 		doodleInfoVars =
 			indexHTML                   : @model.get('indexHTML')
-			# thumb                     : @CD().DOODLES_URL + '/' + @model.get('slug') + '/thumb.jpg'
-			thumb                       : @CD().DOODLES_URL + '/sample_doodles/' + @model.get('SAMPLE_DIR') + '/thumb.jpg'
+			thumb                       : @CD().DOODLES_URL + '/' + @model.get('slug') + '/thumb.jpg'
 			label_author                : @CD().locale.get "doodle_label_author"
 			content_author              : @model.getAuthorHtml()
 			label_doodle_name           : @CD().locale.get "doodle_label_doodle_name"

@@ -31,7 +31,7 @@ _getDefaultMetaData = (route) ->
 _getDoodlePageTitle = (doodle) ->
 
     tmpl = locale.strings.PAGE_TITLES.strings["page_title_DOODLES"]
-    tmpl.replace '{{ name }}', "#{doodle.author.name} \\ #{doodle.name} "
+    tmpl.replace '{{ name }}', "#{doodle.author.name} \\ #{doodle.name}"
 
 _getDoodleMetaData = (doodle) ->
 

@@ -5,7 +5,6 @@ var gulp                 = require('gulp');
 var gzip                 = require('gulp-gzip');
 var uglify               = require('gulp-uglify');
 var shell                = require('gulp-shell');
-var gulpFilter           = require('gulp-filter');
 var fs                   = require('fs');
 var argv                 = require('yargs').argv;
 var uploadToS3           = require('../../utils/uploadToS3');
@@ -39,8 +38,6 @@ gulp.task('uploadDoodle', ['_gzipDoodle'], function() {
 
 	validateDoodleUpload(doodleDir, function(err) {
 
-		uploadDoodle(doodleDir);
-
 		if (err) {
 			uploadDoodle(doodleDir);
 		} else {
@@ -57,13 +54,9 @@ gulp.task('uploadDoodle', ['_gzipDoodle'], function() {
 
 gulp.task('_gzipDoodle', function() {
 	var doodleDir = argv.path;
-	var jsFilter = gulpFilter('**/*.js');
-	var path = validatePath('./doodles/', doodleDir);
+	var path      = validatePath('./doodles/', doodleDir);
 
-	return gulp.src(path + '/**/*.{css,js,svg,gz,html,xml,json}')
-		.pipe(jsFilter)
-		.pipe(uglify())
-		.pipe(jsFilter.restore())
+	return gulp.src([path + '/**/*.{css,js,svg,gz,html,xml,json}', '!' + path + '/manifest.json'])
 		.pipe(gzip({ append: false }))
 		.pipe(gulp.dest(path));
 });

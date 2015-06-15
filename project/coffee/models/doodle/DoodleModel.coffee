@@ -35,28 +35,9 @@ class DoodleModel extends AbstractModel
             "author_name" : ""
         "viewed" : false
 
-        "SAMPLE_DIR" : ""
-
-    SAMPLE_DOODLES : [
-        'square-stream',
-        'shape-stream-light',
-        'box-physics',
-        'stars',
-        'tubes'
-    ]
-
     constructor : ->
 
         super
-
-        ###
-        GET_DUMMY_DOODLE_SCHTUFF
-        ###
-        attrs = {}
-        sample = _.shuffle(@SAMPLE_DOODLES)[0]
-        attrs.SAMPLE_DIR = sample
-        attrs.colour_scheme = if sample is 'shape-stream-light' then 'light' else 'dark'
-        @set attrs
 
         return null
 

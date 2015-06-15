@@ -1,8 +1,9 @@
-_      = require "underscore"
-fs     = require "fs"
-path   = require "path"
-colors = require "colors"
-config = require "../../config/server"
+_       = require "underscore"
+fs      = require "fs"
+path    = require "path"
+colors  = require "colors"
+request = require "request"
+config  = require "../../config/server"
 
 cache =
   doodles      : null
@@ -24,24 +25,52 @@ updateCache = (cb) ->
 
     # make async
     setTimeout ->
-        cache.doodles      = _getDoodles()
-        cache.contributors = _getContributors()
+        _getDoodles (doodles) ->
+            cache.doodles      = doodles
+            cache.contributors = _getContributors()
     , 0
 
     null
- 
-_getDoodles = ->
 
-    doodles     = []
+_getMasterManifestRemote = (cb) ->
+
+    manifestUrl = config.DOODLES_BUCKET_URL + '/master_manifest.json'
+
+    request manifestUrl, (err, res, body) ->
+
+        if !err && res.statusCode == 200
+            manifest = JSON.parse body
+            cb manifest
+        else
+            console.error 'Error getting remote master manifest from SOURCE'
+            _getMasterManifestLocal cb
+
+    null
+
+_getMasterManifestLocal = (cb) ->
+
+    doodlesPath  = path.resolve(__dirname, '../../doodles')
+    manifestPath = doodlesPath + '/master_manifest.json'
+    manifest     = JSON.parse(fs.readFileSync(manifestPath, { encoding : 'utf8' }))
+    cb manifest
+
+    null
+ 
+_getDoodles = (cb) ->
+
+    allDoodles    = []
+    localDoodles  = []
+    returnDoodles = null
+
     doodlesPath = path.resolve(__dirname, '../../doodles')
 
-    fs.readdirSync(doodlesPath).forEach( (authorPath, i) ->
+    fs.readdirSync(doodlesPath).forEach (authorPath, i) ->
 
         authorPath = doodlesPath + '/' + authorPath
 
         if fs.lstatSync(authorPath).isDirectory()
 
-            fs.readdirSync(authorPath).forEach( (doodlePath, i) ->
+            fs.readdirSync(authorPath).forEach (doodlePath, i) ->
 
                 doodlePath   = authorPath + '/' + doodlePath;
                 manifestPath = doodlePath+'/manifest.json';
@@ -49,18 +78,23 @@ _getDoodles = ->
                 if fs.lstatSync(doodlePath).isDirectory()
 
                     if fs.existsSync(manifestPath)
-                        doodles.push(JSON.parse(fs.readFileSync(manifestPath, {encoding: 'utf8'})))
+                        localDoodles.push(JSON.parse(fs.readFileSync(manifestPath, {encoding: 'utf8'})))
                     else
                         console.log(colors.red('No manifest.json found for doodle :  %s'), doodlePath)
 
-            )
+    getManifestMethod = if config.PRODUCTION then _getMasterManifestRemote else _getMasterManifestLocal
+    getManifestMethod (manifest) ->
 
-    )
+        for doodle in manifest.doodles
 
-    # return doodles;
+            localDoodle = _.findWhere localDoodles, slug : doodle.slug
+            if localDoodle
+                mergedDoodleData = _.extend {}, doodle, localDoodle
+                allDoodles.push mergedDoodleData
 
-    # ACTUALLY JUST KIDDING, SERVE THE DUMMY SHIT PLZ!!!
-    return require('../../project/data/_DUMMY/doodles.json').doodles
+        returnDoodles = allDoodles.reverse()
+
+        cb returnDoodles
 
 _getContributors = ->
 
