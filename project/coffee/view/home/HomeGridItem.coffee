@@ -39,9 +39,7 @@ class HomeGridItem extends AbstractView
 
 	getThumbSrc : =>
 
-		# return @CD().DOODLES_URL + '/' + @model.get('slug') + '/thumb.jpg'
-
-		return @CD().DOODLES_URL + '/sample_doodles/' + @model.get('SAMPLE_DIR') + '/thumb.jpg'
+		return @CD().DOODLES_URL + '/' + @model.get('slug') + '/thumb.jpg'
 
 	getVideoSrc : =>
 
@@ -49,9 +47,7 @@ class HomeGridItem extends AbstractView
 
 		type = @getVideoType()
 
-		# return @CD().DOODLES_URL + '/' + @model.get('slug') + '/thumb.' + type
-
-		return @CD().DOODLES_URL + '/sample_doodles/' + @model.get('SAMPLE_DIR') + '/thumb.' + type
+		return @CD().DOODLES_URL + '/' + @model.get('slug') + '/thumb.' + type
 
 	getVideoType : =>
 

@@ -39,13 +39,12 @@ class AboutPageView extends AbstractViewPage
 	getContributorsContent : =>
 
 		r = Requester.request
-            # url  : API.get('start')
-            url  : "#{@CD().ASSETS_URL}/data/_DUMMY/contributors.json"
+            url  : API.get('contributors')
             type : 'GET'
 
         r.done (res) =>
-        	@contributors.add res.contributors
-        	@$el.find('[data-contributors]').html @contributors.getAboutHTML()
+        	@contributors.reset _.shuffle res.contributors
+        	@$el.find('[data-contributors]').html @CD().locale.get("about_content_who") + @contributors.getAboutHTML()
 
         r.fail (res) => console.error "problem getting the contributors", res
 

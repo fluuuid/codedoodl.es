@@ -1,0 +1,20 @@
+{
+    "name" : "Square stream",
+    "author" : {
+        "name" : "Neil Carpenter",
+        "github" : "neilcarpenter",
+        "website" : "http://neilcarpenter.com",
+        "twitter" : "neilcarpenter"
+    },
+    "description" : "Infinite stream of squares, learning PIXI.js. Click and release to change colours, move your mouse for some simple attraction.",
+    "tags" : [ "PIXI", "2D", "webgl", "rgb-shift" ],
+    "interaction" : {
+        "mouse" : true,
+        "keyboard" : false,
+        "touch" : false
+    },
+    "instructions" : "Click. Hold. Release.",
+    "colour_scheme" : "dark",
+    "mobile_friendly" : true,
+    "slug" : "neilcarpenter/square-stream"
+}

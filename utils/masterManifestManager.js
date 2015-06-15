@@ -25,7 +25,7 @@ function update(doodleDir) {
 	});
 
 	if (!found) {
-		doodles.push(getNewEntry(doodleDir, doodles.length));
+		doodles.push(getNewEntry(doodleDir, doodles.length+1));
 	}
 
 	manifest.last_updated = new Date();
@@ -39,6 +39,7 @@ function getNewEntry(doodleDir, index) {
 
     return {
 		id      : shortlink,
+		index   : index,
 		slug    : doodleDir,
 		created : new Date()
 	};
@@ -58,5 +59,6 @@ function updateAndUpload(doodleDir, cb) {
 }
 
 module.exports = {
+	update          : update,
 	updateAndUpload : updateAndUpload
 }

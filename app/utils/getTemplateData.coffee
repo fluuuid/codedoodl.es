@@ -31,7 +31,7 @@ _getDefaultMetaData = (route) ->
 _getDoodlePageTitle = (doodle) ->
 
     tmpl = locale.strings.PAGE_TITLES.strings["page_title_DOODLES"]
-    tmpl.replace '{{ name }}', "#{doodle.author.name} \\ #{doodle.name} "
+    tmpl.replace '{{ name }}', "#{doodle.author.name} \\ #{doodle.name}"
 
 _getDoodleMetaData = (doodle) ->
 
@@ -40,8 +40,8 @@ _getDoodleMetaData = (doodle) ->
     doodle_thumbnail = "#{config.DOODLES_BUCKET_URL}/#{doodle.slug}/thumb.jpg"
 
     fb_tw_desc_tmpl  = locale.strings.SEO.strings["seo_og_twitter_doodle_description"]
-    fb_description   = fb_tw_desc_tmpl.replace("{{ doodle_name }}", "#{doodle.name} ").replace('{{ doodle_author }}', " #{doodle.author.name} ")
-    tw_description   = fb_tw_desc_tmpl.replace("{{ doodle_name }}", "#{doodle.name} ").replace('{{ doodle_author }}', if doodle.author.twitter then " @#{doodle.author.twitter} " else " #{doodle.author.name} ")
+    fb_description   = fb_tw_desc_tmpl.replace("{{ doodle_name }}", "#{doodle.name}").replace('{{ doodle_author }}', "#{doodle.author.name}")
+    tw_description   = fb_tw_desc_tmpl.replace("{{ doodle_name }}", "#{doodle.name}").replace('{{ doodle_author }}', if doodle.author.twitter then "@#{doodle.author.twitter}" else "#{doodle.author.name}")
 
     return {
         "meta_description"         : doodle.description

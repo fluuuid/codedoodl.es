@@ -31,7 +31,7 @@ checkShortLink = (req, res, next) ->
 
 	if segments.length is 1
 		allDoodles = require('../utils/getDoodleData').getDoodles()
-		hashids    = new Hashids config.shortlinks.SALT, 0, config.shortlinks.ALPHABET
+		hashids    = new Hashids config.shortlinks.SALT, 3, config.shortlinks.ALPHABET
 		index      = hashids.decode(segments[0])[0]
 		doodle     = _.findWhere allDoodles, index : index
 
