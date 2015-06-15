@@ -43,8 +43,8 @@ class AboutPageView extends AbstractViewPage
             type : 'GET'
 
         r.done (res) =>
-        	@contributors.reset res.contributors
-        	@$el.find('[data-contributors]').html @contributors.getAboutHTML()
+        	@contributors.reset _.shuffle res.contributors
+        	@$el.find('[data-contributors]').html @CD().locale.get("about_content_who") + @contributors.getAboutHTML()
 
         r.fail (res) => console.error "problem getting the contributors", res
 

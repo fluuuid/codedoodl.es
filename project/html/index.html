@@ -50,17 +50,13 @@
 	<script type="text/javascript">
 
 		window.config = {
-			ENV         : "",
 			GA_code     : "<%= config.GA_CODE %>",
 			hostname    : document.location.protocol + "//" + document.location.host,
 			base_url    : "<%= config.BASE_URL %>",
 			assets_url  : "<%= config.ASSETS_BUCKET_URL %>",
 			doodles_url : "<%= config.DOODLES_BUCKET_URL %>",
 			localeCode  : "en-gb",
-			fb_app_id   : "",
-			gp_app_id   : "",
 			routes      : <%- JSON.stringify(config.routes) %>,
-			shortlinks  : <%- JSON.stringify(config.shortlinks) %>,
 			assets      : {
 				templates : "/{{ data/templates.xml }}",
 				locales   : "/{{ data/locales/strings.json }}",

@@ -40,8 +40,8 @@ _getDoodleMetaData = (doodle) ->
     doodle_thumbnail = "#{config.DOODLES_BUCKET_URL}/#{doodle.slug}/thumb.jpg"
 
     fb_tw_desc_tmpl  = locale.strings.SEO.strings["seo_og_twitter_doodle_description"]
-    fb_description   = fb_tw_desc_tmpl.replace("{{ doodle_name }}", "#{doodle.name} ").replace('{{ doodle_author }}', " #{doodle.author.name} ")
-    tw_description   = fb_tw_desc_tmpl.replace("{{ doodle_name }}", "#{doodle.name} ").replace('{{ doodle_author }}', if doodle.author.twitter then " @#{doodle.author.twitter} " else " #{doodle.author.name} ")
+    fb_description   = fb_tw_desc_tmpl.replace("{{ doodle_name }}", "#{doodle.name}").replace('{{ doodle_author }}', "#{doodle.author.name}")
+    tw_description   = fb_tw_desc_tmpl.replace("{{ doodle_name }}", "#{doodle.name}").replace('{{ doodle_author }}', if doodle.author.twitter then "@#{doodle.author.twitter}" else "#{doodle.author.name}")
 
     return {
         "meta_description"         : doodle.description

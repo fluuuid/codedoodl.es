@@ -156,9 +156,6 @@ class DoodlePageView extends AbstractViewPage
 
 	getDoodleInfoContent : =>
 
-		# no need to do this for every doodle - only do it if we view the info pane for a particular doodle
-		@model.setShortlink()
-
 		doodleInfoVars =
 			indexHTML                   : @model.get('indexHTML')
 			thumb                       : @CD().DOODLES_URL + '/' + @model.get('slug') + '/thumb.jpg'
@@ -175,8 +172,8 @@ class DoodlePageView extends AbstractViewPage
 			label_interaction           : @CD().locale.get "doodle_label_interaction"
 			content_interaction         : @_getInteractionContent()
 			label_share                 : @CD().locale.get "doodle_label_share"
-			share_url                   : @CD().BASE_URL + '/' + @model.get('shortlink')
-			share_url_text              : @CD().BASE_URL.replace('http://', '') + '/' + @model.get('shortlink')
+			share_url                   : @CD().BASE_URL + '/' + @model.get('id')
+			share_url_text              : @CD().BASE_URL.replace('http://', '') + '/' + @model.get('id')
 			mouse_enabled               : @model.get('interaction.mouse')
 			keyboard_enabled            : @model.get('interaction.keyboard')
 			touch_enabled               : @model.get('interaction.touch')
@@ -224,7 +221,7 @@ class DoodlePageView extends AbstractViewPage
 		vars =
 			doodle_name   : @model.get 'name'
 			doodle_author : if @model.get('author.twitter') then "@#{@model.get('author.twitter')}" else @model.get('author.name')
-			share_url     : @CD().BASE_URL + '/' + @model.get('shortlink')
+			share_url     : @CD().BASE_URL + '/' + @model.get('id')
 			doodle_tags   : _.map(@model.get('tags'), (tag) -> '#' + tag).join(' ')
 
 		desc = @supplantString @CD().locale.get('doodle_share_text_tmpl'), vars, false
