@@ -10,10 +10,10 @@ config          = require '../../config/server'
 views
 ###
 home = (req, res) ->
-	# if req.session.logged_in
+	if req.session.logged_in
 		res.render "site/index", getTemplateData('HOME')
-	# else
-		# res.render "site/holding", getTemplateData('HOLDING')
+	else
+		res.render "site/holding", getTemplateData('HOLDING')
 
 about = (req, res) ->
 	res.render "site/index", getTemplateData('ABOUT')
@@ -44,9 +44,9 @@ checkShortLink = (req, res, next) ->
 basic password-protect
 ###
 checkAuth = (req, res, next) ->
-	# if !req.session.logged_in
-	# 	res.redirect "/#{config.routes.HOME}"
-	# else
+	if !req.session.logged_in
+		res.redirect "/#{config.routes.HOME}"
+	else
 		next()
 
 login = (req, res) ->
