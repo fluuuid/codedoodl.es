@@ -82,7 +82,7 @@ _getDoodles = (cb) ->
                     else
                         console.log(colors.red('No manifest.json found for doodle :  %s'), doodlePath)
 
-    getManifestMethod = if config.PRODUCTION then _getMasterManifestRemote else _getMasterManifestLocal
+    getManifestMethod = if config.PRODUCTION then _getMasterManifestLocal else _getMasterManifestRemote
     getManifestMethod (manifest) ->
 
         for doodle in manifest.doodles
