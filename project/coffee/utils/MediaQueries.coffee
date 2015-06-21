@@ -16,7 +16,14 @@ class MediaQueries
     @LARGE       : "large"
     @EXTRA_LARGE : "extra-large"
 
+    @JS_EL        : null
+    @EL_CLASSNAME : 'js-mediaqueries'
+
     @setup : =>
+
+        MediaQueries.JS_EL = document.createElement 'div'
+        MediaQueries.JS_EL.className = MediaQueries.EL_CLASSNAME
+        document.body.appendChild MediaQueries.JS_EL
 
         MediaQueries.SMALL_BREAKPOINT  = {name: "Small", breakpoints: [MediaQueries.SMALL]}
         MediaQueries.MEDIUM_BREAKPOINT = {name: "Medium", breakpoints: [MediaQueries.MEDIUM]}
@@ -31,7 +38,12 @@ class MediaQueries
 
     @getDeviceState : =>
 
-        return window.getComputedStyle(document.body, "after").getPropertyValue("content");
+        re = /(\'|\")/
+
+        value = window.getComputedStyle(MediaQueries.JS_EL).getPropertyValue("content")
+        if re.test(value.charAt(0)) and re.test(value.charAt(value.length-1)) then value = value.substr(1, value.length-2)
+
+        return value
 
     @getBreakpoint : =>
 

@@ -56,7 +56,7 @@ class DoodlesCollection extends AbstractCollection
 
 	_markAllAsUnseen : =>
 
-		(model.set('viewed', false)) for model in @models
+		model.set({ 'viewed' : false }) for model in @models
 
 		null
 

@@ -15,9 +15,15 @@ config.buckets =
 	SOURCE  : 'source.codedoodl.es'
 	PENDING : 'pending.codedoodl.es'
 
+config.cloudfront = 
+	SOURCE : 'E252Z8ZC5VB7QS'
+	ASSETS : 'E278GI4I3S1464'
+
 config.BASE_URL           = if config.PRODUCTION then "http://codedoodl.es" else "http://#{config.express.ip}:#{config.express.port}"
 config.ASSETS_BUCKET_URL  = if config.PRODUCTION then "http://#{config.buckets.ASSETS}" else "http://#{config.express.ip}:#{config.express.port}"
 config.DOODLES_BUCKET_URL = "http://#{config.buckets.SOURCE}"
+
+config.DOODLE_CACHE_TIMEOUT = if config.PRODUCTION then ((1000 * 60) * 5) else 0
 
 config.routes =
 	HOME       : ''
@@ -31,3 +37,4 @@ config.shortlinks =
 	ALPHABET : 'abcdefghijklmnopqrstuvwxyz'
 
 config.GA_CODE = process.env.GOOGLE_ANALYTICS_CODE or ''
+config.PASSWORD = process.env.DEV_PASSWORD or ''

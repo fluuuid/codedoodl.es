@@ -3,44 +3,15 @@
 // config is coffee....
 require('coffee-script/register');
 
-var fs     = require('fs');
-var s3     = require('s3');
-var path   = require('path');
-var config = require('../config/server');
+var fs             = require('fs');
+var s3             = require('s3');
+var path           = require('path');
+var validatePath   = require('./validateDoodleDirPath');
+var getCredentials = require('./getCredentials');
+var config         = require('../config/server');
 
-var gzippableRe = /\.(css|js|svg|gz)(?:$|\?)/;
+var gzippableRe = /\.(css|js|svg|gz|html|xml|json)(?:$|\?)/;
 var versionedRe = /\.(css|js)(?:$|\?)/;
-
-function getCredentials() {
-    var creds = {};
-
-    try {
-        creds = require('../credentials.coffee');
-    } catch (e) {
-        throw new Error('Wat... No credentials.coffee file... No access')
-    }
-
-    return creds;
-}
-
-function getDoodlePath(arg) {
-    var path;
-
-    if (!arg) {
-        throw new Error('Need to provide a path as argument in format `username/doodleName`');
-    }
-
-    try {
-        if (fs.lstatSync('doodles/'+arg).isDirectory()) {
-            path = 'doodles/'+arg;
-        }
-    }
-    catch (e) {
-        throw new Error('Path provided for doodle is wrong / empty, remember just pass `username/doodleName`');
-    }
-
-    return path;
-}
 
 function getS3ParamsAssets(file, stat, cb) {
     var s3Params = {};
@@ -56,7 +27,7 @@ function getS3ParamsAssets(file, stat, cb) {
     cb(null, s3Params);
 }
 
-function getUploadParams(uploadingAssets, localDir, bucket) {
+function getUploadParamsDir(uploadingAssets, toLive, localDir, bucket) {
     var params = {
         localDir: localDir,
         deleteRemoved: false, // default false, whether to remove s3 objects 
@@ -68,11 +39,34 @@ function getUploadParams(uploadingAssets, localDir, bucket) {
         }
     };
 
-    if (uploadingAssets) {
-        params.getS3Params = getS3ParamsAssets;
-    } else {
-        params.s3Params.Prefix = localDir.split('doodles/')[1];
+    if (!uploadingAssets) {
+        params.s3Params.Prefix = localDir.replace('doodles/', '');
     }
+
+    if (toLive) {
+        params.getS3Params = getS3ParamsAssets;
+    }
+
+    return params;
+}
+
+function getUploadParamsSingle(uploadingAssets, toLive, localFile, bucket) {
+    var params = {
+        localFile: localFile,
+        s3Params: {
+            Bucket: bucket
+        }
+    };
+
+    if (!uploadingAssets) {
+        params.s3Params.Key = localFile.replace('doodles/', '');
+    } else {
+        params.s3Params.Key = localFile;
+    }
+
+    // if (toLive) {
+    //     params.getS3Params = getS3ParamsAssets;
+    // }
 
     return params;
 }
@@ -96,12 +90,12 @@ function getClient(creds) {
     return client;
 }
 
-function startUploader(client, params, cb) {
+function startUploader(method, client, params, cb) {
     console.log('\n\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n');
     console.log('UPLOADING TO BUCKET '+params.s3Params.Bucket);
     console.log('\n\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n');
 
-    var uploader = client.uploadDir(params);
+    var uploader = client[method](params);
     uploader.on('error', function(err) {
         console.error("unable to sync:", err.stack);
     });
@@ -110,33 +104,47 @@ function startUploader(client, params, cb) {
     });
     uploader.on('end', function() {
         console.log("done uploading");
+        if (typeof cb === 'function') {
+            cb();
+        }
     });
 }
 
-function uploadAssets() {
+function uploadAssets(cb) {
     var creds, client, uploadParams;
 
     creds        = getCredentials();
     client       = getClient(creds);
-    uploadParams = getUploadParams(true, "app/public/", config.buckets.ASSETS);
+    uploadParams = getUploadParamsDir(true, true, "app/public/", config.buckets.ASSETS);
 
-    startUploader(client, uploadParams);
+    startUploader('uploadDir', client, uploadParams, cb);
 };
 
-function uploadDoodle(toLive, path) {
+function uploadDoodle(toLive, path, cb) {
     var doodlePath, creds, client, uploadParams;
     var bucket = toLive ? config.buckets.SOURCE : config.buckets.PENDING;
 
-    doodlePath   = getDoodlePath(path)
+    doodlePath   = validatePath('doodles/', path)
     creds        = getCredentials();
     client       = getClient(creds);
-    uploadParams = getUploadParams(false, doodlePath, bucket);
+    uploadParams = getUploadParamsDir(false, toLive, doodlePath, bucket);
 
-    startUploader(client, uploadParams);
+    startUploader('uploadDir', client, uploadParams, cb);
+}
+
+function uploadSingleFile(filePath, cb) {
+    var creds, client, uploadParams;
+
+    creds        = getCredentials();
+    client       = getClient(creds);
+    uploadParams = getUploadParamsSingle(false, true, filePath, config.buckets.SOURCE);
+
+    startUploader('uploadFile', client, uploadParams, cb);
 }
 
 module.exports = {
     uploadAssets        : uploadAssets,
     uploadDoodlePending : uploadDoodle.bind(null, false),
-    uploadDoodleLive    : uploadDoodle.bind(null, true)
+    uploadDoodleLive    : uploadDoodle.bind(null, true),
+    uploadSingleFile    : uploadSingleFile
 };

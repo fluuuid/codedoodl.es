@@ -340,6 +340,7 @@ class HomeView extends AbstractViewPage
 	animateInInitialItems : (cb) =>
 
 		itemCount = @getRequiredDoodleCountByArea()
+		itemCount = Math.min itemCount, @allDoodles.length
 
 		console.log "itemCount = @getRequiredDoodleCountByArea()", itemCount
 

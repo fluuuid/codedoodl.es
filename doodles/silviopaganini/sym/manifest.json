@@ -1,0 +1,20 @@
+{
+	"name" : "Sym",
+	"author" : {
+		"name" : "Silvio Paganini",
+		"github" : "silviopaganini",
+		"website" : "http://s2paganini.com",
+		"twitter" : "silviopaganini"
+	},
+	"description": "Inspired by Ryoji Ikeda supersymmetry, created  WebGL piece with physics",
+	"tags" : ["threejs", "physijs"],
+	"interaction" : {
+		"mouse" : true,
+		"keyboard" : false,
+		"touch" : true
+	},
+	"instructions" : "Drag to change perspective",
+	"colour_scheme" : "dark",
+	"mobile_friendly" : false,
+	"slug" : "silviopaganini/sym"
+}
