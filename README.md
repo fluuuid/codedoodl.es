@@ -36,4 +36,4 @@ This is very much a first iteration, we wanted to get something basic released a
 
 This project is a [FLUUUID](http://FLUUU.ID) production - we created the site / extension / infrastructure to allow this to happen, but the real thanks goes to the digital artists who have contributed doodles:
 
-<< auto-inserted contributors list **(TODO)** >>
+**[Neil Carpenter](http://neilcarpenter.com) ([tw](http://twitter.com/neilcarpenter), [gh](http://github.com/neilcarpenter)) \ [Silvio Paganini](http://s2paganini.com) ([tw](http://twitter.com/silviopaganini), [gh](http://github.com/silviopaganini))**
