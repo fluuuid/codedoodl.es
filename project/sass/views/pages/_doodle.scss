@@ -108,9 +108,14 @@
         transform: translate(-50%, -50%);
         @include font-size(1.2);
         font-family: $ff-monosten-a;
+        text-align: center;
 
         [data-codetext-char] {
             border-bottom: none !important;
+        }
+
+        @include respond-to(medium) {
+            max-width: 70%;
         }
     }
 
@@ -349,6 +354,16 @@
         color: $cd-blue;
         z-index: 2;
 
+        @include respond-to(small) {
+            padding: 220px 65px 20px 70px;
+            overflow: auto;
+            -webkit-overflow-scrolling: touch;
+
+            .interaction-indicators {
+                display: none;
+            }
+        }
+
         a {
             color: $cd-blue;
             border-color: $cd-red;
@@ -391,6 +406,13 @@
 
             &:before {
                 bottom: 0;
+            }
+
+            @include respond-to(small) {
+                top: auto;
+                transform: translate(-50%, 0);
+                overflow: visible;
+                max-height: none;
             }
         }
     }
@@ -447,7 +469,6 @@
 
     .doodle-preview-thumb {
         filter: brightness(0.8) contrast(2.5);
-        background: url(https://placeimg.com/300/300/any) no-repeat center center;
         background-size: cover;
         z-index: 0;
     }
@@ -483,7 +504,7 @@
     &.show-info {
 
         .doodle-preview {
-            transform: none;
+            transform: translateZ(0);
         }
 
         .doodle-preview-thumb-holder,

@@ -359,6 +359,9 @@ class HomeView extends AbstractViewPage
 
 		if cb then toParams.onComplete = =>
 			@$grid.removeClass 'before-intro-animation'
+			setTimeout =>
+				@$grid.addClass 'after-intro-animation'
+			, 400
 			cb()
 
 		TweenLite.fromTo item.$el, duration, fromParams, toParams

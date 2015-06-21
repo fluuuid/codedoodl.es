@@ -72,6 +72,8 @@
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
+	text-align: center;
+	max-width: 90%;
 }
 
 .preloader-intro-btns {
@@ -83,6 +85,7 @@
 	text-align: center;
 	display: none;
 	z-index: 10;
+	max-width: 90%;
 
 	&.show {
 		display: block;
@@ -99,6 +102,21 @@
 
 		&:last-child {
 			margin-left: 25px;
+		}
+	}
+
+	@include respond-to(small) {
+
+		.intro-btn {
+			display: block;
+		}
+
+		.intro-btn:first-child {
+			margin: 0 0 10px 0;
+		}
+
+		.intro-btn:last-child {
+			margin: 0;
 		}
 	}
 }
