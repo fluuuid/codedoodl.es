@@ -21,11 +21,15 @@ cacheRequiresUpdating = ->
 
 updateCache = (cb) ->
 
+    getDoodlesMethod = if config.PRODUCTION then _getDoodlesRemote else _getDoodlesLocal
+
     cache.timestamp = Date.now()
+
+    console.log(colors.yellow(">> Updating doodle cache at %s"), cache.timestamp)
 
     # make async
     setTimeout ->
-        _getDoodles (doodles) ->
+        getDoodlesMethod (doodles) ->
             cache.doodles      = doodles
             cache.contributors = _getContributors()
     , 0
@@ -38,7 +42,7 @@ _getMasterManifestRemote = (cb) ->
 
     request manifestUrl, (err, res, body) ->
 
-        if !err && res.statusCode == 200
+        if !err and res.statusCode is 200
             manifest = JSON.parse body
             cb manifest
         else
@@ -55,44 +59,60 @@ _getMasterManifestLocal = (cb) ->
     cb manifest
 
     null
- 
-_getDoodles = (cb) ->
 
-    allDoodles    = []
-    localDoodles  = []
-    returnDoodles = null
+_getDoodlesRemote = (cb) ->
 
-    doodlesPath = path.resolve(__dirname, '../../doodles')
+    allDoodles       = []
+    returnedManCount = 0
+    returnDoodles    = null
 
-    fs.readdirSync(doodlesPath).forEach (authorPath, i) ->
-
-        authorPath = doodlesPath + '/' + authorPath
-
-        if fs.lstatSync(authorPath).isDirectory()
-
-            fs.readdirSync(authorPath).forEach (doodlePath, i) ->
-
-                doodlePath   = authorPath + '/' + doodlePath;
-                manifestPath = doodlePath+'/manifest.json';
-
-                if fs.lstatSync(doodlePath).isDirectory()
-
-                    if fs.existsSync(manifestPath)
-                        localDoodles.push(JSON.parse(fs.readFileSync(manifestPath, {encoding: 'utf8'})))
-                    else
-                        console.log(colors.red('No manifest.json found for doodle :  %s'), doodlePath)
-
-    getManifestMethod = if config.PRODUCTION then _getMasterManifestLocal else _getMasterManifestRemote
-    getManifestMethod (manifest) ->
+    _getMasterManifestRemote (manifest) ->
 
         for doodle in manifest.doodles
 
-            localDoodle = _.findWhere localDoodles, slug : doodle.slug
-            if localDoodle
-                mergedDoodleData = _.extend {}, doodle, localDoodle
+            do (doodle) ->
+                manifestUrl = config.DOODLES_BUCKET_URL + '/' + doodle.slug + '/manifest_gzip.json'
+
+                request manifestUrl, (err, res, body) ->
+
+                    console.log(colors.yellow("request for #{manifestUrl} is #{res.statusCode}"))
+
+                    returnedManCount++
+
+                    if !err and res.statusCode is 200
+                        doodleManifest   = JSON.parse body
+                        mergedDoodleData = _.extend {}, doodle, doodleManifest
+                        allDoodles.push mergedDoodleData
+                    else
+                        console.log(colors.red('No manifest_gzip.json found for doodle at  %s'), manifestUrl)
+
+                    if returnedManCount is manifest.doodles.length
+                        returnDoodles = _.sortBy(allDoodles, 'index').reverse()
+                        cb returnDoodles
+
+
+_getDoodlesLocal = (cb) ->
+
+    allDoodles    = []
+    returnDoodles = null
+
+    _getMasterManifestLocal (manifest) ->
+
+        for doodle in manifest.doodles
+
+            doodlePath   = path.resolve(__dirname, '../../doodles', doodle.slug)
+            manifestPath = doodlePath + '/manifest.json'
+
+            console.log(colors.yellow("requesting #{manifestPath}"))
+
+            if !fs.existsSync(manifestPath)
+                console.log(colors.red('No manifest.json found for doodle :  %s'), doodlePath)
+            else
+                doodleManifest   = JSON.parse(fs.readFileSync(manifestPath, {encoding: 'utf8'}))
+                mergedDoodleData = _.extend {}, doodle, doodleManifest
                 allDoodles.push mergedDoodleData
 
-        returnDoodles = allDoodles.reverse()
+        returnDoodles = _.sortBy(allDoodles, 'index').reverse()
 
         cb returnDoodles
 
