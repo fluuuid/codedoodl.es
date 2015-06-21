@@ -56,6 +56,11 @@
 		color: #fff;
 		@include font-size(1.2);
 		font-family: $ff-monosten-a;
+		text-align: center;
+
+        @include respond-to(medium) {
+            max-width: 70%;
+        }
 	}
 
 	.preloader-dots {

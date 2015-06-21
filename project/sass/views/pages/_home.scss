@@ -3,6 +3,23 @@
 	background: $bg-offwhite;
 	overflow: hidden;
 	// position: relative;
+
+	&.scroller-disabled {
+		overflow-y: auto;
+		-webkit-overflow-scrolling: touch;
+
+		.after-intro-animation {
+
+			.home-grid-item {
+
+				.grid-item-thumb-cover,
+				.grid-item-thumb,
+				.grid-item-thumb-video {
+					opacity: 0.15;
+				}
+			}
+		}
+	}
 }
 
 .home-grid {
@@ -90,6 +107,10 @@
 		transition: none !important;
 		display: inline-block;
 		float: none;
+	}
+
+	.after-intro-animation & {
+		opacity: 1;
 	}
 
 	.no-touch .enable-grid-item-hover & {
