@@ -1,7 +1,7 @@
 var gulp        = require('gulp');
 var runSequence = require('run-sequence');
 
-gulp.task('build', function() {
+gulp.task('build', function(cb) {
 
     var args = [
         'unrevAssets',
@@ -12,6 +12,8 @@ gulp.task('build', function() {
     if (!global.isWatching) {
         args.splice(2, 0, 'revAssets');
     }
+
+    args.push(cb);
 
     runSequence.apply(this, args);
 

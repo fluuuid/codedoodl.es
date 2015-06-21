@@ -13,10 +13,12 @@ MediaQueries = require './utils/MediaQueries'
 
 class App
 
-    LIVE       : null
-    BASE_URL   : window.config.hostname
-    localeCode : window.config.localeCode
-    objReady   : 0
+    LIVE        : null
+    BASE_URL    : window.config.hostname
+    ASSETS_URL  : window.config.assets_url
+    DOODLES_URL : window.config.doodles_url
+    localeCode  : window.config.localeCode
+    objReady    : 0
 
     _toClean   : ['objReady', 'setFlags', 'objectComplete', 'init', 'initObjects', 'initSDKs', 'initApp', 'go', 'cleanup', '_toClean']
 
@@ -55,9 +57,9 @@ class App
 
     initObjects : =>
 
-        @templates = new Templates "/data/templates#{(if @LIVE then '.min' else '')}.xml", @objectComplete
-        @locale    = new Locale "/data/locales/strings.json", @objectComplete
-        @analytics = new Analytics "/data/tracking.json", @objectComplete
+        @templates = new Templates "#{@ASSETS_URL + window.config.assets.templates}", @objectComplete
+        @locale    = new Locale "#{@ASSETS_URL + window.config.assets.locales}", @objectComplete
+        @analytics = new Analytics "#{@ASSETS_URL + window.config.assets.tracking}", @objectComplete
         @appData   = new AppData @objectComplete
 
         # if new objects are added don't forget to change the `@objectComplete` function

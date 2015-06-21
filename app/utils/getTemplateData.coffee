@@ -1,6 +1,6 @@
 _      = require 'underscore'
 config = require '../../config/server'
-locale = require '../public/data/locales/strings.json'
+locale = require '../../project/data/locales/strings.json'
 
 _getRoutePageTitle = (route) ->
 
@@ -31,17 +31,17 @@ _getDefaultMetaData = (route) ->
 _getDoodlePageTitle = (doodle) ->
 
     tmpl = locale.strings.PAGE_TITLES.strings["page_title_DOODLES"]
-    tmpl.replace '{{name}}', "#{doodle.author.name} \\ #{doodle.name} "
+    tmpl.replace '{{ name }}', "#{doodle.author.name} \\ #{doodle.name}"
 
 _getDoodleMetaData = (doodle) ->
 
     doodle_title     = _getDoodlePageTitle(doodle)
     doodle_url       = "#{config.BASE_URL}/#{config.routes.DOODLES}/#{doodle.slug}"
-    doodle_thumbnail = "#{config.DOODLES_BUCKET_URL}/#{doodle.slug}/thumbnail.jpg"
+    doodle_thumbnail = "#{config.DOODLES_BUCKET_URL}/#{doodle.slug}/thumb.jpg"
 
     fb_tw_desc_tmpl  = locale.strings.SEO.strings["seo_og_twitter_doodle_description"]
-    fb_description   = fb_tw_desc_tmpl.replace("{{doodle_name}}", "#{doodle.name} ").replace('{{doodle_author}}', " #{doodle.author.name} ")
-    tw_description   = fb_tw_desc_tmpl.replace("{{doodle_name}}", "#{doodle.name} ").replace('{{doodle_author}}', if doodle.author.twitter then " @#{doodle.author.twitter} " else " #{doodle.author.name} ")
+    fb_description   = fb_tw_desc_tmpl.replace("{{ doodle_name }}", "#{doodle.name}").replace('{{ doodle_author }}', "#{doodle.author.name}")
+    tw_description   = fb_tw_desc_tmpl.replace("{{ doodle_name }}", "#{doodle.name}").replace('{{ doodle_author }}', if doodle.author.twitter then "@#{doodle.author.twitter}" else "#{doodle.author.name}")
 
     return {
         "meta_description"         : doodle.description
@@ -62,7 +62,7 @@ _getDoodleMetaData = (doodle) ->
 getTemplateData = (route, req) ->
 
     if route is 'DOODLES'
-        allDoodles = require('../../utils/getDoodleData').getDoodles().doodles
+        allDoodles = require('./getDoodleData').getDoodles()
         doodle     = _.findWhere allDoodles, { slug : "#{req.params.authorName}/#{req.params.doodleName}" }
         page_title = _getDoodlePageTitle doodle
         meta_data  = _getDoodleMetaData doodle

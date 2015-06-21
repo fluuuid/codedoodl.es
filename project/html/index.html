@@ -10,14 +10,14 @@
 
 	<meta name="description" content="<%= meta_data.meta_description %>">
 	<meta name="keywords" content="<%= meta_data.meta_keywords %>">
-	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" />
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-	<link id="favicon" rel="shortcut icon" href="/static/img/icons/favicon/favicon_red.png" type="image/x-icon"/>
+	<link id="favicon" rel="shortcut icon" href="<%= config.ASSETS_BUCKET_URL %>/static/img/icons/favicon/favicon_red.png" type="image/x-icon"/>
 
-	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144x144-precomposed.png">
-	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-touch-icon-114x114-precomposed.png">
-	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png">
-	<link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-57x57-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="<%= config.ASSETS_BUCKET_URL %>/apple-touch-icon-144x144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="<%= config.ASSETS_BUCKET_URL %>/apple-touch-icon-114x114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="<%= config.ASSETS_BUCKET_URL %>/apple-touch-icon-72x72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="<%= config.ASSETS_BUCKET_URL %>/apple-touch-icon-57x57-precomposed.png">
 
 	<meta property="og:title"         content="<%= meta_data.og_title %>">
 	<meta property="og:url"           content="<%= meta_data.og_url %>">
@@ -26,6 +26,7 @@
 	<meta property="og:site_name"     content="<%= meta_data.og_site_name %>">
 
 	<meta name="twitter:card"         content="<%= meta_data.twitter_card_card %>">
+	<meta name="twitter:site"         content="<%= meta_data.twitter_card_site %>">
 	<meta name="twitter:creator"      content="<%= meta_data.twitter_card_site %>">
 	<meta name="twitter:url"          content="<%= meta_data.twitter_card_url %>">
 	<meta name="twitter:title"        content="<%= meta_data.twitter_card_title %>">
@@ -34,7 +35,7 @@
 	<meta name="twitter:image:width"  content="300">
 	<meta name="twitter:image:height" content="300">
 
-	<link rel="stylesheet" href="/{{ css/main.css }}">
+	<link rel="stylesheet" href="<%= config.ASSETS_BUCKET_URL %>/{{ css/main.css }}">
 
 </head>
 
@@ -42,29 +43,31 @@
 
 	<div id="preloader" class="show-preloader">
 		<span class="preloader-dots" data-dots><i class="dot dot-1"></i><i class="dot dot-2"></i><i class="dot dot-3"></i></span>
-		<span class="preloader__text-outer" data-codeword data-codeword-initial-state="white">codedoodl.es</span>
+		<span class="preloader__text-outer" data-codeword data-codeword-initial-state="white-no-border">codedoodl.es</span>
 		<span class="preloader__bg preloader__bg-1" data-bg="1"></span><span class="preloader__bg preloader__bg-2" data-bg="2"></span>
 	</div>
 
 	<script type="text/javascript">
 
 		window.config = {
-			ENV        : "",
-			GA_code    : "<%= config.GA_CODE %>",
-			hostname   : document.location.protocol + "//" + document.location.host,
-			base_url   : "<%= config.BASE_URL %>",
-			localeCode : "en-gb",
-			CDN        : '/static',
-			fb_app_id  : "",
-			gp_app_id  : "",
-			routes     : <%- JSON.stringify(config.routes) %>,
-			shortlinks : <%- JSON.stringify(config.shortlinks) %>
+			GA_code     : "<%= config.GA_CODE %>",
+			hostname    : document.location.protocol + "//" + document.location.host,
+			base_url    : "<%= config.BASE_URL %>",
+			assets_url  : "<%= config.ASSETS_BUCKET_URL %>",
+			doodles_url : "<%= config.DOODLES_BUCKET_URL %>",
+			localeCode  : "en-gb",
+			routes      : <%- JSON.stringify(config.routes) %>,
+			assets      : {
+				templates : "/{{ data/templates.xml }}",
+				locales   : "/{{ data/locales/strings.json }}",
+				tracking  : "/{{ data/tracking.json }}"
+			}
 		};
 
 	</script>
 
-	<script src="/{{ js/vendor/v.js }}"></script>
-	<script src="/{{ js/main.js }}"></script>
+	<script src="<%= config.ASSETS_BUCKET_URL %>/{{ js/vendor/v.js }}"></script>
+	<script src="<%= config.ASSETS_BUCKET_URL %>/{{ js/main.js }}"></script>
 
 	<script>
 		if (window.config.GA_code) {

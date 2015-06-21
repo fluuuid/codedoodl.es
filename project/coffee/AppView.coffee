@@ -132,9 +132,9 @@ class AppView extends AbstractView
 
         @$body.prepend @$el
 
-        @preloader.playIntroAnimation => @trigger @EVENT_PRELOADER_HIDE
-
         @begin()
+
+        @preloader.playIntroAnimation => @trigger @EVENT_PRELOADER_HIDE
 
         null
 

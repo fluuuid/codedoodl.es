@@ -42,4 +42,22 @@ class DoodlesCollection extends AbstractCollection
 		else
 			return @at index
 
+	getRandomUnseen : =>
+
+		unseen = @filter (d) -> return !d.get('viewed')
+
+		if !unseen.length
+			@_markAllAsUnseen()
+			return @getRandomUnseen()
+
+		random = _.shuffle(unseen)[0]
+
+		random
+
+	_markAllAsUnseen : =>
+
+		model.set({ 'viewed' : false }) for model in @models
+
+		null
+
 module.exports = DoodlesCollection

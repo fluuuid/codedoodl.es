@@ -1,6 +1,6 @@
 
 #preloader {
-	color: $cd-red;
+	color: transparent;
 	background: $cd-red;
 	position: fixed;
 	top: 50%;
@@ -20,14 +20,19 @@
 		visibility: visible;
 	}
 
-	.preloader__text-outer {
+	.preloader__text-outer,
+	.preloader-intro-caption,
+	.preloader-intro-btns .intro-btn {
 		@include font-size(1.5);
 		letter-spacing: 0.6px;
+		font-family: $ff-monosten-a;
+	}
+
+	.preloader__text-outer {
 		position: absolute;
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%, -50%);
-		font-family: $ff-monosten-a;
 		z-index: 2;
 	}
 
@@ -58,6 +63,60 @@
 
 		&.hide-border {
 			border-color: transparent;
+		}
+	}
+}
+
+.preloader-intro-caption {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+	max-width: 90%;
+}
+
+.preloader-intro-btns {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 100%;
+	text-align: center;
+	display: none;
+	z-index: 10;
+	max-width: 90%;
+
+	&.show {
+		display: block;
+	}
+
+	.intro-btn {
+		color: transparent;
+		text-decoration: none;
+		cursor: pointer;
+
+		&:first-child {
+			margin-right: 25px;
+		}
+
+		&:last-child {
+			margin-left: 25px;
+		}
+	}
+
+	@include respond-to(small) {
+
+		.intro-btn {
+			display: block;
+		}
+
+		.intro-btn:first-child {
+			margin: 0 0 10px 0;
+		}
+
+		.intro-btn:last-child {
+			margin: 0;
 		}
 	}
 }

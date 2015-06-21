@@ -3,6 +3,9 @@ HomeGridItem     = require './HomeGridItem'
 
 class HomeView extends AbstractViewPage
 
+	template      : 'page-home'
+	addToSelector : '[data-home-grid]'
+
 	# manage state for homeView on per-session basis, allow number of
 	# grid items, and scroll position of home grid to be persisted
 	@visitedThisSession : false
@@ -22,9 +25,6 @@ class HomeView extends AbstractViewPage
 
 	EVENT_TICK : 'EVENT_TICK'
 
-	template      : 'page-home'
-	addToSelector : '[data-home-grid]'
-
 	allDoodles : null
 
 	constructor : ->
@@ -38,6 +38,18 @@ class HomeView extends AbstractViewPage
 		@addGridItems()
 
 		return null
+
+	checkScrollerCompat : ->
+
+		if !@canHazScroller()
+
+			@$el.addClass 'scroller-disabled'
+
+		null
+
+	canHazScroller : ->
+
+		return !Modernizr.touch
 
 	addGridItems : =>
 
@@ -68,6 +80,8 @@ class HomeView extends AbstractViewPage
 
 		@$grid = @$el.find('[data-home-grid]')
 
+		@checkScrollerCompat()
+
 		null
 
 	setListeners : (setting) =>
@@ -77,7 +91,7 @@ class HomeView extends AbstractViewPage
 
 		@CD().appView.header[setting] @CD().appView.header.EVENT_HOME_SCROLL_TO_TOP, @scrollToTop
 
-		if setting is 'off'
+		if setting is 'off' and @canHazScroller()
 			@scroller.off 'scroll', @onScroll
 			@scroller.off 'scrollStart', @onScrollStart
 			@scroller.off 'scrollEnd', @onScrollEnd
@@ -207,6 +221,8 @@ class HomeView extends AbstractViewPage
 
 	startScroller : =>
 
+		return unless @canHazScroller()
+
 		@setupDims()
 
 		@setupIScroll()
@@ -324,6 +340,7 @@ class HomeView extends AbstractViewPage
 	animateInInitialItems : (cb) =>
 
 		itemCount = @getRequiredDoodleCountByArea()
+		itemCount = Math.min itemCount, @allDoodles.length
 
 		console.log "itemCount = @getRequiredDoodleCountByArea()", itemCount
 
@@ -342,6 +359,9 @@ class HomeView extends AbstractViewPage
 
 		if cb then toParams.onComplete = =>
 			@$grid.removeClass 'before-intro-animation'
+			setTimeout =>
+				@$grid.addClass 'after-intro-animation'
+			, 400
 			cb()
 
 		TweenLite.fromTo item.$el, duration, fromParams, toParams

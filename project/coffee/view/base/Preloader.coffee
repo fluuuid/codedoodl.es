@@ -3,20 +3,7 @@ CodeWordTransitioner = require '../../utils/CodeWordTransitioner'
 
 class Preloader extends AbstractView
 	
-	cb              : null
-	
-	TRANSITION_TIME : 0.5
-
-	MIN_WRONG_CHARS : 0
-	MAX_WRONG_CHARS : 4
-
-	MIN_CHAR_IN_DELAY : 30
-	MAX_CHAR_IN_DELAY : 100
-
-	MIN_CHAR_OUT_DELAY : 30
-	MAX_CHAR_OUT_DELAY : 100
-
-	CHARS : 'abcdefhijklmnopqrstuvwxyz0123456789!?*()@£$%^&_-+=[]{}:;\'"\\|<>,./~`'.split('')
+	cb : null
 
 	constructor : ->
 
@@ -29,8 +16,74 @@ class Preloader extends AbstractView
 	init : =>
 
 		@$codeWord = @$el.find('[data-codeword]')
-		@$bg1 = @$el.find('[data-bg="1"]')
-		@$bg2 = @$el.find('[data-bg="2"]')
+		@$bg1      = @$el.find('[data-bg="1"]')
+		@$bg2      = @$el.find('[data-bg="2"]')
+
+		null
+
+	initIntroMessage : =>
+
+		tmpl = _.template  @CD().templates.get "preloader-intro"
+		vars =
+			label_caption        : @CD().locale.get "preloader_intro_caption"
+			label_extension      : @CD().locale.get "preloader_intro_cta_extension"
+			label_enter          : @CD().locale.get "preloader_intro_cta_enter"
+			url_chrome_extension : @CD().locale.get "chrome_extension_url"
+
+		@$el.append tmpl vars
+
+		@$introCaption      = @$el.find('[data-intro-caption]')
+		@$introBtns         = @$el.find('[data-intro-btns]')
+		@$introBtnExtension = @$el.find('[data-intro-btn="extension"]')
+		@$introBtnEnter     = @$el.find('[data-intro-btn="enter"]')
+
+		@setIntroListeners 'on'
+
+		null
+
+	setIntroListeners : (setting) =>
+
+		@$el[setting] 'mouseenter', '[data-intro-btn]', @onWordEnter
+		@$el[setting] 'mouseleave', '[data-intro-btn]', @onWordLeave
+
+		@$el[setting] 'click', '[data-intro-btn="enter"]', @onEnterBtnClick
+
+		null
+
+	onWordEnter : (e) =>
+
+		$el = $(e.currentTarget)
+
+		CodeWordTransitioner.scramble $el, 'white'
+
+		null
+
+	onWordLeave : (e) =>
+
+		$el = $(e.currentTarget)
+
+		CodeWordTransitioner.unscramble $el, 'white'
+
+		null
+
+	onEnterBtnClick : =>
+
+		@setIntroListeners 'off'
+
+		emptyExtensionText = @CD().locale.get("preloader_intro_cta_extension").split('').map(-> return ' ').join('')
+		emptyEnterText     =  @CD().locale.get("preloader_intro_cta_enter").split('').map(-> return ' ').join('')
+
+		CodeWordTransitioner.to emptyEnterText, @$introBtnEnter, '', false
+		CodeWordTransitioner.to emptyExtensionText, @$introBtnExtension, '', false, =>
+
+			@$introBtns.removeClass('show')
+			CodeWordTransitioner.in @$codeWord, 'white', false, =>
+
+				setTimeout =>
+
+					CodeWordTransitioner.scramble @$codeWord, 'white', false, => @animateBgOut @onHideComplete
+
+				, 2000
 
 		null
 
@@ -48,7 +101,49 @@ class Preloader extends AbstractView
 				.end()
 			.addClass('show-preloader')
 
-		CodeWordTransitioner.in @$codeWord, 'white', false, @hide
+		if (!window.localStorage or !window.localStorage.getItem 'CD_VISITED') and (@CD().nav.current.area is @CD().nav.sections.HOME)
+			callback = @_playIntroAnimationFirstVisit
+		else
+			callback = @_playIntroAnimationReturning
+
+		CodeWordTransitioner.in @$codeWord, 'white', false, callback
+
+		null
+
+	_playIntroAnimationFirstVisit : =>
+
+		window.localStorage.setItem 'CD_VISITED', true
+
+		@initIntroMessage()
+
+		console.log "_playIntroAnimationFirstVisit : =>"
+
+		# dawg, I heard you like setTimeout\callback
+		setTimeout =>
+
+			CodeWordTransitioner.to '            ', @$codeWord, 'white-no-border', false, =>
+
+				CodeWordTransitioner.in @$introCaption, 'white-no-border', false, =>
+
+					setTimeout =>
+
+						emptyCaption = @CD().locale.get("preloader_intro_caption").split('').map(-> return ' ').join('')
+						CodeWordTransitioner.to emptyCaption, @$introCaption, 'white-no-border', false, =>
+
+							@$introBtns.addClass('show')
+							CodeWordTransitioner.in [ @$introBtnExtension, @$introBtnEnter ], 'white', false
+
+					, 2000
+
+		, 2000
+
+		null
+
+	_playIntroAnimationReturning : =>
+
+		setTimeout =>
+			CodeWordTransitioner.scramble @$codeWord, 'white', false, => @animateBgOut @onHideComplete
+		, 2000
 
 		null
 
@@ -58,28 +153,9 @@ class Preloader extends AbstractView
 
 		null
 
-	hide : =>
-
-		@animateOut @onHideComplete
-
-		null
-
 	onHideComplete : =>
 
 		@cb?()
-
-		null
-
-	animateOut : (cb) =>
-
-		# @animateCharsOut()
-
-		# that'll do
-		# setTimeout cb, 2200
-
-		setTimeout =>
-			CodeWordTransitioner.scramble @$codeWord, 'white', false, => @animateBgOut cb
-		, 2000
 
 		null
 
@@ -92,7 +168,7 @@ class Preloader extends AbstractView
 		TweenLite.to @$bg2, 0.5, { delay : 0.8, height : "100%", ease : Expo.easeOut, onComplete : cb }
 
 		setTimeout =>
-			CodeWordTransitioner.in @$codeWord, '', false
+			CodeWordTransitioner.to '            ', @$codeWord, '', false
 		, 400
 
 		setTimeout =>

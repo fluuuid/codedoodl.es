@@ -19,24 +19,22 @@
             color: $cd-black;
         }
 
-        .interaction-indicators {
-
-            .indicator {
-
-                &:after {
-                    background: $cd-red;
-                }
-
-                svg {
-                    fill: $cd-black;
-                }
-            }
-        }
-
         .nav-arrow .nav-arrow__inner,
         .nav-arrow:after,
         .nav-arrow:before {
             background: $cd-black;
+        }
+
+        .doodle-control {
+
+            &:after,
+            &:before {
+                background: $cd-black;
+            }
+
+            svg {
+                fill: $cd-black
+            }
         }
     }
 
@@ -58,24 +56,22 @@
             color: #fff;
         }
 
-        .interaction-indicators {
-
-            .indicator {
-
-                &:after {
-                    background: $cd-blue;
-                }
-
-                svg {
-                    fill: #fff;
-                }
-            }
-        }
-
         .nav-arrow .nav-arrow__inner,
         .nav-arrow:after,
         .nav-arrow:before {
             background: #fff;
+        }
+
+        .doodle-control {
+
+            &:after,
+            &:before {
+                background: #fff;
+            }
+
+            svg {
+                fill: #fff;
+            }
         }
     }
 
@@ -105,19 +101,31 @@
     }
 
     .doodle-instructions {
+        pointer-events: none;
         position: absolute;
         top: 47%;
         left: 50%;
         transform: translate(-50%, -50%);
         @include font-size(1.2);
         font-family: $ff-monosten-a;
+        text-align: center;
 
         [data-codetext-char] {
             border-bottom: none !important;
         }
+
+        @include respond-to(medium) {
+            max-width: 70%;
+        }
     }
 
     .footer-nav {
+
+        .arrow,
+        .arrow:after,
+        .arrow:before {
+            transition: all .3s $easeInOutExpo;
+        }
 
         .arrow {
             position: fixed;
@@ -125,12 +133,16 @@
             bottom: $site-padding-desktop;
             display: none;
             cursor: pointer;
-            transition: all .3s $easeInOutExpo;
 
             .no-touch & {
 
                 &:hover {
                     width: 40px;
+
+                    &:after,
+                    &:before {
+                        width: 10px;
+                    }
                 }
             }
 
@@ -146,6 +158,66 @@
             &.arrow-right {
                 right: $site-padding-desktop;
             }
+        }
+    }
+
+    .doodle-control {
+        position: fixed;
+        bottom: 19px;
+        width: 30px;
+        height: 34px;
+        z-index: 2;
+        cursor: pointer;
+        transition: all .3s $easeInOutExpo;
+
+        &:after,
+        &:before {
+            content: '';
+            position: absolute;
+            transition: all .3s $easeInOutExpo;
+            height: 2px;
+            width: 0;
+        }
+
+        &:after {
+            bottom: 0;
+            left: 0;
+        }
+
+        &:before {
+            top: 0;
+            right: 0;
+        }
+
+        &.doodle-control-refresh {
+            right: 50%;
+            margin-right: 10px;
+        }
+
+        &.doodle-control-random {
+            left: 50%;
+            margin-left: 10px;
+
+            svg {
+                transform: scale(2);
+            }
+        }
+
+        .no-touch & {
+
+            &:hover {
+
+                &:after,
+                &:before {
+                    width: 100%;
+                }
+            }
+        }
+
+        svg {
+            position: relative;
+            width: 100%;
+            height: 100%;
         }
     }
 
@@ -169,6 +241,7 @@
                 width: 40px;
                 height: 2px;
                 transform: rotate(45deg);
+                background: $cd-blue;
             }
 
             &[disabled] {
@@ -179,7 +252,7 @@
             }
 
             svg {
-                fill: #fff;
+                fill: $cd-red;
             }
 
             &:last-child {
@@ -231,22 +304,23 @@
         .footer-nav {
 
             .arrow {
-                display: none;
+                opacity: 0;
+                visibility: hidden;
+
+                &.arrow-left {
+                    transform: translate(-5px, 0) rotate(180deg);
+                }
+
+                &.arrow-right {
+                    transform: translate(-5px, 0);
+                }
             }
         }
 
-        .interaction-indicators {
-
-            .indicator {
-
-                &:after {
-                    background: $cd-blue;
-                }
-
-                svg {
-                    fill: $cd-red;
-                }
-            }
+        .doodle-control {
+            opacity: 0;
+            visibility: hidden;
+            transform: translate(-5px, 0);
         }
 
         .subpage-info,
@@ -280,9 +354,19 @@
         color: $cd-blue;
         z-index: 2;
 
+        @include respond-to(small) {
+            padding: 220px 65px 20px 70px;
+            overflow: auto;
+            -webkit-overflow-scrolling: touch;
+
+            .interaction-indicators {
+                display: none;
+            }
+        }
+
         a {
             color: $cd-blue;
-            border-color: rgba(57, 92, 170, 0.23);
+            border-color: $cd-red;
 
             .no-touch & {
 
@@ -291,6 +375,7 @@
                     animation: info-link-blink 0.1s 1;
                     animation-timing-function: steps(1, end);
                     animation-fill-mode: forwards;
+                    color: $bg-offwhite;
                 }
             }
         }
@@ -321,6 +406,13 @@
 
             &:before {
                 bottom: 0;
+            }
+
+            @include respond-to(small) {
+                top: auto;
+                transform: translate(-50%, 0);
+                overflow: visible;
+                max-height: none;
             }
         }
     }
@@ -377,7 +469,6 @@
 
     .doodle-preview-thumb {
         filter: brightness(0.8) contrast(2.5);
-        background: url(https://placeimg.com/300/300/any) no-repeat center center;
         background-size: cover;
         z-index: 0;
     }
@@ -413,7 +504,7 @@
     &.show-info {
 
         .doodle-preview {
-            transform: none;
+            transform: translateZ(0);
         }
 
         .doodle-preview-thumb-holder,
@@ -447,11 +538,11 @@
 
 @keyframes info-link-blink {
     0%, 100% {
-        background: $cd-blue;
+        background: $cd-red;
         color: $bg-offwhite;
     }
     50% {
         background: $bg-offwhite;
-        color: $cd-blue;
+        color: $cd-red;
     }
 }

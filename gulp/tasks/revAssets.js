@@ -4,7 +4,7 @@ var filter = require('gulp-filter');
 var rev    = require('gulp-rev');
 var pkg    = require('../../package.json');
 
-var exts    = ['css', 'js'];
+var exts    = ['css', 'js', 'xml', 'json'];
 var re      = new RegExp('(-[a-z0-9]{8})(.('+exts.join('|')+'))$', 'i');
 
 var src     = pkg.folders.dest+'/**/*.{'+exts.join(',')+'}';

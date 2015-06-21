@@ -106,10 +106,12 @@ class Wrapper extends AbstractView
 		@previousView = @getViewByRoute previous.area
 		@currentView  = @getViewByRoute current.area
 
+		changeViewArgs = { previous, current }
+
 		if !@previousView
-			@transitionViews false, @currentView
+			@transitionViews false, @currentView, changeViewArgs
 		else
-			@transitionViews @previousView, @currentView
+			@transitionViews @previousView, @currentView, changeViewArgs
 
 		null
 
@@ -119,9 +121,11 @@ class Wrapper extends AbstractView
 
 		null
 
-	transitionViews : (from, to) =>
+	transitionViews : (from, to, changeViewArgs) =>
 
 		@pageSwitchDfd = $.Deferred()
+
+		if to.view instanceof DoodlePageView then to.view.routeArgs = changeViewArgs.current
 
 		if from and to
 			@CD().appView.transitioner.prepare from.route, to.route

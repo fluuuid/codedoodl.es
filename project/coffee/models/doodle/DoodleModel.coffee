@@ -1,18 +1,20 @@
 AbstractModel        = require '../AbstractModel'
 NumberUtils          = require '../../utils/NumberUtils'
 CodeWordTransitioner = require '../../utils/CodeWordTransitioner'
-Hashids              = require 'hashids'
 
 class DoodleModel extends AbstractModel
 
     defaults :
         # from manifest
+        "id" : ""
+        "index": ""
         "name" : ""
         "author" :
             "name"    : ""
             "github"  : ""
             "website" : ""
             "twitter" : ""
+        "instructions": ""
         "description": ""
         "tags" : []
         "interaction" :
@@ -23,25 +25,21 @@ class DoodleModel extends AbstractModel
         "slug" : ""
         "shortlink" : ""
         "colour_scheme" : ""
-        "index": null
-        "index_padded" : ""
         # site-only
+        "index_padded" : ""
         "indexHTML" : ""
         "source"    : ""
         "url"       : ""
         "scrambled" :
             "name"        : ""
             "author_name" : ""
+        "viewed" : false
 
-        "SAMPLE_DIR" : ""
+    constructor : ->
 
-    SAMPLE_DOODLES : [
-        'shape-stream',
-        'shape-stream-light',
-        'box-physics',
-        'stars',
-        'tubes'
-    ]
+        super
+
+        return null
 
     _filterAttrs : (attrs) =>
 
@@ -56,13 +54,6 @@ class DoodleModel extends AbstractModel
             attrs.scrambled =
                 name        : CodeWordTransitioner.getScrambledWord attrs.name
                 author_name : CodeWordTransitioner.getScrambledWord attrs.author.name
-
-        ###
-        GET_DUMMY_DOODLE_SCHTUFF
-        ###
-        sample = _.shuffle(@SAMPLE_DOODLES)[0]
-        attrs.SAMPLE_DIR = sample
-        attrs.colour_scheme = if sample is 'shape-stream-light' then 'light' else 'dark'
 
         attrs
 
@@ -93,16 +84,5 @@ class DoodleModel extends AbstractModel
         html += "#{links.join(' \\ ')}"
 
         html
-
-    # no need to do this for every doodle - only do it if we view the info pane for a particular doodle
-    setShortlink : =>
-
-        return if @get 'shortlink'
-
-        h = new Hashids window.config.shortlinks.SALT, 0, window.config.shortlinks.ALPHABET
-        shortlink = h.encode @get 'index'
-        @set 'shortlink', shortlink
-
-        null
 
 module.exports = DoodleModel

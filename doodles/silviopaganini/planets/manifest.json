@@ -1,0 +1,20 @@
+{
+    "name" : "Planets",
+    "author" : {
+        "name" : "Silvio Paganini",
+        "github" : "silviopaganini",
+        "website" : "http://s2paganini.com",
+        "twitter" : "silviopaganini"
+    },
+    "description" : "Playing around with shaders and maths",
+    "tags" : [ "webGL", "post-processing" ],
+    "interaction" : {
+        "mouse" : true,
+        "keyboard" : false,
+        "touch" : true
+    },
+    "instructions" : "swipe / move to see around",
+    "colour_scheme" : "dark",
+    "mobile_friendly" : true,
+    "slug" : "silviopaganini/planets"
+}
