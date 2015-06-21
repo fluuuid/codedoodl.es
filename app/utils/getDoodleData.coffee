@@ -84,7 +84,7 @@ _getDoodlesRemote = (cb) ->
                         mergedDoodleData = _.extend {}, doodle, doodleManifest
                         allDoodles.push mergedDoodleData
                     else
-                        console.log(colors.red('No manifest_gzip.json found for doodle at  %s'), manifestUrl)
+                        console.log(colors.red('No manifest.json found for doodle at  %s'), manifestUrl)
 
                     if returnedManCount is manifest.doodles.length
                         returnDoodles = _.sortBy(allDoodles, 'index').reverse()
