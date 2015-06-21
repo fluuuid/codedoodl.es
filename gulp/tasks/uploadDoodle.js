@@ -56,8 +56,6 @@ gulp.task('_gzipDoodle', function() {
 	var doodleDir = argv.path;
 	var path      = validatePath('./doodles/', doodleDir);
 
-	fs.createReadStream(path+'/manifest.json').pipe(fs.createWriteStream(path+'/manifest_gzip.json'));
-
 	return gulp.src([path + '/**/*.{css,js,svg,gz,html,xml,json}', '!' + path + '/manifest.json'])
 		.pipe(gzip({ append: false }))
 		.pipe(gulp.dest(path));

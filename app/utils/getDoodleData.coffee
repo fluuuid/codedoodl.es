@@ -71,7 +71,7 @@ _getDoodlesRemote = (cb) ->
         for doodle in manifest.doodles
 
             do (doodle) ->
-                manifestUrl = config.DOODLES_BUCKET_URL + '/' + doodle.slug + '/manifest_gzip.json'
+                manifestUrl = config.DOODLES_BUCKET_URL + '/' + doodle.slug + '/manifest.json'
 
                 request manifestUrl, (err, res, body) ->
 
