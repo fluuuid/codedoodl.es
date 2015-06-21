@@ -47,9 +47,11 @@ function getNewEntry(doodleDir, index) {
 
 function updateAndUpload(doodleDir, cb) {
 
+	var remoteManifestPath = manifestPath.replace('doodles/', '');
+
 	update(doodleDir);
 
-	invalidateCloudfront.file(manifestPath, function(err) {
+	invalidateCloudfront.file(remoteManifestPath, function(err) {
 		if (err) {
 			throw new Error('Problem invalidating cloudfront cache for ' + manifestPath, err);
 		}
