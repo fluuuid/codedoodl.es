@@ -9,12 +9,16 @@ var KEY = 'digital artists who have contributed doodles:';
 
 var readmePath = path.resolve(__dirname, '../', './README.md');
 
-function getTemplate() {
+function getCurrentReadmeData() {
 
-  var oldReadme = fs.readFileSync(readmePath, { encoding : 'utf8' });
-  var template  = oldReadme.split(KEY)[0] + KEY + '\n\n';
+  var oldReadme    = fs.readFileSync(readmePath, { encoding : 'utf8' });
+  var template     = oldReadme.split(KEY)[0] + KEY + '\n\n';
+  var contribCount = oldReadme.split(KEY)[1].split('\\').length;
 
-  return template;
+  return {
+    template     : template,
+    contribCount : contribCount
+  };
 }
 
 // template :
@@ -40,13 +44,19 @@ function contributorsJStoMD(contributors) {
 
 function updateReadmeContributors() {
 
-  var template  = getTemplate();
-  var newReadme = null;
+  var currentReadmeData = getCurrentReadmeData();
+  var contributors      = null;
+  var newReadme         = null;
 
   request('http://develop.codedoodl.es/api/contributors', function(err, res, body) {
     if (!err && res.statusCode === 200) {
-      newReadme = template + contributorsJStoMD(JSON.parse(body).contributors);
-      fs.writeFileSync(readmePath, newReadme);
+      contributors = JSON.parse(body).contributors;
+      if (currentReadmeData.contribCount !== contributors.length) {
+        newReadme = currentReadmeData.template + contributorsJStoMD(contributors);
+        fs.writeFileSync(readmePath, newReadme);
+      } else {
+        console.log('Contributors count the same as last commit, not updating README...');
+      }
     } else {
       throw new Error('Problem getting contributors data')
     }
