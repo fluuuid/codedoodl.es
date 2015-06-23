@@ -1,0 +1,20 @@
+{
+    "name" : "Substrate",
+    "author" : {
+        "name" : "Damien Mortini",
+        "github" : "dmmn",
+        "website" : "http://damienmortini.me.uk",
+        "twitter" : "dmmn_"
+    },
+    "description" : "Procedurally generated city with a pinch of ray marching (<a href=\"https://github.com/dmmn/xp-substrate\" target=\"_blank\">Github</a>).",
+    "tags" : [ "webgl", "glsl", "raymarching", "white", "city", "procedural" ],
+    "interaction" : {
+        "mouse" : true,
+        "keyboard" : false,
+        "touch" : true
+    },
+    "instructions" : "move your mouse / touch and drag",
+    "colour_scheme" : "dark",
+    "mobile_friendly" : true,
+    "slug" : "dmmn/substrate"
+}

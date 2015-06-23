@@ -1,0 +1,20 @@
+{
+	"name": "Fire Clock",
+	"author": {
+		"name": "William Mapan",
+		"github": "williamapan",
+		"website": "http://wllmpn.com/",
+		"twitter": "williamapan"
+	},
+	"description": "Clock made of particles and some words",
+	"tags": [ "pixijs", "particles", "colors" ],
+	"interaction": {
+		"mouse": true,
+		"keyboard": false,
+		"touch": true
+	},
+	"instructions" : "Click on the screen to change the text",
+	"colour_scheme": "light",
+	"mobile_friendly": false,
+	"slug" : "williamapan/fireclock"
+}
