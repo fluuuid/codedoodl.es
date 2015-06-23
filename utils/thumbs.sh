@@ -1,4 +1,20 @@
 #!/bin/bash 
+#
+# Doodle thumbnail generation
+#
+# Requirements / assumptions:
+# - ffmpeg with libvorbis, h264
+# - imageOptim cli
+# - input source is .mov captured on MBP using quicktime screen capture,
+# with full-size browser window (this affects the cropping script)
+#
+# Usage:
+# -> create .mov screen recording and save in to doodle dir
+# $ cd doodles/doodleauthor/doodlename
+# $ ../../../utils/thumbs.sh <source_filename> <start_time>
+#
+# eg $ ../../../utils/thumbs.sh source 00:00:02.00 # use "source.mov" from 2s onwards
+#
 
 function trim {
 	ffmpeg -i "$1.mov" -ss $2 -t 00:00:06.0 "$1-trim.mov"
