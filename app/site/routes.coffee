@@ -24,7 +24,14 @@ contribute = (req, res) ->
 doodles = (req, res) ->
 	if !req.params.authorName or !req.params.doodleName
 		return res.redirect 301, "/#{config.routes.HOME}"
-	res.render "site/index", getTemplateData('DOODLES', req)
+
+	allDoodles = require('../utils/getDoodleData').getDoodles()
+	doodle     = _.findWhere allDoodles, slug : "#{req.params.authorName}/#{req.params.doodleName}"
+
+	if doodle
+		res.render "site/index", getTemplateData('DOODLES', req)
+	else
+		res.status(404).redirect "/404"
 
 checkShortLink = (req, res, next) ->
 	segments = req.params.path.split('/')
