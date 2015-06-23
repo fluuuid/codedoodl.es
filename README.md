@@ -36,4 +36,4 @@ This is very much a first iteration, we wanted to get something basic released a
 
 This project is a [FLUUUID](http://FLUUU.ID) production - we created the site / extension / infrastructure to allow this to happen, but the real thanks goes to the digital artists who have contributed doodles:
 
-**[Neil Carpenter](http://neilcarpenter.com) ([tw](http://twitter.com/neilcarpenter), [gh](http://github.com/neilcarpenter)) \ [Silvio Paganini](http://s2paganini.com) ([tw](http://twitter.com/silviopaganini), [gh](http://github.com/silviopaganini))**
+**[William Mapan](http://wllmpn.com/) ([tw](http://twitter.com/williamapan), [gh](http://github.com/williamapan)) \ [Silvio Paganini](http://s2paganini.com) ([tw](http://twitter.com/silviopaganini), [gh](http://github.com/silviopaganini)) \ [Neil Carpenter](http://neilcarpenter.com) ([tw](http://twitter.com/neilcarpenter), [gh](http://github.com/neilcarpenter)) \ [Damien Mortini](http://damienmortini.me.uk) ([tw](http://twitter.com/dmmn_), [gh](http://github.com/dmmn))**
