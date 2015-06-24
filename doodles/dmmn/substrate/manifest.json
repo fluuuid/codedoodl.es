@@ -7,7 +7,7 @@
         "twitter" : "dmmn_"
     },
     "description" : "Procedurally generated city with a pinch of ray marching (<a href=\"https://github.com/dmmn/xp-substrate\" target=\"_blank\">Github</a>).",
-    "tags" : [ "webgl", "glsl", "raymarching", "white", "city", "procedural" ],
+    "tags" : [ "webgl", "glsl", "raymarching", "procedural" ],
     "interaction" : {
         "mouse" : true,
         "keyboard" : false,
