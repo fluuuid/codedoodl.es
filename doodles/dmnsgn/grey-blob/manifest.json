@@ -1,0 +1,24 @@
+{
+    "name": "Grey Blob",
+    "author": {
+        "name": "Damien Seguin",
+        "github": "dmnsgn",
+        "website": "http://dmnsgn.me/",
+        "twitter": "dmnsgn"
+    },
+    "description": "A blobby shape animated using Marching Cube.",
+    "tags": [
+        "webgl",
+        "threejs",
+        "blob"
+    ],
+    "interaction": {
+        "mouse": true,
+        "keyboard": false,
+        "touch": true
+    },
+    "instructions": "click, click, click",
+    "colour_scheme": "light",
+    "mobile_friendly": true,
+    "slug": "dmnsgn/grey-blob"
+}
