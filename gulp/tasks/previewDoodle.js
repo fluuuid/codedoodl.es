@@ -1,8 +1,11 @@
 var gulp       = require('gulp');
-var argv       = require('yargs').argv;
 var shell      = require('gulp-shell');
 var uploadToS3 = require('../../utils/uploadToS3');
 var config     = require('../../config/server');
+
+var argv = require('yargs')
+	.alias('p', 'path')
+	.argv;
 
 gulp.task('previewDoodle', function() {
 	var doodleDir = argv.path;

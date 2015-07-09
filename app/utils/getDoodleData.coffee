@@ -38,7 +38,8 @@ updateCache = (cb) ->
 
 _getMasterManifestRemote = (cb) ->
 
-    manifestUrl = config.DOODLES_BUCKET_URL + '/master_manifest.json'
+    manifestPath = if config.DOODLE_DATA_SOURCE is 'production' then 'master_manifest.json' else 'master_manifest_DEV.json'
+    manifestUrl  = config.DOODLES_BUCKET_URL + '/' + manifestPath
 
     request manifestUrl, (err, res, body) ->
 

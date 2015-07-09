@@ -11,9 +11,10 @@ config.express_preview =
 config.PRODUCTION = process.env.NODE_ENV is "production"
 
 config.buckets =
-	ASSETS  : 'assets.codedoodl.es'
-	SOURCE  : 'source.codedoodl.es'
-	PENDING : 'pending.codedoodl.es'
+	ASSETS        : 'assets.codedoodl.es'
+	SOURCE        : 'source.codedoodl.es'
+	SOURCE_S3_URL : 's3-eu-west-1.amazonaws.com/source.codedoodl.es'
+	PENDING       : 'pending.codedoodl.es'
 
 config.cloudfront = 
 	SOURCE : 'E252Z8ZC5VB7QS'

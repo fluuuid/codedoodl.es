@@ -6,12 +6,15 @@ var gzip                 = require('gulp-gzip');
 var uglify               = require('gulp-uglify');
 var shell                = require('gulp-shell');
 var fs                   = require('fs');
-var argv                 = require('yargs').argv;
 var uploadToS3           = require('../../utils/uploadToS3');
 var validatePath         = require('../../utils/validateDoodleDirPath');
 var validateDoodleUpload = require('../../utils/validateDoodleUpload');
 var invalidateCloudfront = require('../../utils/invalidateCloudfront');
 var config               = require('../../config/server');
+
+var argv = require('yargs')
+	.alias('p', 'path')
+	.argv;
 
 function uploadDoodle(doodleDir) {
 	var templateData = {

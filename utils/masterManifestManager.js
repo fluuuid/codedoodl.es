@@ -9,13 +9,15 @@ var uploadToS3           = require('./uploadToS3');
 var invalidateCloudfront = require('./invalidateCloudfront');
 var config               = require('../config/server');
 
-var manifestPath = "doodles/master_manifest.json";
+var manifestPathProd = "doodles/master_manifest.json";
+var manifestPathDev  = "doodles/master_manifest_DEV.json";
 
-function update(doodleDir) {
+function update(isProduction, doodleDir) {
 
-	var manifest = JSON.parse(fs.readFileSync(manifestPath, { encoding : 'utf8' }));
-	var doodles  = manifest.doodles;
-	var found = false;
+	var manifestPath = isProduction ? manifestPathProd : manifestPathDev;
+	var manifest     = JSON.parse(fs.readFileSync(manifestPath, { encoding : 'utf8' }));
+	var doodles      = manifest.doodles;
+	var found        = false;
 
 	doodles.forEach(function(doodle) {
 		if (doodle.slug === doodleDir) {
@@ -45,8 +47,9 @@ function getNewEntry(doodleDir, index) {
 	};
 }
 
-function updateAndUpload(doodleDir, cb) {
+function updateAndUpload(isProduction, doodleDir, cb) {
 
+	var manifestPath       = isProduction ? manifestPathProd : manifestPathDev;
 	var remoteManifestPath = manifestPath.replace('doodles/', '');
 
 	update(doodleDir);
@@ -61,6 +64,7 @@ function updateAndUpload(doodleDir, cb) {
 }
 
 module.exports = {
-	update          : update,
-	updateAndUpload : updateAndUpload
+	update              : update,
+	updateAndUploadProd : updateAndUpload.bind(null, true),
+	updateAndUploadDev  : updateAndUpload.bind(null, false)
 }

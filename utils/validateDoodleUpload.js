@@ -5,7 +5,9 @@ var request = require('request');
 var config  = require('../config/server');
 
 module.exports = function validateDoodleUpload(doodleDir, cb) {
-	var doodleUrl = 'http://' + config.buckets.SOURCE + '/' + doodleDir + '/index.html';
+	// for some reason, `request` is caching requests to cloudfront domain,
+	// so let's use the absolute bucket URL for source instead
+	var doodleUrl = 'http://' + config.buckets.SOURCE_S3_URL + '/' + doodleDir + '/index.html';
 
 	request(doodleUrl, function(err, res, body) {
 		if (!err && res.statusCode == 200) {
