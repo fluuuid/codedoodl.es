@@ -10,8 +10,6 @@ You can either [**fork the repo yourself and manually add your doodle**](#submit
 
 These are the minimum number of files required for each doodle, these will be used to display / reference each individual doodle on the site / extension.
 
-_ProTip - use the `createDoodle.js` utility script included in the repo, it will create these minimum required files for you, and populate the manifest based on your answers to CLI prompts._
-
 * <code>**index.html**</code>
 
 	Every doodle must have a single `index.html` file as an entry point. This file must be situated in the root of the doodle directory, which should be located in `/doodles/<author_github_username>/<doodle_name>`.
@@ -26,7 +24,7 @@ _ProTip - use the `createDoodle.js` utility script included in the repo, it will
 
 1. Fork repo and clone local version
 2. `cd` in to local repo and run `$ [sudo] npm i`
-3. Run `$ node createDoodle.js`
+3. Run `$ node utils/createDoodle.js`
 4. Answer the questions within the interactive CLI - this creates a new directory within `/doodles/<author_github_username>/<doodle_name>`, and populates a `manifest.json` file for you
 5. Paste in your doodle `index.html` and accompanying asset files / directories
 6. Push to github
