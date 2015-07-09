@@ -1,5 +1,6 @@
 AbstractView         = require '../AbstractView'
 CodeWordTransitioner = require '../../utils/CodeWordTransitioner'
+MediaQueries         = require '../../utils/MediaQueries'
 
 class Preloader extends AbstractView
 	
@@ -101,7 +102,7 @@ class Preloader extends AbstractView
 				.end()
 			.addClass('show-preloader')
 
-		if (!window.localStorage or !window.localStorage.getItem 'CD_VISITED') and (@CD().nav.current.area is @CD().nav.sections.HOME)
+		if (!window.localStorage or !window.localStorage.getItem 'CD_VISITED') and (@CD().nav.current.area is @CD().nav.sections.HOME) and MediaQueries.getBreakpoint() isnt 'Small'
 			callback = @_playIntroAnimationFirstVisit
 		else
 			callback = @_playIntroAnimationReturning
