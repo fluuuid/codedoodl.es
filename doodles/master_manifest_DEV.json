@@ -10,7 +10,7 @@
             "id": "blr",
             "index": 2,
             "slug": "neilcarpenter/square-stream",
-            "created": "2015-07-09T21:30:45.771Z"
+            "created": "2015-07-09T21:46:26.513Z"
         },
         {
             "id": "bqx",
@@ -47,12 +47,7 @@
             "index": 8,
             "slug": "dmnsgn/grey-blob",
             "created": "2015-06-25T12:00:23.314Z"
-        },
-        {
-            "id": "byg",
-            "index": 9,
-            "created": "2015-07-09T21:26:00.699Z"
         }
     ],
-    "last_updated": "2015-07-09T21:30:45.771Z"
+    "last_updated": "2015-07-09T21:46:26.513Z"
 }
