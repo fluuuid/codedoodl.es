@@ -47,7 +47,7 @@ _getMasterManifestRemote = (cb) ->
             manifest = JSON.parse body
             cb manifest
         else
-            console.error 'Error getting remote master manifest from SOURCE'
+            console.error 'Error getting remote master manifest from SOURCE at %s', manifestPath
             _getMasterManifestLocal cb
 
     null

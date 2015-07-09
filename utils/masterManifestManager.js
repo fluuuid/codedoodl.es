@@ -52,7 +52,7 @@ function updateAndUpload(isProduction, doodleDir, cb) {
 	var manifestPath       = isProduction ? manifestPathProd : manifestPathDev;
 	var remoteManifestPath = manifestPath.replace('doodles/', '');
 
-	update(doodleDir);
+	update(isProduction, doodleDir);
 
 	invalidateCloudfront.file(remoteManifestPath, function(err) {
 		if (err) {
