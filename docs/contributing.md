@@ -1,13 +1,10 @@
-# TODO
-
-* comprehensive step-by-step guide for contributing doodles
-* link to main CONTRIBUTING.md for site / infrastructure contribution documentation
-
-___
-
 # Contributing doodles
 
-The sketches on codedoodl.es are 100% community-sourced. The submission / review / approval process is handled entirely in the open on GitHub - fork this repo, create a doodle, submit pull request, the reviewers will then feedback / approve and merge in to the repo.
+The sketches on codedoodl.es are 100% community-sourced. The submission / review / approval process is handled entirely in the open on GitHub.
+
+You can either [**fork the repo yourself and manually add your doodle**](#submitting-via-github) source code before submitting a pull request, or [**alternatively... you can just fill out a form**](#submitting-via-form), and we'll do the legwork in getting the pull request / code prepared for you :)
+
+## Submitting via GitHub
 
 ### Minimum requirements
 
@@ -25,4 +22,27 @@ _ProTip - use the `createDoodle.js` utility script included in the repo, it will
 
 ### Step-by-step guide
 
-* **TODO**
+**Route 1 - using `createDoodle.js` util script**
+
+1. Fork repo and clone local version
+2. `cd` in to local repo and run `$ [sudo] npm i`
+3. Run `$ node createDoodle.js`
+4. Answer the questions within the interactive CLI - this creates a new directory within `/doodles/<author_github_username>/<doodle_name>`, and populates a `manifest.json` file for you
+5. Paste in your doodle `index.html` and accompanying asset files / directories
+6. Push to github
+7. Submit pull request!
+
+**Route 2 - DIY**
+
+1. Fork repo and clone local version
+2. Manually create directory at `/doodles/<author_github_username>/<doodle_name>`
+3. Create `manifest.json` in this directory based on [schema outlined here](manifest.md)
+4. Paste in your doodle `index.html` and accompanying asset files / directories
+5. Push to github
+6. Submit pull request!
+
+## Submitting via form
+
+Fill out [this form]() with a link to live version of your doodle, and some meta data around you / the doodle.
+
+Once submitted we'll create a repo fork here on your behalf, and submit a pull request with code for your doodle sourced directly from a live link you provide. You'll be notified of the pull request with a _@mention_ (github username is required for submission of the form).
