@@ -1,3 +1,7 @@
+# Stay tuned, almost ready to launch... but not yet :)
+
+___
+
 ![codedoodl.es logo](http://assets.codedoodl.es/readme_logo.png?1)
 
 <code>**\\\\ A curated showcase of creative coding sketches \\\\**</code>
