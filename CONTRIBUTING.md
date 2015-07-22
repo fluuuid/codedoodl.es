@@ -8,7 +8,7 @@ Clone the repo, submit a pull request!
 
 Hint - to get the site up and running locally:
 
-1. `$ git clone git@github.com:neilcarpenter/codedoodl.es.git`
+1. `$ git clone git@github.com:fluuuid/codedoodl.es.git`
 2. `$ cd codedoodl.es`
 3. `$ [sudo] npm i`
 4. `$ npm run start`

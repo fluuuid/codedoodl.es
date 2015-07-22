@@ -2,16 +2,16 @@
   "name": "codedoodl.es",
   "description": "Creative code sketches",
   "version": "0.0.1",
-  "homepage": "https://github.com/neilcarpenter/codedoodl.es",
+  "homepage": "https://github.com/fluuuid/codedoodl.es",
   "author": {
-    "name": "Neil Carpenter <neilanthonycarpenter@gmail.com> (http://neilcarpenter.com/)"
+    "name": "Neil Carpenter <neil@fluuu.id> (http://fluuu.id/)"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/neilcarpenter/codedoodl.es.git"
+    "url": "git://github.com/fluuuid/codedoodl.es.git"
   },
   "bugs": {
-    "url": "https://github.com/neilcarpenter/codedoodl.es/issues"
+    "url": "https://github.com/fluuuid/codedoodl.es/issues"
   },
   "license": "MIT",
   "engines": {

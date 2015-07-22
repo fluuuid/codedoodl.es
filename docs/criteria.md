@@ -30,7 +30,7 @@ _Note that the criteria here are more guidelines for the most part - every doodl
 
 To try and create a consistent visual style and user experience, we're proposing a restriction on the usage of certain interface elements / technologies.
 
-_Note that these are our initial thoughts on what should / should not be allowed, if you think they're unreasonable or will severe impair creativity or doodle quality, then let us know your thoughts - [make an issue!](https://github.com/neilcarpenter/codedoodl.es/issues)_
+_Note that these are our initial thoughts on what should / should not be allowed, if you think they're unreasonable or will severe impair creativity or doodle quality, then let us know your thoughts - [make an issue!](https://github.com/fluuuid/codedoodl.es/issues)_
 
 * <code>**no GUI**</code>
 
