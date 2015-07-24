@@ -13,3 +13,21 @@ node_modules/
 credentials.coffee
 
 temp/
+
+doodles/**/*.js
+doodles/**/*.css
+doodles/**/*.html
+doodles/**/*.frag
+doodles/**/*.vert
+doodles/**/*.glsl
+doodles/**/*.png
+doodles/**/*.jpg
+doodles/**/*.gif
+doodles/**/*.json
+doodles/**/*.mp4
+doodles/**/*.mov
+doodles/**/*.webm
+
+!doodles/master_manifest.json
+!doodles/master_manifest_DEV.json
+!doodles/**/manifest.json
