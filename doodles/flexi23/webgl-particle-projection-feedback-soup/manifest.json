@@ -1,0 +1,20 @@
+{
+    "name" : "WebGL Particle Projection Feedback Soup",
+    "author" : {
+        "name" : "Felix Woitzel",
+        "github" : "Flexi23",
+        "website" : "http://www.cake23.de",
+        "twitter" : "Flexi23"
+    },
+    "description" : "This is a multi-stage render-to-texture WebGL shader pipeline experiment, including a GPU particle system, a fluid simulation, many blur levels, one texture feedback loop for reaction-diffusion pattern synthesis, and a final composite shader for recoloring. It's written in plain Vanilla JS as single page with no dependencies - just copy and edit.<br/><br/>The fluid simulation is adapted from the <a href=\"http://www.ibiblio.org/e-notes/webgl/gpu/fluid.htm\" target=\"_blank\">original by Evgeny Demidov</a>",
+    "tags" : [ "WebGL", "particle", "fluid", "simulation", "GPU", "glsl", "shader" ],
+    "interaction" : {
+        "mouse" : true,
+        "keyboard" : false,
+        "touch" : false
+    },
+    "instructions" : "move the mouse and stirr up the fluid sim",
+    "colour_scheme" : "dark",
+    "mobile_friendly" : false,
+    "slug" : "flexi23/webgl-particle-projection-feedback-soup"
+}

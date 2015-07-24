@@ -1,0 +1,20 @@
+{
+    "name" : "Treee",
+    "author" : {
+        "name" : "grgrdvrt",
+        "github" : "grgrdvrt",
+        "website" : "http://www.grgrdvrt.com",
+        "twitter" : "grgrdvrt"
+    },
+    "description" : "a procedural 3d tree",
+    "tags" : [ "webgl", "threejs", "tree" ],
+    "interaction" : {
+        "mouse" : true,
+        "keyboard" : true,
+        "touch" : false
+    },
+    "instructions" : "drag&drop to move the camera, press r to restart the animation",
+    "colour_scheme" : "light",
+    "mobile_friendly" : false,
+    "slug" : "grgrdvrt/treee"
+}

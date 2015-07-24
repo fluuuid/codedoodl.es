@@ -1,0 +1,20 @@
+{
+    "name" : "knacki",
+    "author" : {
+        "name" : "Florian Morel",
+        "github" : "ayamflow",
+        "website" : "http://ayamflow.fr",
+        "twitter" : "ayamflow"
+    },
+    "description" : "2D canvas metaballs",
+    "tags" : [ "canvas", "metaballs" ],
+    "interaction" : {
+        "mouse" : true,
+        "keyboard" : false,
+        "touch" : false
+    },
+    "instructions" : "click and move",
+    "colour_scheme" : "dark",
+    "mobile_friendly" : false,
+    "slug" : "ayamflow/knacki"
+}
