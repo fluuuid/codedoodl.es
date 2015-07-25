@@ -1,0 +1,20 @@
+{
+    "name" : "Meander",
+    "author" : {
+        "name" : "Anders Hoff",
+        "github" : "inconvergent",
+        "website" : "http://inconvergent.net",
+        "twitter" : "inconvergent"
+    },
+    "description" : "Randomly generated structures that wander across the screen to created organic and sand-like imagery. The structures react to mouse taps and clicks.",
+    "tags" : [ "webgl" ],
+    "interaction" : {
+        "mouse" : true,
+        "keyboard" : true,
+        "touch" : false
+    },
+    "instructions" : "Mouseover or click/tap",
+    "colour_scheme" : "dark",
+    "mobile_friendly" : true,
+    "slug" : "inconvergent/meander"
+}
