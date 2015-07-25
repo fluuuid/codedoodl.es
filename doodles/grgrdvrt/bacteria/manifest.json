@@ -1,0 +1,20 @@
+{
+    "name" : "bacteria",
+    "author" : {
+        "name" : "grgrdvrt",
+        "github" : "grgrdvrt",
+        "website" : "http://www.grgrdvrt.com",
+        "twitter" : "grgrdvrt"
+    },
+    "description" : "<a href=\"http://codepen.io/grgrdvrt/pen/bywBt\" target=\"_blank\">original version, with colors</a>",
+    "tags" : [ "canvas", "lifeform" ],
+    "interaction" : {
+        "mouse" : false,
+        "keyboard" : false,
+        "touch" : false
+    },
+    "instructions" : "-",
+    "colour_scheme" : "light",
+    "mobile_friendly" : false,
+    "slug" : "grgrdvrt/bacteria"
+}

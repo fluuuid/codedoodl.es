@@ -1,0 +1,20 @@
+{
+    "name" : "Edgy The Pit Minder",
+    "author" : {
+        "name" : "Felix Woitzel",
+        "github" : "Flexi23",
+        "website" : "http://www.cake23.de",
+        "twitter" : "Flexi23"
+    },
+    "description" : "Edgy is a tiny WebGL compo that was made for JS1K 2014. The theme was ""Here Be Dragons"" and there were two experimental new categories: WebGL and 2k. The entry got rejected anyway because the two categories were not supposed to be mixed up. Technically there are two shader programs: one to advance the frame in a render-to-texture feedback loop and another for final compositing and recoloring - there are actually only two out of four channels used.<br/><br/>I wrote the code very short and cryptic from the beginning so that it could be compressed to below 2048 characters within the provided shim.<br/><br/>After it got rejected i started another try which in the end even won the competition: DragonDrop uses the same GPU feedback loop principle for what i call progressive image-based fractal rendering, where only one iteration of the fractal gets calculated per frame and the image approaches its form over the time. The Lindenmeyer type in the background uses only affine transformations. The mouse following type is made of a pretty simple complex number polynomial.",
+    "tags" : [ "WebGL", "dragon", "fractal", "edge", "shader", "js1k" ],
+    "interaction" : {
+        "mouse" : true,
+        "keyboard" : false,
+        "touch" : false
+    },
+    "instructions" : "The fractal curve follows the mouse",
+    "colour_scheme" : "dark",
+    "mobile_friendly" : false,
+    "slug" : "flexi23/edgy-the-pit-minder"
+}
