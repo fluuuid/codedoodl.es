@@ -105,8 +105,8 @@
 
 	.before-intro-animation & {
 		transition: none !important;
-		display: inline-block;
-		float: none;
+		// display: inline-block;
+		// float: none;
 	}
 
 	.after-intro-animation & {
@@ -262,6 +262,7 @@
 
 		[data-codetext-char] {
 			border: none;
+			color: $cd-blue;
 		}
 	}
 

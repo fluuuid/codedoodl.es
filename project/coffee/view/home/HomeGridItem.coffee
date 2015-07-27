@@ -78,8 +78,9 @@ class HomeGridItem extends AbstractView
 
 	setListeners : (setting) =>
 
-		@$el[setting] 'mouseover', @onMouseOver
-		@$el[setting] 'mouseout', @onMouseOut
+		if !Modernizr.touch
+			@$el[setting] 'mouseover', @onMouseOver
+			@$el[setting] 'mouseout', @onMouseOut
 		@parentGrid[setting] @parentGrid.EVENT_TICK, @onTick
 
 		null

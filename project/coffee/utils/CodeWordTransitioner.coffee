@@ -283,6 +283,13 @@ class CodeWordTransitioner
 
 		return newChars.join('')
 
-window.CodeWordTransitioner = CodeWordTransitioner
+	@getWrappedWord : (word) =>
+
+		$tempEl = $('<div />')
+		$tempEl.text(word)
+
+		@_wrapChars $tempEl
+
+		return $tempEl.html()
 
 module.exports = CodeWordTransitioner

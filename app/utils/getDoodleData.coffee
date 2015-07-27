@@ -55,7 +55,7 @@ _getMasterManifestRemote = (cb) ->
 _getMasterManifestLocal = (cb) ->
 
     doodlesPath  = path.resolve(__dirname, '../../doodles')
-    manifestPath = doodlesPath + '/master_manifest.json'
+    manifestPath = doodlesPath + '/master_manifest_DEV.json'
     manifest     = JSON.parse(fs.readFileSync(manifestPath, { encoding : 'utf8' }))
     cb manifest
 

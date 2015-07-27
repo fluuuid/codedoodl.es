@@ -91,8 +91,8 @@
                         <%= (videoSrc) ? "<video class=\"grid-item-thumb-video\" src=\""+videoSrc+"\" loop data-video></video>" : "" %>
                     </span>
                     <h1 class="grid-item-title">
-                        <span data-codeword="author_name" data-codeword-initial-state="blue"><%= author.name %></span><br/>
-                        <span data-codeword="name" data-codeword-initial-state="blue"><%= name %></span>
+                        <span data-codeword="author_name" data-codeword-initial-state="blue"><%= wrapped.author_name %></span><br/>
+                        <span data-codeword="name" data-codeword-initial-state="blue"><%= wrapped.name %></span>
                     </h1>
                     <span class="grid-item-number">
                         <%= indexHTML %>

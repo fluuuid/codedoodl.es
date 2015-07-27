@@ -33,6 +33,9 @@ class DoodleModel extends AbstractModel
         "scrambled" :
             "name"        : ""
             "author_name" : ""
+        "wrapped" :
+            "name"        : ""
+            "author_name" : ""
         "viewed" : false
 
     constructor : ->
@@ -54,6 +57,9 @@ class DoodleModel extends AbstractModel
             attrs.scrambled =
                 name        : CodeWordTransitioner.getScrambledWord attrs.name
                 author_name : CodeWordTransitioner.getScrambledWord attrs.author.name
+            attrs.wrapped =
+                name        : CodeWordTransitioner.getWrappedWord attrs.name
+                author_name : CodeWordTransitioner.getWrappedWord attrs.author.name
 
         attrs
 
