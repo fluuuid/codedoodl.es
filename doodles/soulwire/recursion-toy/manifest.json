@@ -1,0 +1,20 @@
+{
+    "name" : "Recursion Toy",
+    "author" : {
+        "name" : "Justin Windle",
+        "github" : "soulwire",
+        "website" : "http://soulwire.co.uk",
+        "twitter" : "soulwire"
+    },
+    "description" : "A visual exploration of recursion that creates branches, roots, veins and other organic structures.",
+    "tags" : [ "recursion", "branching", "growth" ],
+    "interaction" : {
+        "mouse" : true,
+        "keyboard" : false,
+        "touch" : false
+    },
+    "instructions" : "Click to create branches.",
+    "colour_scheme" : "light",
+    "mobile_friendly" : false,
+    "slug" : "soulwire/recursion-toy"
+}

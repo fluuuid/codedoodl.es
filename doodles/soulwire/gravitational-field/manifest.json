@@ -1,0 +1,20 @@
+{
+    "name" : "Gravitational Field",
+    "author" : {
+        "name" : "Justin Windle",
+        "github" : "soulwire",
+        "website" : "http://soulwire.co.uk",
+        "twitter" : "soulwire"
+    },
+    "description" : "Particles in a gravitational field, randomly inverting charge to create interesting behaviors. Uses sketch.js to manage the 2d context and power animation.",
+    "tags" : [ "physics", "gravity", "particles" ],
+    "interaction" : {
+        "mouse" : false,
+        "keyboard" : false,
+        "touch" : false
+    },
+    "instructions" : "Sit back and enjoy the emergent behaviors of charges particles",
+    "colour_scheme" : "dark",
+    "mobile_friendly" : true,
+    "slug" : "soulwire/gravitational-field"
+}

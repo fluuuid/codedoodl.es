@@ -1,0 +1,20 @@
+{
+    "name" : "Muscular Hydrostats",
+    "author" : {
+        "name" : "Justin Windle",
+        "github" : "soulwire",
+        "website" : "http://soulwire.co.uk",
+        "twitter" : "soulwire"
+    },
+    "description" : "An experiment with inverse kinematics to simulate tentacles.",
+    "tags" : [ "physics", "kinematics", "tentacles", "hair" ],
+    "interaction" : {
+        "mouse" : true,
+        "keyboard" : false,
+        "touch" : false
+    },
+    "instructions" : "Click to take control or just watch the creature swim",
+    "colour_scheme" : "dark",
+    "mobile_friendly" : true,
+    "slug" : "soulwire/muscular-hydrostats"
+}
