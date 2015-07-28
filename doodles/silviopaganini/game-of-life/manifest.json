@@ -1,0 +1,20 @@
+{
+    "name" : "Game of Life",
+    "author" : {
+        "name" : "Silvio Paganini",
+        "github" : "silviopaganini",
+        "website" : "http://s2paganini.com",
+        "twitter" : "silviopaganini"
+    },
+    "description" : "GPU Game of Life using ThreeJS and StackGL",
+    "tags" : [ "gpu", "game of life", "threejs", "stackgl" ],
+    "interaction" : {
+        "mouse" : true,
+        "keyboard" : false,
+        "touch" : false
+    },
+    "instructions" : "Watch!",
+    "colour_scheme" : "dark",
+    "mobile_friendly" : false,
+    "slug" : "silviopaganini/game-of-life"
+}
