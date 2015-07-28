@@ -36,6 +36,8 @@ $grid-three-bp: 'all and ( min-width: 750px ) and ( max-width: 959px )';
 $grid-two-bp: 'all and ( min-width: 520px ) and ( max-width: 749px )';
 $grid-one-bp: 'all and ( max-width: 519px )';
 
+$grid-two-bp-below: 'all and ( max-width: 749px )';
+
 $home-grid-item-width: 200px;
 $home-grid-item-height: 268px;
 
