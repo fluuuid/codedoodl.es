@@ -191,7 +191,7 @@
 
     <template id="doodle-info">
         <![CDATA[
-            <div class="subpage-content">
+            <div class="subpage-content" data-doodle-info-content>
                 <span class="doodle-preview">
                     <span class="doodle-preview-thumb-holder">
                         <span class="doodle-preview-thumb-cover"></span>
@@ -202,33 +202,37 @@
                     </span>
                     <span class="doodle-preview-line"></span>
                 </span>
-                <div class="row row-author cf">
-                    <div class="col col-1">01. <%= label_author %></div>
-                    <div class="col col-2"><%= content_author %></div>
-                </div>
-                <div class="row row-doodle-name cf">
-                    <div class="col col-1">02. <%= label_doodle_name %></div>
-                    <div class="col col-2"><%= content_doodle_name %></div>
-                </div>
-                <div class="row row-doodle-instructions cf">
-                    <div class="col col-1">03. <%= label_doodle_instructions %></div>
-                    <div class="col col-2"><%= content_doodle_instructions %></div>
-                </div>
-                <div class="row row-description cf">
-                    <div class="col col-1">04. <%= label_description %></div>
-                    <div class="col col-2"><%= content_description %></div>
-                </div>
-                <div class="row row-tags cf">
-                    <div class="col col-1">05. <%= label_tags %></div>
-                    <div class="col col-2"><%= content_tags %></div>
-                </div>
-                <div class="row row-interaction cf">
-                    <div class="col col-1">06. <%= label_interaction %></div>
-                    <div class="col col-2"><%= content_interaction %></div>
-                </div>
-                <div class="row row-share cf">
-                    <div class="col col-1">07. <%= label_share %></div>
-                    <div class="col col-2"><a href="#" data-share-btn="twitter">Twitter</a>, <a href="#" data-share-btn="facebook">Facebook</a>, or copy <a href="<%= share_url %>" target="_blank"><%= share_url_text %></a></div>
+                <div class="doodle-info-inner">
+                    <div class="doodle-info-scroller">
+                        <div class="row row-author cf">
+                            <div class="col col-1">01. <%= label_author %></div>
+                            <div class="col col-2"><%= content_author %></div>
+                        </div>
+                        <div class="row row-doodle-name cf">
+                            <div class="col col-1">02. <%= label_doodle_name %></div>
+                            <div class="col col-2"><%= content_doodle_name %></div>
+                        </div>
+                        <div class="row row-doodle-instructions cf">
+                            <div class="col col-1">03. <%= label_doodle_instructions %></div>
+                            <div class="col col-2"><%= content_doodle_instructions %></div>
+                        </div>
+                        <div class="row row-description cf">
+                            <div class="col col-1">04. <%= label_description %></div>
+                            <div class="col col-2"><%= content_description %></div>
+                        </div>
+                        <div class="row row-tags cf">
+                            <div class="col col-1">05. <%= label_tags %></div>
+                            <div class="col col-2"><%= content_tags %></div>
+                        </div>
+                        <div class="row row-interaction cf">
+                            <div class="col col-1">06. <%= label_interaction %></div>
+                            <div class="col col-2"><%= content_interaction %></div>
+                        </div>
+                        <div class="row row-share cf">
+                            <div class="col col-1">07. <%= label_share %></div>
+                            <div class="col col-2"><a href="#" data-share-btn="twitter">Twitter</a>, <a href="#" data-share-btn="facebook">Facebook</a>, or copy <a href="<%= share_url %>" target="_blank"><%= share_url_text %></a></div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="interaction-indicators">

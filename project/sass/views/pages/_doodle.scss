@@ -408,6 +408,56 @@
                 bottom: 0;
             }
 
+            &.enable-overflow {
+                padding: 0;
+                transform: translate(-50%, 0);
+
+                &:before,
+                &:after {
+                    height: 25px;
+                }
+
+                &:after {
+                    border-top: 2px solid $cd-blue;
+                    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f1f1f3+0,f1f1f3+100&1+0,0.85+50,0+100 */
+                    background: -webkit-linear-gradient(top, rgba(241,241,243,1) 0%,rgba(241,241,243,0.85) 50%,rgba(241,241,243,0) 100%); /* Chrome10+,Safari5.1+ */
+                    background: -o-linear-gradient(top, rgba(241,241,243,1) 0%,rgba(241,241,243,0.85) 50%,rgba(241,241,243,0) 100%); /* Opera 11.10+ */
+                    background: -ms-linear-gradient(top, rgba(241,241,243,1) 0%,rgba(241,241,243,0.85) 50%,rgba(241,241,243,0) 100%); /* IE10+ */
+                    background: linear-gradient(to bottom, rgba(241,241,243,1) 0%,rgba(241,241,243,0.85) 50%,rgba(241,241,243,0) 100%); /* W3C */
+                }
+
+                &:before {
+                    border-bottom: 2px solid $cd-blue;
+                    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f1f1f3+0,f1f1f3+100&0+0,0.85+50,1+100 */
+                    background: -webkit-linear-gradient(top, rgba(241,241,243,0) 0%,rgba(241,241,243,0.85) 50%,rgba(241,241,243,1) 100%); /* Chrome10+,Safari5.1+ */
+                    background: -o-linear-gradient(top, rgba(241,241,243,0) 0%,rgba(241,241,243,0.85) 50%,rgba(241,241,243,1) 100%); /* Opera 11.10+ */
+                    background: -ms-linear-gradient(top, rgba(241,241,243,0) 0%,rgba(241,241,243,0.85) 50%,rgba(241,241,243,1) 100%); /* IE10+ */
+                    background: linear-gradient(to bottom, rgba(241,241,243,0) 0%,rgba(241,241,243,0.85) 50%,rgba(241,241,243,1) 100%); /* W3C */
+                }
+
+                .doodle-info-inner {
+                    // overflow: auto;
+                    // -webkit-over-scrolling: touch;
+                    // padding: $site-padding-desktop 0 0;
+
+                    overflow: hidden;
+                    padding: 0;
+
+                    .touch & {
+                        overflow: auto;
+                        -webkit-over-scrolling: touch;
+                    }
+
+                    .doodle-info-scroller {
+                        padding: $site-padding-desktop 0;
+                    }
+
+                    .row:last-child {
+                        // margin-bottom: $site-padding-desktop;
+                    }
+                }
+            }
+
             @include respond-to(small) {
                 top: auto;
                 transform: translate(-50%, 0);
@@ -505,6 +555,7 @@
 
         .doodle-preview {
             transform: translateZ(0);
+            z-index: 10;
         }
 
         .doodle-preview-thumb-holder,

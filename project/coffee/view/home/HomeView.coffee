@@ -368,6 +368,4 @@ class HomeView extends AbstractViewPage
 
 		null
 
-window.HomeView = HomeView
-
 module.exports = HomeView
