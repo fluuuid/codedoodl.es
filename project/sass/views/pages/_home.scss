@@ -13,9 +13,12 @@
 			.home-grid-item {
 
 				.grid-item-thumb-cover,
-				.grid-item-thumb,
-				.grid-item-thumb-video {
+				.grid-item-thumb {
 					opacity: 0.15;
+				}
+
+				.grid-item-thumb-video {
+					opacity: 0;
 				}
 			}
 		}
@@ -207,6 +210,10 @@
 	.grid-item-thumb-video {
 		filter: brightness(0.8) contrast(2.5);
 		visibility: visible;
+
+		.is-firefox & {
+			filter: none;
+		}
 	}
 
 	.grid-item-thumb {

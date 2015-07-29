@@ -49,7 +49,7 @@ class HomeView extends AbstractViewPage
 
 	canHazScroller : ->
 
-		return !Modernizr.touch
+		return !Modernizr.touch and !@CD().IS_FIREFOX
 
 	addGridItems : =>
 
@@ -191,7 +191,7 @@ class HomeView extends AbstractViewPage
 	onTick : =>
 
 		# console.log "tick..."
-		@trigger @EVENT_TICK, HomeView.scrollDelta
+		# @trigger @EVENT_TICK, HomeView.scrollDelta
 
 		shouldTick = false
 		for item, i in HomeView.gridItems

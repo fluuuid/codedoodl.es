@@ -81,7 +81,7 @@ class HomeGridItem extends AbstractView
 		if !Modernizr.touch
 			@$el[setting] 'mouseover', @onMouseOver
 			@$el[setting] 'mouseout', @onMouseOut
-		@parentGrid[setting] @parentGrid.EVENT_TICK, @onTick
+		# @parentGrid[setting] @parentGrid.EVENT_TICK, @onTick
 
 		null
 

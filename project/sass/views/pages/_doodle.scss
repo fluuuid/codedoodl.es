@@ -521,6 +521,10 @@
         filter: brightness(0.8) contrast(2.5);
         background-size: cover;
         z-index: 0;
+
+        .is-firefox & {
+            filter: none;
+        }
     }
 
     .doodle-preview-line {

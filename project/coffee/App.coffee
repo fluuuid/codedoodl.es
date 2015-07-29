@@ -36,6 +36,13 @@ class App
         @IS_FIREFOX    = ua.indexOf('firefox') > -1
         @IS_CHROME_IOS = if ua.match('crios') then true else false # http://stackoverflow.com/a/13808053
 
+        classes = []
+        if @IS_ANDROID then classes.push('is-android')
+        if @IS_FIREFOX then classes.push('is-firefox')
+        if @IS_CHROME_IOS then classes.push('is-chrome-ios')
+
+        $('html').eq(0).addClass(classes.join(' '))
+
         null
 
     isMobile : =>
