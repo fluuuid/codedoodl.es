@@ -1,0 +1,20 @@
+{
+    "name" : "Fractal Tree",
+    "author" : {
+        "name" : "Felix Woitzel",
+        "github" : "Flexi23",
+        "website" : "http://www.cake23.de",
+        "twitter" : "Flexi23"
+    },
+    "description" : "Simple progressive image-based Lindenmeyer sytem type WebGL fractal renderer.<br/><br/>The tree is composited from 3 smaller copies of the whole image plus the root line element, one iteration per animation frame.",
+    "tags" : [ "WebGL", "fractal", "shader" ],
+    "interaction" : {
+        "mouse" : true,
+        "keyboard" : false,
+        "touch" : false
+    },
+    "instructions" : "Move the mouse",
+    "colour_scheme" : "light",
+    "mobile_friendly" : false,
+    "slug" : "flexi23/fractal-tree"
+}

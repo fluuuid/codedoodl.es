@@ -1,0 +1,20 @@
+{
+    "name" : "MuDA Museum",
+    "author" : {
+        "name" : "Silvio Paganini",
+        "github" : "silviopaganini",
+        "website" : "http://s2paganini.com",
+        "twitter" : "silviopaganini"
+    },
+    "description" : "<a href=\"http://muda.co/\" target=\"_blank\">MuDA</a> advertising piece built using OIMO physics and ThreeJS",
+    "tags" : [ "OimoJS", "threeJS" ],
+    "interaction" : {
+        "mouse" : true,
+        "keyboard" : false,
+        "touch" : false
+    },
+    "instructions" : "Click to follow a letter",
+    "colour_scheme" : "dark",
+    "mobile_friendly" : true,
+    "slug" : "silviopaganini/muda-museum"
+}
