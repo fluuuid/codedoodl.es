@@ -38,4 +38,4 @@ config.shortlinks =
 	ALPHABET : 'abcdefghijklmnopqrstuvwxyz'
 
 config.GA_CODE = process.env.GOOGLE_ANALYTICS_CODE or ''
-config.PASSWORD = process.env.DEV_PASSWORD or ''
+config.PASSWORD = process.env.DEV_PASSWORD or false

@@ -10,7 +10,7 @@ config          = require '../../config/server'
 views
 ###
 home = (req, res) ->
-	if req.session.logged_in
+	if !config.PASSWORD or (req.session and req.session.logged_in)
 		res.render "site/index", getTemplateData('HOME')
 	else
 		res.render "site/holding", getTemplateData('HOLDING')
@@ -51,10 +51,13 @@ checkShortLink = (req, res, next) ->
 basic password-protect
 ###
 checkAuth = (req, res, next) ->
+	if !config.PASSWORD
+		return next()
+
 	if !req.session.logged_in
 		res.redirect "/#{config.routes.HOME}"
 	else
-		next()
+		return next()
 
 login = (req, res) ->
 	msg = if req.query.wrong_pw isnt undefined then 'Wrong. Try again' else false
@@ -69,8 +72,10 @@ loginPost = (req, res) ->
 
 setup = (app) ->
 	app.use bodyParser()
-	app.use cookieParser()
-	app.use session({ secret: 'what up' })
+
+	if config.PASSWORD
+		app.use cookieParser()
+		app.use session({ secret: 'what up' })
 
 	app.get "/#{config.routes.LOGIN}", login
 	app.post "/#{config.routes.LOGIN}", loginPost
