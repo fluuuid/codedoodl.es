@@ -84,7 +84,7 @@ class Preloader extends AbstractView
 
 					CodeWordTransitioner.scramble @$codeWord, 'white', false, => @animateBgOut @onHideComplete
 
-				, 2000
+				, 1000
 
 		null
 
@@ -136,7 +136,7 @@ class Preloader extends AbstractView
 
 					, 2000
 
-		, 2000
+		, 1000
 
 		null
 
@@ -144,7 +144,7 @@ class Preloader extends AbstractView
 
 		setTimeout =>
 			CodeWordTransitioner.scramble @$codeWord, 'white', false, => @animateBgOut @onHideComplete
-		, 2000
+		, 1000
 
 		null
 
