@@ -55,11 +55,31 @@ gulp.task('uploadDoodle', ['_gzipDoodle'], function() {
 
 });
 
-gulp.task('_gzipDoodle', function() {
+gulp.task('_gzipDoodle', ['_copyOriginal'], function() {
 	var doodleDir = argv.path;
 	var path      = validatePath('./doodles/', doodleDir);
+	var sources   = [
+		path + '/**/*.{css,js,svg,gz,html,xml,json}',
+		'!' + path + '/manifest.json',
+		'!' + path + '/_original/**/*'
+	];
 
-	return gulp.src([path + '/**/*.{css,js,svg,gz,html,xml,json}', '!' + path + '/manifest.json'])
+	return gulp.src(sources)
 		.pipe(gzip({ append: false }))
 		.pipe(gulp.dest(path));
+});
+
+gulp.task('_copyOriginal', function() {
+	var doodleDir = argv.path;
+	var path       = validatePath('./doodles/', doodleDir);
+	var clonedPath = path + '/_original';
+	var sources    = [
+		path + '/**/*.{css,js,svg,gz,html,xml,json}',
+		'!' + path + '/manifest.json'
+	];
+
+	fs.mkdirSync(clonedPath);
+
+	return gulp.src(sources)
+		.pipe(gulp.dest(clonedPath));
 });
