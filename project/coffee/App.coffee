@@ -33,11 +33,13 @@ class App
         MediaQueries.setup();
 
         @IS_ANDROID    = ua.indexOf('android') > -1
+        @IS_SAFARI     = ua.indexOf('safari') > -1 and ua.indexOf('chrome') is -1
         @IS_FIREFOX    = ua.indexOf('firefox') > -1
         @IS_CHROME_IOS = if ua.match('crios') then true else false # http://stackoverflow.com/a/13808053
 
         classes = []
         if @IS_ANDROID then classes.push('is-android')
+        if @IS_SAFARI then classes.push('is-safari')
         if @IS_FIREFOX then classes.push('is-firefox')
         if @IS_CHROME_IOS then classes.push('is-chrome-ios')
 

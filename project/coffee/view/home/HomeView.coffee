@@ -25,6 +25,8 @@ class HomeView extends AbstractViewPage
 
 	EVENT_TICK : 'EVENT_TICK'
 
+	isScrolling : false
+
 	allDoodles : null
 
 	constructor : ->
@@ -157,6 +159,8 @@ class HomeView extends AbstractViewPage
 			@ticking = true
 			requestAnimationFrame @onTick
 
+		@isScrolling = true
+
 		null
 
 	onScrollEnd : =>
@@ -165,6 +169,8 @@ class HomeView extends AbstractViewPage
 		HomeView.scrollDelta = 0
 
 		@setVisibleItemsAsShown()
+
+		@isScrolling = false
 
 		null
 

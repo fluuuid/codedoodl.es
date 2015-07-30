@@ -107,6 +107,8 @@ class HomeGridItem extends AbstractView
 
 	onMouseOver : =>
 
+		return if @parentGrid.isScrolling
+
 		CodeWordTransitioner.to @model.get('author.name'), @$authorName, 'blue'
 		CodeWordTransitioner.to @model.get('name'), @$doodleName, 'blue'
 
