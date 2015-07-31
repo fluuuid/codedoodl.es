@@ -66,14 +66,22 @@ class DoodlePageView extends AbstractViewPage
 		@model = @getDoodle()
 		@model.set "viewed", true
 
+		canShowDoodle = @CD().appView.dims.w >= 750 or @model.get('mobile_friendly')
+
 		@setupUI()
+		if canShowDoodle
+			@setupInstructions()
+		else
+			@setupMobileFallback()
 
 		super
 
+		callback = if canShowDoodle then 'showFrame' else 'showMobileFallback'
+
 		if @CD().nav.changeViewCount is 1
-			@showFrame false, 5000
+			@[callback] false, 5000
 		else
-			@CD().appView.transitioner.on @CD().appView.transitioner.EVENT_TRANSITIONER_OUT_DONE, @showFrame
+			@CD().appView.transitioner.on @CD().appView.transitioner.EVENT_TRANSITIONER_OUT_DONE, @[callback]
 
 		null
 
@@ -94,7 +102,6 @@ class DoodlePageView extends AbstractViewPage
 
 		@colourScheme = if @model.get('colour_scheme') is 'light' then 'black' else 'white'
 
-		@setupInstructions()
 		@setupNavLinks()
 
 		null
@@ -176,6 +183,21 @@ class DoodlePageView extends AbstractViewPage
 
 		null
 
+	setupMobileFallback : =>
+
+		if Modernizr.video.webm is 'probably'
+			videoType = 'webm'
+		else
+			videoType = 'mp4'
+
+		@$instructions
+			.addClass('show-fallback')
+			.html(@CD().locale.get("doodle_mobile_fallback_msg"))
+			.find('a')
+				.attr('href', "#{@CD().DOODLES_URL}/#{@model.get('slug')}/thumb.#{videoType}")
+
+		null
+
 	showFrame : (removeEvent=true, delay=null) =>
 
 		if removeEvent then @CD().appView.transitioner.off @CD().appView.transitioner.EVENT_TRANSITIONER_OUT_DONE, @showFrame
@@ -192,6 +214,14 @@ class DoodlePageView extends AbstractViewPage
 			blankInstructions = @model.get('instructions').split('').map(-> return ' ').join('')
 			CodeWordTransitioner.to blankInstructions, @$instructions, @colourScheme
 		, delay or 0
+
+		null
+
+	showMobileFallback : (removeEvent=true, delay=null) =>
+
+		# could put something here if was that way inclined...
+
+		if removeEvent then @CD().appView.transitioner.off @CD().appView.transitioner.EVENT_TRANSITIONER_OUT_DONE, @showMobileFallback
 
 		null
 

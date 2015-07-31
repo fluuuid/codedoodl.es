@@ -15,7 +15,8 @@
             }
         }
 
-        .doodle-instructions {
+        .doodle-instructions,
+        .doodle-instructions a {
             color: $cd-black;
         }
 
@@ -52,7 +53,8 @@
             }
         }
 
-        .doodle-instructions {
+        .doodle-instructions,
+        .doodle-instructions a {
             color: #fff;
         }
 
@@ -94,6 +96,10 @@
 
     .preloader-dots {
         z-index: 0;
+
+        @include respond-to(small) {
+            top: 55%;
+        }
     }
 
     .doodle-instructions {
@@ -117,6 +123,32 @@
         @include respond-to(medium) {
             max-width: 70%;
         }
+
+        &.show-fallback {
+            pointer-events: auto;
+            width: 65%;
+            max-width: 320px;
+            top: 50%;
+
+            &:after {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 200px;
+                height: 200px;
+                border-radius: 50%;
+                background: $cd-red;
+                z-index: -1;
+            }
+        }
+
+        a {
+            text-decoration: none;
+            padding-bottom: 1px;
+            border-bottom: 2px solid $cd-blue;
+        }
     }
 
     .footer-nav {
@@ -130,7 +162,7 @@
         .arrow {
             position: fixed;
             z-index: 2;
-            bottom: $site-padding-desktop;
+            bottom: $site-padding-desktop - 5px;
             display: none;
             cursor: pointer;
 
