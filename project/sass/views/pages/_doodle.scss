@@ -162,7 +162,7 @@
         .arrow {
             position: fixed;
             z-index: 2;
-            bottom: $site-padding-desktop - 5px;
+            bottom: 12px;
             display: none;
             cursor: pointer;
 
@@ -195,7 +195,7 @@
 
     .doodle-control {
         position: fixed;
-        bottom: 19px;
+        bottom: 10px;
         width: 30px;
         height: 34px;
         z-index: 2;
