@@ -1,0 +1,20 @@
+{
+    "name" : "ASCII Trail",
+    "author" : {
+        "name" : "Neil Carpenter",
+        "github" : "neilcarpenter",
+        "website" : "http://neilcarpenter.com",
+        "twitter" : "neilcarpenter"
+    },
+    "description" : "Canvas replication of the typography animation used on the codedoodl.es site.",
+    "tags" : [ "PIXI", "2D", "typography" ],
+    "interaction" : {
+        "mouse" : true,
+        "keyboard" : false,
+        "touch" : true
+    },
+    "instructions" : "Move mouse / touch and drag to take control. Click / tap to change theme",
+    "colour_scheme" : "dark",
+    "mobile_friendly" : true,
+    "slug" : "neilcarpenter/ascii-trail"
+}
