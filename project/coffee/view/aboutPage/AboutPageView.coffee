@@ -24,7 +24,7 @@ class AboutPageView extends AbstractViewPage
 
 	show : =>
 
-		@getContributorsContent()
+		@getContributorsContent() if !@contributors.length
 
 		super
 
