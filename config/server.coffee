@@ -37,5 +37,6 @@ config.shortlinks =
 	SALT     : 'no need for this to be private I guess'
 	ALPHABET : 'abcdefghijklmnopqrstuvwxyz'
 
-config.GA_CODE = process.env.GOOGLE_ANALYTICS_CODE or ''
-config.PASSWORD = process.env.DEV_PASSWORD or false
+config.GA_CODE            = process.env.GOOGLE_ANALYTICS_CODE or ''
+config.PASSWORD           = process.env.DEV_PASSWORD or false
+config.DOODLE_DATA_SOURCE = process.env.DOODLE_DATA_SOURCE
