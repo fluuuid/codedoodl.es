@@ -38,6 +38,6 @@ This is very much a first iteration, we wanted to get something basic released a
 
 ### Thanks
 
-This project is a [FLUUUID](http://FLUUU.ID) production - we created the site / extension / infrastructure to allow this to happen, but the real thanks goes to the digital artists who have contributed doodles:
+This project is a [FLUUUID](http://FLUUU.ID) production - but we just created the infrastructure to allow this to happen, the real thanks goes to the digital artists who have contributed doodles:
 
 **[Damien Seguin](http://dmnsgn.me/) ([tw](http://twitter.com/dmnsgn), [gh](http://github.com/dmnsgn)) \ [Neil Carpenter](http://neilcarpenter.com) ([tw](http://twitter.com/neilcarpenter), [gh](http://github.com/neilcarpenter)) \ [William Mapan](http://wllmpn.com/) ([tw](http://twitter.com/williamapan), [gh](http://github.com/williamapan)) \ [Silvio Paganini](http://s2paganini.com) ([tw](http://twitter.com/silviopaganini), [gh](http://github.com/silviopaganini)) \ [Damien Mortini](http://damienmortini.me.uk) ([tw](http://twitter.com/dmmn_), [gh](http://github.com/dmmn))**
