@@ -41,6 +41,6 @@ These are the minimum number of files required for each doodle, these will be us
 
 ## Submitting via form
 
-Fill out [this form](https://docs.google.com/forms/d/1K66OvKMiKqGjgmYRFUtEA43KZzBzv4KzObM1JtD4cbk/viewform) with a link to live version of your doodle, and some meta data around you / the doodle.
+Fill out [this form](https://docs.google.com/forms/d/1K66OvKMiKqGjgmYRFUtEA43KZzBzv4KzObM1JtD4cbk/viewform) with a link to live version of your doodle / the source code, and some meta data around you / the doodle.
 
-Once submitted we'll create a repo fork here on your behalf, and submit a pull request with code for your doodle sourced directly from a live link you provide. You'll be notified of the pull request with a _@mention_ (github username is required for submission of the form).
+Once submitted we'll upload to the development site and send you a link to check everything looks OK before pushing to the live site.
