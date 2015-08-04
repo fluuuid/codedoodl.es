@@ -8,7 +8,7 @@ config.express_preview =
 	port : process.env.PORT or 3001
 	ip   : "127.0.0.1"
 
-config.PRODUCTION = process.env.NODE_ENV isnt "production"
+config.PRODUCTION = process.env.NODE_ENV is "production"
 
 config.buckets =
 	ASSETS        : 'assets.codedoodl.es'
