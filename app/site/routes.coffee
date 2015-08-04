@@ -48,6 +48,15 @@ checkShortLink = (req, res, next) ->
 	next()
 
 ###
+vanity URLS for redirection
+###
+formRedirect = (req, res) ->
+	return res.redirect 301, config.EXTERNAL_URLS.form
+
+extensionRedirect = (req, res) ->
+	return res.redirect 301, config.EXTERNAL_URLS.extension
+
+###
 basic password-protect
 ###
 checkAuth = (req, res, next) ->
@@ -84,6 +93,9 @@ setup = (app) ->
 	app.get "/#{config.routes.ABOUT}", checkAuth, about
 	app.get "/#{config.routes.CONTRIBUTE}", checkAuth, contribute
 	app.get "/#{config.routes.DOODLES}/:authorName?/:doodleName?", checkAuth, doodles
+
+	app.get "/#{config.routes.FORM}", formRedirect
+	app.get "/#{config.routes.EXTENSION}", extensionRedirect
 
 	app.get '/holding/*', (req, res, next) => res.sendfile "public#{req.url}"
 
