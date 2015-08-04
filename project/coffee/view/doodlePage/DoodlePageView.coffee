@@ -79,7 +79,8 @@ class DoodlePageView extends AbstractViewPage
 		callback = if canShowDoodle then 'showFrame' else 'showMobileFallback'
 
 		if @CD().nav.changeViewCount is 1
-			@[callback] false, 5000
+			@CD().appView.on @CD().appView.EVENT_PRELOADER_HIDE, =>
+				@[callback] false, 2000
 		else
 			@CD().appView.transitioner.on @CD().appView.transitioner.EVENT_TRANSITIONER_OUT_DONE, @[callback]
 
