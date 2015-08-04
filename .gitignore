@@ -14,6 +14,16 @@ credentials.coffee
 
 temp/
 
+rev-manifest.json
+app/public/css
+app/public/holding/css
+app/public/data
+app/public/js
+app/public/html
+app/site/index.html
+app/site/holding.html
+app/site/login.html
+
 doodles/**/*.js
 doodles/**/*.css
 doodles/**/*.html
