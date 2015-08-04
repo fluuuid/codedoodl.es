@@ -70,7 +70,9 @@ checkAuth = (req, res, next) ->
 
 login = (req, res) ->
 	msg = if req.query.wrong_pw isnt undefined then 'Wrong. Try again' else false
-	res.render "site/login", getTemplateData('LOGIN')
+	vars = _.extend msg : msg,
+		getTemplateData('LOGIN')
+	res.render "site/login", vars
 
 loginPost = (req, res) ->
 	if req.body.pw is config.PASSWORD
