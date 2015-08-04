@@ -1,12 +1,8 @@
-# Stay tuned, almost ready to launch... but not yet :)
-
-___
-
 ![codedoodl.es logo](http://assets.codedoodl.es/readme_logo.png?1)
 
 <code>**\\\\ A curated showcase of creative coding sketches \\\\**</code>
 
-**[site](http://codedoodl.es) \\ [chrome extension](http://codedoodl.es) \\ [twitter](http://twitter.com/codedoodl_es)**
+**[site](http://codedoodl.es) \\ [chrome extension](https://chrome.google.com/webstore/detail/codedoodles/hhfnbfhcojlgbojpphigjibpjkccfikh) \\ [twitter](http://twitter.com/codedoodl_es)**
 
 ___
 
@@ -16,7 +12,7 @@ codedoodl.es is community-based collection of code experiments created with web 
 
 This means no loading bars, no GUI, no 5MB 3D models or media files, no page of instructional text, just plain and simple doodles with code.
 
-The site at [codedoodl.es](http://codedoodl.es) houses all of the doodles in one place, and installing the [chrome extension](http://codedoodl.es) will show a new doodle every time you open a new tab.
+The site at [codedoodl.es](http://codedoodl.es) houses all of the doodles in one place, and installing the [chrome extension](https://chrome.google.com/webstore/detail/codedoodles/hhfnbfhcojlgbojpphigjibpjkccfikh) will show a new doodle every time you open a new tab.
 
 ### How to contribute
 
