@@ -29,7 +29,7 @@ class Preloader extends AbstractView
 			label_caption        : @CD().locale.get "preloader_intro_caption"
 			label_extension      : @CD().locale.get "preloader_intro_cta_extension"
 			label_enter          : @CD().locale.get "preloader_intro_cta_enter"
-			url_chrome_extension : @CD().locale.get "chrome_extension_url"
+			url_chrome_extension : window.config.extension_url
 
 		@$el.append tmpl vars
 

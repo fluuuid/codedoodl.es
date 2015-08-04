@@ -50,16 +50,17 @@
 	<script type="text/javascript">
 
 		window.config = {
-			GA_code     : "<%= config.GA_CODE %>",
-			hostname    : document.location.protocol + "//" + document.location.host,
-			base_url    : "<%= config.BASE_URL %>",
-			assets_url  : "<%= config.ASSETS_BUCKET_URL %>",
-			doodles_url : "<%= config.DOODLES_BUCKET_URL %>",
-			localeCode  : "en-gb",
-			routes      : <%- JSON.stringify(config.routes) %>,
-			assets      : {
+			GA_code       : "<%= config.GA_CODE %>",
+			hostname      : document.location.protocol + "//" + document.location.host,
+			base_url      : "<%= config.BASE_URL %>",
+			assets_url    : "<%= config.ASSETS_BUCKET_URL %>",
+			doodles_url   : "<%= config.DOODLES_BUCKET_URL %>",
+			extension_url : "<%= config.EXTERNAL_URLS.extension %>",
+			localeCode    : "en-gb",
+			routes        : <%- JSON.stringify(config.routes) %>,
+			assets        : {
 				templates : "/data/templates-cfcf293d.xml",
-				locales   : "/data/locales/strings-e156d0d8.json",
+				locales   : "/data/locales/strings-f05576b4.json",
 				tracking  : "/data/tracking-c58972dc.json"
 			}
 		};
@@ -67,7 +68,7 @@
 	</script>
 
 	<script src="<%= config.ASSETS_BUCKET_URL %>/js/vendor/v-6e621e26.js"></script>
-	<script src="<%= config.ASSETS_BUCKET_URL %>/js/main-ae1d3131.js"></script>
+	<script src="<%= config.ASSETS_BUCKET_URL %>/js/main-37cbc6fa.js"></script>
 
 	<script>
 		if (window.config.GA_code) {

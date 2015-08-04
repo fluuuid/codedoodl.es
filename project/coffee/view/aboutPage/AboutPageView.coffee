@@ -24,7 +24,7 @@ class AboutPageView extends AbstractViewPage
 
 	show : =>
 
-		@getContributorsContent()
+		@getContributorsContent() if !@contributors.length
 
 		super
 
@@ -32,9 +32,11 @@ class AboutPageView extends AbstractViewPage
 
 	getWhatContent : =>
 
-		contribute_url = @CD().BASE_URL + '/' + @CD().nav.sections.CONTRIBUTE
+		vars =
+			contribute_url : @CD().BASE_URL + '/' + @CD().nav.sections.CONTRIBUTE
+			extension_url  : window.config.extension_url
 
-		return @supplantString @CD().locale.get("about_content_what"), { contribute_url : contribute_url }, false
+		return @supplantString @CD().locale.get("about_content_what"), vars, false
 
 	getContributorsContent : =>
 

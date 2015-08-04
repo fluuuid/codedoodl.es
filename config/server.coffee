@@ -20,6 +20,10 @@ config.cloudfront =
 	SOURCE : 'E252Z8ZC5VB7QS'
 	ASSETS : 'E278GI4I3S1464'
 
+config.EXTERNAL_URLS =
+	form      : 'https://docs.google.com/forms/d/1K66OvKMiKqGjgmYRFUtEA43KZzBzv4KzObM1JtD4cbk/viewform'
+	extension : 'https://chrome.google.com/webstore/detail/codedoodles/hhfnbfhcojlgbojpphigjibpjkccfikh'
+
 config.BASE_URL           = if config.PRODUCTION then "http://codedoodl.es" else "http://#{config.express.ip}:#{config.express.port}"
 config.ASSETS_BUCKET_URL  = if config.PRODUCTION then "http://#{config.buckets.ASSETS}" else "http://#{config.express.ip}:#{config.express.port}"
 config.DOODLES_BUCKET_URL = "http://#{config.buckets.SOURCE}"
@@ -32,6 +36,8 @@ config.routes =
 	CONTRIBUTE : 'contribute'
 	DOODLES    : '_'
 	LOGIN      : 'login'
+	FORM       : 'form'
+	EXTENSION  : 'extension'
 
 config.shortlinks =
 	SALT     : 'no need for this to be private I guess'

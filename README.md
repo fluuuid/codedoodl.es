@@ -1,12 +1,8 @@
-# Stay tuned, almost ready to launch... but not yet :)
-
-___
-
 ![codedoodl.es logo](http://assets.codedoodl.es/readme_logo.png?1)
 
 <code>**\\\\ A curated showcase of creative coding sketches \\\\**</code>
 
-**[site](http://codedoodl.es) \\ [chrome extension](http://codedoodl.es) \\ [twitter](http://twitter.com/codedoodl_es)**
+**[site](http://codedoodl.es) \\ [chrome extension](https://chrome.google.com/webstore/detail/codedoodles/hhfnbfhcojlgbojpphigjibpjkccfikh) \\ [twitter](http://twitter.com/codedoodl_es)**
 
 ___
 
@@ -16,7 +12,7 @@ codedoodl.es is community-based collection of code experiments created with web 
 
 This means no loading bars, no GUI, no 5MB 3D models or media files, no page of instructional text, just plain and simple doodles with code.
 
-The site at [codedoodl.es](http://codedoodl.es) houses all of the doodles in one place, and installing the [chrome extension](http://codedoodl.es) will show a new doodle every time you open a new tab.
+The site at [codedoodl.es](http://codedoodl.es) houses all of the doodles in one place, and installing the [chrome extension](https://chrome.google.com/webstore/detail/codedoodles/hhfnbfhcojlgbojpphigjibpjkccfikh) will show a new doodle every time you open a new tab.
 
 ### How to contribute
 
@@ -38,6 +34,6 @@ This is very much a first iteration, we wanted to get something basic released a
 
 ### Thanks
 
-This project is a [FLUUUID](http://FLUUU.ID) production - we created the site / extension / infrastructure to allow this to happen, but the real thanks goes to the digital artists who have contributed doodles:
+This project is a [FLUUUID](http://FLUUU.ID) production - but we just created the infrastructure to allow this to happen, the real thanks goes to the digital artists who have contributed doodles:
 
 **[grgrdvrt](http://www.grgrdvrt.com) ([tw](http://twitter.com/grgrdvrt), [gh](http://github.com/grgrdvrt)) \ [Florian Morel](http://ayamflow.fr) ([tw](http://twitter.com/ayamflow), [gh](http://github.com/ayamflow)) \ [Damien Mortini](http://damienmortini.me.uk) ([tw](http://twitter.com/dmmn_), [gh](http://github.com/dmmn)) \ [Silvio Paganini](http://s2paganini.com) ([tw](http://twitter.com/silviopaganini), [gh](http://github.com/silviopaganini)) \ [Anders Hoff](http://inconvergent.net) ([tw](http://twitter.com/inconvergent), [gh](http://github.com/inconvergent)) \ [Neil Carpenter](http://neilcarpenter.com) ([tw](http://twitter.com/neilcarpenter), [gh](http://github.com/neilcarpenter)) \ [Justin Windle](http://soulwire.co.uk) ([tw](http://twitter.com/soulwire), [gh](http://github.com/soulwire)) \ [William Mapan](http://wllmpn.com/) ([tw](http://twitter.com/williamapan), [gh](http://github.com/williamapan)) \ [Felix Woitzel](http://www.cake23.de) ([tw](http://twitter.com/Flexi23), [gh](http://github.com/Flexi23)) \ [Damien Seguin](http://dmnsgn.me/) ([tw](http://twitter.com/dmnsgn), [gh](http://github.com/dmnsgn))**
