@@ -6,7 +6,7 @@
         "website": "http://dmnsgn.me/",
         "twitter": "dmnsgn"
     },
-    "description": "A blobby shape animated using Marching Cube.",
+    "description": "A blobby shape animated using Jaume Sanchez (<a href=\"http://twiiter.com/spite\" target=\"_blank\">@thespite</a>) metaballs.",
     "tags": [
         "webgl",
         "threejs",
