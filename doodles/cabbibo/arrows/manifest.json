@@ -1,0 +1,20 @@
+{
+    "name" : "Arrows",
+    "author" : {
+        "name" : "cabbibo",
+        "github" : "cabbibo",
+        "website" : "http://cabbi.bo",
+        "twitter" : "cabbibo"
+    },
+    "description" : "<a href=\"https://github.com/cabbibo/arrow_CD\" target=\"_blank\">Source Code</a>",
+    "tags" : [ "WebGL", "GPGPU", "Instanced Mesh" ],
+    "interaction" : {
+        "mouse" : true,
+        "keyboard" : false,
+        "touch" : false
+    },
+    "instructions" : "drag to rotate, scroll to zoom",
+    "colour_scheme" : "dark",
+    "mobile_friendly" : false,
+    "slug" : "cabbibo/arrows"
+}
