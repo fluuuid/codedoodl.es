@@ -1,0 +1,20 @@
+{
+    "name" : "Dots",
+    "author" : {
+        "name" : "Taylor Baldwin",
+        "github" : "rolyatmax",
+        "website" : "https://tbaldw.in",
+        "twitter" : "taylorbaldwin"
+    },
+    "description" : "Inspired by the game Dots & Boxes and the wall drawings of artist Sol LeWitt.",
+    "tags" : [ "boxes", "lines", "patterns" ],
+    "interaction" : {
+        "mouse" : false,
+        "keyboard" : false,
+        "touch" : false
+    },
+    "instructions" : "Sit back and enjoy.",
+    "colour_scheme" : "light",
+    "mobile_friendly" : false,
+    "slug" : "rolyatmax/dots"
+}
