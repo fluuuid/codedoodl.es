@@ -1,0 +1,20 @@
+{
+  "name": "A Particular Nowhere",
+  "author": {
+    "name": "Sterling Crispin",
+    "github": "sterlingcrispin",
+    "website": "http://www.sterlingcrispin.com",
+    "twitter": "sterlingcrispin"
+  },
+  "description": "More information <a href=\"http://www.sterlingcrispin.com/aparticularnowhere.html\" target=\"_blank\">here</a>",
+  "tags": [ "threejs", "lsystems" ],
+  "interaction": {
+    "mouse": true,
+    "keyboard": false,
+    "touch": false
+  },
+  "instructions": "Look around",
+  "colour_scheme": "light",
+  "mobile_friendly": true,
+  "slug": "sterlingcrispin/a-particular-nowhere"
+}

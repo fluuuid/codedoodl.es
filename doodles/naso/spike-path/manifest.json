@@ -1,0 +1,20 @@
+{
+  "name": "Spike Path",
+  "author": {
+    "name": "Fábio Azevedo",
+    "github": "naso",
+    "website": "http://icantcontrolmyego.net",
+    "twitter": "naso"
+  },
+  "description": "Path exploration. Random spiky body around a line that grows based on the mouse speed.",
+  "tags": [ "EaselJS", "2D", "shapes", "minimal", "light" ],
+  "interaction": {
+    "mouse": true,
+    "keyboard": false,
+    "touch": true
+  },
+  "instructions": "Move mouse / touch and drag.",
+  "colour_scheme": "light",
+  "mobile_friendly": true,
+  "slug": "naso/spike-path"
+}
