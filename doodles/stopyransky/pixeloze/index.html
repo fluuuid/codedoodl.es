@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--
+/**
+ * @author Karol Stopyra stopyransky(at)gmail.com
+ * @author www.stopyransky.com
+ * 
+ */ 
+-->
+<html>
+    <head>
+        <title>stopyransky.com : Pixeloze </title>
+        <meta charset="UTF-8">
+        <style>
+            * {
+            padding: 0px;
+            overflow : hidden;
+            margin: 0px;
+            }
+        </style>
+        <script src="stopyransky-lib.js"></script>
+        <script src="p5.js"></script>
+        <script src="pixeloze.js"></script>
+    </head>
+    <body>
+        <script>
+            var mousewheelevt = (/Firefox/i.test(navigator.userAgent)) ? 
+                "DOMMouseScroll" : "mousewheel";
+            if (document.attachEvent)
+                document.attachEvent("on" + mousewheelevt, function (e) {
+                    mouseWheel(e);
+                });
+            else if (document.addEventListener) //WC3 browsers
+                document.addEventListener(mousewheelevt, function (e) {
+                    mouseWheel(e);
+                }, false);
+            var disappear = function() {};
+        </script>
+    </body>
+</html>
+
