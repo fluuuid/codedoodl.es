@@ -11,7 +11,7 @@ var getCredentials = require('./getCredentials');
 var config         = require('../config/server');
 
 var gzippableRe = /\.(css|js|svg|gz|html|xml|json)(?:$|\?)/;
-var versionedRe = /\.(css|js)(?:$|\?)/;
+var versionedRe = /\.(css|js|jpg|gif|mp4|webm)(?:$|\?)/;
 
 function getS3ParamsAssets(file, stat, cb) {
     var s3Params = {};
