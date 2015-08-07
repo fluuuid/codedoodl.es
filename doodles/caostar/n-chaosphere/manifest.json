@@ -1,0 +1,20 @@
+{
+    "name" : "N-Chaosphere",
+    "author" : {
+        "name" : "Pablo Cabana",
+        "github" : "caostar",
+        "website" : "http://caostar.com/thoughts/",
+        "twitter" : "pablocabana"
+    },
+    "description" : "It came up when I was developing that Chaos Sphere Trip. For some reason the x,y,z positions got screwed and this little beauty appeared on my screen. I got marvelled for a while, just watching it, till I realised I had finally understand a vision from an old friend.<br/><br/>A couple of years ago, a frater appeared at one of our meetings all excited about a vision he had: a chaos sphere with several arrows. He said fourteen, but “that is was how I can see it, in fact it seems to have infinite arrows”, he completed. Inspired, he couldn’t stop talking about what it does mean: “freedom in all dimensions, beyond our simple threedimensional comprehension”.<br/><br/>With the words above, I believe I am making his vision way clearer now. At that time, it sounded like a bit too much information. He didn’t had that talent to “transmit a vision”, if you know what I mean. But it planted a seed in my brain. A seed that has flourished now, giving birth to the n-dimensional Chaos Sphere.<br/><br/>I’ve been meditating for a while looking to this. Since its behaviour is completely created by fortuity, a “code coincidence”, anything that comes from it can be interpreted in a oracular way.<br/><br/>It looks very chaotic, but as chaos itself, sometimes it just shows its hidden order, and make you believe that some “will” is on top of it.",
+    "tags" : [ "chaosphere", "chaos" ],
+    "interaction" : {
+        "mouse" : true,
+        "keyboard" : false,
+        "touch" : true
+    },
+    "instructions" : "just look at it and click and drag",
+    "colour_scheme" : "dark",
+    "mobile_friendly" : true,
+    "slug" : "caostar/n-chaosphere"
+}
