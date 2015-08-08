@@ -1,0 +1,20 @@
+{
+    "name" : "Glitter",
+    "author" : {
+        "name" : "Anders Hoff",
+        "github" : "inconvergent",
+        "website" : "http://inconvergent.net",
+        "twitter" : "inconvergent"
+    },
+    "description" : "Pulsating particles that you can interact with using the mouse.",
+    "tags" : [ "webgl" ],
+    "interaction" : {
+        "mouse" : true,
+        "keyboard" : false,
+        "touch" : false
+    },
+    "instructions" : "Mouseover",
+    "colour_scheme" : "dark",
+    "mobile_friendly" : false,
+    "slug" : "inconvergent/glitter"
+}

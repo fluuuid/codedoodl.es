@@ -161,7 +161,13 @@
             "index": 27,
             "slug": "caostar/n-chaosphere",
             "created": "2015-08-07T22:00:36.022Z"
+        },
+        {
+            "id": "mav",
+            "index": 28,
+            "slug": "inconvergent/glitter",
+            "created": "2015-08-08T11:33:36.050Z"
         }
     ],
-    "last_updated": "2015-08-07T22:00:36.022Z"
+    "last_updated": "2015-08-08T11:33:36.050Z"
 }
