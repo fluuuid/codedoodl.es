@@ -29,6 +29,7 @@ doodles/**/*.css
 doodles/**/*.html
 doodles/**/*.frag
 doodles/**/*.vert
+doodles/**/*.vs
 doodles/**/*.glsl
 doodles/**/*.png
 doodles/**/*.jpg
