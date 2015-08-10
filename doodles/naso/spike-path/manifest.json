@@ -6,7 +6,7 @@
     "website": "http://icantcontrolmyego.net",
     "twitter": "naso"
   },
-  "description": "Path exploration. Random spiky body around a line that grows based on the mouse speed.",
+  "description": "Path exploration. Random spiky body around a line that grows based on the mouse speed. <a href=\"https://github.com/naso/spike-path\" target=\"_blank\">Source</a>",
   "tags": [ "EaselJS", "2D", "shapes", "minimal", "light" ],
   "interaction": {
     "mouse": true,
