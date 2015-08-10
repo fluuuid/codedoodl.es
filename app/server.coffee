@@ -10,8 +10,9 @@ gzipStaticAssets = (req, res, next) ->
     next()
 
 forceNonWww = (req, res, next) ->
-	if req.headers.host.match(/^www/) isnt null
-		res.redirect 301, 'http://' + req.headers.host.replace(/^www\./, '') + req.url
+	if req.headers.host.slice(0, 4) is 'www.'
+		newHost = req.headers.host.slice(4)
+		return res.redirect 301, req.protocol + '://' + newHost + req.originalUrl
 	else
 		next()
 
@@ -27,7 +28,9 @@ app.use compress()
 ].forEach (routePath) ->
 	require(routePath)(app)
 
+app.set 'trust proxy', true
 app.use forceNonWww
+
 app.use gzipStaticAssets
 app.use express.static(__dirname + '/public')
 app.use require("./middleware").notFound
