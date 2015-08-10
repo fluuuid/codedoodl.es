@@ -1,0 +1,20 @@
+{
+    "name": "Nebulon",
+    "author": {
+        "name": "Mat Groves",
+        "github": "GoodBoyDigital",
+        "website": "http://www.goodboydigital.com/",
+        "twitter": "doormat23"
+    },
+    "description": "Playing around with pixi.js filters and masking.",
+    "tags": [ "pixi.js", "webGL" ],
+    "interaction": {
+        "mouse": true,
+        "keyboard": false,
+        "touch": false
+    },
+    "instructions": "Move the mouse to see through space time...",
+    "colour_scheme": "light",
+    "mobile_friendly": true,
+    "slug": "doormat23/nebulon"
+}

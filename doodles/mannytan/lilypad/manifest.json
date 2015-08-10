@@ -1,0 +1,20 @@
+{
+    "name": "Lilypad",
+    "author": {
+        "name": "Manny Tan",
+        "github": "mannytan",
+        "website": "http://uncontrol.com",
+        "twitter": "mannytan"
+    },
+    "description": "Lily pad is an experiment that explores paper folding inspired by the form of a lily pad floating on top of water.",
+    "tags": [ "webGL", "three.js" ],
+    "interaction": {
+        "mouse": true,
+        "keyboard": false,
+        "touch": true
+    },
+    "instructions": "click to morph shape",
+    "colour_scheme": "dark",
+    "mobile_friendly": false,
+    "slug": "mannytan/lilypad"
+}

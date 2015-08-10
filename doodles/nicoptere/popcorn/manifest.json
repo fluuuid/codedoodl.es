@@ -1,0 +1,20 @@
+{
+    "name" : "popcorn",
+    "author" : {
+        "name" : "Nicolas Barradeau",
+        "github" : "nicoptere",
+        "website" : "http://www.barradeau.com",
+        "twitter" : "nicoptere"
+    },
+    "description" : "it takes some time to emerge",
+    "tags" : [ "IFS", "fractal", "canvas" ],
+    "interaction" : {
+        "mouse" : true,
+        "keyboard" : false,
+        "touch" : true
+    },
+    "instructions" : "click to reset",
+    "colour_scheme" : "dark",
+    "mobile_friendly" : true,
+    "slug" : "nicoptere/popcorn"
+}
