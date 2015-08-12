@@ -1,0 +1,21 @@
+{
+    "name" : "Pixeloze",
+    "author" : {
+        "name" : "Karol Stopyra",
+        "github" : "stopyransky",
+        "website" : "http://stopyransky.com",
+        "twitter" : "stopyransky"
+    },
+    "description" : "Watch how pixels collide, click to create new pix, drag pix to aim, release to shoot ",
+    "tags" : [ "p5js", "particles", "collision", "detection", "quadtree"  ],
+    
+    "interaction" : {
+        "mouse" : true,
+        "keyboard" : false,
+        "touch" : false
+    },
+    "instructions" : "click / drag mouse on pix",
+    "colour_scheme" : "light",
+    "mobile_friendly" : false,
+    "slug" : "stopyransky/pixeloze"
+}
