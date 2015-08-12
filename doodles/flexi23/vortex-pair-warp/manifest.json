@@ -1,0 +1,20 @@
+{
+    "name" : "Vortex Pair Warp",
+    "author" : {
+        "name" : "Felix Woitzel",
+        "github" : "Flexi23",
+        "website" : "http://www.cake23.de",
+        "twitter" : "Flexi23"
+    },
+    "description" : "vanilla js/glsl remake of the transform shader from <a href=\"http://www.cake23.de/uno.beta/LaminarFlow2/\" target=\"_blank\">http://www.cake23.de/uno.beta/LaminarFlow2/</a> in combination with <a href=\"http://webglplayground.net/share/organic-net?gallery=1&fullscreen=0&width=800&height=600&header=1\" target=\"_blank\">http://webglplayground.net/share/organic-net?gallery=1&fullscreen=0&width=800&height=600&header=1</a> and a new composite shader.<br/><br/>The Turing Pattern only consumes a single color channel. View the source, hit alt+a and ctrl+v, add to fs-advance and fs-composite",
+    "tags" : [ "WebGL", "Shader", "Turing", "Cellular", "Automaton", "Vortex", "Warp" ],
+    "interaction" : {
+        "mouse" : true,
+        "keyboard" : false,
+        "touch" : false
+    },
+    "instructions" : "move the mouse",
+    "colour_scheme" : "dark",
+    "mobile_friendly" : false,
+    "slug" : "flexi23/vortex-pair-warp"
+}
