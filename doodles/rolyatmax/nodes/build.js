@@ -35,7 +35,8 @@ function main(_ref) {
     var height = _container$getBoundingClientRect.height;
     var width = _container$getBoundingClientRect.width;
 
-    var gl = setupGL(height, width, container);
+    var gl = setupGL(container);
+    resize(height, width, gl);
 
     var pointProgramInfo = _twglJs.twgl.createProgramInfo(gl, [pointVs, pointFs]);
     var edgeProgramInfo = _twglJs.twgl.createProgramInfo(gl, [edgeVs, edgeFs]);
@@ -63,6 +64,13 @@ function main(_ref) {
         clientY -= height / 2;
         mouseX = clientX / (width / 2);
         mouseY = clientY / (height / 2);
+    });
+
+    window.addEventListener('resize', function () {
+        var rect = container.getBoundingClientRect();
+        height = rect.height;
+        width = rect.width;
+        resize(height, width, gl);
     });
 
     ///////// animation loop
@@ -96,15 +104,25 @@ function drawBuffer(gl, program, DRAW_MODE, buff, uniforms) {
     _twglJs.twgl.drawBufferInfo(gl, DRAW_MODE, buff);
 }
 
-function setupGL(height, width, container) {
+function setupGL(container) {
     var canvas = document.createElement('canvas');
-    canvas.style.height = height + 'px';
-    canvas.style.width = width + 'px';
     container.appendChild(canvas);
     var gl = _twglJs.twgl.getWebGLContext(canvas);
     _twglJs.twgl.resizeCanvasToDisplaySize(gl.canvas);
-    gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
     return gl;
+}
+
+function resize(height, width, gl) {
+    var size = Math.max(height, width);
+    gl.canvas.style.height = size + 'px';
+    gl.canvas.style.width = size + 'px';
+    gl.canvas.width = gl.canvas.height = size;
+    var top = size > height ? (height - size) / 2 : 0;
+    var left = size > width ? (width - size) / 2 : 0;
+    gl.canvas.style.position = 'relative';
+    gl.canvas.style.top = top + 'px';
+    gl.canvas.style.left = left + 'px';
+    gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
 }
 
 function fillBuffers(gl, program, positions, velocities, size) {
