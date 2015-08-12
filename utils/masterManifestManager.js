@@ -54,12 +54,14 @@ function updateAndUpload(isProduction, doodleDir, cb) {
 
 	update(isProduction, doodleDir);
 
-	invalidateCloudfront.file(remoteManifestPath, function(err) {
-		if (err) {
-			throw new Error('Problem invalidating cloudfront cache for ' + manifestPath, err);
-		}
-		uploadToS3.uploadSingleFile(manifestPath, cb);
-	});
+	uploadToS3.uploadSingleFile(manifestPath, cb);
+
+	// invalidateCloudfront.file(remoteManifestPath, function(err) {
+	// 	if (err) {
+	// 		throw new Error('Problem invalidating cloudfront cache for ' + manifestPath, err);
+	// 	}
+	// 	uploadToS3.uploadSingleFile(manifestPath, cb);
+	// });
 
 }
 

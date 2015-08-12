@@ -39,19 +39,21 @@ function uploadDoodle(doodleDir) {
 gulp.task('uploadDoodle', ['_gzipDoodle'], function() {
 	var doodleDir = argv.path;
 
-	validateDoodleUpload(doodleDir, function(err) {
+	uploadDoodle(doodleDir);
 
-		if (err) {
-			uploadDoodle(doodleDir);
-		} else {
-			invalidateCloudfront.doodle(doodleDir, function(err) {
-				if (err) {
-					throw new Error('Problem invalidating cloudfront cache for ' + doodleDir, err);
-				}
-				uploadDoodle(doodleDir);
-			});
-		}
-	});
+	// validateDoodleUpload(doodleDir, function(err) {
+
+	// 	if (err) {
+	// 		uploadDoodle(doodleDir);
+	// 	} else {
+	// 		invalidateCloudfront.doodle(doodleDir, function(err) {
+	// 			if (err) {
+	// 				throw new Error('Problem invalidating cloudfront cache for ' + doodleDir, err);
+	// 			}
+	// 			uploadDoodle(doodleDir);
+	// 		});
+	// 	}
+	// });
 
 });
 
