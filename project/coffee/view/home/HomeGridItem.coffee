@@ -25,8 +25,9 @@ class HomeGridItem extends AbstractView
 	constructor : (@model, @parentGrid) ->
 
 		@templateVars = _.extend {
-			thumbSrc : @getThumbSrc()
-			videoSrc : @getVideoSrc()
+			thumbSrc   : @getThumbSrc()
+			videoSrc   : @getVideoSrc()
+			videoCover : @getVideoCover()
 		}, @model.toJSON()
 
 		# @maxOffset    = (_.random @ITEM_MIN_OFFSET, @ITEM_MAX_OFFSET) / 10
@@ -59,6 +60,10 @@ class HomeGridItem extends AbstractView
 			type = 'mp4'
 
 		type
+
+	getVideoCover : =>
+
+		return @CD().DOODLES_URL + '/' + @model.get('slug') + '/video-cover.jpg'
 
 	setOffsetAndEase : (idx, colCount) =>
 
