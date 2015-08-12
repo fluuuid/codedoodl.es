@@ -1,0 +1,20 @@
+{
+    "name" : "Nodes",
+    "author" : {
+        "name" : "Taylor Baldwin",
+        "github" : "rolyatmax",
+        "website" : "https://tbaldw.in",
+        "twitter" : "taylorbaldwin"
+    },
+    "description" : "Nodes float about, connecting with neighbors before drifting apart. <a href=\"https://github.com/rolyatmax/floating-nodes\" target=\"_blank\">Source</a> ",
+    "tags" : [ "nodes", "edges", "patterns", "smoke", "webgl" ],
+    "interaction" : {
+        "mouse" : true,
+        "keyboard" : false,
+        "touch" : false
+    },
+    "instructions" : "Move your mouse around to influence the nodes and their colors.",
+    "colour_scheme" : "light",
+    "mobile_friendly" : false,
+    "slug" : "rolyatmax/nodes"
+}
