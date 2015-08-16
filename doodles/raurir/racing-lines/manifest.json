@@ -1,0 +1,25 @@
+{
+    "name": "Racing Lines",
+    "author": {
+        "name": "Rauri R",
+        "github": "raurir",
+        "website": "http://wwww.funkyvector.com",
+        "twitter": "raurir"
+    },
+    "description": "Blocks moving around on two planes as camera zooms forwards",
+    "tags": [
+        "3d",
+        "webgl",
+        "threejs",
+        "cubes"
+    ],
+    "interaction": {
+        "mouse": true,
+        "keyboard": true,
+        "touch": true
+    },
+    "instructions": "Drag, Click, or Use arrow keys to",
+    "colour_scheme": "dark",
+    "mobile_friendly": true,
+    "slug": "raurir/racing-lines"
+}
