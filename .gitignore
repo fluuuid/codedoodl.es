@@ -40,6 +40,12 @@ doodles/**/*.json
 doodles/**/*.mp4
 doodles/**/*.mov
 doodles/**/*.webm
+doodles/**/*.pde
+doodles/**/*.eot
+doodles/**/*.svg
+doodles/**/*.ttf
+doodles/**/*.woff
+doodles/**/*.txt
 
 !doodles/master_manifest.json
 !doodles/master_manifest_DEV.json
