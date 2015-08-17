@@ -4,7 +4,7 @@
         "name" : "Fred Briolet",
         "github" : "FredericBriolet",
         "website" : "http://fredericbriolet.com/",
-        "twitter" : "fbriolet"
+        "twitter" : "fredbriolet"
     },
     "description" : "3d experiment based on color shades, particle drawing with renderer.autoClear and camera movement.<br/><br/>With sound : <a href=\"http://fredericbriolet.com/dispositions\" target=\"_blank\">http://fredericbriolet.com/dispositions</a>",
     "tags" : [ "threejs", "webgl", "color" ],
