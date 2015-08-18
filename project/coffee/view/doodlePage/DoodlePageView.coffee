@@ -216,6 +216,11 @@ class DoodlePageView extends AbstractViewPage
 			CodeWordTransitioner.to blankInstructions, @$instructions, @colourScheme
 		, delay or 0
 
+		# allow frame to transition in and then focus it
+		setTimeout =>
+			@$frame.focus()
+		, 500
+
 		null
 
 	showMobileFallback : (removeEvent=true, delay=null) =>
