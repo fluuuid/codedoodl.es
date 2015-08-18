@@ -1,0 +1,20 @@
+{
+    "name": "Racing Lines",
+    "author": {
+        "name": "Rauri Rochford",
+        "github": "raurir",
+        "website": "http://www.esquemedia.com",
+        "twitter": "raurir"
+    },
+    "description": "A bunch of blocks shifting around and swapping positions on two planes. Move the camera (drag, swipe or arrow keys) or go into warp speed (click, enter or space)!",
+    "tags": [ "3D", "webgl", "threejs", "cubes" ],
+    "interaction": {
+        "mouse": true,
+        "keyboard": true,
+        "touch": true
+    },
+    "instructions": "Drag, Click, Swipe or use Arrow Keys + Enter + Space",
+    "colour_scheme": "dark",
+    "mobile_friendly": true,
+    "slug": "raurir/racing-lines"
+}
