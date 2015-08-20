@@ -1,0 +1,20 @@
+{
+	"name": "Collapsar",
+	"author": {
+		"name": "William Mapan",
+		"github": "williamapan",
+		"website": "http://wllmpn.com/",
+		"twitter": "williamapan"
+	},
+	"description": "WebGL tunnel acting like a collapsar <a href=\"http://i.imgur.com/HCTZNQ9.jpg\" target=\"_blank\">http://i.imgur.com/HCTZNQ9.jpg</a><br/>- Move around to highlight the tunnel<br/>- Press to speed up !",
+	"tags": [ "WebGL", "THREEjs", "Shaders", "Tunnel" ],
+	"interaction": {
+		"mouse": true,
+		"keyboard": false,
+		"touch": true
+	},
+	"instructions" : "Move and/or press",
+	"colour_scheme": "dark",
+	"mobile_friendly": false,
+	"slug" : "williamapan/collapsar"
+}

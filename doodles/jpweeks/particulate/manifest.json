@@ -1,0 +1,20 @@
+{
+    "name" : "Particulate",
+    "author" : {
+        "name" : "Jay Weeks",
+        "github" : "jpweeks",
+        "website" : "http://jayweeks.com",
+        "twitter" : "jpweeks"
+    },
+    "description" : "Particle physics micro library.<br/><br/>Check out the <a href=\"http://particulatejs.org/examples/\">examples</a>, <a href=\"http://particulatejs.org/docs/\">docs</a>, <a href=\"http://particulatejs.org/test/\">tests</a>, or <a href=\"https://github.com/jpweeks/particulate-js\">source on github</a>.",
+    "tags" : [ "webgl", "physics", "simulation" ],
+    "interaction" : {
+        "mouse" : true,
+        "keyboard" : false,
+        "touch" : false
+    },
+    "instructions" : "Control camera and repulsion force with mouse cursor.",
+    "colour_scheme" : "dark",
+    "mobile_friendly" : true,
+    "slug" : "jpweeks/particulate"
+}
