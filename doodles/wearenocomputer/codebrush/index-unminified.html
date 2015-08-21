@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta charset="utf-8" />
+	<title>codebrush — nøcomputer</title>
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0, user-scalable=no" />
+	<style>
+
+		html,
+		body {
+			background: #123;
+			overflow: hidden;
+			height: 100%;
+			padding: 0;
+			margin: 0;
+		}
+
+		canvas {
+			position: absolute;
+			-webkit-transition: all 300ms ease-in-out;
+			-webkit-transform: translate3d(0, 0, 0);
+			-webkit-backface-visibility: hidden;
+			-webkit-perspective: 1000;
+			transition: all 300ms ease-in-out;
+			transform: translate3d(0, 0, 0);
+			backface-visibility: hidden;
+			perspective: 1000;
+		}
+
+	</style>
+</head>
+<body>
+<canvas />
+<script>
+
+	// ---------------------------------------------------------------
+	// :: 2D VECTOR CLASS
+	// ---------------------------------------------------------------
+	// Optimized 2D vector class, avoiding object creation as
+	// much as possible — http://media.tojicode.com/sfjs-vectors
+	//
+	// - equals: set vector values
+	// - add: add vector value t another value
+	// - plus: add a circular point
+	// - interpolate: calculate mid-point between 2 vectors
+	// - length: calculate distance between 2 vectors
+	// - angle: get angle between 2 vectors (in radians)
+	// - drawCircle: draws a circular shape
+
+	var Vec2 = function(x, y) {
+
+		this.x = x >> 0 || 0;
+		this.y = y >> 0 || 0;
+
+	};
+
+	Vec2.prototype.equals = function(v) {
+
+		this.x = v.x;
+		this.y = v.y;
+
+	};
+
+	Vec2.prototype.add = function(v) {
+
+		this.x += v.x;
+		this.y += v.y;
+
+	};
+
+	Vec2.prototype.plus = function(theta, radius) {
+
+		this.x += Math.cos(theta) * radius;
+		this.y += Math.sin(theta) * radius;
+
+	};
+
+	Vec2.prototype.interpolate = function(v, amount) {
+
+		var diffX = this.x - v.x,
+		    diffY = this.y - v.y,
+		    theta = Math.atan2(diffY, diffX),
+			dist  = this.length(v) * amount,
+			x     = this.x - Math.cos(theta) * dist,
+			y     = this.y - Math.sin(theta) * dist;
+
+		return new Vec2(x, y);
+
+	};
+
+	Vec2.prototype.length = function(v) {
+
+		var x = this.x - v.x,
+			y = this.y - v.y;
+
+		return Math.sqrt((x * x) + (y * y));
+
+	};
+
+	Vec2.prototype.angle = function(v) {
+
+		var x = this.x - v.x,
+			y = this.y - v.y;
+				
+		return Math.atan2(y, x) * Maths.TO_DEGREES;
+
+	};
+
+	Vec2.prototype.drawCircle = function(radius, randomShape, c) {
+
+		var steps   = 3 + (randomShape ? Math.random() + 0.5 | 0 : 0),
+		    part    = 360 / steps * Maths.TO_RADIANS,
+		    theta   = 0,
+		    atheta  = -part * 0.5,
+		    aradius = radius / Math.cos(-atheta);
+				
+		c.moveTo(this.x + radius, this.y);
+
+		while(steps--) {
+			
+			theta  += part;
+			atheta += part;
+			
+			var endx = this.x + Math.cos(theta) * radius,
+				endy = this.y + Math.sin(theta) * radius,
+				ax   = this.x + Math.cos(atheta) * aradius,
+				ay   = this.y + Math.sin(atheta) * aradius;
+				
+			c.quadraticCurveTo(ax, ay, endx, endy);
+
+		}
+
+	};
+
+
+
+
+	// ---------------------------------------------------------------
+	// :: CONSTANTS
+	// ---------------------------------------------------------------
+
+	var Maths = {
+		
+		PI         : Math.PI,
+		TWO_PI     : 2*Math.PI,
+		TO_DEGREES : 180/Math.PI,
+		TO_RADIANS : Math.PI/180
+		
+	};
+
+
+
+	
+	// ---------------------------------------------------------------
+	// :: COLOR CLASS
+	// ---------------------------------------------------------------
+
+	var Color = function() { 
+		
+		this.palettes = [];
+
+		this.palettes.push([[234,53,86], [97,210,214], [237,229,226], [237,20,111], [237,222,69], [155,240,233]]);
+		this.palettes.push([[255, 255, 255], [0, 110, 137], [0, 181, 232]]);
+		this.palettes.push([[253,207,191], [254,184,159], [226,61,117], [95,13,59], [116,35,101]]);
+		this.palettes.push([[207,240,158], [168,219,168], [121,189,154], [59,134,134], [11,72,107]]);
+		this.palettes.push([[199,226,195], [248,244,199], [227,208,166], [102,76,75], [245,245,96], [46,204,174]]);
+
+	};
+
+	Color.prototype.getPalette = function() {
+
+		this.currentPalette = Math.random() * this.palettes.length >> 0;
+
+	};
+
+	Color.prototype.getColor = function() {
+
+		var color = Math.random() * this.palettes[this.currentPalette].length >> 0,
+		    r     = this.palettes[this.currentPalette][color][0],
+		    g     = this.palettes[this.currentPalette][color][1],
+		    b     = this.palettes[this.currentPalette][color][2];
+				
+		return r +', '+ g +', '+ b;
+
+	};
+
+	Color.prototype.getLineWidth = function(v) {
+
+		return Math.random() * v * App.getPixelRatio();
+
+	};
+
+
+
+	
+	// ---------------------------------------------------------------
+	// :: STROKE CLASS
+	// ---------------------------------------------------------------
+	// Strokes are arrays with 2D vectors
+	// Each stroke has a minimum amount of points
+
+	var Stroke = function() {
+
+		this.reset();
+
+		currentStyle == 0 && ( this.minimumPoints = 5 );
+		currentStyle == 1 && ( this.minimumPoints = 2 );
+		currentStyle == 2 && ( this.minimumPoints = 1 );
+		currentStyle == 3 && ( this.minimumPoints = 1 );
+
+	};
+
+	// Choose a random stroke 
+	// style and color palette
+
+	Stroke.prototype.reset = function() {
+
+		this.points  = [];
+		currentStyle = Math.random() * 3 >> 0;
+		color.getPalette();
+
+	};
+
+	// Calculate correct vector positions based 
+	// on the real canvas size and offset position
+	// Once we have enough points, start drawing
+
+	Stroke.prototype.addPoints = function(p) {
+
+		var pixelRatio = App.getPixelRatio(),
+			position   = App.getActualPosition(),
+			x          = (p.clientX * pixelRatio) - position.x,
+			y          = (p.clientY * pixelRatio) - position.y;
+
+		this.points.push(new Vec2(x, y));
+
+		if(this.points.length > 2 * this.minimumPoints) {
+			this.draw(this.points.length - 1);
+		}
+
+	};
+
+	// Draw a line to the previous point
+
+	Stroke.prototype.draw = function(i) {
+
+		var p1 = this.points[i - (2 * this.minimumPoints)],
+			p2 = this.points[i - this.minimumPoints],
+			p3 = this.points[i],
+		
+			// Calculate Bezier anchors
+
+			m1 = p1.interpolate(p2, 0.5),
+			m2 = p2.interpolate(p3, 0.5),
+		
+			// Moving speed
+
+			speed = m1.length(m2);
+	
+		// Default line settings
+
+		c.lineWidth = .5 * App.getPixelRatio();
+		c.strokeStyle = 'rgba(255, 255, 255, 1)';
+		c.globalCompositeOperation = 'normal';
+			
+		// Select style & draw
+		switch(currentStyle) {
+
+			// -------------------------------------------------------
+			// :: STYLE 0
+			// -------------------------------------------------------
+
+			case 0:
+				
+				speed *= 0.75;
+				
+				// Init temp storage
+
+				if(i === 2 * this.minimumPoints) {
+					
+					this.p1l = new Vec2();
+					this.p1r = new Vec2(); 
+					this.p2l = new Vec2();
+					this.p2r = new Vec2();
+					this.p3l = new Vec2();
+					this.p3r = new Vec2();
+					this.m1l = new Vec2();
+					this.m1r = new Vec2(); 
+					this.m2l = new Vec2();
+					this.m2r = new Vec2();
+					this.d   = new Vec2();	
+					
+				}
+				
+				// Calculate
+
+				var theta1 = p1.angle(p2) + 90,
+					theta3 = p2.angle(p3) + 90,
+					a      = p1.angle(p2) - p1.angle(p3),
+					b      = p3.angle(p2) - p3.angle(p1),
+					theta2 = p1.angle(p2) + ((180 - a - b) * 0.5),
+					size   = Math.random() * speed * App.getPixelRatio();
+				
+				(color.currentPalette != 1 && i%12 === 0) && (size *= Math.random() * 5);
+				
+				theta1 *= Maths.TO_RADIANS;
+				theta2 *= Maths.TO_RADIANS;
+				theta3 *= Maths.TO_RADIANS;
+				
+				this.p1l.equals(p1);
+				this.p1r.equals(p1);
+				this.p2l.equals(p2);
+				this.p2r.equals(p2);
+				this.p3l.equals(p3);
+				this.p3r.equals(p3);
+				
+				this.p1l.plus(theta1, size * 1.2);
+				this.p1r.plus(theta1, -size * 1.2);
+				this.p2l.plus(theta2, size * 1.5);
+				this.p2r.plus(theta2, -size * 1.5);
+				this.p3l.plus(theta3, size * 1.2);
+				this.p3r.plus(theta3, -size * 1.2);
+				
+				this.m1l = this.p1l.interpolate(this.p2l, 0.15);
+				this.m1r = this.p1r.interpolate(this.p2r, 0.15);
+				this.m2l = this.p2l.interpolate(this.p3l, 0.15);
+				this.m2r = this.p2r.interpolate(this.p3r, 0.15);
+	
+				this.d.x = (Math.random() * size) - (size * 0.05);
+				this.d.y = (Math.random() * size) - (size * 0.5);
+				
+				if(i%10 === 0) {
+					this.d.x *= size * 0.02;
+					this.d.y *= size * 0.02;
+				}
+	
+				this.m1l.add(this.d);
+				this.m1r.add(this.d);
+				this.p2l.add(this.d);
+				this.p2r.add(this.d);
+				this.m2l.add(this.d);
+				this.m2r.add(this.d);
+	
+				// Draw
+
+				c.save();
+				
+				c.lineWidth = color.getLineWidth(5);
+				c.fillStyle = 'rgba(17, 34, 51, 1)';
+
+				if(color.currentPalette != 1) {
+					
+					c.strokeStyle = 'rgba('+ color.getColor() +', 1)';
+
+					var gradient = c.createLinearGradient(this.m1l.x, this.m1l.y, this.m2r.x, this.m2r.y);
+					gradient.addColorStop(0, 'rgba('+ color.getColor() +', '+ (0.85 + (Math.random() * 0.15)) +' )');
+					gradient.addColorStop(1, 'rgba('+ color.getColor() +', '+ (0.85 + (Math.random() * 0.15)) +' )');
+					c.fillStyle = gradient;
+
+					i%5 === 0 && (c.globalCompositeOperation = 'lighter');
+					
+				}
+
+				if(!hasTouchSupport && color.currentPalette === 0) {
+					c.shadowColor = i%4 === 0 ? 'rgba('+ color.getColor() +', 0.8)' : 'none';
+					c.shadowBlur = 100;
+				}
+
+				if(!hasTouchSupport && color.currentPalette === 3) {
+					c.shadowColor = i%3 === 0 ? 'rgba(0, 0, 0, 1)' : 'none';
+					c.shadowBlur = 250;
+				}
+
+				if(!hasTouchSupport && color.currentPalette === 4) {
+					c.shadowColor = i%2 === 0 ? 'rgba('+ color.getColor() +', 0.8)' : 'none';
+					c.shadowBlur = 30;
+				}
+		
+				c.beginPath();
+
+				c.moveTo(this.m1l.x, this.m1l.y);
+				c.lineTo(this.p2l.x, this.p2l.y);
+				c.lineTo(this.m2l.x, this.m2l.y);
+				c.lineTo(this.m2r.x, this.m2r.y);
+				c.lineTo(this.p2r.x, this.p2r.y);
+				c.lineTo(this.m1r.x, this.m1r.y);
+				c.lineTo(this.m1l.x, this.m1l.y);
+	
+				c.moveTo(this.p2l.x, this.p2l.y);
+				c.lineTo(this.p2r.x, this.p2r.y);
+				
+				c.stroke();
+				c.fill();
+	
+				this.d.x *= 4;
+				this.d.y *= 4;
+				this.d.x = p2.x - this.d.x;
+				this.d.y = p2.y - this.d.y;
+	
+				c.lineWidth   = color.getLineWidth(2);
+				c.strokeStyle = 'rgba('+ color.getColor() +', 1)';
+				
+				i%2 === 0 && this.d.drawCircle(size * 0.25, true, c);
+				this.d.drawCircle(size * 0.10, true, c);
+	
+				c.stroke();
+				c.restore();
+	
+				break;
+	
+			 
+			// -------------------------------------------------------
+			// :: STYLE 1
+			// -------------------------------------------------------
+
+			case 1:
+				
+				speed *= .01;
+				
+				// Init temp storage
+
+				if(i === 2 * this.minimumPoints) {
+					
+					this.temp = [];
+					for(var j=0; j<30; j++) { 
+					
+						var e = 0.3 * (15 + (j * 0.7)) * 0.065,
+							s = 0.9 * (5 + (j * 0.7)) * 0.025,
+							p = new Vec2(p1.x, p1.y),
+							v = new Vec2();
+						
+						this.temp.push([p, v, e, s]);
+						
+					}
+				}
+				
+				var randomM      = i%5 === 0 ? Math.random() * 0.35 : 1,
+					randomRadius = i%10 === 0 ? 35 : 8;
+				
+				c.save();
+	
+				c.lineWidth   = color.getLineWidth(3);
+				c.strokeStyle = 'rgba('+ color.getColor() +', '+ (0.3 + (Math.random() * 0.7)) +')';
+				
+				i%6 === 0 && (c.globalCompositeOperation = 'lighter');
+
+				if(!hasTouchSupport && (color.currentPalette === 0 || color.currentPalette === 4)) {
+					c.shadowColor = i%2 === 0 ? 'rgba('+ color.getColor() +', 0.4)' : 'none';
+					c.shadowBlur = 50;
+				}
+
+				if(!hasTouchSupport && color.currentPalette === 3) {
+					c.shadowColor = i%3 === 0 ? 'rgba(0, 0, 0, 1)' : 'none';
+					c.shadowBlur = 200;
+				}
+
+				for(var j=0; j<30; j++) { 
+				
+					// Calculate
+
+					var p  = this.temp[j][0],
+						v  = this.temp[j][1],
+						e  = this.temp[j][2],
+						s  = this.temp[j][3],
+						m  =  s * speed * randomM,
+						sx = (v.x + (p.x - p1.x) * e) * m,
+						sy = (v.y + (p.y - p1.y) * e) * m,
+					
+					radius = Math.random() * randomRadius * speed * App.getPixelRatio();
+					
+					v.x  = sx;
+					v.y  = sy;
+					p.x -= sx;
+					p.y -= sy;
+					
+					// Draw
+
+					c.beginPath();
+					c.moveTo(p.x, p.y);
+					c.lineTo(p.x + sx, p.y + sy);
+					
+					if(j > 0) {
+						c.moveTo(p.x, p.y);
+						c.lineTo(this.temp[j-1][0].x, this.temp[j-1][0].y);
+					}
+
+					c.stroke();
+					c.save();
+					
+					c.lineWidth   = 5 + color.getLineWidth(100);
+					c.strokeStyle = 'rgba('+ color.getColor() +', 1)';
+					
+					(i%10 === 0) && (radius *= 4/App.getPixelRatio());
+					
+					var gradient = c.createRadialGradient(p2.x, p2.y, radius * 0.5, p2.x, p2.y, radius);
+					gradient.addColorStop(0, 'rgba('+ color.getColor() +', '+ (0.7 + (Math.random() * 0.3)) +' )');
+					gradient.addColorStop(1, 'rgba('+ color.getColor() +', '+ (0.7 + (Math.random() * 0.3)) +' )');
+					
+					c.fillStyle = gradient;
+
+					(j%10 === 0 ) && (p2.drawCircle(radius, true, c));
+					
+					c.fill();
+					c.restore();
+					c.stroke();
+					
+				}
+				
+				c.restore();
+				
+				break;
+			 
+
+			// -------------------------------------------------------
+			// :: STYLE 2
+			// -------------------------------------------------------
+
+			case 2:
+				
+				speed *= 0.1;
+				
+				var line   = i%this.minimumPoints,
+					radius = (i%10 === 0 ? 16 : 2) * speed * App.getPixelRatio();
+	
+				c.save();
+
+				c.lineCap = i%2 === 0 ? "round" : "square";
+				c.lineWidth   = color.getLineWidth(speed * 10 / App.getPixelRatio());
+				c.strokeStyle = 'rgba('+ color.getColor() +', '+ (0.7 + (Math.random() * 0.3)) +')';
+
+				c.globalCompositeOperation = 'normal';
+
+				if(!hasTouchSupport && (color.currentPalette === 0 || color.currentPalette === 4)) {
+					c.shadowColor = 'rgba('+ color.getColor() +', 1)';
+					c.shadowBlur = 50;
+				}
+
+				if(!hasTouchSupport && color.currentPalette === 3) {
+					c.shadowColor = 'rgba(0, 0, 0, 1)';
+					c.shadowBlur = 250;
+				}
+				
+				c.beginPath();
+				c.moveTo(p1.x, p1.y);
+				c.lineTo(p2.x, p2.y);
+				c.stroke();
+				c.restore();
+				c.save();
+
+				c.lineWidth   = color.getLineWidth(i%10 === 1 ? 30 : 1);
+				c.strokeStyle = 'rgba('+ color.getColor() +', '+ (0.7 + (Math.random() * 0.3)) +')';
+
+				var gradient = c.createRadialGradient(m1.x, p1.y, radius, m1.x, p1.y, radius * 2);
+				gradient.addColorStop(0, 'rgba('+ color.getColor() +', '+ (0.5 + (Math.random() * 0.5)) +' )');
+				gradient.addColorStop(1, 'rgba('+ color.getColor() +', '+ (0.5 + (Math.random() * 0.5)) +' )');
+				c.fillStyle = gradient;
+
+				i%20 === 0 && (c.globalCompositeOperation = 'lighter');
+					
+				c.beginPath();
+				c.arc(m2.x, p2.y  + speed * 25, Math.random() * radius, 0, Maths.TWO_PI, true);
+				c.arc(m1.x + speed * 25, p1.y, Math.random() * radius * 2, 0, Maths.TWO_PI, true);
+				c.stroke();
+				c.fill();
+				c.restore();
+				
+		}
+	};
+
+
+
+	
+	// ---------------------------------------------------------------
+	// :: UTILITIES
+	// ---------------------------------------------------------------
+
+	var Utils = {};
+
+	// Debounce method to guarantee that callbacks will only be 
+	// executed once in a given timeframe (<-> browser resize event in IE which fires continuously)
+	// http://www.paulirish.com/2009/throttled-smartresize-jquery-event-handler
+	// http://davidwalsh.name/function-debounce
+	// Note: if Underscore/Lo-Dash is included in your project you can use _.debounce(callback, wait)
+	// http://lodash.com/docs#debounce
+
+	Utils.debounce = function(callback, wait) {
+
+		var timeout = null;
+		return function() {
+
+			var obj = this, args = arguments;
+			var delayed = function() {
+				callback.apply(obj, args);
+				timeout = null;
+			};
+
+			if(timeout) clearTimeout(timeout);
+			timeout = setTimeout(delayed, wait);
+
+		};
+	};
+
+	// Get CSS3 support
+
+	Utils.checkCSS3Support = function(prop) {
+
+		var vendors = ['webkit', 'Moz', 'O', 'ms', ''], i = vendors.length;
+		while(i--) if((vendors[i] + prop) in document.body.style && !Utils.isIE9()) return vendors[i] + prop;
+		return false;
+
+	};
+
+	// Check if we're on IE9 — IE9 has
+	// CSS3 support but no 'transitions'
+	// http://quirksmode.org/js/detect.html  
+
+	Utils.isIE9 = function() {
+
+		var mode = document.documentMode, lang = window.navigator.systemLanguage;
+		return lang && ( !mode || mode === 9 ) ? true : false;
+
+	};
+
+
+
+
+	// ---------------------------------------------------------------
+	// :: SETUP
+	// ---------------------------------------------------------------
+
+	var canvas = document.getElementsByTagName('canvas')[0],
+
+	    c = canvas.getContext('2d'),
+
+	    hasTouchSupport = 'ontouchstart' in document,
+	    color = new Color();
+
+
+  
+
+	// ---------------------------------------------------------------
+	// :: APPLICATION
+	// ---------------------------------------------------------------
+
+	var App = (function() {
+
+		var size, position, pixelRatio, retinaSize, CSS3Transform = Utils.checkCSS3Support('Transform');
+		var init = function() {
+
+			// Our canvas is a square taking the biggest side as its base
+
+			size = screen.width < screen.height ? screen.height : screen.width;
+
+			// Enable retina support by scaling the canvas x 2,
+			// while setting the CSS property to its normal size (the img-trick)
+			// For this we need to ge the pixelratio of the device
+			// On retina devices this has a value of 2, setting it to 1.99 however speeds up drawing
+
+			pixelRatio = window.devicePixelRatio && window.devicePixelRatio === 2 ? 1.99 : 1;
+
+			// Now, let's set the canvas size
+			// Remember: the canvas is a square, taking its biggest size as its base x retina
+			// To support retina we need to update the CSS-values of the canvas
+
+			canvas.width = size * pixelRatio;
+			canvas.height = size * pixelRatio;
+			canvas.style.width = size +'px';
+			canvas.style.height = size +'px';
+
+			// Set canvas position
+
+			position = new Vec2();
+
+			// When scaling-up the canvas, all touch-positions will be wrong
+			// We can fix this by calculating touch-positions against the actual position
+
+			actualPosition = new Vec2();
+
+			// Prepare the canvas for drawing
+
+			this.resizeCanvas();
+
+		};
+
+		// Instead of auto-clearing the canvas onResize
+		// We move the entire canvas to a new position
+
+		var resizeCanvas = function() {
+
+			// Center canvas
+
+			position.x = (window.innerWidth - size) * .5 >> 0;
+			position.y = (window.innerHeight - size) * .5 >> 0;
+
+			// Keep track of its real position to
+			// calculate touches against on HDPI-devices
+
+			actualPosition.x = position.x * pixelRatio;
+			actualPosition.y = position.y * pixelRatio;
+
+			// Set canvas position
+			// Use CSS3 Translation for hardware acceleration
+
+			if(CSS3Transform) {
+				canvas.style[CSS3Transform] = 'translate3d('+ position.x +'px, '+ position.y +'px, 0)';
+			} else {
+				canvas.style.left = position.x +'px';
+				canvas.style.top  = position.y +'px';
+			}
+		};
+
+		// Remove all strokes
+
+		var clearCanvas = function() {
+
+			c.clearRect(0, 0, canvas.width, canvas.height);
+
+		};
+
+		// -----------------------------------------------------------
+		// :: PUBLIC API
+		// -----------------------------------------------------------
+
+		return {
+
+			getActualPosition : function() { return actualPosition; },
+			getPixelRatio     : function() { return pixelRatio; },
+			getSize           : function() { return size; },
+
+			init              : init,
+			resizeCanvas      : resizeCanvas,
+			clearCanvas       : clearCanvas
+
+		}
+
+	}());
+
+
+
+
+
+
+
+
+	// ---------------------------------------------------------------
+	// :: EVENT HANDLERS
+	// ---------------------------------------------------------------
+
+	var Events = (function() {
+
+		// -----------------------------------------------------------
+		// :: TOUCH DEVICES
+		// -----------------------------------------------------------
+
+		if(hasTouchSupport) {
+
+			// To support multitouch drawing, we will need
+			// to keep track of all active touches
+
+			var activeTouches = [],
+
+			// Each touch will create a new Stroke()
+			// To support multitouch we need a way to identify individual strokes
+			// So we store all strokes in an array 
+
+			strokes = [],
+
+			// And create a Touch class which links
+			// the current active touch to a specific stroke
+
+			Touch = function(id) {
+
+				this.touchID = id;
+				this.strokeID = strokes.length;
+				strokes.push(new Stroke());
+
+			};
+
+			// For each touch we create a new Touch instance and
+			// store in the activeTouches array
+			// Note: In order to track touchMove events correctly
+			// use 'e.changedTouches' instead of 'e.touches'
+			// https://developer.mozilla.org/en-US/docs/Web/Reference/Events/touchmove
+
+			canvas.addEventListener('touchstart', function(e) {
+				
+				var i = e.changedTouches.length;
+				while(i--) activeTouches.push(new Touch( e.changedTouches[i].identifier ));
+				App.clearCanvas();
+
+			}, false);
+
+			// For each touch, search the corresponding Touch instance
+			// in the activeTouches array & add points to the referenced Stroke
+
+			canvas.addEventListener('touchmove', function(e) {
+
+				var i = e.changedTouches.length; while(i--) {
+					var j = activeTouches.length; while(j--) {
+						if( e.changedTouches[i].identifier === activeTouches[j].touchID ) {
+							strokes[ activeTouches[j].strokeID ].addPoints( e.changedTouches[i] );
+						}
+					}
+				}
+
+				// Important: disable elastic scrolling
+				// by killing the default behaviour
+
+				e.preventDefault();
+
+			}, false);
+
+			// Search the corresponding Touch instance
+			// and remove it from the activeTouches array
+
+			canvas.addEventListener('touchend', function(e) {
+
+				var i = e.changedTouches.length; while(i--) {
+					var j = activeTouches.length; while(j--) {
+						if( e.changedTouches[i].identifier === activeTouches[j].strokeID ) {
+							activeTouches.splice(j, 1);
+						}
+					}
+				}
+
+			}, false);
+
+			// Add a default resize event
+			// in case window.orientation is not supported
+			// http://davidwalsh.name/orientation-change
+
+			if(window.orientation) window.onorientationchange = Utils.debounce(App.resizeCanvas, 100);
+			else window.onresize = Utils.debounce(App.resizeCanvas, 100);
+
+
+		// -----------------------------------------------------------
+		// :: DESKTOP
+		// -----------------------------------------------------------
+
+		} else {
+
+			// Create a new Stroke() and select a random
+			// stroke style & color palette, draw on mousemove
+			// Clicking the canvas will clear it & choose new params
+
+			var stroke = new Stroke();
+
+			canvas.addEventListener('mousemove', function(e) { 
+				stroke.addPoints(e); 
+			}, false);
+
+			canvas.addEventListener('click', function() {
+				App.clearCanvas();
+				stroke.reset();
+			}, false);
+
+			window.onresize = Utils.debounce(App.resizeCanvas, 100);
+
+		}
+
+	}());
+
+
+
+
+	// ---------------------------------------------------------------
+	// :: INITIALIZE
+	// ---------------------------------------------------------------
+
+	App.init();
+
+
+</script>
+</body>
+</html>
