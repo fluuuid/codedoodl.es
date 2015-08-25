@@ -1,0 +1,20 @@
+{
+    "name": "Limbo",
+    "author": {
+        "name": "David Paul Rosser",
+        "github": "ivxvixviii",
+        "website": "http://ivxvixviii.io",
+        "twitter": "davidpaulrosser"
+    },
+    "description": "Lee Perry-Smith is stuck in limbo.",
+    "tags": [ "surrealism", "webgl" ],
+    "interaction": {
+        "mouse": true,
+        "keyboard": false,
+        "touch": true
+    },
+    "instructions": "Click and drag",
+    "colour_scheme": "dark",
+    "mobile_friendly": true,
+    "slug": "ivxvixviii/limbo"
+}
