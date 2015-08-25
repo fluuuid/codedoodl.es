@@ -1,0 +1,20 @@
+{
+    "name": "codebrush",
+    "author": {
+        "name": "Gwen Vanhee",
+        "github": "gwenvanhee",
+        "website": "http://nocomputer.be",
+        "twitter": "wearenocomputer"
+    },
+    "description": "Generative drawing experiment based on mouse/touch input",
+    "tags": [ "generative", "drawing", "canvas" ],
+    "interaction": {
+        "mouse": true,
+        "keyboard": false,
+        "touch": true
+    },
+    "instructions": "touch & move, click to reset",
+    "colour_scheme": "dark",
+    "mobile_friendly": true,
+    "slug": "gwenvanhee/codebrush"
+}
