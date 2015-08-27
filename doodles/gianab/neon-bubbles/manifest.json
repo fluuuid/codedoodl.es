@@ -1,0 +1,20 @@
+{
+    "name" : "Neon bubbles",
+    "author" : {
+        "name" : "Georgiana Blantin",
+        "github" : "GianaB",
+        "website" : "http://codepen.io/giana/",
+        "twitter" : "gianablantin"
+    },
+    "description" : "Random interactive particles with vanilla JavaScript on canvas.",
+    "tags" : [ "particles", "canvas", "neon", "glow" ],
+    "interaction" : {
+        "mouse" : true,
+        "keyboard" : false,
+        "touch" : false
+    },
+    "instructions" : "Click to create, right click to destroy, hold and drag to attract",
+    "colour_scheme" : "dark",
+    "mobile_friendly" : true,
+    "slug" : "gianab/neon-bubbles"
+}

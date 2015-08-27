@@ -1,0 +1,20 @@
+{
+    "name" : "Interstellar",
+    "author" : {
+        "name" : "Godart Raets",
+        "github" : "SirGodart",
+        "website" : "http://www.gdart.be/intro.html",
+        "twitter" : "SirSmoooth"
+    },
+    "description" : "Inspired by Interstellar, entering the black hole.",
+    "tags" : [ "Gravity", "ThreeJs" ],
+    "interaction" : {
+        "mouse" : true,
+        "keyboard" : false,
+        "touch" : true
+    },
+    "instructions" : "Click and drag ",
+    "colour_scheme" : "dark",
+    "mobile_friendly" : true,
+    "slug" : "sirgodart/interstellar"
+}
