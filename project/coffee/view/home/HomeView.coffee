@@ -11,7 +11,7 @@ class HomeView extends AbstractViewPage
 	@visitedThisSession : false
 	@gridItems : []
 	@dims :
-		item      : h: 268, w: 200, margin: 20, a: 0
+		item      : h: 288, w: 200, margin: 20, a: 0
 		container : h: 0, w: 0, a: 0, pt: 25
 	@colCount : 0
 
