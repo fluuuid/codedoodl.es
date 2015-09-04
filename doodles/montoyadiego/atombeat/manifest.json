@@ -1,0 +1,20 @@
+{
+    "name": "AtomBeat",
+    "author": {
+        "name": "Diego Montoya",
+        "github": "montoyadiego",
+        "website": "http://www.diego-montoya.com",
+        "twitter": "diego_montoya_"
+    },
+    "description": "Use left-click to place a gravity entity. Use right-click to change the sign of its gravitation constant.<br/><br/><a href=\"http://www.diego-montoya.com\" target=\"_blank\">diego-montoya.com</a>",
+    "tags": [ "processing", "gravity", "space", "time" ],
+    "interaction": {
+        "mouse": true,
+        "keyboard": false,
+        "touch": false
+    },
+    "instructions": "left-click / right-click",
+    "colour_scheme": "light",
+    "mobile_friendly": false,
+    "slug": "montoyadiego/atombeat"
+}
