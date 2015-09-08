@@ -15,6 +15,6 @@
     },
     "instructions" : "click, drag and look",
     "colour_scheme" : "dark",
-    "mobile_friendly" : false,
+    "mobile_friendly" : true,
     "slug" : "hellochar/dots"
 }
