@@ -6,14 +6,14 @@
         "website": "http://www.diego-montoya.com",
         "twitter": "diego_montoya_"
     },
-    "description": "Use left-click to place a gravity entity. Use right-click to change the sign of its gravitation constant.<br/><br/><a href=\"http://www.diego-montoya.com\" target=\"_blank\">diego-montoya.com</a>",
+    "description": "Use left-click to place a gravity entity. Use right-click to change the sign of its gravitation constant. The space bar inverts the colors.",
     "tags": [ "processing", "gravity", "space", "time" ],
     "interaction": {
         "mouse": true,
         "keyboard": false,
         "touch": false
     },
-    "instructions": "left-click / right-click",
+    "instructions": "left-click / right-click / space bar",
     "colour_scheme": "light",
     "mobile_friendly": false,
     "slug": "montoyadiego/atombeat"
