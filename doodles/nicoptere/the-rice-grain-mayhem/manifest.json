@@ -1,0 +1,20 @@
+{
+    "name" : "the rice grain mayhem",
+    "author" : {
+        "name" : "Nicolas Barradeau",
+        "github" : "nicoptere",
+        "website" : "http://www.barradeau.com",
+        "twitter" : "nicoptere"
+    },
+    "description" : "the casual rice grain badassery.",
+    "tags" : [ "rice", "grains" ],
+    "interaction" : {
+        "mouse" : false,
+        "keyboard" : false,
+        "touch" : false
+    },
+    "instructions" : "watch'em move",
+    "colour_scheme" : "dark",
+    "mobile_friendly" : false,
+    "slug" : "nicoptere/the-rice-grain-mayhem"
+}
