@@ -1,0 +1,20 @@
+{
+    "name" : "Liquiform",
+    "author" : {
+        "name" : "Samsy",
+        "github" : "Samsy",
+        "website" : "http://samsy.ninja",
+        "twitter" : "Samsyyyy"
+    },
+    "description" : "You can join a more feature-rich version at : <br /><a href=\"http://samsy.ninja/wire/index.html\" target=\"_blank\">http://samsy.ninja/wire/index.html</a>",
+    "tags" : [ "glsl", "noise", "webgl", "threejs" ],
+    "interaction" : {
+        "mouse" : true,
+        "keyboard" : false,
+        "touch" : false
+    },
+    "instructions" : "Drag with left or right click, zoom",
+    "colour_scheme" : "dark",
+    "mobile_friendly" : false,
+    "slug" : "samsy/liquiform"
+}
