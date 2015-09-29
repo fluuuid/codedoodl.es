@@ -22,11 +22,9 @@ class ContributePageView extends AbstractViewPage
 
 		return null
 
-	show : =>
+	init : =>
 
 		@getContributorsContent() if !@contributors.length
-
-		super
 
 		null
 
