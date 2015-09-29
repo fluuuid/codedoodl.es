@@ -16,6 +16,8 @@ temp/
 
 rev-manifest.json
 app/public/css
+app/public/static/img/logos
+app/public/static/img/ss
 app/public/holding/css
 app/public/data
 app/public/js

@@ -1,7 +1,4 @@
-AbstractViewPage       = require '../AbstractViewPage'
-ContributorsCollection = require '../../collections/contributors/ContributorsCollection'
-Requester              = require '../../utils/Requester'
-API                    = require '../../data/API'
+AbstractViewPage = require '../AbstractViewPage'
 
 class AboutPageView extends AbstractViewPage
 
@@ -9,26 +6,17 @@ class AboutPageView extends AbstractViewPage
 
 	constructor : ->
 
-		@contributors = new ContributorsCollection
-
 		@templateVars = 
 			label_what      : @CD().locale.get "about_label_what"
 			content_what    : @getWhatContent()
 			label_contact   : @CD().locale.get "about_label_contact"
 			content_contact : @CD().locale.get "about_content_contact"
-			label_who       : @CD().locale.get "about_label_who"
+			label_sponsor   : @CD().locale.get "about_label_sponsor"
+			content_sponsor : @getSponsorContent()
 
 		super
 
 		return null
-
-	show : =>
-
-		@getContributorsContent() if !@contributors.length
-
-		super
-
-		null
 
 	getWhatContent : =>
 
@@ -38,18 +26,11 @@ class AboutPageView extends AbstractViewPage
 
 		return @supplantString @CD().locale.get("about_content_what"), vars, false
 
-	getContributorsContent : =>
+	getSponsorContent : =>
 
-		r = Requester.request
-            url  : API.get('contributors')
-            type : 'GET'
+		vars =
+			assets_url : @CD().ASSETS_URL
 
-        r.done (res) =>
-        	@contributors.reset _.shuffle res.contributors
-        	@$el.find('[data-contributors]').html @CD().locale.get("about_content_who") + @contributors.getAboutHTML()
-
-        r.fail (res) => console.error "problem getting the contributors", res
-
-		null
+		return @supplantString @CD().locale.get("about_content_sponsor"), vars, false
 
 module.exports = AboutPageView

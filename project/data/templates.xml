@@ -77,6 +77,7 @@
         <![CDATA[
             <section id="page-home" class="page page-home">
                 <div class="home-grid before-intro-animation enable-grid-item-hover cf" data-home-grid></div>
+                <p class="home-credits" data-credits><%= credits %></p>
             </section>
         ]]>
     </template>
@@ -121,8 +122,8 @@
                         <div class="col col-2"><%= content_contact %></div>
                     </div>
                     <div class="row row-who cf">
-                        <div class="col col-1">03. <%= label_who %></div>
-                        <div class="col col-2" data-contributors></div>
+                        <div class="col col-1">03. <%= label_sponsor %></div>
+                        <div class="col col-2"><%= content_sponsor %></div>
                     </div>
                 </div>
             </section>
@@ -144,6 +145,10 @@
                     <div class="row row-contact cf">
                         <div class="col col-1">02. <%= label_contact %></div>
                         <div class="col col-2"><%= content_contact %></div>
+                    </div>
+                    <div class="row row-who cf">
+                        <div class="col col-1">03. <%= label_who %></div>
+                        <div class="col col-2" data-contributors></div>
                     </div>
                 </div>
             </section>

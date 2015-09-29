@@ -1,8 +1,9 @@
 var changed  = require('gulp-changed');
 var gulp     = require('gulp');
 var imagemin = require('gulp-imagemin');
+var gzip     = require('gulp-gzip');
 var pngcrush = require('imagemin-pngcrush');
-var pkg      = require('../../package.json')
+var pkg      = require('../../package.json');
 
 gulp.task('images', function() {
   var dest = pkg.folders.dest+'/static/img';
@@ -12,5 +13,6 @@ gulp.task('images', function() {
     .pipe(imagemin({
         use: [pngcrush()]
     }))
+    .pipe(gzip({ append: false }))
     .pipe(gulp.dest(dest));
 });

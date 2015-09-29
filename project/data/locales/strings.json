@@ -61,7 +61,7 @@
         "HOME": {
             "title": "Home page",
             "strings": {
-                "home_desc": "I am the home page..."
+                "home_credits": "<span data-codeword data-codeword-initial-state=\"\">made by </span><a href=\"http://fluuu.id\" target=\"_blank\" data-codeword data-codeword-initial-state=\"\">fluuuid</a><span data-codeword data-codeword-initial-state=\"\">, sponsored by </span><a href=\"http://nexusproductions.com/interactive-arts\" target=\"_blank\" data-codeword data-codeword-initial-state=\"\">nexus interactive arts</a>"
             }
         },
         "ABOUT_PAGE": {
@@ -71,8 +71,8 @@
                 "about_content_what": "codedoodl.es is a showcase of curated creative coding sketches. The aim of these doodles is to exhibit interactive, engaging web experiments which only require a short attention span. No loading bars, no GUI, no 5MB 3D models or audio files, just plain and simple doodles with code. You can read more about the project <a href=\"https://medium.com/@neilcarpenter/introducing-codedoodl-es-598039758df8\" target=\"_blank\">here</a>.<br/><br/>The site at <a href=\"http://codedoodl.es\">codedoodl.es</a> will always feature the latest doodles, but we also have a <a href=\"{{ extension_url }}\" target=\"_blank\">chrome extension</a> which features a new doodle in every browser tab you open. See a bug? <a href=\"https://github.com/fluuuid/codedoodl.es/issues\" target=\"_blank\">Let us know.</a>",
                 "about_label_contact": "Find us on",
                 "about_content_contact": "<a href=\"http://twitter.com/codedoodl_es\" target=\"_blank\">Twitter</a>, <a href=\"https://github.com/fluuuid/codedoodl.es\" target=\"_blank\">GitHub</a>",
-                "about_label_who": "Made by",
-                "about_content_who": "Concept by <a href=\"http://fluuu.id\" target=\"_blank\">FLUUUID</a>, doodles by "
+                "about_label_sponsor": "Sponsored by",
+                "about_content_sponsor": "<div class=\"sponsor-nexus cf\"><img src=\"{{ assets_url }}/static/img/logos/nexus.svg\" alt=\"Nexus Interactive Arts\" /><a href=\"http://nexusproductions.com/interactive-arts\" target=\"_blank\">Nexus Interactive Arts</a></div><br />Bringing the technical, logistical and production support to some of the most exciting digital artists and creative coders working today, at Nexus Interactive Arts we are constantly exploring new technologies and ways to tell stories that reward our audience with an experience that should feel truly unforgettable each time."
             }
         },
         "CONTRIBUTE_PAGE": {
@@ -81,7 +81,9 @@
                 "contribute_label_submit": "Submit",
                 "contribute_content_submit": "This is a 100% community-based project. To contribute, please follow the steps outlined in the <a href=\"https://github.com/fluuuid/codedoodl.es/blob/master/docs/contributing.md\" target=\"_blank\">documentation on GitHub</a>. Before submitting please make sure you've read <a href=\"https://github.com/fluuuid/codedoodl.es/blob/master/docs/criteria.md\" target=\"_blank\">our criteria for doodles</a>. Please note that this is a curated collection, so unfortunately not all submitted doodles can be featured.",
                 "contribute_label_contact": "Contact us",
-                "contribute_content_contact": "Get us on <a href=\"http://twitter.com/codedoodl_es\" target=\"_blank\">twitter</a>"
+                "contribute_content_contact": "Get us on <a href=\"http://twitter.com/codedoodl_es\" target=\"_blank\">twitter</a>",
+                "contribute_label_who": "Made by",
+                "contribute_content_who": "Concept by <a href=\"http://fluuu.id\" target=\"_blank\">FLUUUID</a>, doodles by "
             }
         },
         "DOODLE_PAGE": {

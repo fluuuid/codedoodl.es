@@ -1,5 +1,6 @@
-AbstractViewPage = require '../AbstractViewPage'
-HomeGridItem     = require './HomeGridItem'
+AbstractViewPage     = require '../AbstractViewPage'
+HomeGridItem         = require './HomeGridItem'
+CodeWordTransitioner = require '../../utils/CodeWordTransitioner'
 
 class HomeView extends AbstractViewPage
 
@@ -22,6 +23,7 @@ class HomeView extends AbstractViewPage
 	@ticking : false
 
 	@SHOW_ROW_THRESHOLD : 0.3 # how much of a grid row (scale 0 -> 1) must be visible before it is "shown"
+	@SCROLL_SHOW_CREDITS_THRESHOLD : 100 # pixels to bottom of home grid before showing credits
 
 	EVENT_TICK : 'EVENT_TICK'
 
@@ -29,14 +31,20 @@ class HomeView extends AbstractViewPage
 
 	allDoodles : null
 
+	creditsVisible   : false
+	$credits         : null
+	$creditCodeWords : null
+
 	constructor : ->
 
-		@templateVars = {}
+		@templateVars = 
+			credits : @CD().locale.get "home_credits"
 
 		@allDoodles = @CD().appData.doodles
 
 		super()
 
+		@setupCredits()
 		@addGridItems()
 
 		return null
@@ -52,6 +60,24 @@ class HomeView extends AbstractViewPage
 	canHazScroller : ->
 
 		return !Modernizr.touch and !@CD().IS_FIREFOX
+
+	setupCredits : =>
+
+		@$credits         = @$el.find('[data-credits]')
+		@$creditCodeWords = @$credits.find('[data-codeword]')
+
+		@$creditCodeWords.each (i, el) =>
+
+			$el          = $(el)
+			originalText = $el.text()
+			$el.attr 'data-original-text', originalText
+
+		if @canHazScroller()
+			@hideCredits(true)
+		else
+			@showCredits()
+
+		null
 
 	addGridItems : =>
 
@@ -92,6 +118,9 @@ class HomeView extends AbstractViewPage
 		# @CD().appView[setting] @CD().appView.EVENT_ON_SCROLL, @onScroll
 
 		@CD().appView.header[setting] @CD().appView.header.EVENT_HOME_SCROLL_TO_TOP, @scrollToTop
+
+		@$credits.on 'mouseenter', 'a', @onCreditWordEnter
+		@$credits.on 'mouseleave', 'a', @onCreditWordLeave
 
 		if setting is 'off' and @canHazScroller()
 			@scroller.off 'scroll', @onScroll
@@ -191,6 +220,11 @@ class HomeView extends AbstractViewPage
 		# if itemsToShow > 0 then @addDoodles itemsToShow
 
 		@checkItemsForVisibility()
+
+		if @scroller.y - @scroller.maxScrollY < HomeView.SCROLL_SHOW_CREDITS_THRESHOLD
+			@showCredits()
+		else
+			@hideCredits()
 
 		null
 
@@ -371,6 +405,52 @@ class HomeView extends AbstractViewPage
 			cb()
 
 		TweenLite.fromTo item.$el, duration, fromParams, toParams
+
+		null
+
+	showCredits : =>
+
+		return unless !@creditsVisible
+		@creditsVisible = true
+
+		@$creditCodeWords
+			.removeClass('disable-pointer')
+			.each (i, el) =>
+
+				$el = $(el)
+				CodeWordTransitioner.to $el.attr('data-original-text'), $el, 'red', false, =>
+					$el.addClass 'enable-underline'
+
+		null
+
+	hideCredits : (force=false) =>
+
+		return unless @creditsVisible or force
+		@creditsVisible = false
+
+		@$creditCodeWords
+			.addClass('disable-pointer')
+			.each (i, el) =>
+
+				$el = $(el)
+				$el.removeClass 'enable-underline'
+				CodeWordTransitioner.to $el.attr('data-original-text').split('').map(-> return ' ').join(''), $el, 'red'
+
+		null
+
+	onCreditWordEnter : (e) =>
+
+		$el = $(e.currentTarget)
+
+		CodeWordTransitioner.scramble $el, 'red'
+
+		null
+
+	onCreditWordLeave : (e) =>
+
+		$el = $(e.currentTarget)
+
+		CodeWordTransitioner.unscramble $el, 'red'
 
 		null
 

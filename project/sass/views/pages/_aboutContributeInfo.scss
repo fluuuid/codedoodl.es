@@ -39,7 +39,7 @@
 		}
 
 		.row {
-			margin-bottom: 20px;
+			margin-bottom: 30px;
 
 			&:last-child {
 				margin-bottom: 0;
@@ -144,6 +144,26 @@
 					animation-fill-mode: forwards;
 				}
 			}
+		}
+	}
+
+	.sponsor-nexus {
+		margin-top: -7px;
+
+		img {
+			float: left;
+			width: 35px;
+			margin-right: 10px;
+		}
+
+		a {
+			display: block;
+			float: left;
+			margin-top: 6px;
+		}
+
+		@media #{$grid-two-bp-below} {
+			margin-top: 10px;
 		}
 	}
 }
