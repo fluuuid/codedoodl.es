@@ -317,6 +317,7 @@ class DoodlePageView extends AbstractViewPage
 		setTimeout =>
 			@infoScroller?.destroy()
 			@infoScroller = null
+			@$frame.focus()
 		, 500
 
 		null

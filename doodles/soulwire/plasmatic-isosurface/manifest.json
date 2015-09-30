@@ -1,0 +1,20 @@
+{
+    "name" : "Plasmatic Isosurface",
+    "author" : {
+        "name" : "Justin Windle",
+        "github" : "soulwire",
+        "website" : "http://soulwire.co.uk",
+        "twitter" : "soulwire"
+    },
+    "description" : "A 2 dimensional plasma simulation running on the GPU, written in GLSL and CoffeeScript and rendered with WebGL.",
+    "tags" : [ "webgl", "gpu", "particles" ],
+    "interaction" : {
+        "mouse" : false,
+        "keyboard" : false,
+        "touch" : false
+    },
+    "instructions" : "...",
+    "colour_scheme" : "dark",
+    "mobile_friendly" : false,
+    "slug" : "soulwire/plasmatic-isosurface"
+}
