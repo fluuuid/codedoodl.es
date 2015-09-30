@@ -1,0 +1,20 @@
+{
+    "name" : "line",
+    "author" : {
+        "name" : "Xiaohan Zhang",
+        "github" : "hellochar",
+        "website" : "http://www.hellochar.com/",
+        "twitter" : "hellocharlien"
+    },
+    "description" : "Watch thousands of stars as they swirl and swell around your mouse or finger. Stretch and contort them from a perfect line into a brilliant galaxy around your pointer.<br/><br/>source: <a href=\"https://github.com/hellochar/hellochar.com\" target=\"_blank\">https://github.com/hellochar/hellochar.com</a>",
+    "tags" : [ "interactive", "webgl", "threejs", "mobile", "gravity", "attraction", "particles", "line", "galaxy", "star", "shader" ],
+    "interaction" : {
+        "mouse" : true,
+        "keyboard" : false,
+        "touch" : true
+    },
+    "instructions" : "click. drag. look.",
+    "colour_scheme" : "dark",
+    "mobile_friendly" : true,
+    "slug" : "hellochar/line"
+}
