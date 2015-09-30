@@ -1,0 +1,24 @@
+{
+    "name": "sea-something",
+    "author": {
+        "name": "Jon Andersson",
+        "github": "j0n",
+        "website": "http://jonandersson.se",
+        "twitter": "andersson_jon"
+    },
+    "description": "Minimalistic fluid waves. Move mouse/touch to create your own pattern, or just watch it make its waves.",
+    "tags": [
+        "minimal",
+        "sine",
+        "three.js"
+    ],
+    "interaction": {
+        "mouse": true,
+        "keyboard": false,
+        "touch": true
+    },
+    "instructions": "Move/touch if you want.",
+    "colour_scheme": "light",
+    "mobile_friendly": true,
+    "slug": "j0n/sea-something"
+}
