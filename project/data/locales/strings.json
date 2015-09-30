@@ -72,7 +72,7 @@
                 "about_label_contact": "Find us on",
                 "about_content_contact": "<a href=\"http://twitter.com/codedoodl_es\" target=\"_blank\">Twitter</a>, <a href=\"https://github.com/fluuuid/codedoodl.es\" target=\"_blank\">GitHub</a>",
                 "about_label_sponsor": "Sponsored by",
-                "about_content_sponsor": "<div class=\"sponsor-nexus cf\"><img src=\"{{ assets_url }}/static/img/logos/nexus.svg\" alt=\"Nexus Interactive Arts\" /><a href=\"http://nexusproductions.com/interactive-arts\" target=\"_blank\">Nexus Interactive Arts</a></div><br />Bringing the technical, logistical and production support to some of the most exciting digital artists and creative coders working today, at Nexus Interactive Arts we are constantly exploring new technologies and ways to tell stories that reward our audience with an experience that should feel truly unforgettable each time."
+                "about_content_sponsor": "<div class=\"sponsor-nexus cf\"><img src=\"{{ assets_url }}/static/img/logos/nexus_70.png\" alt=\"Nexus Interactive Arts\" /><a href=\"http://nexusproductions.com/interactive-arts\" target=\"_blank\">Nexus Interactive Arts</a></div><br />Bringing the technical, logistical and production support to some of the most exciting digital artists and creative coders working today, at Nexus Interactive Arts we are constantly exploring new technologies and ways to tell stories that reward our audience with an experience that should feel truly unforgettable each time."
             }
         },
         "CONTRIBUTE_PAGE": {

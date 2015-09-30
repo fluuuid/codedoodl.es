@@ -13,6 +13,6 @@ gulp.task('images', function() {
     .pipe(imagemin({
         use: [pngcrush()]
     }))
-    .pipe(gzip({ append: false }))
+    // .pipe(gzip({ append: false }))
     .pipe(gulp.dest(dest));
 });
