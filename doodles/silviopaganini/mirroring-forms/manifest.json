@@ -1,0 +1,20 @@
+{
+    "name" : "Mirroring forms",
+    "author" : {
+        "name" : "Silvio Paganini",
+        "github" : "silviopaganini",
+        "website" : "http://s2paganini.com",
+        "twitter" : "silviopaganini"
+    },
+    "description" : "Morroring generative forms, <a href=\"https://www.youtube.com/watch?t=34&v=kLmLk0Vuw8c\" target=\"_blank\">inspiration</a>",
+    "tags" : [ "generative", "mirroring", "threejs" ],
+    "interaction" : {
+        "mouse" : true,
+        "keyboard" : false,
+        "touch" : false
+    },
+    "instructions" : "Mouse your mouse around",
+    "colour_scheme" : "dark",
+    "mobile_friendly" : true,
+    "slug" : "silviopaganini/mirroring-forms"
+}
