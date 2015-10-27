@@ -1,0 +1,20 @@
+{
+    "name" : "Le Moustache",
+    "author" : {
+        "name" : "Felix Woitzel",
+        "github" : "Flexi23",
+        "website" : "http://www.cake23.de",
+        "twitter" : "Flexi23"
+    },
+    "description" : "Unfinished entry for js1k: L-system fern fractal that could be compressed to less than 768 characters of JavaScript.<br/><br/><a href=\"http://www.cake23.de/hereBeDragons/\" target=\"_blank\">http://www.cake23.de/hereBeDragons/</a>",
+    "tags" : [ "L-System", "Fractal" ],
+    "interaction" : {
+        "mouse" : true,
+        "keyboard" : false,
+        "touch" : false
+    },
+    "instructions" : "circle around the center",
+    "colour_scheme" : "dark",
+    "mobile_friendly" : false,
+    "slug" : "flexi23/le-moustache"
+}
