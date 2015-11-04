@@ -1,0 +1,27 @@
+{
+    "name": "Icosahedron Snake",
+    "author": {
+        "name": "Thomas Hooper",
+        "github": "tdhooper",
+        "website": "http://www.stainlessvision.com/",
+        "twitter": "tdhooper"
+    },
+    "description": "A black and white striped snake winds its way around a pastel blue icosahedron against a bright pink background",
+    "tags": [
+        "polyhedra",
+        "pink",
+        "psychedelic",
+        "threejs",
+        "bezierjs",
+        "graphlib"
+    ],
+    "interaction": {
+        "mouse": true,
+        "keyboard": false,
+        "touch": true
+    },
+    "instructions": "click/touch to move camera",
+    "colour_scheme": "dark",
+    "mobile_friendly": true,
+    "slug": "tdhooper/icosahedron-snake"
+}
