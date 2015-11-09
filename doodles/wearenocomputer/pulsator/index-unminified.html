@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta charset="utf-8" />
+	<title>pulsator — nøcomputer</title>
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0, user-scalable=no" />
+	<style>
+
+		html,
+		body {
+			background: #123;
+			overflow: hidden;
+			height: 100%;
+			padding: 0;
+			margin: 0;
+		}
+
+		canvas {
+			width: 100%;
+			height: 100%;
+		}
+
+	</style>
+</head>
+<body>
+<canvas />
+<script>
+
+
+	// ---------------------------------------------------------------
+	// :: APPRUNNER
+	// ---------------------------------------------------------------
+	// @class to provide an application with a basic
+	// update cycle and common event handlers (boilerplate)
+	// See example for full implementation...
+	//
+	//
+	// ---------------------------------------------------------------
+	// :: DEFAULT USE
+	// ---------------------------------------------------------------
+	// Uses a default update & event stack which looks
+	// for the following methods in global namespace:
+	//
+	// - init()
+	// - update()
+	// - render()
+	// - onResize(e)
+	// - onKeyPress(e)
+	// - onMouseDown(e)
+	// - onMouseMove(e)
+	// - onMouseUp(e)
+	//
+	// var app = new AppRunner();
+	// app.start();
+	//
+	//
+	// ---------------------------------------------------------------
+	// :: OR USE WITH CUSTOM OPTIONS
+	// ---------------------------------------------------------------
+	//
+	// var options       = {};
+	// options.init      = @param { Function };
+	// options.queue     = [@param { Function }, @param { Function }, ... ];
+	// options.events    = {
+	//
+	//		resize:    @param { Function },
+	//		keypress:  @param { Function },
+	//		mousedown: @param { Function },
+	//		mousemove: @param { Function },
+	//		mouseup:   @param { Function }
+	//
+	// };
+	// options.fps       = @param { Number };
+	// options.paused    = @param { Boolean };
+	//
+	// var app = new AppRunner( options );
+	// app.start();
+	//
+	//
+	// ---------------------------------------------------------------
+
+	var AppRunner = function(options) {
+
+		// Assign options or
+		// provide defaults
+
+		options = options || {};
+
+		this.init = options.init || window.init;
+		this.queue = options.queue || this.queue();
+		this.events = options.events || this.events();
+
+		// Set target framerate
+		// autostart & framecount
+
+		this.fps = options.fps || 60;
+		this.paused = options.paused || false;
+		this.frameCount = 0;
+
+	};
+
+
+	AppRunner.prototype = {
+
+		// -----------------------------------------------------------
+		// :: STARTING THE THREAD
+		// -----------------------------------------------------------
+
+		start: function() {
+
+			// Validate & call the initializer and resize
+			// event - in case we want to init fullscreen
+
+			!!this.init && this.init.apply();
+			!!this.events.resize && this.events.resize.apply();
+
+			// Bind the event stack
+
+			for(e in this.events) this.events[e] && this.bind( e );
+
+			// Validate queue & start the update thread
+			// We're using a while-loop to traverse the
+			// queue, so we need to reverse the array
+
+			if(!!this.queue.length) {
+
+				this.queue.reverse();
+				this.update();
+
+			}
+
+		},
+
+
+		// -----------------------------------------------------------
+		// :: UPDATE
+		// -----------------------------------------------------------
+		// Running on requestAnimationFrame, wrapped inside
+		// setTimeout to have full control over framerate
+
+		update: function() {
+
+			// Since requestAnimationFrame is bound to the global
+			// namespace, we need to bind AppRunner's update
+			// method before calling the next frame (@ given fps)
+
+	        var update = this.update.bind( this );
+	        setTimeout( function() { window.requestAnimationFrame( update ); }, 1000 / this.fps );
+
+			// Bail out if paused
+
+			if(this.paused) return;
+
+			// Process the queue
+			// Update frameCount
+
+			var i = this.queue.length;
+			while(i--) this.queue[i].apply();
+
+			this.frameCount ++;
+
+		},
+
+
+		// -----------------------------------------------------------
+		// :: BIND EVENTS
+		// -----------------------------------------------------------
+		// Boilerplate event binding, includes support
+		// for touch-enabled devices (MS PointerEvents untested)
+
+		bind: function( event ) {
+
+			var e = this.events[event];
+
+			// Debounced resize event with
+			// orientationChange support
+
+			if(event === 'resize') {
+
+				'orientationchange' in window ?
+					window.onorientationchange = window.debounce(e, 100) :
+					window.onresize = window.debounce( e, 100 );
+
+				return;
+
+			}
+
+			// Check & add support
+			// for touch events
+
+			if('ontouchstart' in window) {
+
+				event === 'mousedown' && (event === 'touchstart');
+				event === 'mousemove' && (event === 'touchmove');
+				event === 'mouseup' && (event === 'touchend');
+
+			}
+
+			// Detect PointerEvents support (> IE10)
+			// Note: needs some additional CSS (and testing)
+			// http://msdn.microsoft.com/en-us/library/ie/hh673557(v=vs.85).aspx
+
+			if(navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0) {
+
+				event === 'mousedown' && (event === 'MSPointerDown');
+				event === 'mousemove' && (event === 'MSPointerMove');
+				event === 'mouseup' && (event === 'MSPointerUp');
+
+			}
+
+			// Bind mouse and
+			// keypress events
+
+			window.addEventListener(event, window.throttle(e, 100), true);
+
+		},
+
+
+		// -----------------------------------------------------------
+		// :: APPRUNNER DEFAULTS
+		// -----------------------------------------------------------
+		// Creates the default update queue
+		// Called by the constructor
+
+		queue: function() {
+
+			var thread = [];
+
+			window.update && thread.push(window.update);
+			window.render && thread.push(window.render);
+
+			return thread;
+
+		},
+
+		// Creates the default event stack
+		// Called by the constructor
+
+		events: function() {
+
+			return {
+
+				resize: window.onResize,
+				keypress: window.onKeyPress,
+				mousedown: window.onMouseDown,
+				mousemove: window.onMouseMove,
+				mouseup: window.onMouseUp
+
+			}
+
+		}
+
+	};
+
+
+	// ---------------------------------------------------------------
+	// :: DEBOUNCE & THROTTLE
+	// ---------------------------------------------------------------
+	// Use debounce & throttle to prevent
+	// events from being called too often
+
+	(function(window) {
+
+		window.debounce = function(callback, time) {
+			var timeout;
+			return function() {
+
+				var obj = this;
+				timeout && clearTimeout(timeout);
+				timeout = setTimeout( function() {
+
+					callback.apply(obj, arguments);
+					timeout = null;
+
+				}, time );
+
+		    }
+		};
+
+		window.throttle = function(callback, time) {
+			var called = +new Date() - time;
+			return function() {
+
+				var now = +new Date();
+				if((now - called) > time) {
+
+					callback.apply(this, arguments);
+					called = now;
+
+				}
+
+			}
+		};
+
+	})(window);
+
+
+	// ---------------------------------------------------------------
+	// :: REQUEST ANIMATION FRAME POLYFILL
+	// ---------------------------------------------------------------
+	// Based on Justin Windle's implementation in sketch.js
+	// Note: cancelAnimationFrame isn't included here
+	//
+	// MORE INFO:
+	// - https://github.com/soulwire/sketch.js/blob/master/js/sketch.js
+	// - http://paulirish.com/2011/requestanimationframe-for-smart-animating
+	// - http://my.opera.com/emoller/blog/2011/12/20/requestanimationframe-for-smart-er-animating
+
+
+	(function(window) {
+
+	    var vendors = ['ms', 'o', 'moz', 'webkit', ''], i = vendors.length, then = 0, rAF;
+	    while( i-- && !rAF ) rAF = window[vendors[i] + 'requestAnimationFrame'];
+	    window.requestAnimationFrame = rAF || function(callback) {
+
+	        var now = +new Date(), time = Math.max( 0, 16 - (now - then));
+	        var id = setTimeout(function() { callback(now + time); }, time);
+	        then = now + time;
+
+	        return id;
+
+	    };
+
+	})(window);
+
+
+
+
+
+
+
+
+	// ---------------------------------------------------------------
+	// :: APPLICATION
+	// ---------------------------------------------------------------
+
+	var canvas = document.getElementsByTagName('canvas')[0],
+	    
+	    c = canvas.getContext('2d'),
+
+        particles = [],
+
+        distance,
+        mouseX, speedX,
+        mouseY, speedY;
+
+
+    // ---------------------------------------------------------------
+	// :: INITIALIZE
+	// ---------------------------------------------------------------
+
+	function init() {
+
+		// Reset particle
+		// array (onclick)
+
+		particles = [];
+		speedX = 0.2 + (Math.random() * 0.75);
+		speedY = 0.2 + (Math.random() * 0.75);
+		distance = 0.02 + Math.random() * 0.03;
+
+		// Populate a grid
+		// of particles
+
+		var grid = 20 + (Math.random() * 50 >> 0), i = grid;
+		while(i--) {
+
+			var j = grid;
+			while(j--) {
+
+				var x = (0.5 + canvas.width / grid * i) << 0,
+				    y = (0.5 + canvas.height / grid * j) << 0,
+				    radius = 0;
+
+				particles.push({ x: x, y: y, radius: radius });
+
+			}
+
+		}
+
+	}
+
+
+	// ---------------------------------------------------------------
+	// :: UPDATE
+	// ---------------------------------------------------------------
+
+	function update() {
+
+		var i = particles.length,
+		    k = speedX,
+		    l = speedY;
+
+		while(i--) {
+
+			var p = particles[i],
+
+			    offset = Math.cos(Math.sin(Math.cos(p.y + app.frameCount * 0.075 * l) + Math.cos(p.x + app.frameCount * 0.075 * k))),
+
+			    dX = (mouseX - p.x) * (mouseX - p.x),
+			    dY = (mouseY - p.y) * (mouseY - p.y),
+			    d = Math.sqrt(dX + dY) * distance;
+
+			p.radius = offset * ((Math.sqrt(canvas.width * canvas.height) * 0.02) - d);
+			p.radius *= p.radius * 0.1;
+			p.radius = (0.5 + p.radius) << 0;
+
+		}
+
+	}
+
+
+	// ---------------------------------------------------------------
+	// :: RENDER
+	// ---------------------------------------------------------------
+
+	function render() {
+
+		// Clear canvas with
+		// slow fade-out
+
+		c.beginPath();
+		c.rect(0, 0, canvas.width, canvas.height);
+		c.fillStyle = 'rgba(17, 34, 51, 0.75)'; 
+		c.fill();
+
+		var grd = c.createLinearGradient(0, 0, 0, canvas.height),
+		    grd2 = c.createLinearGradient(0, 0, 0, canvas.height);
+
+	    grd2.addColorStop(0, 'rgba(255, 50, 204, 1)');
+	    grd2.addColorStop(1, 'rgba(0, 255, 237, 1)');
+	    grd.addColorStop(1, 'rgba(255, 50, 204, 1)');
+	    grd.addColorStop(0, 'rgba(0, 255, 237, 1)');
+
+		var i = particles.length;
+		while(i--) {
+
+			var p = particles[i];
+
+			c.beginPath();
+			c.arc(p.x, p.y, p.radius, 0, 2 * Math.PI, false);
+			c.fillStyle = i%(distance*250 >> 0) === 0 ? '#FFF000' : grd;
+
+			c.save();
+			if(i%2 === 0) c.globalCompositeOperation = 'overlay';
+			c.fill();
+
+			c.strokeStyle = 'rgba(255, 255, 255, 0.25)';
+			c.lineWidth = 20;
+			if(i%5 === 0) c.stroke();
+
+			c.restore();
+
+		}
+
+	}
+
+
+	// ---------------------------------------------------------------
+	// :: EVENT HANDLERS
+	// ---------------------------------------------------------------
+
+
+	function onMouseMove(e) {
+
+		e = e.touches ? e.touches[0] : e;
+		mouseX = e.clientX;
+		mouseY = e.clientY;
+
+	}
+
+
+	// Re-generate the grid
+	// onmousedown/touch
+
+	function onMouseDown() {
+
+		init();
+
+	}
+
+
+	// Update canvas size and
+	// re-generate grid onresize
+
+	function onResize(e) {
+
+		var width = e ? e.target.innerWidth : window.innerWidth,
+		    height = e ? e.target.innerHeight : window.innerHeight;
+
+		canvas.width = width;
+		canvas.height = height;
+
+		init();
+
+	}
+
+
+	// ---------------------------------------------------------------
+	// :: KICKOFF
+	// ---------------------------------------------------------------
+
+	var app = new AppRunner();
+
+	app.start();
+
+</script>
+</body>
+</html>
