@@ -1,0 +1,24 @@
+{
+    "name": "particle-stream",
+    "author": {
+        "name": "zadvorsky",
+        "github": "zadvorsky",
+        "website": "http://www.zadvorsky.com",
+        "twitter": "zadvorsky"
+    },
+    "description": "THREE.js shader based animation system",
+    "tags": [
+        "three.js",
+        "shader",
+        "webgl"
+    ],
+    "interaction": {
+        "mouse": true,
+        "keyboard": false,
+        "touch": true
+    },
+    "instructions": "Move the Camera",
+    "colour_scheme": "dark",
+    "mobile_friendly": true,
+    "slug": "zadvorsky/particle-stream"
+}
