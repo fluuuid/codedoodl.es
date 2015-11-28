@@ -335,7 +335,13 @@
             "index": 56,
             "slug": "zadvorsky/particle-stream",
             "created": "2015-11-10T22:31:46.694Z"
+        },
+        {
+            "id": "xep",
+            "index": 57,
+            "slug": "gwenvanhee/pulsator",
+            "created": "2015-11-28T12:26:37.966Z"
         }
     ],
-    "last_updated": "2015-11-10T22:31:46.694Z"
+    "last_updated": "2015-11-28T12:26:37.966Z"
 }

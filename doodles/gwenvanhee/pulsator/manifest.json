@@ -1,0 +1,24 @@
+{
+    "name": "pulsator ",
+    "author": {
+        "name": "Gwen Vanhee",
+        "github": "gwenvanhee",
+        "website": "http://nocomputer.be",
+        "twitter": "wearenocomputer"
+    },
+    "description": "Generative experiment with maths (sin, cos, distance)",
+    "tags": [
+        "generative",
+        "oscillator",
+        "canvas"
+    ],
+    "interaction": {
+        "mouse": true,
+        "keyboard": false,
+        "touch": true
+    },
+    "instructions": "move & click",
+    "colour_scheme": "dark",
+    "mobile_friendly": false,
+    "slug": "gwenvanhee/pulsator"
+}
