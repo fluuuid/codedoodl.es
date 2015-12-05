@@ -341,7 +341,13 @@
             "index": 57,
             "slug": "gwenvanhee/pulsator",
             "created": "2015-11-28T12:26:37.966Z"
+        },
+        {
+            "id": "zaw",
+            "index": 58,
+            "slug": "tholman/generative-boids",
+            "created": "2015-12-05T15:52:31.204Z"
         }
     ],
-    "last_updated": "2015-11-28T12:26:37.966Z"
+    "last_updated": "2015-12-05T15:52:31.204Z"
 }

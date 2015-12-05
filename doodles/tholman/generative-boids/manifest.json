@@ -1,0 +1,20 @@
+{
+	"name": "Generative Boids",
+	"author": {
+		"name": "Tim Holman",
+		"github": "tholman",
+		"website": "http://tholman.com",
+		"twitter": "twholman"
+	},
+	"description": "Generative Boids is an experiment combining flocking and simple ai behaviour with stylized drawing techniques.",
+	"tags": [ "canvas", "javascript", "flocking" ],
+	"interaction": {
+		"mouse": true,
+		"keyboard": false,
+		"touch": false
+	},
+	"instructions" : "Click to refresh/randomize the parameters",
+	"colour_scheme": "light",
+	"mobile_friendly": false,
+	"slug" : "tholman/generative-boids"
+}
