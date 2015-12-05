@@ -347,7 +347,13 @@
             "index": 58,
             "slug": "tholman/generative-boids",
             "created": "2015-12-05T15:57:05.050Z"
+        },
+        {
+            "id": "veg",
+            "index": 59,
+            "slug": "silviopaganini/curl-noise",
+            "created": "2015-12-05T16:18:03.129Z"
         }
     ],
-    "last_updated": "2015-12-05T15:57:05.050Z"
+    "last_updated": "2015-12-05T16:18:03.129Z"
 }
