@@ -1,0 +1,24 @@
+{
+    "name": "Smashing Mega Scene",
+    "author": {
+        "name": "Edan Kwan",
+        "github": "edankwan",
+        "website": "http://www.edankwan.com/",
+        "twitter": "edankwan"
+    },
+    "description": "It is an experiment to recreate a 3d model with a million of particles and use GPGPU for the physics.",
+    "tags": [
+        "webgl",
+        "three.js",
+        "particles"
+    ],
+    "interaction": {
+        "mouse": true,
+        "keyboard": true,
+        "touch": true
+    },
+    "instructions": "Space to reset. D, E keys for look",
+    "colour_scheme": "dark",
+    "mobile_friendly": false,
+    "slug": "edankwan/smashing-mega-scene"
+}
