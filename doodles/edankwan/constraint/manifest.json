@@ -17,7 +17,7 @@
         "keyboard": true,
         "touch": true
     },
-    "instructions": "Space key to toggle color theme",
+    "instructions": "Any key to toggle color theme",
     "colour_scheme": "dark",
     "mobile_friendly": false,
     "slug": "edankwan/constraint"
