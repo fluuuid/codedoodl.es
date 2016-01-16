@@ -359,7 +359,13 @@
             "index": 60,
             "slug": "edankwan/constraint",
             "created": "2016-01-16T14:08:48.899Z"
+        },
+        {
+            "id": "evq",
+            "index": 61,
+            "slug": "samsy/curly-shades",
+            "created": "2016-01-16T14:34:40.411Z"
         }
     ],
-    "last_updated": "2016-01-16T14:08:48.899Z"
+    "last_updated": "2016-01-16T14:34:40.411Z"
 }

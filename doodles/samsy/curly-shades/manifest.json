@@ -1,0 +1,20 @@
+{
+    "name" : "Curly Shades",
+    "author" : {
+        "name" : "Samsy",
+        "github" : "Samsy",
+        "website" : "http://samsy.ninja",
+        "twitter" : "Samsyyyy"
+    },
+    "description" : "Simplex derivative curl noise 4D FBO for threejs. Shadow technic thanks to EdanKwan Blog post: <br/><br/><a href=\"http://blog.edankwan.com/post/three-js-advanced-tips-shadow\" target=\"_blank\">http://blog.edankwan.com/post/three-js-advanced-tips-shadow</a>",
+    "tags" : [ "webgl", "threejs", "shader", "computational" ],
+    "interaction" : {
+        "mouse" : true,
+        "keyboard" : false,
+        "touch" : false
+    },
+    "instructions" : "Drag, drop and zoom",
+    "colour_scheme" : "light",
+    "mobile_friendly" : false,
+    "slug" : "samsy/curly-shades"
+}
