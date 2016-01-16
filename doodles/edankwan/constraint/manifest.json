@@ -1,0 +1,24 @@
+{
+    "name": "Constraint",
+    "author": {
+        "name": "Edan Kwan",
+        "github": "edankwan",
+        "website": "http://www.edankwan.com/",
+        "twitter": "edankwan"
+    },
+    "description": "It is a simple experiment I did to use the position based constraint and curl noise movement on the velocity to create that organic look and feel.",
+    "tags": [
+        "webgl",
+        "three.js",
+        "curl-noise"
+    ],
+    "interaction": {
+        "mouse": true,
+        "keyboard": true,
+        "touch": true
+    },
+    "instructions": "Any key to toggle color theme",
+    "colour_scheme": "dark",
+    "mobile_friendly": false,
+    "slug": "edankwan/constraint"
+}
