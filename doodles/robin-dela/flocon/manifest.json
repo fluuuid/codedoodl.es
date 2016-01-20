@@ -1,0 +1,24 @@
+{
+    "name": "Flocon",
+    "author": {
+        "name": "Robin Delaporte",
+        "github": "robin-dela",
+        "website": "http://robindelaporte.fr",
+        "twitter": "not__robin"
+    },
+    "description": "Interactive snowflake",
+    "tags": [
+        "threejs",
+        "webgl",
+        "christmas"
+    ],
+    "interaction": {
+        "mouse": true,
+        "keyboard": false,
+        "touch": true
+    },
+    "instructions": "Drag to rotate, click to explode",
+    "colour_scheme": "light",
+    "mobile_friendly": true,
+    "slug": "robin-dela/flocon"
+}
