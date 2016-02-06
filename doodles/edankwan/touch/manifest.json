@@ -1,0 +1,25 @@
+{
+    "name": "TOUCH",
+    "author": {
+        "name": "Edan Kwan",
+        "github": "edankwan",
+        "website": "http://www.edankwan.com/",
+        "twitter": "edankwan"
+    },
+    "description": "It is an experiment to showcase the possibility to apply the physics with 262k particles on Leap Motion by using the signed distance field.",
+    "tags": [
+        "webgl",
+        "three.js",
+        "particles",
+        "leapmotion"
+    ],
+    "interaction": {
+        "mouse": true,
+        "keyboard": false,
+        "touch": true
+    },
+    "instructions": "Use Leap Motion or drag and drop",
+    "colour_scheme": "light",
+    "mobile_friendly": false,
+    "slug": "edankwan/touch"
+}
