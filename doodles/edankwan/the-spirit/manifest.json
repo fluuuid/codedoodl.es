@@ -1,0 +1,22 @@
+{
+    "name": "The Spirit",
+    "author": {
+        "name": "Edan Kwan",
+        "github": "edankwan",
+        "website": "http://www.edankwan.com/",
+        "twitter": "edankwan"
+    },
+    "description": "The Spirit is a noise based WebGL experience.",
+    "tags": [
+        "gpgpu", "curl noise", "particles"
+    ],
+    "interaction": {
+        "mouse": true,
+        "keyboard": false,
+        "touch": false
+    },
+    "instructions": "drag and drop",
+    "colour_scheme": "dark",
+    "mobile_friendly": false,
+    "slug": "edankwan/the-spirit"
+}
