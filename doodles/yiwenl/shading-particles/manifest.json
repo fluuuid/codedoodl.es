@@ -1,0 +1,20 @@
+{
+    "name" : "Shading Particles",
+    "author" : {
+        "name" : "Yi-Wen Lin",
+        "github" : "yiwenl",
+        "website" : "http://blog.bongiovi.tw/",
+        "twitter" : "yiwen_lin"
+    },
+    "description" : "Experimenting curl noise and shadow mapping.",
+    "tags" : [ "curl noise", "particles" ],
+    "interaction" : {
+        "mouse" : true,
+        "keyboard" : false,
+        "touch" : false
+    },
+    "instructions" : "Move around.",
+    "colour_scheme" : "dark",
+    "mobile_friendly" : false,
+    "slug" : "yiwenl/shading-particles"
+}
