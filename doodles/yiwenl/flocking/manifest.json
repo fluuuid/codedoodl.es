@@ -1,0 +1,20 @@
+{
+    "name" : "Flocking",
+    "author" : {
+        "name" : "Yi-Wen Lin",
+        "github" : "yiwenl",
+        "website" : "http://blog.bongiovi.tw/",
+        "twitter" : "yiwen_lin"
+    },
+    "description" : "Experiment with flocking.",
+    "tags" : [ "particles", "flocking" ],
+    "interaction" : {
+        "mouse" : true,
+        "keyboard" : true,
+        "touch" : false
+    },
+    "instructions" : "Move around. Press space bar to change colour theme.",
+    "colour_scheme" : "light",
+    "mobile_friendly" : false,
+    "slug" : "yiwenl/flocking"
+}
