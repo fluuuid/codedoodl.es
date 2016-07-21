@@ -1,0 +1,26 @@
+{
+  "name": "Orchid",
+  "author": {
+      "name": "Jérémie Boulay",
+      "github": "Jeremboo",
+      "website": "http://jeremieboulay.fr",
+      "twitter": "JeremBoo"
+  },
+  "description": "Generator of orchid mood for a mobile application realized during the project \"L'O de Sisley\" at Gobelins, l'école de l'image. <br/><br/>more: <a href=\"http://jeremieboulay.fr/o-de-sisley/\" target=\"_blank\">http://jeremieboulay.fr/o-de-sisley</a><br/><br/>",
+  "tags": [
+      "threejs",
+      "webgl",
+      "orchid",
+      "flower",
+      "mood"
+  ],
+  "interaction": {
+      "mouse": true,
+      "keyboard": true,
+      "touch": true
+  },
+  "instructions": "Click to change mood, tap 'c' to close it.",
+  "colour_scheme": "light",
+  "mobile_friendly": true,
+  "slug": "jeremboo/orchid"
+}
