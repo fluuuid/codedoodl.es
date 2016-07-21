@@ -1,0 +1,24 @@
+{
+    "name": "crystals",
+    "author": {
+        "name": "zadvorsky",
+        "github": "zadvorsky",
+        "website": "http://zadvorsky.com",
+        "twitter": "zadvorsky"
+    },
+    "description": "THREE.js vertex shader animation",
+    "tags": [
+        "webgl",
+        "three.js",
+        "vertex-shader"
+    ],
+    "interaction": {
+        "mouse": true,
+        "keyboard": true,
+        "touch": true
+    },
+    "instructions": "Look around. Press 'P' to pause.",
+    "colour_scheme": "dark",
+    "mobile_friendly": true,
+    "slug": "zadvorsky/crystals"
+}
