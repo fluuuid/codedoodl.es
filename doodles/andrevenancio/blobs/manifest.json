@@ -1,0 +1,25 @@
+{
+    "name": "Blobs",
+    "author": {
+        "name": "André Venâncio",
+        "github": "andrevenancio",
+        "website": "https://andrevenancio.com",
+        "twitter": "andrevenancio"
+    },
+    "description": "Blobs is a doodle inspired by Jonatan Grönkvist work. Its a study on real time rendering and post processing techniques.",
+    "tags": [
+        "webgl",
+        "ssao",
+        "noise",
+        "threejs"
+    ],
+    "interaction": {
+        "mouse": true,
+        "keyboard": false,
+        "touch": true
+    },
+    "instructions": "Click or Touch to interact",
+    "colour_scheme": "dark",
+    "mobile_friendly": true,
+    "slug": "andrevenancio/blobs"
+}
