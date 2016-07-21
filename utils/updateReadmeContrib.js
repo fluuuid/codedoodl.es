@@ -48,7 +48,7 @@ function updateReadmeContributors() {
   var contributors      = null;
   var newReadme         = null;
 
-  request('http://develop.codedoodl.es/api/contributors', function(err, res, body) {
+  request('http://codedoodl.es/api/contributors', function(err, res, body) {
     if (!err && res.statusCode === 200) {
       contributors = JSON.parse(body).contributors;
       if (currentReadmeData.contribCount !== contributors.length) {
