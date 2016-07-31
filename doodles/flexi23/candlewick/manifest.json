@@ -1,0 +1,20 @@
+{
+    "name" : "Candlewick",
+    "author" : {
+        "name" : "Felix Woitzel",
+        "github" : "Flexi23",
+        "website" : "http://www.cake23.de",
+        "twitter" : "Flexi23"
+    },
+    "description" : "firey two channel reaction-diffusion",
+    "tags" : [ "GPGPU", "fluid", "simulation" ],
+    "interaction" : {
+        "mouse" : true,
+        "keyboard" : false,
+        "touch" : false
+    },
+    "instructions" : "swirl",
+    "colour_scheme" : "dark",
+    "mobile_friendly" : false,
+    "slug" : "flexi23/candlewick"
+}
