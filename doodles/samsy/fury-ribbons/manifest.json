@@ -1,0 +1,20 @@
+{
+    "name" : "Fury Ribbons",
+    "author" : {
+        "name" : "Samsy",
+        "github" : "Samsy",
+        "website" : "http://samsy.ninja",
+        "twitter" : "Samsyyyy"
+    },
+    "description" : "Experiments with instanced line geometry.</br>Proof of concept of ribbons system using one single draw call.",
+    "tags" : [ "webgl", "ribbons", "lines" ],
+    "interaction" : {
+        "mouse" : true,
+        "keyboard" : false,
+        "touch" : false
+    },
+    "instructions" : "scroll and drag",
+    "colour_scheme" : "dark",
+    "mobile_friendly" : false,
+    "slug" : "samsy/fury-ribbons"
+}
