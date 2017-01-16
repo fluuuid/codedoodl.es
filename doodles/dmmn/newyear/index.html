@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>christmasxp-fireworks</title>
+  <meta name="description" content="christmasxp-fireworks">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    @import "src/index.css";
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    christmasxp-fireworks {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  </style>
+</head>
+<body>
+  <christmasxp-fireworks></christmasxp-fireworks>
+
+  <script type="text/javascript">
+    (function() {
+      let script = document.createElement("script");
+      document.currentScript.parentNode.insertBefore(script, document.currentScript.nextSibling);
+      if(/\bdev\b/.test(window.location.search)) {
+        script.src = "node_modules/systemjs/dist/system.js";
+        script.onload = function() {
+          let config = document.createElement("script");
+          script.parentNode.insertBefore(config, script.nextSibling);
+          config.src = "jspm.config.js";
+          config.onload = function() {
+            System.import("src/index.js");
+          }
+        }
+      } else {
+        script.src = "./build/index.js";
+      }
+    })();
+  </script>
+</body>
+</html>
