@@ -1,0 +1,20 @@
+{
+    "name" : "New year",
+    "author" : {
+        "name" : "Damien Mortini",
+        "github" : "dmmn",
+        "website" : "http://dmmn.io",
+        "twitter" : "d_m_m_n_"
+    },
+    "description" : "Fireworks to celebrate the 5 years of <a href=\"http://christmasexperiments.com/\" target=\"_blank\">Christmas Experiments</a>.",
+    "tags" : [ "webgl", "threejs" ],
+    "interaction" : {
+        "mouse" : true,
+        "keyboard" : false,
+        "touch" : true
+    },
+    "instructions" : "move your mouse / touch and drag",
+    "colour_scheme" : "dark",
+    "mobile_friendly" : true,
+    "slug" : "dmmn/newyear"
+}
