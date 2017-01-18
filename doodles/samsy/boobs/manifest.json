@@ -1,0 +1,20 @@
+{
+    "name" : "Boobs",
+    "author" : {
+        "name" : "Samsy",
+        "github" : "Samsy",
+        "website" : "http://samsy.ninja",
+        "twitter" : "Samsyyyy"
+    },
+    "description" : "Noise liquid using a scale in a box ! Boobs are for fun though !",
+    "tags" : [ "noise", "boobs", "webgl" ],
+    "interaction" : {
+        "mouse" : true,
+        "keyboard" : false,
+        "touch" : false
+    },
+    "instructions" : "Drag",
+    "colour_scheme" : "dark",
+    "mobile_friendly" : false,
+    "slug" : "samsy/boobs"
+}
