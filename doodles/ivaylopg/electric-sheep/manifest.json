@@ -1,0 +1,23 @@
+{
+    "name": "Electric Sheep",
+    "author": {
+        "name": "Ivaylo Getov",
+        "github": "ivaylopg",
+        "website": "http://ivaylogetov.com",
+        "twitter": "ivaylopg"
+    },
+    "description": "Digital clouds built from a recursive algorithm. The daydreams of an android lying in a virtual field of grass.<br><br><a href=\"http://ivaylogetov.com/electricsheep\">ivaylogetov.com/electricsheep</a>",
+    "tags": [
+        "threejs",
+        "shader"
+    ],
+    "interaction": {
+        "mouse": true,
+        "keyboard": false,
+        "touch": false
+    },
+    "instructions": "Clear your mind. Move your mouse.",
+    "colour_scheme": "light",
+    "mobile_friendly": false,
+    "slug": "ivaylopg/electric-sheep"
+}
