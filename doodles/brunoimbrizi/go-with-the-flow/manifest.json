@@ -1,0 +1,20 @@
+{
+    "name" : "Go With The Flow",
+    "author" : {
+        "name" : "Bruno Imbrizi",
+        "github" : "brunoimbrizi",
+        "website" : "http://brunoimbrizi.com",
+        "twitter" : "brunoimbrizi"
+    },
+    "description" : "Inspired by Queens of the Stone Age. <a href=\"http://brunoimbrizi.com/unbox/2017/02/go-with-the-flow/\">More info</a>.",
+    "tags" : [ "path following", "noise", "webgl", "qotsa" ],
+    "interaction" : {
+        "mouse" : false,
+        "keyboard" : false,
+        "touch" : false
+    },
+    "instructions" : "go with the flow",
+    "colour_scheme" : "dark",
+    "mobile_friendly" : true,
+    "slug" : "brunoimbrizi/go-with-the-flow"
+}
