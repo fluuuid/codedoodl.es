@@ -3,7 +3,7 @@
     "author" : {
         "name" : "Damien Mortini",
         "github" : "dmmn",
-        "website" : "http://damienmortini.me.uk",
+        "website" : "http://dmmn.io",
         "twitter" : "d_m_m_n_"
     },
     "description" : "Procedurally generated city with a pinch of ray marching (<a href=\"https://github.com/dmmn/xp-substrate\" target=\"_blank\">Github</a>).",
