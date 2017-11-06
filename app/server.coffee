@@ -15,6 +15,7 @@ app.set 'view engine', 'html'
 app.use compress()
 
 [
+	"./health/routes",
 	"./api/routes",
 	"./site/routes",
 	"./hooks/routes"
