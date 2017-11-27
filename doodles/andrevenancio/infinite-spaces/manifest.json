@@ -1,0 +1,22 @@
+{
+    "name": "infinite spaces",
+    "author": {
+        "name": "André Venâncio",
+        "github": "andrevenancio",
+        "website": "https://andrevenancio.com",
+        "twitter": "andrevenancio"
+    },
+    "description": "mesh instancing with noise offset using lowww wengine",
+    "tags": [
+        "webgl2"
+    ],
+    "interaction": {
+        "mouse": true,
+        "keyboard": false,
+        "touch": false
+    },
+    "instructions": "move your mouse",
+    "colour_scheme": "dark",
+    "mobile_friendly": false,
+    "slug": "andrevenancio/infinite-spaces"
+}
