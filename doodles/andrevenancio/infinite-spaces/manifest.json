@@ -8,7 +8,9 @@
     },
     "description": "mesh instancing with noise offset using lowww wengine",
     "tags": [
-        "webgl2"
+        "webgl2",
+        "webgl",
+        "lowww"
     ],
     "interaction": {
         "mouse": true,
@@ -17,6 +19,6 @@
     },
     "instructions": "move your mouse",
     "colour_scheme": "dark",
-    "mobile_friendly": false,
+    "mobile_friendly": true,
     "slug": "andrevenancio/infinite-spaces"
 }
