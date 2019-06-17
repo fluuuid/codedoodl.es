@@ -15,7 +15,7 @@ try {
   path = resolve(process.argv[2]);
 } catch (e) {
   console.log(colors.red('Please provide directory structure for doodle to test relative to root, eg '));
-  console.log(colors.red('`$ node utils/checkPageSize.js doodles/doodle-author/doodle-name`'));
+  console.log(colors.red('`$ node utils/previewPR.js doodles/doodle-author/doodle-name`'));
   return;
 }
 
