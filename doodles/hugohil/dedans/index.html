@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dedans</title>
+    <meta charset="utf-8">
+    <meta name="description" content="What's inside ?"/>
+    <meta name="keywords" content="html, reader, read, art, loop, larsen, hugohil"/>
+    <meta name="author" content="hugohil"/>
+    <meta name="copyright" content="zero"/>
+    <meta name="application-name" content="Dedans"/>
+    <meta property="og:title" content="Dedans"/>
+    <meta property="og:type" content="page"/>
+    <meta property="og:image" content="http://hugohil.github.io/dedans/picture.png"/>
+    <meta property="og:url" content="http://hugohil.github.io/dedans/"/>
+    <meta property="og:description" content="What's inside ?"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="Dedans"/>
+    <meta name="twitter:description" content="What's inside ?"/>
+    <meta name="twitter:image" content="http://hugohil.github.io/dedans/picture.png"/>
+    <link rel="stylesheet" type='text/css' href="https://rawgit.com/daneden/animate.css/master/animate.css"charset="utf-8">
+    <link rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,700'>
+    <style>
+      html, body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        background: #F1F1F1;
+        font-family: 'Roboto Condensed', sans-serif;
+      }
+      .container {
+        width: 100%;
+        color: #0F0F0F;
+        text-align: center;
+        line-height: 100vh;
+      }
+      .container button {
+        font-size: 24px;
+        border: none;
+        background: #FFF;
+        padding: 10px 15px;
+        text-transform: uppercase;
+        -webkit-box-shadow: 0px 2px 0px 0px #D2D2D2;
+        -moz-box-shadow: 0px 2px 0px 0px #D2D2D2;
+        -o-box-shadow: 0px 2px 0px 0px #D2D2D2;
+        box-shadow: 0px 2px 0px 0px #D2D2D2;
+        -webkit-transition: all .3s ease;
+        -moz-transition: all .3s ease;
+        transition: all .3s ease;
+        position: relative;
+        font-weight: bold;
+        color: #A3A3A3;
+        top: 0;
+      }
+      .container button:hover,
+      .container button:focus,
+      .container button:active {
+        top: 2px;
+        outline: none;
+        color: #D2D2D2;
+        cursor: pointer;
+        box-shadow: 0px 0px 0px 0px #D2D2D2;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container"></div>
+    <script type="text/javascript">
+      var container = document.querySelector('.container')
+
+      ;(function init (){
+        var req = new window.XMLHttpRequest()
+        req.open('GET', '#/', true)
+        req.onreadystatechange = function (state) {
+          if (req.readyState === 4) {
+            if (req.status === 200) {
+              var res = req.responseText
+              read(res)
+            } else {
+              console.log('Error:', req.status)
+            }
+          }
+        }
+        req.send(null)
+      })()
+
+      function read (text) {
+        if(!text.length) {
+          return false
+        }
+        splitted = text.split(/\n/)
+        for (var i = 0; i < splitted.length + 1; i++) {
+          if(i < splitted.length){
+            (function (line, index) {
+              setTimeout(function () {
+                resize(line, container)
+                container.textContent = line
+              }, 100 * index)
+            })(splitted[i], i)
+          } else {
+            setTimeout(function () {
+              var replay = document.createElement('button')
+              replay.textContent = 'replay'
+              replay.className = 'animated fadeInUp'
+              replay.addEventListener('click', function (event) {
+                replay.className = 'animated fadeOutUp'
+                setTimeout(function () {
+                  read(text)
+                }, 1000)
+              })
+              document.querySelector('.container').appendChild(replay)
+            }, 100 * i)
+          }
+        }
+      }
+
+      function resize (line, element) {
+        var length = line.length
+        if (length) {
+          var width = window.innerWidth / length
+          element.style.fontSize = (width * 2) + 'px'
+        } else {
+          element.style.fontSize = 'inherit'
+        }
+      }
+    </script>
+  </body>
+</html>
