@@ -1,0 +1,7 @@
+html, body {
+	margin: 0;
+	overflow: hidden;
+	/*background-color: #393939;*/
+	/*background-color: #c7003d;*/
+	background-color: rgb(167, 0, 17);
+}
