@@ -2,7 +2,6 @@ var gulp         = require('gulp');
 var sass         = require('gulp-sass');
 var prefix       = require('gulp-autoprefixer');
 var minifyCSS    = require('gulp-minify-css');
-var cmq          = require('gulp-combine-media-queries');
 var gutil        = require('gulp-util');
 var path         = require('path');
 var gzip         = require('gulp-gzip');
@@ -19,7 +18,6 @@ gulp.task('sass', ['images'], function () {
         .pipe(sass())
         .on('error', handleErrors)
         .pipe(prefix("ie >= 8", "ff >= 3", "safari >= 4", "opera >= 12", "chrome >= 4"))
-        .pipe(global.isWatching ? gutil.noop() : cmq())
         .pipe(global.isWatching ? gutil.noop() : minifyCSS())
         // always gzip, make sure headers set by server
         .pipe(gzip({ append: false }))

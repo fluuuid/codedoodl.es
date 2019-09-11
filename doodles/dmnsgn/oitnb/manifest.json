@@ -19,7 +19,7 @@
         "touch": false
     },
     "instructions": "Focus on the center point.",
-    "colour_scheme": "light",
+    "colour_scheme": "dark",
     "mobile_friendly": true,
     "slug": "dmnsgn/oitnb"
 }

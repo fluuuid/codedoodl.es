@@ -1,0 +1,20 @@
+{
+    "name" : "dedans",
+    "author" : {
+        "name" : "hugohil",
+        "github" : "hugohil",
+        "website" : "http://hugohil.tech",
+        "twitter" : "hugohil"
+    },
+    "description" : "What's inside ?",
+    "tags" : [ "dedans", "text", "meta", "html", "minimal" ],
+    "interaction" : {
+        "mouse" : false,
+        "keyboard" : false,
+        "touch" : false
+    },
+    "instructions" : "What's inside ?",
+    "colour_scheme" : "light",
+    "mobile_friendly" : true,
+    "slug" : "hugohil/dedans"
+}

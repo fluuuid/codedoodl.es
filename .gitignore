@@ -5,6 +5,7 @@ temp/
 node_modules/
 .sass-cache/
 .sublime/
+npm-debug.log
 
 # OSX 
 *.DS_Store
