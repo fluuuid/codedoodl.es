@@ -38,6 +38,7 @@ config.routes =
 	LOGIN      : 'login'
 	FORM       : 'form'
 	EXTENSION  : 'extension'
+	HEALTH     : 'health'
 
 config.shortlinks =
 	SALT     : 'no need for this to be private I guess'

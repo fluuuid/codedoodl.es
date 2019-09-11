@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset=utf-8>
+  <title>Electric Sheep | Ivaylo Getov</title>
+  <link rel="stylesheet" type="text/css" href="sheep.css">
+</head>
+<body>
+
+  <div id="container">
+    <canvas id="theCanvas"></canvas>
+  </div>
+
+  <script type="x-shader/x-vertex" id="vertexShader">
+    uniform vec2 mouse;
+    void main() {
+      vec4 pos = vec4(position, 1.0);
+      pos.z = 0.0;
+      vec4 modelViewPosition = modelViewMatrix * pos;
+      gl_Position = projectionMatrix * modelViewPosition;
+      gl_PointSize = position.z * 1.5;
+    }
+  </script>
+
+  <script type="x-shader/x-fragment" id="fragmentShader">
+    uniform sampler2D tex;
+    uniform float globalAlpha;
+
+    void main () {
+      float clampedAlpha = clamp(globalAlpha,0.0,1.0);
+      gl_FragColor = texture2D(tex, gl_PointCoord);
+      if (gl_FragColor.w < 1.0) {
+        gl_FragColor.x = 1.0;
+        gl_FragColor.y = 1.0;
+        gl_FragColor.z = 1.0;
+      }
+      gl_FragColor.w *= clampedAlpha;
+    }
+  </script>
+
+  <script src="three.min.js"></script>
+  <script src="sheep.js"></script>
+</body>
+</html>

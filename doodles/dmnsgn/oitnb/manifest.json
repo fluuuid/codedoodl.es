@@ -1,0 +1,25 @@
+{
+    "name": "OITNB",
+    "author": {
+        "name": "Damien Seguin",
+        "github": "dmnsgn",
+        "website": "https://dmnsgn.me",
+        "twitter": "dmnsgn"
+    },
+    "description": "Orange is the new black. Or a tunnel.",
+    "tags": [
+        "canvas",
+        "2d",
+        "storm",
+        "tunnel"
+    ],
+    "interaction": {
+        "mouse": false,
+        "keyboard": false,
+        "touch": false
+    },
+    "instructions": "Focus on the center point.",
+    "colour_scheme": "dark",
+    "mobile_friendly": true,
+    "slug": "dmnsgn/oitnb"
+}

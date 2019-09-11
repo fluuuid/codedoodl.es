@@ -6,12 +6,12 @@
         "website" : "http://brunoimbrizi.com",
         "twitter" : "brunoimbrizi"
     },
-    "description" : "Inspired by Queens of the Stone Age. <a href=\"http://brunoimbrizi.com/unbox/2017/02/go-with-the-flow/\">More info</a>.",
+    "description" : "Inspired by Queens of the Stone Age. <a href=\"http://brunoimbrizi.com/unbox/2017/02/go-with-the-flow/\" target=\"_blank\">More info</a>.",
     "tags" : [ "path following", "noise", "webgl", "qotsa" ],
     "interaction" : {
-        "mouse" : false,
+        "mouse" : true,
         "keyboard" : false,
-        "touch" : false
+        "touch" : true
     },
     "instructions" : "go with the flow",
     "colour_scheme" : "dark",
