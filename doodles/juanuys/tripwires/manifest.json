@@ -1,0 +1,22 @@
+{
+    "name": "tripwires",
+    "author": {
+        "name": "Juan Uys",
+        "github": "juanuys",
+        "website": "https://juanuys.com",
+        "twitter": "algaerithmic"
+    },
+    "description": "Very simple yet trippy lines using 2d canvas.",
+    "tags": [
+        "canvas"
+    ],
+    "interaction": {
+        "mouse": false,
+        "keyboard": false,
+        "touch": false
+    },
+    "instructions": "Stare",
+    "colour_scheme": "light",
+    "mobile_friendly": true,
+    "slug": "juanuys/tripwires"
+}
