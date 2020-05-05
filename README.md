@@ -1,3 +1,13 @@
+---
+
+### NO LONGER LIVE
+
+Unfortunately due to hosting and maintenance costs we've had to close codedoodl.es
+
+If you would like to see the archive of doodles, you can do so at [fluuuid/codedoodl.es-doodles](http://github.com/fluuuid/codedoodl.es-doodles) which has instructions on how to run the site with the doodle archive too.
+
+---
+
 ![codedoodl.es logo](http://assets.codedoodl.es/readme_logo.png?1)
 
 <code>**\\\\ A curated showcase of creative coding sketches \\\\**</code>
